@@ -9,6 +9,7 @@ use std::panic::AssertUnwindSafe;
 
 use async_trait::async_trait;
 use futures::FutureExt;
+use futures::stream::StreamExt;
 use rand::distributions::Alphanumeric;
 use rand::{thread_rng, Rng};
 use tokio::time::delay_for;
@@ -155,7 +156,7 @@ async fn should_listen_for_shard_events() {
             .unwrap();
         let shard_id = shards_result.shards.unwrap()[0].shard_id.clone();
 
-        let _shard_sub_result = client
+        let mut stream = client
             .subscribe_to_shard(rusoto_kinesis::SubscribeToShardInput {
                 consumer_arn: consumer_result.consumer.consumer_arn,
                 shard_id,
@@ -166,9 +167,14 @@ async fn should_listen_for_shard_events() {
                 },
             })
             .await
-            .unwrap();
+            .unwrap()
+            .event_stream
+            .stream();
 
-        // TODO
+        while let Some(item) = stream.next().await {
+            let payload = item.unwrap();
+            println!("Got event from the event stream: {:?}", payload);
+        }
     }).await;
     println!("About to exit the upper test fn");
 }

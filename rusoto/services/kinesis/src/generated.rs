@@ -14,9 +14,10 @@ use std::error::Error;
 use std::fmt;
 
 use async_trait::async_trait;
+use bytes::Bytes;
 use rusoto_core::credential::ProvideAwsCredentials;
 use rusoto_core::region;
-use rusoto_core::request::{BufferedHttpResponse, DispatchSignedRequest};
+use rusoto_core::request::{BufferedHttpResponse, DispatchSignedRequest, HttpResponse};
 use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
@@ -24,6 +25,8 @@ use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
+use serde::export::PhantomData;
+
 /// <p>Represents the input for <code>AddTagsToStream</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
@@ -1019,12 +1022,20 @@ pub struct SubscribeToShardInput {
     pub starting_position: StartingPosition,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
-#[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
+pub struct EventStream<T> {
+    streaming_http_response: HttpResponse,
+    _phantom: std::marker::PhantomData<T>,
+}
+
+impl<T> EventStream<T> {
+    pub fn stream(self) -> impl futures::stream::Stream<Item=Result<Bytes, std::io::Error>> {
+        self.streaming_http_response.body
+    }
+}
+
 pub struct SubscribeToShardOutput {
     /// <p>The event stream that your consumer can use to read records from the shard.</p>
-    #[serde(rename = "EventStream")]
-    pub event_stream: SubscribeToShardEventStream,
+    pub event_stream: EventStream<SubscribeToShardEvent>,
 }
 
 /// <p>Metadata assigned to the stream, consisting of a key-value pair.</p>
@@ -3499,8 +3510,14 @@ impl Kinesis for KinesisClient {
             .await
             .map_err(RusotoError::from)?;
         if response.status.is_success() {
-            let response = response.buffer().await.map_err(RusotoError::HttpDispatch)?;
-            proto::json::ResponsePayload::new(&response).deserialize::<SubscribeToShardOutput, _>()
+            // let response = response.buffer().await.map_err(RusotoError::HttpDispatch)?;
+            Ok(SubscribeToShardOutput {
+                event_stream: EventStream::<SubscribeToShardEvent> {
+                    streaming_http_response: response,
+                    _phantom: PhantomData {},
+                }
+            })
+            // proto::json::ResponsePayload::new(&response).deserialize::<SubscribeToShardOutput, _>()
         } else {
             let try_response = response.buffer().await;
             let response = try_response.map_err(RusotoError::HttpDispatch)?;
