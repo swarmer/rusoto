@@ -14,10 +14,10 @@ use std::error::Error;
 use std::fmt;
 
 use async_trait::async_trait;
-use bytes::Bytes;
 use rusoto_core::credential::ProvideAwsCredentials;
+use rusoto_core::event_stream::EventStream;
 use rusoto_core::region;
-use rusoto_core::request::{BufferedHttpResponse, DispatchSignedRequest, HttpResponse};
+use rusoto_core::request::{BufferedHttpResponse, DispatchSignedRequest};
 use rusoto_core::{Client, RusotoError};
 
 use rusoto_core::proto;
@@ -25,7 +25,6 @@ use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
-use serde::export::PhantomData;
 
 /// <p>Represents the input for <code>AddTagsToStream</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
@@ -1020,17 +1019,6 @@ pub struct SubscribeToShardInput {
     pub shard_id: String,
     #[serde(rename = "StartingPosition")]
     pub starting_position: StartingPosition,
-}
-
-pub struct EventStream<T> {
-    streaming_http_response: HttpResponse,
-    _phantom: std::marker::PhantomData<T>,
-}
-
-impl<T> EventStream<T> {
-    pub fn stream(self) -> impl futures::stream::Stream<Item=Result<Bytes, std::io::Error>> {
-        self.streaming_http_response.body
-    }
 }
 
 pub struct SubscribeToShardOutput {
@@ -3512,10 +3500,7 @@ impl Kinesis for KinesisClient {
         if response.status.is_success() {
             // let response = response.buffer().await.map_err(RusotoError::HttpDispatch)?;
             Ok(SubscribeToShardOutput {
-                event_stream: EventStream::<SubscribeToShardEvent> {
-                    streaming_http_response: response,
-                    _phantom: PhantomData {},
-                }
+                event_stream: EventStream::<SubscribeToShardEvent>::new(response)
             })
             // proto::json::ResponsePayload::new(&response).deserialize::<SubscribeToShardOutput, _>()
         } else {

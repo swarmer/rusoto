@@ -168,8 +168,7 @@ async fn should_listen_for_shard_events() {
             })
             .await
             .unwrap()
-            .event_stream
-            .stream();
+            .event_stream;
 
         while let Some(item) = stream.next().await {
             let payload = item.unwrap();
