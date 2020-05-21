@@ -6,13 +6,14 @@ extern crate rusoto_kinesis;
 use std::cell::RefCell;
 use std::future::Future;
 use std::panic::AssertUnwindSafe;
+use std::time::Duration;
 
 use async_trait::async_trait;
 use futures::FutureExt;
 use futures::stream::StreamExt;
 use rand::distributions::Alphanumeric;
 use rand::{thread_rng, Rng};
-use tokio::time::delay_for;
+use tokio::time::{delay_for, timeout};
 
 use rusoto_core::Region;
 use rusoto_kinesis::{Kinesis, KinesisClient, ListStreamsInput};
@@ -170,10 +171,13 @@ async fn should_listen_for_shard_events() {
             .unwrap()
             .event_stream;
 
-        while let Some(item) = stream.next().await {
-            let payload = item.unwrap();
-            println!("Got event from the event stream: {:?}", payload);
-        }
+        let events_future = async {
+            while let Some(item) = stream.next().await {
+                let payload = item.unwrap();
+                println!("Got event from the event stream: {:?}", payload);
+            }
+        };
+        let _events = timeout(Duration::from_secs(10), events_future).await.unwrap();
     }).await;
     println!("About to exit the upper test fn");
 }

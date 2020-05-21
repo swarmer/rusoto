@@ -25,7 +25,6 @@ use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
-
 /// <p>Represents the input for <code>AddTagsToStream</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
@@ -3498,11 +3497,9 @@ impl Kinesis for KinesisClient {
             .await
             .map_err(RusotoError::from)?;
         if response.status.is_success() {
-            // let response = response.buffer().await.map_err(RusotoError::HttpDispatch)?;
             Ok(SubscribeToShardOutput {
                 event_stream: EventStream::<SubscribeToShardEvent>::new(response)
             })
-            // proto::json::ResponsePayload::new(&response).deserialize::<SubscribeToShardOutput, _>()
         } else {
             let try_response = response.buffer().await;
             let response = try_response.map_err(RusotoError::HttpDispatch)?;
