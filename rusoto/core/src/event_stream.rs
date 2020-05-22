@@ -5,6 +5,7 @@
 use std::marker::PhantomData;
 use std::pin::Pin;
 
+use bytes::{BufMut, Bytes, BytesMut};
 use futures::task::{Context, Poll};
 use futures::Stream;
 use pin_project::pin_project;
@@ -70,7 +71,16 @@ impl<T: DeserializeOwned> futures::stream::Stream for EventStream<T> {
                     let json_bytes = byte_chunk.slice(json_start..=json_end);
                     println!("Got json bytes: {:?}", json_bytes);
 
-                    let parsed_event = proto::json::ResponsePayload::from_body(&json_bytes)
+                    // TODO
+                    let event_type = Bytes::from_static(b"SubscribeToShardEvent");
+                    let mut extended_json = BytesMut::from(&b"{\""[..]);
+                    extended_json.put(event_type);
+                    extended_json.put(&b"\": "[..]);
+                    extended_json.put(json_bytes);
+                    extended_json.put(&b"}"[..]);
+                    println!("Extended json bytes: {:?}", extended_json);
+
+                    let parsed_event = proto::json::ResponsePayload::from_body(&Bytes::from(extended_json))
                         .deserialize::<T, _>();
                     Poll::Ready(Some(parsed_event))
                 },

@@ -973,38 +973,19 @@ pub struct SubscribeToShardEvent {
     pub records: Vec<Record>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Deserialize)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
-pub struct SubscribeToShardEventStream {
-    #[serde(rename = "InternalFailureException")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub internal_failure_exception: Option<InternalFailureException>,
-    #[serde(rename = "KMSAccessDeniedException")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_access_denied_exception: Option<KMSAccessDeniedException>,
-    #[serde(rename = "KMSDisabledException")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_disabled_exception: Option<KMSDisabledException>,
-    #[serde(rename = "KMSInvalidStateException")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_invalid_state_exception: Option<KMSInvalidStateException>,
-    #[serde(rename = "KMSNotFoundException")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_not_found_exception: Option<KMSNotFoundException>,
-    #[serde(rename = "KMSOptInRequired")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_opt_in_required: Option<KMSOptInRequired>,
-    #[serde(rename = "KMSThrottlingException")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub kms_throttling_exception: Option<KMSThrottlingException>,
-    #[serde(rename = "ResourceInUseException")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub resource_in_use_exception: Option<ResourceInUseException>,
-    #[serde(rename = "ResourceNotFoundException")]
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub resource_not_found_exception: Option<ResourceNotFoundException>,
-    #[serde(rename = "SubscribeToShardEvent")]
-    pub subscribe_to_shard_event: SubscribeToShardEvent,
+pub enum SubscribeToShardEventStream {
+    InternalFailureException(InternalFailureException),
+    KMSAccessDeniedException(KMSAccessDeniedException),
+    KMSDisabledException(KMSDisabledException),
+    KMSInvalidStateException(KMSInvalidStateException),
+    KMSNotFoundException(KMSNotFoundException),
+    KMSOptInRequired(KMSOptInRequired),
+    KMSThrottlingException(KMSThrottlingException),
+    ResourceInUseException(ResourceInUseException),
+    ResourceNotFoundException(ResourceNotFoundException),
+    SubscribeToShardEvent(SubscribeToShardEvent),
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
@@ -1022,7 +1003,7 @@ pub struct SubscribeToShardInput {
 
 pub struct SubscribeToShardOutput {
     /// <p>The event stream that your consumer can use to read records from the shard.</p>
-    pub event_stream: EventStream<SubscribeToShardEvent>,
+    pub event_stream: EventStream<SubscribeToShardEventStream>,
 }
 
 /// <p>Metadata assigned to the stream, consisting of a key-value pair.</p>
@@ -3498,7 +3479,7 @@ impl Kinesis for KinesisClient {
             .map_err(RusotoError::from)?;
         if response.status.is_success() {
             Ok(SubscribeToShardOutput {
-                event_stream: EventStream::<SubscribeToShardEvent>::new(response)
+                event_stream: EventStream::<SubscribeToShardEventStream>::new(response)
             })
         } else {
             let try_response = response.buffer().await;
