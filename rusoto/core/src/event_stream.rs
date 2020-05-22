@@ -55,7 +55,7 @@ impl<T: DeserializeEvent> EventStream<T> {
 }
 
 impl<T: DeserializeEvent> futures::stream::Stream for EventStream<T> {
-    type Item = Result<T, RusotoError<std::io::Error>>;
+    type Item = Result<T, RusotoError<()>>;
 
     fn poll_next(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
         // TODO
