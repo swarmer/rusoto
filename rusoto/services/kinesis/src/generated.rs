@@ -15,7 +15,7 @@ use std::fmt;
 
 use async_trait::async_trait;
 use rusoto_core::credential::ProvideAwsCredentials;
-use rusoto_core::event_stream::EventStream;
+use rusoto_core::event_stream::{DeserializeEvent, EventStream};
 use rusoto_core::region;
 use rusoto_core::request::{BufferedHttpResponse, DispatchSignedRequest};
 use rusoto_core::{Client, RusotoError};
@@ -23,7 +23,7 @@ use rusoto_core::{Client, RusotoError};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
 use serde_json;
 /// <p>Represents the input for <code>AddTagsToStream</code>.</p>
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
@@ -986,6 +986,24 @@ pub enum SubscribeToShardEventStream {
     ResourceInUseException(ResourceInUseException),
     ResourceNotFoundException(ResourceNotFoundException),
     SubscribeToShardEvent(SubscribeToShardEvent),
+}
+
+impl DeserializeEvent for SubscribeToShardEventStream {
+    fn deserialize_event<'de, D: Deserializer<'de>>(event_type: &str, deserializer: D) -> Result<Self, D::Error>
+    {
+        let deserialized = match event_type {
+            "InternalFailureException" => SubscribeToShardEventStream::InternalFailureException(
+                InternalFailureException::deserialize(deserializer)?
+            ),
+            // TODO
+            "SubscribeToShardEvent" => SubscribeToShardEventStream::SubscribeToShardEvent(
+                SubscribeToShardEvent::deserialize(deserializer)?
+            ),
+            _ => unimplemented!()
+        };
+
+        Ok(deserialized)
+    }
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize)]
