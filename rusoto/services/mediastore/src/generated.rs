@@ -25,7 +25,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>This section describes operations that you can perform on an AWS Elemental MediaStore container.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Container {
     /// <p>The Amazon Resource Name (ARN) of the container. The ARN has the following format:</p> <p>arn:aws:&lt;region&gt;:&lt;account that owns this container&gt;:container/&lt;name of container&gt; </p> <p>For example: arn:aws:mediastore:us-west-2:111122223333:container/movies </p>
@@ -55,7 +55,7 @@ pub struct Container {
 }
 
 /// <p>A rule for a CORS policy. You can add up to 100 rules to a CORS policy. If more than one rule applies, the service uses the first applicable rule listed.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CorsRule {
     /// <p>Specifies which headers are allowed in a preflight <code>OPTIONS</code> request through the <code>Access-Control-Request-Headers</code> header. Each header name that is specified in <code>Access-Control-Request-Headers</code> must have a corresponding entry in the rule. Only the headers that were requested are sent back. </p> <p>This element can contain only one wildcard character (*).</p>
     #[serde(rename = "AllowedHeaders")]
@@ -77,7 +77,7 @@ pub struct CorsRule {
     pub max_age_seconds: Option<i64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateContainerInput {
     /// <p>The name for the container. The name must be from 1 to 255 characters. Container names must be unique to your AWS account within a specific region. As an example, you could create a container named <code>movies</code> in every region, as long as you don’t have an existing container with that name.</p>
@@ -89,7 +89,7 @@ pub struct CreateContainerInput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateContainerOutput {
     /// <p>ContainerARN: The Amazon Resource Name (ARN) of the newly created container. The ARN has the following format: arn:aws:&lt;region&gt;:&lt;account that owns this container&gt;:container/&lt;name of container&gt;. For example: arn:aws:mediastore:us-west-2:111122223333:container/movies </p> <p>ContainerName: The container name as specified in the request.</p> <p>CreationTime: Unix time stamp.</p> <p>Status: The status of container creation or deletion. The status is one of the following: <code>CREATING</code>, <code>ACTIVE</code>, or <code>DELETING</code>. While the service is creating the container, the status is <code>CREATING</code>. When an endpoint is available, the status changes to <code>ACTIVE</code>.</p> <p>The return value does not include the container's endpoint. To make downstream requests, you must obtain this value by using <a>DescribeContainer</a> or <a>ListContainers</a>.</p>
@@ -97,7 +97,7 @@ pub struct CreateContainerOutput {
     pub container: Container,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteContainerInput {
     /// <p>The name of the container to delete. </p>
@@ -105,11 +105,11 @@ pub struct DeleteContainerInput {
     pub container_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteContainerOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteContainerPolicyInput {
     /// <p>The name of the container that holds the policy.</p>
@@ -117,11 +117,11 @@ pub struct DeleteContainerPolicyInput {
     pub container_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteContainerPolicyOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCorsPolicyInput {
     /// <p>The name of the container to remove the policy from.</p>
@@ -129,11 +129,11 @@ pub struct DeleteCorsPolicyInput {
     pub container_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteCorsPolicyOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteLifecyclePolicyInput {
     /// <p>The name of the container that holds the object lifecycle policy.</p>
@@ -141,11 +141,11 @@ pub struct DeleteLifecyclePolicyInput {
     pub container_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteLifecyclePolicyOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeContainerInput {
     /// <p>The name of the container to query.</p>
@@ -154,7 +154,7 @@ pub struct DescribeContainerInput {
     pub container_name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeContainerOutput {
     /// <p>The name of the queried container.</p>
@@ -163,7 +163,7 @@ pub struct DescribeContainerOutput {
     pub container: Option<Container>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetContainerPolicyInput {
     /// <p>The name of the container. </p>
@@ -171,7 +171,7 @@ pub struct GetContainerPolicyInput {
     pub container_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetContainerPolicyOutput {
     /// <p>The contents of the access policy.</p>
@@ -179,7 +179,7 @@ pub struct GetContainerPolicyOutput {
     pub policy: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCorsPolicyInput {
     /// <p>The name of the container that the policy is assigned to.</p>
@@ -187,7 +187,7 @@ pub struct GetCorsPolicyInput {
     pub container_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCorsPolicyOutput {
     /// <p>The CORS policy assigned to the container.</p>
@@ -195,7 +195,7 @@ pub struct GetCorsPolicyOutput {
     pub cors_policy: Vec<CorsRule>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetLifecyclePolicyInput {
     /// <p>The name of the container that the object lifecycle policy is assigned to.</p>
@@ -203,7 +203,7 @@ pub struct GetLifecyclePolicyInput {
     pub container_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetLifecyclePolicyOutput {
     /// <p>The object lifecycle policy that is assigned to the container.</p>
@@ -211,7 +211,7 @@ pub struct GetLifecyclePolicyOutput {
     pub lifecycle_policy: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListContainersInput {
     /// <p>Enter the maximum number of containers in the response. Use from 1 to 255 characters. </p>
@@ -224,7 +224,7 @@ pub struct ListContainersInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListContainersOutput {
     /// <p>The names of the containers.</p>
@@ -236,7 +236,7 @@ pub struct ListContainersOutput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceInput {
     /// <p>The Amazon Resource Name (ARN) for the container.</p>
@@ -244,7 +244,7 @@ pub struct ListTagsForResourceInput {
     pub resource: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceOutput {
     /// <p>An array of key:value pairs that are assigned to the container.</p>
@@ -253,7 +253,7 @@ pub struct ListTagsForResourceOutput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutContainerPolicyInput {
     /// <p>The name of the container.</p>
@@ -264,11 +264,11 @@ pub struct PutContainerPolicyInput {
     pub policy: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutContainerPolicyOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutCorsPolicyInput {
     /// <p>The name of the container that you want to assign the CORS policy to.</p>
@@ -279,11 +279,11 @@ pub struct PutCorsPolicyInput {
     pub cors_policy: Vec<CorsRule>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutCorsPolicyOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutLifecyclePolicyInput {
     /// <p>The name of the container that you want to assign the object lifecycle policy to.</p>
@@ -294,11 +294,11 @@ pub struct PutLifecyclePolicyInput {
     pub lifecycle_policy: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutLifecyclePolicyOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartAccessLoggingInput {
     /// <p>The name of the container that you want to start access logging on.</p>
@@ -306,11 +306,11 @@ pub struct StartAccessLoggingInput {
     pub container_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartAccessLoggingOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopAccessLoggingInput {
     /// <p>The name of the container that you want to stop access logging on.</p>
@@ -318,12 +318,12 @@ pub struct StopAccessLoggingInput {
     pub container_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopAccessLoggingOutput {}
 
 /// <p>A collection of tags associated with a container. Each tag consists of a key:value pair, which can be anything you define. Typically, the tag key represents a category (such as "environment") and the tag value represents a specific value within that category (such as "test," "development," or "production"). You can add up to 50 tags to each container. For more information about tagging, including naming and usage conventions, see <a href="https://docs.aws.amazon.com/mediastore/latest/ug/tagging.html">Tagging Resources in MediaStore</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Tag {
     /// <p>Part of the key:value pair that defines a tag. You can use a tag key to describe a category of information, such as "customer." Tag keys are case-sensitive.</p>
     #[serde(rename = "Key")]
@@ -334,7 +334,7 @@ pub struct Tag {
     pub value: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceInput {
     /// <p>The Amazon Resource Name (ARN) for the container. </p>
@@ -345,11 +345,11 @@ pub struct TagResourceInput {
     pub tags: Vec<Tag>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceInput {
     /// <p>The Amazon Resource Name (ARN) for the container.</p>
@@ -360,7 +360,7 @@ pub struct UntagResourceInput {
     pub tag_keys: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceOutput {}
 

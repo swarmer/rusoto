@@ -26,7 +26,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>An action to be performed when the <code>"condition"</code> is TRUE.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Action {
     /// <p>Information needed to clear the timer.</p>
     #[serde(rename = "clearTimer")]
@@ -71,7 +71,7 @@ pub struct Action {
 }
 
 /// <p>The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here are available for use in the <code>condition</code> expressions used by detectors. </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Attribute {
     /// <p>An expression that specifies an attribute-value pair in a JSON structure. Use this to specify an attribute from the JSON payload that is made available by the input. Inputs are derived from messages sent to the AWS IoT Events system (<code>BatchPutMessage</code>). Each such message contains a JSON payload, and the attribute (and its paired value) specified here are available for use in the <code>"condition"</code> expressions used by detectors. </p> <p>Syntax: <code>&lt;field-name&gt;.&lt;field-name&gt;...</code> </p>
     #[serde(rename = "jsonPath")]
@@ -79,14 +79,14 @@ pub struct Attribute {
 }
 
 /// <p>Information needed to clear the timer.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ClearTimerAction {
     /// <p>The name of the timer to clear.</p>
     #[serde(rename = "timerName")]
     pub timer_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDetectorModelRequest {
     /// <p>Information that defines how the detectors operate.</p>
@@ -116,7 +116,7 @@ pub struct CreateDetectorModelRequest {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDetectorModelResponse {
     /// <p>Information about how the detector model is configured.</p>
@@ -125,7 +125,7 @@ pub struct CreateDetectorModelResponse {
     pub detector_model_configuration: Option<DetectorModelConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateInputRequest {
     /// <p>The definition of the input.</p>
@@ -144,7 +144,7 @@ pub struct CreateInputRequest {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateInputResponse {
     /// <p>Information about the configuration of the input.</p>
@@ -153,7 +153,7 @@ pub struct CreateInputResponse {
     pub input_configuration: Option<InputConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDetectorModelRequest {
     /// <p>The name of the detector model to be deleted.</p>
@@ -161,11 +161,11 @@ pub struct DeleteDetectorModelRequest {
     pub detector_model_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteDetectorModelResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteInputRequest {
     /// <p>The name of the input to delete.</p>
@@ -173,11 +173,11 @@ pub struct DeleteInputRequest {
     pub input_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteInputResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeDetectorModelRequest {
     /// <p>The name of the detector model.</p>
@@ -189,7 +189,7 @@ pub struct DescribeDetectorModelRequest {
     pub detector_model_version: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeDetectorModelResponse {
     /// <p>Information about the detector model.</p>
@@ -198,7 +198,7 @@ pub struct DescribeDetectorModelResponse {
     pub detector_model: Option<DetectorModel>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInputRequest {
     /// <p>The name of the input.</p>
@@ -206,7 +206,7 @@ pub struct DescribeInputRequest {
     pub input_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeInputResponse {
     /// <p>Information about the input.</p>
@@ -215,11 +215,11 @@ pub struct DescribeInputResponse {
     pub input: Option<Input>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeLoggingOptionsRequest {}
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeLoggingOptionsResponse {
     /// <p>The current settings of the AWS IoT Events logging options.</p>
@@ -229,7 +229,7 @@ pub struct DescribeLoggingOptionsResponse {
 }
 
 /// <p>The detector model and the specific detectors (instances) for which the logging level is given.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DetectorDebugOption {
     /// <p>The name of the detector model.</p>
     #[serde(rename = "detectorModelName")]
@@ -241,7 +241,7 @@ pub struct DetectorDebugOption {
 }
 
 /// <p>Information about the detector model.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectorModel {
     /// <p>Information about how the detector is configured.</p>
@@ -255,7 +255,7 @@ pub struct DetectorModel {
 }
 
 /// <p>Information about how the detector model is configured.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectorModelConfiguration {
     /// <p>The time the detector model was created.</p>
@@ -301,7 +301,7 @@ pub struct DetectorModelConfiguration {
 }
 
 /// <p>Information that defines how a detector operates.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DetectorModelDefinition {
     /// <p>The state that is entered at the creation of each detector (instance).</p>
     #[serde(rename = "initialStateName")]
@@ -312,7 +312,7 @@ pub struct DetectorModelDefinition {
 }
 
 /// <p>Information about the detector model.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectorModelSummary {
     /// <p>The time the detector model was created.</p>
@@ -330,7 +330,7 @@ pub struct DetectorModelSummary {
 }
 
 /// <p>Information about the detector model version.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DetectorModelVersionSummary {
     /// <p>The time the detector model version was created.</p>
@@ -368,7 +368,7 @@ pub struct DetectorModelVersionSummary {
 }
 
 /// <p>Specifies the <code>"actions"</code> to be performed when the <code>"condition"</code> evaluates to TRUE.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Event {
     /// <p>The actions to be performed.</p>
     #[serde(rename = "actions")]
@@ -384,7 +384,7 @@ pub struct Event {
 }
 
 /// <p>Sends information about the detector model instance and the event that triggered the action to a Kinesis Data Firehose delivery stream.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct FirehoseAction {
     /// <p>The name of the Kinesis Data Firehose delivery stream where the data is written.</p>
     #[serde(rename = "deliveryStreamName")]
@@ -396,7 +396,7 @@ pub struct FirehoseAction {
 }
 
 /// <p>Information about the input.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Input {
     /// <p>Information about the configuration of an input.</p>
@@ -410,7 +410,7 @@ pub struct Input {
 }
 
 /// <p>Information about the configuration of an input.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InputConfiguration {
     /// <p>The time the input was created.</p>
@@ -435,7 +435,7 @@ pub struct InputConfiguration {
 }
 
 /// <p>The definition of the input.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct InputDefinition {
     /// <p>The attributes from the JSON payload that are made available by the input. Inputs are derived from messages sent to the AWS IoT Events system using <code>BatchPutMessage</code>. Each such message contains a JSON payload, and those attributes (and their paired values) specified here are available for use in the <code>"condition"</code> expressions used by detectors that monitor this input. </p>
     #[serde(rename = "attributes")]
@@ -443,7 +443,7 @@ pub struct InputDefinition {
 }
 
 /// <p>Information about the input.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InputSummary {
     /// <p>The time the input was created.</p>
@@ -473,7 +473,7 @@ pub struct InputSummary {
 }
 
 /// <p>Sends an AWS IoT Events input, passing in information about the detector model instance and the event that triggered the action.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct IotEventsAction {
     /// <p>The name of the AWS IoT Events input where the data is sent.</p>
     #[serde(rename = "inputName")]
@@ -481,7 +481,7 @@ pub struct IotEventsAction {
 }
 
 /// <p>Information required to publish the MQTT message via the AWS IoT message broker.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct IotTopicPublishAction {
     /// <p>The MQTT topic of the message.</p>
     #[serde(rename = "mqttTopic")]
@@ -489,14 +489,14 @@ pub struct IotTopicPublishAction {
 }
 
 /// <p>Calls a Lambda function, passing in information about the detector model instance and the event that triggered the action.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct LambdaAction {
     /// <p>The ARN of the Lambda function that is executed.</p>
     #[serde(rename = "functionArn")]
     pub function_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDetectorModelVersionsRequest {
     /// <p>The name of the detector model whose versions are returned.</p>
@@ -512,7 +512,7 @@ pub struct ListDetectorModelVersionsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDetectorModelVersionsResponse {
     /// <p>Summary information about the detector model versions.</p>
@@ -525,7 +525,7 @@ pub struct ListDetectorModelVersionsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDetectorModelsRequest {
     /// <p>The maximum number of results to return at one time.</p>
@@ -538,7 +538,7 @@ pub struct ListDetectorModelsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDetectorModelsResponse {
     /// <p>Summary information about the detector models.</p>
@@ -551,7 +551,7 @@ pub struct ListDetectorModelsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListInputsRequest {
     /// <p>The maximum number of results to return at one time.</p>
@@ -564,7 +564,7 @@ pub struct ListInputsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListInputsResponse {
     /// <p>Summary information about the inputs.</p>
@@ -577,7 +577,7 @@ pub struct ListInputsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The ARN of the resource.</p>
@@ -585,7 +585,7 @@ pub struct ListTagsForResourceRequest {
     pub resource_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The list of tags assigned to the resource.</p>
@@ -595,7 +595,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 /// <p>The values of the AWS IoT Events logging options.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct LoggingOptions {
     /// <p>Information that identifies those detector models and their detectors (instances) for which the logging level is given.</p>
     #[serde(rename = "detectorDebugOptions")]
@@ -613,7 +613,7 @@ pub struct LoggingOptions {
 }
 
 /// <p>When entering this state, perform these <code>actions</code> if the <code>condition</code> is TRUE.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct OnEnterLifecycle {
     /// <p>Specifies the actions that are performed when the state is entered and the <code>"condition"</code> is TRUE.</p>
     #[serde(rename = "events")]
@@ -622,7 +622,7 @@ pub struct OnEnterLifecycle {
 }
 
 /// <p>When exiting this state, perform these <code>"actions"</code> if the specified <code>"condition"</code> is TRUE.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct OnExitLifecycle {
     /// <p>Specifies the <code>"actions"</code> that are performed when the state is exited and the <code>"condition"</code> is TRUE.</p>
     #[serde(rename = "events")]
@@ -631,7 +631,7 @@ pub struct OnExitLifecycle {
 }
 
 /// <p>Specifies the actions performed when the <code>"condition"</code> evaluates to TRUE.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct OnInputLifecycle {
     /// <p>Specifies the actions performed when the <code>"condition"</code> evaluates to TRUE.</p>
     #[serde(rename = "events")]
@@ -643,7 +643,7 @@ pub struct OnInputLifecycle {
     pub transition_events: Option<Vec<TransitionEvent>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutLoggingOptionsRequest {
     /// <p>The new values of the AWS IoT Events logging options.</p>
@@ -652,7 +652,7 @@ pub struct PutLoggingOptionsRequest {
 }
 
 /// <p>Information needed to reset the timer.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ResetTimerAction {
     /// <p>The name of the timer to reset.</p>
     #[serde(rename = "timerName")]
@@ -660,7 +660,7 @@ pub struct ResetTimerAction {
 }
 
 /// <p>Information required to publish the Amazon SNS message.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct SNSTopicPublishAction {
     /// <p>The ARN of the Amazon SNS target where the message is sent.</p>
     #[serde(rename = "targetArn")]
@@ -668,7 +668,7 @@ pub struct SNSTopicPublishAction {
 }
 
 /// <p>Information needed to set the timer.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct SetTimerAction {
     /// <p>The number of seconds until the timer expires. The minimum value is 60 seconds to ensure accuracy.</p>
     #[serde(rename = "seconds")]
@@ -679,7 +679,7 @@ pub struct SetTimerAction {
 }
 
 /// <p>Information about the variable and its new value.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct SetVariableAction {
     /// <p>The new value of the variable.</p>
     #[serde(rename = "value")]
@@ -690,7 +690,7 @@ pub struct SetVariableAction {
 }
 
 /// <p>Sends information about the detector model instance and the event that triggered the action to an Amazon SQS queue.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct SqsAction {
     /// <p>The URL of the SQS queue where the data is written.</p>
     #[serde(rename = "queueUrl")]
@@ -702,7 +702,7 @@ pub struct SqsAction {
 }
 
 /// <p>Information that defines a state of a detector.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct State {
     /// <p>When entering this state, perform these <code>"actions"</code> if the <code>"condition"</code> is TRUE.</p>
     #[serde(rename = "onEnter")]
@@ -722,7 +722,7 @@ pub struct State {
 }
 
 /// <p>Metadata that can be used to manage the resource.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Tag {
     /// <p>The tag's key.</p>
     #[serde(rename = "key")]
@@ -732,7 +732,7 @@ pub struct Tag {
     pub value: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The ARN of the resource.</p>
@@ -743,12 +743,12 @@ pub struct TagResourceRequest {
     pub tags: Vec<Tag>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 /// <p>Specifies the actions performed and the next state entered when a <code>"condition"</code> evaluates to TRUE.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct TransitionEvent {
     /// <p>The actions to be performed.</p>
     #[serde(rename = "actions")]
@@ -765,7 +765,7 @@ pub struct TransitionEvent {
     pub next_state: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The ARN of the resource.</p>
@@ -776,11 +776,11 @@ pub struct UntagResourceRequest {
     pub tag_keys: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDetectorModelRequest {
     /// <p>Information that defines how a detector operates.</p>
@@ -802,7 +802,7 @@ pub struct UpdateDetectorModelRequest {
     pub role_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDetectorModelResponse {
     /// <p>Information about how the detector model is configured.</p>
@@ -811,7 +811,7 @@ pub struct UpdateDetectorModelResponse {
     pub detector_model_configuration: Option<DetectorModelConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateInputRequest {
     /// <p>The definition of the input.</p>
@@ -826,7 +826,7 @@ pub struct UpdateInputRequest {
     pub input_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateInputResponse {
     /// <p>Information about the configuration of the input.</p>

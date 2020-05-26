@@ -25,7 +25,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>The configuration that allows a service such as CodePipeline to connect to a third-party code repository.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Connection {
     /// <p><p>The Amazon Resource Name (ARN) of the connection. The ARN is used as the connection reference when the connection is shared between AWS services.</p> <note> <p>The ARN is never reused if the connection is deleted.</p> </note></p>
@@ -50,7 +50,7 @@ pub struct Connection {
     pub provider_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConnectionInput {
     /// <p>The name of the connection to be created. The name must be unique in the calling AWS account.</p>
@@ -61,7 +61,7 @@ pub struct CreateConnectionInput {
     pub provider_type: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConnectionOutput {
     /// <p><p>The Amazon Resource Name (ARN) of the connection to be created. The ARN is used as the connection reference when the connection is shared between AWS services.</p> <note> <p>The ARN is never reused if the connection is deleted.</p> </note></p>
@@ -69,7 +69,7 @@ pub struct CreateConnectionOutput {
     pub connection_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteConnectionInput {
     /// <p><p>The Amazon Resource Name (ARN) of the connection to be deleted.</p> <note> <p>The ARN is never reused if the connection is deleted.</p> </note></p>
@@ -77,11 +77,11 @@ pub struct DeleteConnectionInput {
     pub connection_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteConnectionOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetConnectionInput {
     /// <p>The Amazon Resource Name (ARN) of a connection.</p>
@@ -89,7 +89,7 @@ pub struct GetConnectionInput {
     pub connection_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetConnectionOutput {
     /// <p>The connection details, such as status, owner, and provider type.</p>
@@ -98,7 +98,7 @@ pub struct GetConnectionOutput {
     pub connection: Option<Connection>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConnectionsInput {
     /// <p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>
@@ -115,7 +115,7 @@ pub struct ListConnectionsInput {
     pub provider_type_filter: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConnectionsOutput {
     /// <p>A list of connections and the details for each connection, such as status, owner, and provider type.</p>

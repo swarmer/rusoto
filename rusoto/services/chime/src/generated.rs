@@ -26,7 +26,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>The Amazon Chime account details. An AWS account can have multiple Amazon Chime accounts.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Account {
     /// <p>The Amazon Chime account ID.</p>
@@ -61,7 +61,7 @@ pub struct Account {
 }
 
 /// <p>Settings related to the Amazon Chime account. This includes settings that start or stop remote control of shared screens, or start or stop the dial-out option in the Amazon Chime web application. For more information about these settings, see <a href="https://docs.aws.amazon.com/chime/latest/ag/policies.html">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AccountSettings {
     /// <p>Setting that stops or starts remote control of shared screens during meetings.</p>
     #[serde(rename = "DisableRemoteControl")]
@@ -74,7 +74,7 @@ pub struct AccountSettings {
 }
 
 /// <p>The Alexa for Business metadata associated with an Amazon Chime user, used to integrate Alexa for Business with a device.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AlexaForBusinessMetadata {
     /// <p>The ARN of the room resource.</p>
     #[serde(rename = "AlexaForBusinessRoomArn")]
@@ -86,7 +86,7 @@ pub struct AlexaForBusinessMetadata {
     pub is_alexa_for_business_enabled: Option<bool>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociatePhoneNumberWithUserRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -100,11 +100,11 @@ pub struct AssociatePhoneNumberWithUserRequest {
     pub user_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociatePhoneNumberWithUserResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociatePhoneNumbersWithVoiceConnectorGroupRequest {
     /// <p>List of phone numbers, in E.164 format.</p>
@@ -120,7 +120,7 @@ pub struct AssociatePhoneNumbersWithVoiceConnectorGroupRequest {
     pub voice_connector_group_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociatePhoneNumbersWithVoiceConnectorGroupResponse {
     /// <p>If the action fails for one or more of the phone numbers in the request, a list of the phone numbers is returned, along with error codes and error messages.</p>
@@ -129,7 +129,7 @@ pub struct AssociatePhoneNumbersWithVoiceConnectorGroupResponse {
     pub phone_number_errors: Option<Vec<PhoneNumberError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociatePhoneNumbersWithVoiceConnectorRequest {
     /// <p>List of phone numbers, in E.164 format.</p>
@@ -145,7 +145,7 @@ pub struct AssociatePhoneNumbersWithVoiceConnectorRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociatePhoneNumbersWithVoiceConnectorResponse {
     /// <p>If the action fails for one or more of the phone numbers in the request, a list of the phone numbers is returned, along with error codes and error messages.</p>
@@ -154,7 +154,7 @@ pub struct AssociatePhoneNumbersWithVoiceConnectorResponse {
     pub phone_number_errors: Option<Vec<PhoneNumberError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateSigninDelegateGroupsWithAccountRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -165,12 +165,12 @@ pub struct AssociateSigninDelegateGroupsWithAccountRequest {
     pub signin_delegate_groups: Vec<SigninDelegateGroup>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateSigninDelegateGroupsWithAccountResponse {}
 
 /// <p>An Amazon Chime SDK meeting attendee. Includes a unique <code>AttendeeId</code> and <code>JoinToken</code>. The <code>JoinToken</code> allows a client to authenticate and join as the specified attendee. The <code>JoinToken</code> expires when the meeting ends or when <a>DeleteAttendee</a> is called. After that, the attendee is unable to join the meeting.</p> <p>We recommend securely transferring each <code>JoinToken</code> from your server application to the client so that no other client has access to the token except for the one authorized to represent the attendee.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Attendee {
     /// <p>The Amazon Chime SDK attendee ID.</p>
@@ -187,7 +187,7 @@ pub struct Attendee {
     pub join_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchCreateAttendeeRequest {
     /// <p>The request containing the attendees to create.</p>
@@ -198,7 +198,7 @@ pub struct BatchCreateAttendeeRequest {
     pub meeting_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchCreateAttendeeResponse {
     /// <p>The attendee information, including attendees IDs and join tokens.</p>
@@ -211,7 +211,7 @@ pub struct BatchCreateAttendeeResponse {
     pub errors: Option<Vec<ChimeCreateAttendeeError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchCreateRoomMembershipRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -225,7 +225,7 @@ pub struct BatchCreateRoomMembershipRequest {
     pub room_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchCreateRoomMembershipResponse {
     /// <p>If the action fails for one or more of the member IDs in the request, a list of the member IDs is returned, along with error codes and error messages.</p>
@@ -234,7 +234,7 @@ pub struct BatchCreateRoomMembershipResponse {
     pub errors: Option<Vec<MemberError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDeletePhoneNumberRequest {
     /// <p>List of phone number IDs.</p>
@@ -242,7 +242,7 @@ pub struct BatchDeletePhoneNumberRequest {
     pub phone_number_ids: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDeletePhoneNumberResponse {
     /// <p>If the action fails for one or more of the phone numbers in the request, a list of the phone numbers is returned, along with error codes and error messages.</p>
@@ -251,7 +251,7 @@ pub struct BatchDeletePhoneNumberResponse {
     pub phone_number_errors: Option<Vec<PhoneNumberError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchSuspendUserRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -262,7 +262,7 @@ pub struct BatchSuspendUserRequest {
     pub user_id_list: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchSuspendUserResponse {
     /// <p>If the <a>BatchSuspendUser</a> action fails for one or more of the user IDs in the request, a list of the user IDs is returned, along with error codes and error messages.</p>
@@ -271,7 +271,7 @@ pub struct BatchSuspendUserResponse {
     pub user_errors: Option<Vec<UserError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchUnsuspendUserRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -282,7 +282,7 @@ pub struct BatchUnsuspendUserRequest {
     pub user_id_list: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchUnsuspendUserResponse {
     /// <p>If the <a>BatchUnsuspendUser</a> action fails for one or more of the user IDs in the request, a list of the user IDs is returned, along with error codes and error messages.</p>
@@ -291,7 +291,7 @@ pub struct BatchUnsuspendUserResponse {
     pub user_errors: Option<Vec<UserError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchUpdatePhoneNumberRequest {
     /// <p>The request containing the phone number IDs and product types or calling names to update.</p>
@@ -299,7 +299,7 @@ pub struct BatchUpdatePhoneNumberRequest {
     pub update_phone_number_request_items: Vec<UpdatePhoneNumberRequestItem>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchUpdatePhoneNumberResponse {
     /// <p>If the action fails for one or more of the phone numbers in the request, a list of the phone numbers is returned, along with error codes and error messages.</p>
@@ -308,7 +308,7 @@ pub struct BatchUpdatePhoneNumberResponse {
     pub phone_number_errors: Option<Vec<PhoneNumberError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchUpdateUserRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -319,7 +319,7 @@ pub struct BatchUpdateUserRequest {
     pub update_user_request_items: Vec<UpdateUserRequestItem>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchUpdateUserResponse {
     /// <p>If the <a>BatchUpdateUser</a> action fails for one or more of the user IDs in the request, a list of the user IDs is returned, along with error codes and error messages.</p>
@@ -329,7 +329,7 @@ pub struct BatchUpdateUserResponse {
 }
 
 /// <p>A resource that allows Enterprise account administrators to configure an interface to receive events from Amazon Chime.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Bot {
     /// <p>The bot email address.</p>
@@ -371,7 +371,7 @@ pub struct Bot {
 }
 
 /// <p>The Amazon Chime Business Calling settings for the administrator's AWS account. Includes any Amazon S3 buckets designated for storing call detail records.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct BusinessCallingSettings {
     /// <p>The Amazon S3 bucket designated for call detail record storage.</p>
     #[serde(rename = "CdrBucket")]
@@ -379,7 +379,7 @@ pub struct BusinessCallingSettings {
     pub cdr_bucket: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAccountRequest {
     /// <p>The name of the Amazon Chime account.</p>
@@ -387,7 +387,7 @@ pub struct CreateAccountRequest {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAccountResponse {
     /// <p>The Amazon Chime account details.</p>
@@ -397,7 +397,7 @@ pub struct CreateAccountResponse {
 }
 
 /// <p>The list of errors returned when errors are encountered during the BatchCreateAttendee and CreateAttendee actions. This includes external user IDs, error codes, and error messages.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ChimeCreateAttendeeError {
     /// <p>The error code.</p>
@@ -414,7 +414,7 @@ pub struct ChimeCreateAttendeeError {
     pub external_user_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAttendeeRequest {
     /// <p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>
@@ -426,7 +426,7 @@ pub struct CreateAttendeeRequest {
 }
 
 /// <p>The Amazon Chime SDK attendee fields to create, used with the BatchCreateAttendee action.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAttendeeRequestItem {
     /// <p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>
@@ -434,7 +434,7 @@ pub struct CreateAttendeeRequestItem {
     pub external_user_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAttendeeResponse {
     /// <p>The attendee information, including attendee ID and join token.</p>
@@ -443,7 +443,7 @@ pub struct CreateAttendeeResponse {
     pub attendee: Option<Attendee>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateBotRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -458,7 +458,7 @@ pub struct CreateBotRequest {
     pub domain: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateBotResponse {
     /// <p>The bot details.</p>
@@ -467,7 +467,7 @@ pub struct CreateBotResponse {
     pub bot: Option<Bot>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateMeetingRequest {
     /// <p>The unique identifier for the client request. Use a different token for different meetings.</p>
@@ -487,7 +487,7 @@ pub struct CreateMeetingRequest {
     pub notifications_configuration: Option<MeetingNotificationConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateMeetingResponse {
     /// <p>The meeting information, including the meeting ID and <code>MediaPlacement</code>.</p>
@@ -496,7 +496,7 @@ pub struct CreateMeetingResponse {
     pub meeting: Option<Meeting>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePhoneNumberOrderRequest {
     /// <p>List of phone numbers, in E.164 format.</p>
@@ -507,7 +507,7 @@ pub struct CreatePhoneNumberOrderRequest {
     pub product_type: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePhoneNumberOrderResponse {
     /// <p>The phone number order details.</p>
@@ -516,7 +516,7 @@ pub struct CreatePhoneNumberOrderResponse {
     pub phone_number_order: Option<PhoneNumberOrder>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateRoomMembershipRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -534,7 +534,7 @@ pub struct CreateRoomMembershipRequest {
     pub room_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateRoomMembershipResponse {
     /// <p>The room membership details.</p>
@@ -543,7 +543,7 @@ pub struct CreateRoomMembershipResponse {
     pub room_membership: Option<RoomMembership>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateRoomRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -558,7 +558,7 @@ pub struct CreateRoomRequest {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateRoomResponse {
     /// <p>The room details.</p>
@@ -567,7 +567,7 @@ pub struct CreateRoomResponse {
     pub room: Option<Room>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateUserRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -587,7 +587,7 @@ pub struct CreateUserRequest {
     pub username: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateUserResponse {
     #[serde(rename = "User")]
@@ -595,7 +595,7 @@ pub struct CreateUserResponse {
     pub user: Option<User>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVoiceConnectorGroupRequest {
     /// <p>The name of the Amazon Chime Voice Connector group.</p>
@@ -607,7 +607,7 @@ pub struct CreateVoiceConnectorGroupRequest {
     pub voice_connector_items: Option<Vec<VoiceConnectorItem>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVoiceConnectorGroupResponse {
     /// <p>The Amazon Chime Voice Connector group details.</p>
@@ -616,7 +616,7 @@ pub struct CreateVoiceConnectorGroupResponse {
     pub voice_connector_group: Option<VoiceConnectorGroup>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVoiceConnectorRequest {
     /// <p>The AWS Region in which the Amazon Chime Voice Connector is created. Default value: <code>us-east-1</code>.</p>
@@ -631,7 +631,7 @@ pub struct CreateVoiceConnectorRequest {
     pub require_encryption: bool,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVoiceConnectorResponse {
     /// <p>The Amazon Chime Voice Connector details.</p>
@@ -641,7 +641,7 @@ pub struct CreateVoiceConnectorResponse {
 }
 
 /// <p>The SIP credentials used to authenticate requests to your Amazon Chime Voice Connector.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Credential {
     /// <p>The RFC2617 compliant password associated with the SIP credentials, in US-ASCII format.</p>
@@ -654,7 +654,7 @@ pub struct Credential {
     pub username: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAccountRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -662,11 +662,11 @@ pub struct DeleteAccountRequest {
     pub account_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteAccountResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAttendeeRequest {
     /// <p>The Amazon Chime SDK attendee ID.</p>
@@ -677,7 +677,7 @@ pub struct DeleteAttendeeRequest {
     pub meeting_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteEventsConfigurationRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -688,7 +688,7 @@ pub struct DeleteEventsConfigurationRequest {
     pub bot_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteMeetingRequest {
     /// <p>The Amazon Chime SDK meeting ID.</p>
@@ -696,7 +696,7 @@ pub struct DeleteMeetingRequest {
     pub meeting_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePhoneNumberRequest {
     /// <p>The phone number ID.</p>
@@ -704,7 +704,7 @@ pub struct DeletePhoneNumberRequest {
     pub phone_number_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRoomMembershipRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -718,7 +718,7 @@ pub struct DeleteRoomMembershipRequest {
     pub room_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRoomRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -729,7 +729,7 @@ pub struct DeleteRoomRequest {
     pub room_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVoiceConnectorGroupRequest {
     /// <p>The Amazon Chime Voice Connector group ID.</p>
@@ -737,7 +737,7 @@ pub struct DeleteVoiceConnectorGroupRequest {
     pub voice_connector_group_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVoiceConnectorOriginationRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -745,7 +745,7 @@ pub struct DeleteVoiceConnectorOriginationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVoiceConnectorRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -753,7 +753,7 @@ pub struct DeleteVoiceConnectorRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVoiceConnectorStreamingConfigurationRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -761,7 +761,7 @@ pub struct DeleteVoiceConnectorStreamingConfigurationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVoiceConnectorTerminationCredentialsRequest {
     /// <p>The RFC2617 compliant username associated with the SIP credentials, in US-ASCII format.</p>
@@ -773,7 +773,7 @@ pub struct DeleteVoiceConnectorTerminationCredentialsRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVoiceConnectorTerminationRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -781,7 +781,7 @@ pub struct DeleteVoiceConnectorTerminationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociatePhoneNumberFromUserRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -792,11 +792,11 @@ pub struct DisassociatePhoneNumberFromUserRequest {
     pub user_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociatePhoneNumberFromUserResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociatePhoneNumbersFromVoiceConnectorGroupRequest {
     /// <p>List of phone numbers, in E.164 format.</p>
@@ -808,7 +808,7 @@ pub struct DisassociatePhoneNumbersFromVoiceConnectorGroupRequest {
     pub voice_connector_group_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociatePhoneNumbersFromVoiceConnectorGroupResponse {
     /// <p>If the action fails for one or more of the phone numbers in the request, a list of the phone numbers is returned, along with error codes and error messages.</p>
@@ -817,7 +817,7 @@ pub struct DisassociatePhoneNumbersFromVoiceConnectorGroupResponse {
     pub phone_number_errors: Option<Vec<PhoneNumberError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociatePhoneNumbersFromVoiceConnectorRequest {
     /// <p>List of phone numbers, in E.164 format.</p>
@@ -829,7 +829,7 @@ pub struct DisassociatePhoneNumbersFromVoiceConnectorRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociatePhoneNumbersFromVoiceConnectorResponse {
     /// <p>If the action fails for one or more of the phone numbers in the request, a list of the phone numbers is returned, along with error codes and error messages.</p>
@@ -838,7 +838,7 @@ pub struct DisassociatePhoneNumbersFromVoiceConnectorResponse {
     pub phone_number_errors: Option<Vec<PhoneNumberError>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateSigninDelegateGroupsFromAccountRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -849,12 +849,12 @@ pub struct DisassociateSigninDelegateGroupsFromAccountRequest {
     pub group_names: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateSigninDelegateGroupsFromAccountResponse {}
 
 /// <p>The configuration that allows a bot to receive outgoing events. Can be either an HTTPS endpoint or a Lambda function ARN.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventsConfiguration {
     /// <p>The bot ID.</p>
@@ -871,7 +871,7 @@ pub struct EventsConfiguration {
     pub outbound_events_https_endpoint: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAccountRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -879,7 +879,7 @@ pub struct GetAccountRequest {
     pub account_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAccountResponse {
     /// <p>The Amazon Chime account details.</p>
@@ -888,7 +888,7 @@ pub struct GetAccountResponse {
     pub account: Option<Account>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAccountSettingsRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -896,7 +896,7 @@ pub struct GetAccountSettingsRequest {
     pub account_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAccountSettingsResponse {
     /// <p>The Amazon Chime account settings.</p>
@@ -905,7 +905,7 @@ pub struct GetAccountSettingsResponse {
     pub account_settings: Option<AccountSettings>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAttendeeRequest {
     /// <p>The Amazon Chime SDK attendee ID.</p>
@@ -916,7 +916,7 @@ pub struct GetAttendeeRequest {
     pub meeting_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAttendeeResponse {
     /// <p>The Amazon Chime SDK attendee information.</p>
@@ -925,7 +925,7 @@ pub struct GetAttendeeResponse {
     pub attendee: Option<Attendee>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBotRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -936,7 +936,7 @@ pub struct GetBotRequest {
     pub bot_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBotResponse {
     /// <p>The chat bot details.</p>
@@ -945,7 +945,7 @@ pub struct GetBotResponse {
     pub bot: Option<Bot>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetEventsConfigurationRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -956,7 +956,7 @@ pub struct GetEventsConfigurationRequest {
     pub bot_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetEventsConfigurationResponse {
     /// <p>The events configuration details.</p>
@@ -965,7 +965,7 @@ pub struct GetEventsConfigurationResponse {
     pub events_configuration: Option<EventsConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetGlobalSettingsResponse {
     /// <p>The Amazon Chime Business Calling settings.</p>
@@ -978,7 +978,7 @@ pub struct GetGlobalSettingsResponse {
     pub voice_connector: Option<VoiceConnectorSettings>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMeetingRequest {
     /// <p>The Amazon Chime SDK meeting ID.</p>
@@ -986,7 +986,7 @@ pub struct GetMeetingRequest {
     pub meeting_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetMeetingResponse {
     /// <p>The Amazon Chime SDK meeting information.</p>
@@ -995,7 +995,7 @@ pub struct GetMeetingResponse {
     pub meeting: Option<Meeting>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPhoneNumberOrderRequest {
     /// <p>The ID for the phone number order.</p>
@@ -1003,7 +1003,7 @@ pub struct GetPhoneNumberOrderRequest {
     pub phone_number_order_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPhoneNumberOrderResponse {
     /// <p>The phone number order details.</p>
@@ -1012,7 +1012,7 @@ pub struct GetPhoneNumberOrderResponse {
     pub phone_number_order: Option<PhoneNumberOrder>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPhoneNumberRequest {
     /// <p>The phone number ID.</p>
@@ -1020,7 +1020,7 @@ pub struct GetPhoneNumberRequest {
     pub phone_number_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPhoneNumberResponse {
     /// <p>The phone number details.</p>
@@ -1029,7 +1029,7 @@ pub struct GetPhoneNumberResponse {
     pub phone_number: Option<PhoneNumber>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPhoneNumberSettingsResponse {
     /// <p>The default outbound calling name for the account.</p>
@@ -1042,7 +1042,7 @@ pub struct GetPhoneNumberSettingsResponse {
     pub calling_name_updated_timestamp: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRoomRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1053,7 +1053,7 @@ pub struct GetRoomRequest {
     pub room_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRoomResponse {
     /// <p>The room details.</p>
@@ -1062,7 +1062,7 @@ pub struct GetRoomResponse {
     pub room: Option<Room>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetUserRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1073,7 +1073,7 @@ pub struct GetUserRequest {
     pub user_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetUserResponse {
     /// <p>The user details.</p>
@@ -1082,7 +1082,7 @@ pub struct GetUserResponse {
     pub user: Option<User>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetUserSettingsRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1093,7 +1093,7 @@ pub struct GetUserSettingsRequest {
     pub user_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetUserSettingsResponse {
     /// <p>The user settings.</p>
@@ -1102,7 +1102,7 @@ pub struct GetUserSettingsResponse {
     pub user_settings: Option<UserSettings>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVoiceConnectorGroupRequest {
     /// <p>The Amazon Chime Voice Connector group ID.</p>
@@ -1110,7 +1110,7 @@ pub struct GetVoiceConnectorGroupRequest {
     pub voice_connector_group_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVoiceConnectorGroupResponse {
     /// <p>The Amazon Chime Voice Connector group details.</p>
@@ -1119,7 +1119,7 @@ pub struct GetVoiceConnectorGroupResponse {
     pub voice_connector_group: Option<VoiceConnectorGroup>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVoiceConnectorLoggingConfigurationRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -1127,7 +1127,7 @@ pub struct GetVoiceConnectorLoggingConfigurationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVoiceConnectorLoggingConfigurationResponse {
     /// <p>The logging configuration details.</p>
@@ -1136,7 +1136,7 @@ pub struct GetVoiceConnectorLoggingConfigurationResponse {
     pub logging_configuration: Option<LoggingConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVoiceConnectorOriginationRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -1144,7 +1144,7 @@ pub struct GetVoiceConnectorOriginationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVoiceConnectorOriginationResponse {
     /// <p>The origination setting details.</p>
@@ -1153,7 +1153,7 @@ pub struct GetVoiceConnectorOriginationResponse {
     pub origination: Option<Origination>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVoiceConnectorRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -1161,7 +1161,7 @@ pub struct GetVoiceConnectorRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVoiceConnectorResponse {
     /// <p>The Amazon Chime Voice Connector details.</p>
@@ -1170,7 +1170,7 @@ pub struct GetVoiceConnectorResponse {
     pub voice_connector: Option<VoiceConnector>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVoiceConnectorStreamingConfigurationRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -1178,7 +1178,7 @@ pub struct GetVoiceConnectorStreamingConfigurationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVoiceConnectorStreamingConfigurationResponse {
     /// <p>The streaming configuration details.</p>
@@ -1187,7 +1187,7 @@ pub struct GetVoiceConnectorStreamingConfigurationResponse {
     pub streaming_configuration: Option<StreamingConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVoiceConnectorTerminationHealthRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -1195,7 +1195,7 @@ pub struct GetVoiceConnectorTerminationHealthRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVoiceConnectorTerminationHealthResponse {
     /// <p>The termination health details.</p>
@@ -1204,7 +1204,7 @@ pub struct GetVoiceConnectorTerminationHealthResponse {
     pub termination_health: Option<TerminationHealth>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVoiceConnectorTerminationRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -1212,7 +1212,7 @@ pub struct GetVoiceConnectorTerminationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVoiceConnectorTerminationResponse {
     /// <p>The termination setting details.</p>
@@ -1222,7 +1222,7 @@ pub struct GetVoiceConnectorTerminationResponse {
 }
 
 /// <p>Invitation object returned after emailing users to invite them to join the Amazon Chime <code>Team</code> account.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Invite {
     /// <p>The email address to which the invite is sent.</p>
@@ -1243,7 +1243,7 @@ pub struct Invite {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct InviteUsersRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1258,7 +1258,7 @@ pub struct InviteUsersRequest {
     pub user_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InviteUsersResponse {
     /// <p>The email invitation details.</p>
@@ -1267,7 +1267,7 @@ pub struct InviteUsersResponse {
     pub invites: Option<Vec<Invite>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAccountsRequest {
     /// <p>The maximum number of results to return in a single call. Defaults to 100.</p>
@@ -1288,7 +1288,7 @@ pub struct ListAccountsRequest {
     pub user_email: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAccountsResponse {
     /// <p>List of Amazon Chime accounts and account details.</p>
@@ -1301,7 +1301,7 @@ pub struct ListAccountsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAttendeesRequest {
     /// <p>The maximum number of results to return in a single call.</p>
@@ -1317,7 +1317,7 @@ pub struct ListAttendeesRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAttendeesResponse {
     /// <p>The Amazon Chime SDK attendee information.</p>
@@ -1330,7 +1330,7 @@ pub struct ListAttendeesResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBotsRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1346,7 +1346,7 @@ pub struct ListBotsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBotsResponse {
     /// <p>List of bots and bot details.</p>
@@ -1359,7 +1359,7 @@ pub struct ListBotsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListMeetingsRequest {
     /// <p>The maximum number of results to return in a single call.</p>
@@ -1372,7 +1372,7 @@ pub struct ListMeetingsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListMeetingsResponse {
     /// <p>The Amazon Chime SDK meeting information.</p>
@@ -1385,7 +1385,7 @@ pub struct ListMeetingsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPhoneNumberOrdersRequest {
     /// <p>The maximum number of results to return in a single call.</p>
@@ -1398,7 +1398,7 @@ pub struct ListPhoneNumberOrdersRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPhoneNumberOrdersResponse {
     /// <p>The token to use to retrieve the next page of results.</p>
@@ -1411,7 +1411,7 @@ pub struct ListPhoneNumberOrdersResponse {
     pub phone_number_orders: Option<Vec<PhoneNumberOrder>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPhoneNumbersRequest {
     /// <p>The filter to use to limit the number of results.</p>
@@ -1440,7 +1440,7 @@ pub struct ListPhoneNumbersRequest {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPhoneNumbersResponse {
     /// <p>The token to use to retrieve the next page of results.</p>
@@ -1453,7 +1453,7 @@ pub struct ListPhoneNumbersResponse {
     pub phone_numbers: Option<Vec<PhoneNumber>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRoomMembershipsRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1472,7 +1472,7 @@ pub struct ListRoomMembershipsRequest {
     pub room_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRoomMembershipsResponse {
     /// <p>The token to use to retrieve the next page of results.</p>
@@ -1485,7 +1485,7 @@ pub struct ListRoomMembershipsResponse {
     pub room_memberships: Option<Vec<RoomMembership>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRoomsRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1505,7 +1505,7 @@ pub struct ListRoomsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRoomsResponse {
     /// <p>The token to use to retrieve the next page of results.</p>
@@ -1518,7 +1518,7 @@ pub struct ListRoomsResponse {
     pub rooms: Option<Vec<Room>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListUsersRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1542,7 +1542,7 @@ pub struct ListUsersRequest {
     pub user_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListUsersResponse {
     /// <p>The token to use to retrieve the next page of results.</p>
@@ -1555,7 +1555,7 @@ pub struct ListUsersResponse {
     pub users: Option<Vec<User>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListVoiceConnectorGroupsRequest {
     /// <p>The maximum number of results to return in a single call.</p>
@@ -1568,7 +1568,7 @@ pub struct ListVoiceConnectorGroupsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListVoiceConnectorGroupsResponse {
     /// <p>The token to use to retrieve the next page of results.</p>
@@ -1581,7 +1581,7 @@ pub struct ListVoiceConnectorGroupsResponse {
     pub voice_connector_groups: Option<Vec<VoiceConnectorGroup>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListVoiceConnectorTerminationCredentialsRequest {
     /// <p>The Amazon Chime Voice Connector ID.</p>
@@ -1589,7 +1589,7 @@ pub struct ListVoiceConnectorTerminationCredentialsRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListVoiceConnectorTerminationCredentialsResponse {
     /// <p>A list of user names.</p>
@@ -1598,7 +1598,7 @@ pub struct ListVoiceConnectorTerminationCredentialsResponse {
     pub usernames: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListVoiceConnectorsRequest {
     /// <p>The maximum number of results to return in a single call.</p>
@@ -1611,7 +1611,7 @@ pub struct ListVoiceConnectorsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListVoiceConnectorsResponse {
     /// <p>The token to use to retrieve the next page of results.</p>
@@ -1625,7 +1625,7 @@ pub struct ListVoiceConnectorsResponse {
 }
 
 /// <p>The logging configuration associated with an Amazon Chime Voice Connector. Specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct LoggingConfiguration {
     /// <p>When true, enables SIP message logs for sending to Amazon CloudWatch Logs.</p>
     #[serde(rename = "EnableSIPLogs")]
@@ -1633,7 +1633,7 @@ pub struct LoggingConfiguration {
     pub enable_sip_logs: Option<bool>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct LogoutUserRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1644,12 +1644,12 @@ pub struct LogoutUserRequest {
     pub user_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LogoutUserResponse {}
 
 /// <p>A set of endpoints used by clients to connect to the media service group for a Amazon Chime SDK meeting.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MediaPlacement {
     /// <p>The audio host URL.</p>
@@ -1679,7 +1679,7 @@ pub struct MediaPlacement {
 }
 
 /// <p>A meeting created using the Amazon Chime SDK.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Meeting {
     /// <p>The media placement for the meeting.</p>
@@ -1697,7 +1697,7 @@ pub struct Meeting {
 }
 
 /// <p>The configuration for resource targets to receive notifications when Amazon Chime SDK meeting and attendee events occur.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MeetingNotificationConfiguration {
     /// <p>The SNS topic ARN.</p>
@@ -1711,7 +1711,7 @@ pub struct MeetingNotificationConfiguration {
 }
 
 /// <p>The member details, such as email address, name, member ID, and member type.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Member {
     /// <p>The Amazon Chime account ID.</p>
@@ -1737,7 +1737,7 @@ pub struct Member {
 }
 
 /// <p>The list of errors returned when a member action results in an error.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MemberError {
     /// <p>The error code.</p>
@@ -1755,7 +1755,7 @@ pub struct MemberError {
 }
 
 /// <p>Membership details, such as member ID and member role.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MembershipItem {
     /// <p>The member ID.</p>
@@ -1769,7 +1769,7 @@ pub struct MembershipItem {
 }
 
 /// <p>A phone number for which an order has been placed.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrderedPhoneNumber {
     /// <p>The phone number, in E.164 format.</p>
@@ -1783,7 +1783,7 @@ pub struct OrderedPhoneNumber {
 }
 
 /// <p>Origination settings enable your SIP hosts to receive inbound calls using your Amazon Chime Voice Connector.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Origination {
     /// <p>When origination settings are disabled, inbound calls are not enabled for your Amazon Chime Voice Connector.</p>
     #[serde(rename = "Disabled")]
@@ -1796,7 +1796,7 @@ pub struct Origination {
 }
 
 /// <p>Origination routes define call distribution properties for your SIP hosts to receive inbound calls using your Amazon Chime Voice Connector. Limit: Ten origination routes for each Amazon Chime Voice Connector.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct OriginationRoute {
     /// <p>The FQDN or IP address to contact for origination traffic.</p>
     #[serde(rename = "Host")]
@@ -1821,7 +1821,7 @@ pub struct OriginationRoute {
 }
 
 /// <p>A phone number used for Amazon Chime Business Calling or an Amazon Chime Voice Connector.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PhoneNumber {
     /// <p>The phone number associations.</p>
@@ -1875,7 +1875,7 @@ pub struct PhoneNumber {
 }
 
 /// <p>The phone number associations, such as Amazon Chime account ID, Amazon Chime user ID, Amazon Chime Voice Connector ID, or Amazon Chime Voice Connector group ID.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PhoneNumberAssociation {
     /// <p>The timestamp of the phone number association, in ISO 8601 format.</p>
@@ -1893,7 +1893,7 @@ pub struct PhoneNumberAssociation {
 }
 
 /// <p>The phone number capabilities for Amazon Chime Business Calling phone numbers, such as enabled inbound and outbound calling and text messaging.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PhoneNumberCapabilities {
     /// <p>Allows or denies inbound calling for the specified phone number.</p>
@@ -1923,7 +1923,7 @@ pub struct PhoneNumberCapabilities {
 }
 
 /// <p>If the phone number action fails for one or more of the phone numbers in the request, a list of the phone numbers is returned, along with error codes and error messages.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PhoneNumberError {
     /// <p>The error code.</p>
@@ -1941,7 +1941,7 @@ pub struct PhoneNumberError {
 }
 
 /// <p>The details of a phone number order created for Amazon Chime.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PhoneNumberOrder {
     /// <p>The phone number order creation timestamp, in ISO 8601 format.</p>
@@ -1970,7 +1970,7 @@ pub struct PhoneNumberOrder {
     pub updated_timestamp: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutEventsConfigurationRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -1989,7 +1989,7 @@ pub struct PutEventsConfigurationRequest {
     pub outbound_events_https_endpoint: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutEventsConfigurationResponse {
     #[serde(rename = "EventsConfiguration")]
@@ -1997,7 +1997,7 @@ pub struct PutEventsConfigurationResponse {
     pub events_configuration: Option<EventsConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutVoiceConnectorLoggingConfigurationRequest {
     /// <p>The logging configuration details to add.</p>
@@ -2008,7 +2008,7 @@ pub struct PutVoiceConnectorLoggingConfigurationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutVoiceConnectorLoggingConfigurationResponse {
     /// <p>The updated logging configuration details.</p>
@@ -2017,7 +2017,7 @@ pub struct PutVoiceConnectorLoggingConfigurationResponse {
     pub logging_configuration: Option<LoggingConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutVoiceConnectorOriginationRequest {
     /// <p>The origination setting details to add.</p>
@@ -2028,7 +2028,7 @@ pub struct PutVoiceConnectorOriginationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutVoiceConnectorOriginationResponse {
     /// <p>The updated origination setting details.</p>
@@ -2037,7 +2037,7 @@ pub struct PutVoiceConnectorOriginationResponse {
     pub origination: Option<Origination>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutVoiceConnectorStreamingConfigurationRequest {
     /// <p>The streaming configuration details to add.</p>
@@ -2048,7 +2048,7 @@ pub struct PutVoiceConnectorStreamingConfigurationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutVoiceConnectorStreamingConfigurationResponse {
     /// <p>The updated streaming configuration details.</p>
@@ -2057,7 +2057,7 @@ pub struct PutVoiceConnectorStreamingConfigurationResponse {
     pub streaming_configuration: Option<StreamingConfiguration>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutVoiceConnectorTerminationCredentialsRequest {
     /// <p>The termination SIP credentials.</p>
@@ -2069,7 +2069,7 @@ pub struct PutVoiceConnectorTerminationCredentialsRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutVoiceConnectorTerminationRequest {
     /// <p>The termination setting details to add.</p>
@@ -2080,7 +2080,7 @@ pub struct PutVoiceConnectorTerminationRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PutVoiceConnectorTerminationResponse {
     /// <p>The updated termination setting details.</p>
@@ -2089,7 +2089,7 @@ pub struct PutVoiceConnectorTerminationResponse {
     pub termination: Option<Termination>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegenerateSecurityTokenRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -2100,7 +2100,7 @@ pub struct RegenerateSecurityTokenRequest {
     pub bot_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegenerateSecurityTokenResponse {
     #[serde(rename = "Bot")]
@@ -2108,7 +2108,7 @@ pub struct RegenerateSecurityTokenResponse {
     pub bot: Option<Bot>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResetPersonalPINRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -2119,7 +2119,7 @@ pub struct ResetPersonalPINRequest {
     pub user_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResetPersonalPINResponse {
     /// <p>The user details and new personal meeting PIN.</p>
@@ -2128,7 +2128,7 @@ pub struct ResetPersonalPINResponse {
     pub user: Option<User>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RestorePhoneNumberRequest {
     /// <p>The phone number.</p>
@@ -2136,7 +2136,7 @@ pub struct RestorePhoneNumberRequest {
     pub phone_number_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RestorePhoneNumberResponse {
     /// <p>The phone number details.</p>
@@ -2146,7 +2146,7 @@ pub struct RestorePhoneNumberResponse {
 }
 
 /// <p>The Amazon Chime chat room details.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Room {
     /// <p>The Amazon Chime account ID.</p>
@@ -2176,7 +2176,7 @@ pub struct Room {
 }
 
 /// <p>The room membership details.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RoomMembership {
     /// <p>The identifier of the user that invited the room member.</p>
@@ -2200,7 +2200,7 @@ pub struct RoomMembership {
     pub updated_timestamp: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchAvailablePhoneNumbersRequest {
     /// <p>The area code used to filter results.</p>
@@ -2233,7 +2233,7 @@ pub struct SearchAvailablePhoneNumbersRequest {
     pub toll_free_prefix: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchAvailablePhoneNumbersResponse {
     /// <p>List of phone numbers, in E.164 format.</p>
@@ -2243,7 +2243,7 @@ pub struct SearchAvailablePhoneNumbersResponse {
 }
 
 /// <p>An Active Directory (AD) group whose members are granted permission to act as delegates.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct SigninDelegateGroup {
     /// <p>The group name.</p>
     #[serde(rename = "GroupName")]
@@ -2252,7 +2252,7 @@ pub struct SigninDelegateGroup {
 }
 
 /// <p>The streaming configuration associated with an Amazon Chime Voice Connector. Specifies whether media streaming is enabled for sending to Amazon Kinesis, and shows the retention period for the Amazon Kinesis data, in hours.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct StreamingConfiguration {
     /// <p>The retention period, in hours, for the Amazon Kinesis data.</p>
     #[serde(rename = "DataRetentionInHours")]
@@ -2264,7 +2264,7 @@ pub struct StreamingConfiguration {
 }
 
 /// <p>Settings that allow management of telephony permissions for an Amazon Chime user, such as inbound and outbound calling and text messaging.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct TelephonySettings {
     /// <p>Allows or denies inbound calling.</p>
     #[serde(rename = "InboundCalling")]
@@ -2278,7 +2278,7 @@ pub struct TelephonySettings {
 }
 
 /// <p>Termination settings enable your SIP hosts to make outbound calls using your Amazon Chime Voice Connector.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Termination {
     /// <p>The countries to which calls are allowed, in ISO 3166-1 alpha-2 format. Required.</p>
     #[serde(rename = "CallingRegions")]
@@ -2303,7 +2303,7 @@ pub struct Termination {
 }
 
 /// <p>The termination health details, including the source IP address and timestamp of the last successful SIP <code>OPTIONS</code> message from your SIP infrastructure.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TerminationHealth {
     /// <p>The source IP address.</p>
@@ -2316,7 +2316,7 @@ pub struct TerminationHealth {
     pub timestamp: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateAccountRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -2328,7 +2328,7 @@ pub struct UpdateAccountRequest {
     pub name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateAccountResponse {
     /// <p>The updated Amazon Chime account details.</p>
@@ -2337,7 +2337,7 @@ pub struct UpdateAccountResponse {
     pub account: Option<Account>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateAccountSettingsRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -2348,11 +2348,11 @@ pub struct UpdateAccountSettingsRequest {
     pub account_settings: AccountSettings,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateAccountSettingsResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateBotRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -2367,7 +2367,7 @@ pub struct UpdateBotRequest {
     pub disabled: Option<bool>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateBotResponse {
     /// <p>The updated bot details.</p>
@@ -2376,7 +2376,7 @@ pub struct UpdateBotResponse {
     pub bot: Option<Bot>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateGlobalSettingsRequest {
     /// <p>The Amazon Chime Business Calling settings.</p>
@@ -2387,7 +2387,7 @@ pub struct UpdateGlobalSettingsRequest {
     pub voice_connector: VoiceConnectorSettings,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePhoneNumberRequest {
     /// <p>The outbound calling name associated with the phone number.</p>
@@ -2404,7 +2404,7 @@ pub struct UpdatePhoneNumberRequest {
 }
 
 /// <p>The phone number ID, product type, or calling name fields to update, used with the <a>BatchUpdatePhoneNumber</a> and <a>UpdatePhoneNumber</a> actions.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePhoneNumberRequestItem {
     /// <p>The outbound calling name to update.</p>
@@ -2420,7 +2420,7 @@ pub struct UpdatePhoneNumberRequestItem {
     pub product_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePhoneNumberResponse {
     /// <p>The updated phone number details.</p>
@@ -2429,7 +2429,7 @@ pub struct UpdatePhoneNumberResponse {
     pub phone_number: Option<PhoneNumber>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePhoneNumberSettingsRequest {
     /// <p>The default outbound calling name for the account.</p>
@@ -2437,7 +2437,7 @@ pub struct UpdatePhoneNumberSettingsRequest {
     pub calling_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateRoomMembershipRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -2455,7 +2455,7 @@ pub struct UpdateRoomMembershipRequest {
     pub room_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateRoomMembershipResponse {
     /// <p>The room membership details.</p>
@@ -2464,7 +2464,7 @@ pub struct UpdateRoomMembershipResponse {
     pub room_membership: Option<RoomMembership>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateRoomRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -2479,7 +2479,7 @@ pub struct UpdateRoomRequest {
     pub room_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateRoomResponse {
     /// <p>The room details.</p>
@@ -2488,7 +2488,7 @@ pub struct UpdateRoomResponse {
     pub room: Option<Room>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateUserRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -2512,7 +2512,7 @@ pub struct UpdateUserRequest {
 }
 
 /// <p>The user ID and user fields to update, used with the <a>BatchUpdateUser</a> action.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateUserRequestItem {
     /// <p>The Alexa for Business metadata.</p>
@@ -2532,7 +2532,7 @@ pub struct UpdateUserRequestItem {
     pub user_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateUserResponse {
     /// <p>The updated user details.</p>
@@ -2541,7 +2541,7 @@ pub struct UpdateUserResponse {
     pub user: Option<User>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateUserSettingsRequest {
     /// <p>The Amazon Chime account ID.</p>
@@ -2555,7 +2555,7 @@ pub struct UpdateUserSettingsRequest {
     pub user_settings: UserSettings,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateVoiceConnectorGroupRequest {
     /// <p>The name of the Amazon Chime Voice Connector group.</p>
@@ -2569,7 +2569,7 @@ pub struct UpdateVoiceConnectorGroupRequest {
     pub voice_connector_items: Vec<VoiceConnectorItem>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateVoiceConnectorGroupResponse {
     /// <p>The updated Amazon Chime Voice Connector group details.</p>
@@ -2578,7 +2578,7 @@ pub struct UpdateVoiceConnectorGroupResponse {
     pub voice_connector_group: Option<VoiceConnectorGroup>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateVoiceConnectorRequest {
     /// <p>The name of the Amazon Chime Voice Connector.</p>
@@ -2592,7 +2592,7 @@ pub struct UpdateVoiceConnectorRequest {
     pub voice_connector_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateVoiceConnectorResponse {
     /// <p>The updated Amazon Chime Voice Connector details.</p>
@@ -2602,7 +2602,7 @@ pub struct UpdateVoiceConnectorResponse {
 }
 
 /// <p>The user on the Amazon Chime account.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct User {
     /// <p>The Amazon Chime account ID.</p>
@@ -2659,7 +2659,7 @@ pub struct User {
 }
 
 /// <p>The list of errors returned when errors are encountered during the <a>BatchSuspendUser</a>, <a>BatchUnsuspendUser</a>, or <a>BatchUpdateUser</a> actions. This includes user IDs, error codes, and error messages.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UserError {
     /// <p>The error code.</p>
@@ -2677,7 +2677,7 @@ pub struct UserError {
 }
 
 /// <p>Settings associated with an Amazon Chime user, including inbound and outbound calling and text messaging.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct UserSettings {
     /// <p>The telephony settings associated with the user.</p>
     #[serde(rename = "Telephony")]
@@ -2685,7 +2685,7 @@ pub struct UserSettings {
 }
 
 /// <p>The Amazon Chime Voice Connector configuration, including outbound host name and encryption settings.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VoiceConnector {
     /// <p>The AWS Region in which the Amazon Chime Voice Connector is created. Default: <code>us-east-1</code>.</p>
@@ -2719,7 +2719,7 @@ pub struct VoiceConnector {
 }
 
 /// <p>The Amazon Chime Voice Connector group configuration, including associated Amazon Chime Voice Connectors. You can include Amazon Chime Voice Connectors from different AWS Regions in your group. This creates a fault tolerant mechanism for fallback in case of availability events.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VoiceConnectorGroup {
     /// <p>The Amazon Chime Voice Connector group creation timestamp, in ISO 8601 format.</p>
@@ -2745,7 +2745,7 @@ pub struct VoiceConnectorGroup {
 }
 
 /// <p>For Amazon Chime Voice Connector groups, the Amazon Chime Voice Connectors to which to route inbound calls. Includes priority configuration settings. Limit: 3 <code>VoiceConnectorItems</code> per Amazon Chime Voice Connector group.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct VoiceConnectorItem {
     /// <p>The priority associated with the Amazon Chime Voice Connector, with 1 being the highest priority. Higher priority Amazon Chime Voice Connectors are attempted first. </p>
     #[serde(rename = "Priority")]
@@ -2756,7 +2756,7 @@ pub struct VoiceConnectorItem {
 }
 
 /// <p>The Amazon Chime Voice Connector settings. Includes any Amazon S3 buckets designated for storing call detail records.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct VoiceConnectorSettings {
     /// <p>The Amazon S3 bucket designated for call detail record storage.</p>
     #[serde(rename = "CdrBucket")]

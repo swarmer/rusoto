@@ -1,7 +1,7 @@
 use inflector::Inflector;
 use std::io::Write;
 
-use super::{error_type_name, FileWriter, GenerateProtocol, IoResult};
+use super::{contains_eventstreams, error_type_name, FileWriter, GenerateProtocol, IoResult};
 use crate::botocore::Operation;
 use crate::Service;
 
@@ -63,7 +63,7 @@ impl GenerateProtocol for JsonGenerator {
                          .unwrap_or_else(|| "".to_owned()),
                      http_method = operation.http.method,
                      name = operation.name,
-                     ok_response = generate_ok_response(operation, output_type),
+                     ok_response = generate_ok_response(service, operation, output_type),
                      request_uri = operation.http.request_uri,
                      target_prefix = service.target_prefix().unwrap(),
                      json_version = service.json_version().unwrap(),
@@ -74,17 +74,38 @@ impl GenerateProtocol for JsonGenerator {
     }
 
     fn generate_prelude(&self, writer: &mut FileWriter, service: &Service<'_>) -> IoResult {
-        let res = writeln!(
-            writer,
-            "use rusoto_core::proto;
-        use rusoto_core::signature::SignedRequest;
-        #[allow(unused_imports)]
-        use serde::{{Deserialize, Serialize}};"
-        );
-        if service.needs_serde_json_crate() {
-            return writeln!(writer, "use serde_json;");
+        let has_event_streams = service
+            .shapes()
+            .values()
+            .into_iter()
+            .any(|s| s.eventstream());
+
+        let mut serde_imports = vec!["Deserialize", "Serialize"];
+        if has_event_streams {
+            serde_imports.push("Deserializer");
         }
-        res
+        serde_imports.sort();
+
+        writeln!(
+            writer,
+            "use rusoto_core::proto;\
+            use rusoto_core::signature::SignedRequest;\
+            #[allow(unused_imports)]\
+            use serde::{{{serde_imports}}};",
+            serde_imports = serde_imports.join(", "),
+        )?;
+        if service.needs_serde_json_crate() {
+            writeln!(writer, "use serde_json;")?;
+        }
+
+        if has_event_streams {
+            writeln!(
+                writer,
+                "use rusoto_core::event_stream::{{DeserializeEvent, EventStream}};"
+            )?;
+        }
+
+        Ok(())
     }
 
     fn serialize_trait(&self) -> Option<&'static str> {
@@ -160,13 +181,26 @@ fn generate_documentation(operation: &Operation) -> Option<String> {
         .map(|docs| crate::doco::Item(docs).to_string())
 }
 
-fn generate_ok_response(operation: &Operation, output_type: &str) -> String {
+fn generate_ok_response(
+    service: &Service<'_>,
+    operation: &Operation,
+    output_type: &str,
+) -> String {
     if operation.output.is_some() {
-        format!(
-            "let response = response.buffer().await.map_err(RusotoError::HttpDispatch)?;
-            proto::json::ResponsePayload::new(&response).deserialize::<{}, _>()",
-            output_type = output_type,
-        )
+        let output_shape = service.get_shape(output_type).unwrap();
+
+        if contains_eventstreams(service, output_shape) {
+            format!(
+                "Ok({output_type} {{ event_stream: EventStream::new(response) }})",
+                output_type = output_type,
+            )
+        } else {
+            format!(
+                "let response = response.buffer().await.map_err(RusotoError::HttpDispatch)?;
+                proto::json::ResponsePayload::new(&response).deserialize::<{}, _>()",
+                output_type = output_type,
+            )
+        }
     } else {
         "std::mem::drop(response);\nOk(())".to_owned()
     }

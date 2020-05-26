@@ -25,7 +25,7 @@ use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteHumanLoopRequest {
     /// <p>The name of the human loop you want to delete.</p>
@@ -33,11 +33,11 @@ pub struct DeleteHumanLoopRequest {
     pub human_loop_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteHumanLoopResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeHumanLoopRequest {
     /// <p>The name of the human loop.</p>
@@ -45,7 +45,7 @@ pub struct DescribeHumanLoopRequest {
     pub human_loop_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeHumanLoopResponse {
     /// <p>The timestamp when Amazon Augmented AI created the human loop.</p>
@@ -81,7 +81,7 @@ pub struct DescribeHumanLoopResponse {
 }
 
 /// <p>Contains information about why a human loop was triggered. If at least one activation reason is evaluated to be true, the human loop is activated.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HumanLoopActivationReason {
     /// <p>True if the specified conditions were matched to trigger the human loop.</p>
@@ -91,7 +91,7 @@ pub struct HumanLoopActivationReason {
 }
 
 /// <p>Information about the corresponding flow definition's human loop activation condition evaluation. Null if <code>StartHumanLoop</code> was invoked directly.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HumanLoopActivationResults {
     /// <p>A copy of the human loop activation conditions of the flow definition, augmented with the results of evaluating those conditions on the input provided to the <code>StartHumanLoop</code> operation.</p>
@@ -105,7 +105,7 @@ pub struct HumanLoopActivationResults {
 }
 
 /// <p>An object containing the input.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct HumanLoopInputContent {
     /// <p>Serialized input from the human loop.</p>
     #[serde(rename = "InputContent")]
@@ -113,7 +113,7 @@ pub struct HumanLoopInputContent {
 }
 
 /// <p>Information about where the human output will be stored.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HumanLoopOutputContent {
     /// <p>The location of the Amazon S3 object where Amazon Augmented AI stores your human loop output. The output is stored at the following location: <code>s3://S3OutputPath/HumanLoopName/CreationTime/output.json</code>.</p>
@@ -122,7 +122,7 @@ pub struct HumanLoopOutputContent {
 }
 
 /// <p>Summary information about the human loop.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct HumanLoopSummary {
     /// <p>When Amazon Augmented AI created the human loop.</p>
@@ -148,7 +148,7 @@ pub struct HumanLoopSummary {
 }
 
 /// <p>Attributes of the data specified by the customer. Use these to describe the data to be labeled.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct HumanReviewDataAttributes {
     /// <p>Declares that your content is free of personally identifiable information or adult content. Amazon SageMaker may restrict the Amazon Mechanical Turk workers that can view your task based on this information.</p>
@@ -156,7 +156,7 @@ pub struct HumanReviewDataAttributes {
     pub content_classifiers: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListHumanLoopsRequest {
     /// <p>(Optional) The timestamp of the date when you want the human loops to begin. For example, <code>1551000000</code>.</p>
@@ -181,7 +181,7 @@ pub struct ListHumanLoopsRequest {
     pub sort_order: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListHumanLoopsResponse {
     /// <p>An array of objects containing information about the human loops.</p>
@@ -193,7 +193,7 @@ pub struct ListHumanLoopsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartHumanLoopRequest {
     /// <p>Attributes of the data specified by the customer.</p>
@@ -211,7 +211,7 @@ pub struct StartHumanLoopRequest {
     pub human_loop_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartHumanLoopResponse {
     /// <p>An object containing information about the human loop activation.</p>
@@ -224,7 +224,7 @@ pub struct StartHumanLoopResponse {
     pub human_loop_arn: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopHumanLoopRequest {
     /// <p>The name of the human loop you want to stop.</p>
@@ -232,7 +232,7 @@ pub struct StopHumanLoopRequest {
     pub human_loop_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StopHumanLoopResponse {}
 

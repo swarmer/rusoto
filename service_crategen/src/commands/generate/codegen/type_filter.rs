@@ -1,6 +1,6 @@
 use std::collections::BTreeSet;
 
-use super::mutate_type_name;
+use super::{contains_eventstreams, mutate_type_name};
 use crate::botocore::{Shape, ShapeType};
 use crate::Service;
 
@@ -13,7 +13,7 @@ pub fn filter_types(service: &Service<'_>) -> (BTreeSet<String>, BTreeSet<String
                 .get_shape(&output.shape)
                 .expect("Shape type missing from service definition");
 
-            if !can_skip_deserializer(service, output_shape) {
+            if !can_skip_deserializer_recursively(service, output_shape) {
                 recurse_find_shapes(service, &mut deserialized_types, &output.shape);
             }
         }
@@ -26,10 +26,16 @@ pub fn filter_types(service: &Service<'_>) -> (BTreeSet<String>, BTreeSet<String
 }
 
 fn recurse_find_shapes(service: &Service<'_>, types: &mut BTreeSet<String>, shape_name: &str) {
-    types.insert(mutate_type_name(service, shape_name).to_owned());
     let shape = service
         .get_shape(shape_name)
         .expect("Shape type missing from service definition");
+
+    if !contains_eventstreams(service, &shape) {
+        // Event stream container is not plain data because it references an active request
+        // and therefore cannot be serialized.
+        types.insert(mutate_type_name(service, shape_name).to_owned());
+    }
+
     match shape.shape_type {
         ShapeType::Structure => {
             if let Some(ref members) = shape.members {
@@ -55,7 +61,7 @@ fn recurse_find_shapes(service: &Service<'_>, types: &mut BTreeSet<String>, shap
     }
 }
 
-fn can_skip_deserializer(service: &Service<'_>, output_shape: &Shape) -> bool {
+fn can_skip_deserializer_recursively(service: &Service<'_>, output_shape: &Shape) -> bool {
     if let Some(ref payload_field) = output_shape.payload {
         let payload_member = output_shape
             .members

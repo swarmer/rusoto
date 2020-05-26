@@ -24,7 +24,7 @@ use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateEnvironmentEC2Request {
     /// <p>The number of minutes until the running instance is shut down after the environment has last been used.</p>
@@ -55,7 +55,7 @@ pub struct CreateEnvironmentEC2Request {
     pub subnet_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateEnvironmentEC2Result {
     /// <p>The ID of the environment that was created.</p>
@@ -64,7 +64,7 @@ pub struct CreateEnvironmentEC2Result {
     pub environment_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateEnvironmentMembershipRequest {
     /// <p>The ID of the environment that contains the environment member you want to add.</p>
@@ -78,7 +78,7 @@ pub struct CreateEnvironmentMembershipRequest {
     pub user_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateEnvironmentMembershipResult {
     /// <p>Information about the environment member that was added.</p>
@@ -87,7 +87,7 @@ pub struct CreateEnvironmentMembershipResult {
     pub membership: Option<EnvironmentMember>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteEnvironmentMembershipRequest {
     /// <p>The ID of the environment to delete the environment member from.</p>
@@ -98,11 +98,11 @@ pub struct DeleteEnvironmentMembershipRequest {
     pub user_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteEnvironmentMembershipResult {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteEnvironmentRequest {
     /// <p>The ID of the environment to delete.</p>
@@ -110,11 +110,11 @@ pub struct DeleteEnvironmentRequest {
     pub environment_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteEnvironmentResult {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentMembershipsRequest {
     /// <p>The ID of the environment to get environment member information about.</p>
@@ -139,7 +139,7 @@ pub struct DescribeEnvironmentMembershipsRequest {
     pub user_arn: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEnvironmentMembershipsResult {
     /// <p>Information about the environment members for the environment.</p>
@@ -152,7 +152,7 @@ pub struct DescribeEnvironmentMembershipsResult {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentStatusRequest {
     /// <p>The ID of the environment to get status information about.</p>
@@ -160,7 +160,7 @@ pub struct DescribeEnvironmentStatusRequest {
     pub environment_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEnvironmentStatusResult {
     /// <p>Any informational message about the status of the environment.</p>
@@ -173,7 +173,7 @@ pub struct DescribeEnvironmentStatusResult {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentsRequest {
     /// <p>The IDs of individual environments to get information about.</p>
@@ -181,7 +181,7 @@ pub struct DescribeEnvironmentsRequest {
     pub environment_ids: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEnvironmentsResult {
     /// <p>Information about the environments that are returned.</p>
@@ -191,7 +191,7 @@ pub struct DescribeEnvironmentsResult {
 }
 
 /// <p>Information about an AWS Cloud9 development environment.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Environment {
     /// <p>The Amazon Resource Name (ARN) of the environment.</p>
@@ -225,7 +225,7 @@ pub struct Environment {
 }
 
 /// <p>Information about the current creation or deletion lifecycle state of an AWS Cloud9 development environment.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnvironmentLifecycle {
     /// <p>If the environment failed to delete, the Amazon Resource Name (ARN) of the related AWS resource.</p>
@@ -243,7 +243,7 @@ pub struct EnvironmentLifecycle {
 }
 
 /// <p>Information about an environment member for an AWS Cloud9 development environment.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnvironmentMember {
     /// <p>The ID of the environment for the environment member.</p>
@@ -268,7 +268,7 @@ pub struct EnvironmentMember {
     pub user_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListEnvironmentsRequest {
     /// <p>The maximum number of environments to get identifiers for.</p>
@@ -281,7 +281,7 @@ pub struct ListEnvironmentsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListEnvironmentsResult {
     /// <p>The list of environment identifiers.</p>
@@ -294,7 +294,7 @@ pub struct ListEnvironmentsResult {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateEnvironmentMembershipRequest {
     /// <p>The ID of the environment for the environment member whose settings you want to change.</p>
@@ -308,7 +308,7 @@ pub struct UpdateEnvironmentMembershipRequest {
     pub user_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateEnvironmentMembershipResult {
     /// <p>Information about the environment member whose settings were changed.</p>
@@ -317,7 +317,7 @@ pub struct UpdateEnvironmentMembershipResult {
     pub membership: Option<EnvironmentMember>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateEnvironmentRequest {
     /// <p>Any new or replacement description for the environment.</p>
@@ -333,7 +333,7 @@ pub struct UpdateEnvironmentRequest {
     pub name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateEnvironmentResult {}
 

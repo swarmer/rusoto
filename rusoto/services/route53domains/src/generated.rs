@@ -25,7 +25,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Information for one billing record.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BillingRecord {
     /// <p>The date that the operation was billed, in Unix format.</p>
@@ -51,7 +51,7 @@ pub struct BillingRecord {
 }
 
 /// <p>The CheckDomainAvailability request contains the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CheckDomainAvailabilityRequest {
     /// <p>The name of the domain that you want to get availability for.</p> <p>Constraints: The domain name can contain only the letters a through z, the numbers 0 through 9, and hyphen (-). Internationalized Domain Names are not supported.</p>
@@ -64,7 +64,7 @@ pub struct CheckDomainAvailabilityRequest {
 }
 
 /// <p>The CheckDomainAvailability response includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CheckDomainAvailabilityResponse {
     /// <p><p>Whether the domain name is available for registering.</p> <note> <p>You can register only domains designated as <code>AVAILABLE</code>.</p> </note> <p>Valid values:</p> <dl> <dt>AVAILABLE</dt> <dd> <p>The domain name is available.</p> </dd> <dt>AVAILABLE<em>RESERVED</dt> <dd> <p>The domain name is reserved under specific conditions.</p> </dd> <dt>AVAILABLE</em>PREORDER</dt> <dd> <p>The domain name is available and can be preordered.</p> </dd> <dt>DONT<em>KNOW</dt> <dd> <p>The TLD registry didn&#39;t reply with a definitive answer about whether the domain name is available. Amazon Route 53 can return this response for a variety of reasons, for example, the registry is performing maintenance. Try again later.</p> </dd> <dt>PENDING</dt> <dd> <p>The TLD registry didn&#39;t return a response in the expected amount of time. When the response is delayed, it usually takes just a few extra seconds. You can resubmit the request immediately.</p> </dd> <dt>RESERVED</dt> <dd> <p>The domain name has been reserved for another person or organization.</p> </dd> <dt>UNAVAILABLE</dt> <dd> <p>The domain name is not available.</p> </dd> <dt>UNAVAILABLE</em>PREMIUM</dt> <dd> <p>The domain name is not available.</p> </dd> <dt>UNAVAILABLE_RESTRICTED</dt> <dd> <p>The domain name is forbidden.</p> </dd> </dl></p>
@@ -73,7 +73,7 @@ pub struct CheckDomainAvailabilityResponse {
 }
 
 /// <p>The CheckDomainTransferability request contains the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CheckDomainTransferabilityRequest {
     /// <p>If the registrar for the top-level domain (TLD) requires an authorization code to transfer the domain, the code that you got from the current registrar for the domain.</p>
@@ -86,7 +86,7 @@ pub struct CheckDomainTransferabilityRequest {
 }
 
 /// <p>The CheckDomainTransferability response includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CheckDomainTransferabilityResponse {
     /// <p>A complex type that contains information about whether the specified domain can be transferred to Amazon Route 53.</p>
@@ -95,7 +95,7 @@ pub struct CheckDomainTransferabilityResponse {
 }
 
 /// <p>ContactDetail includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ContactDetail {
     /// <p>First line of the contact's address.</p>
     #[serde(rename = "AddressLine1")]
@@ -156,7 +156,7 @@ pub struct ContactDetail {
 }
 
 /// <p>The DeleteTagsForDomainRequest includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTagsForDomainRequest {
     /// <p>The domain for which you want to delete one or more tags.</p>
@@ -167,11 +167,11 @@ pub struct DeleteTagsForDomainRequest {
     pub tags_to_delete: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTagsForDomainResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableDomainAutoRenewRequest {
     /// <p>The name of the domain that you want to disable automatic renewal for.</p>
@@ -179,12 +179,12 @@ pub struct DisableDomainAutoRenewRequest {
     pub domain_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableDomainAutoRenewResponse {}
 
 /// <p>The DisableDomainTransferLock request includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableDomainTransferLockRequest {
     /// <p>The name of the domain that you want to remove the transfer lock for.</p>
@@ -193,7 +193,7 @@ pub struct DisableDomainTransferLockRequest {
 }
 
 /// <p>The DisableDomainTransferLock response includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableDomainTransferLockResponse {
     /// <p>Identifier for tracking the progress of the request. To use this ID to query the operation status, use <a>GetOperationDetail</a>.</p>
@@ -202,7 +202,7 @@ pub struct DisableDomainTransferLockResponse {
 }
 
 /// <p>Information about one suggested domain name.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DomainSuggestion {
     /// <p><p>Whether the domain name is available for registering.</p> <note> <p>You can register only the domains that are designated as <code>AVAILABLE</code>.</p> </note> <p>Valid values:</p> <dl> <dt>AVAILABLE</dt> <dd> <p>The domain name is available.</p> </dd> <dt>AVAILABLE<em>RESERVED</dt> <dd> <p>The domain name is reserved under specific conditions.</p> </dd> <dt>AVAILABLE</em>PREORDER</dt> <dd> <p>The domain name is available and can be preordered.</p> </dd> <dt>DONT<em>KNOW</dt> <dd> <p>The TLD registry didn&#39;t reply with a definitive answer about whether the domain name is available. Amazon Route 53 can return this response for a variety of reasons, for example, the registry is performing maintenance. Try again later.</p> </dd> <dt>PENDING</dt> <dd> <p>The TLD registry didn&#39;t return a response in the expected amount of time. When the response is delayed, it usually takes just a few extra seconds. You can resubmit the request immediately.</p> </dd> <dt>RESERVED</dt> <dd> <p>The domain name has been reserved for another person or organization.</p> </dd> <dt>UNAVAILABLE</dt> <dd> <p>The domain name is not available.</p> </dd> <dt>UNAVAILABLE</em>PREMIUM</dt> <dd> <p>The domain name is not available.</p> </dd> <dt>UNAVAILABLE_RESTRICTED</dt> <dd> <p>The domain name is forbidden.</p> </dd> </dl></p>
@@ -216,7 +216,7 @@ pub struct DomainSuggestion {
 }
 
 /// <p>Summary information about one domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DomainSummary {
     /// <p>Indicates whether the domain is automatically renewed upon expiration.</p>
@@ -237,7 +237,7 @@ pub struct DomainSummary {
 }
 
 /// <p>A complex type that contains information about whether the specified domain can be transferred to Amazon Route 53.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DomainTransferability {
     #[serde(rename = "Transferable")]
@@ -245,7 +245,7 @@ pub struct DomainTransferability {
     pub transferable: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableDomainAutoRenewRequest {
     /// <p>The name of the domain that you want to enable automatic renewal for.</p>
@@ -253,12 +253,12 @@ pub struct EnableDomainAutoRenewRequest {
     pub domain_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableDomainAutoRenewResponse {}
 
 /// <p>A request to set the transfer lock for the specified domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableDomainTransferLockRequest {
     /// <p>The name of the domain that you want to set the transfer lock for.</p>
@@ -267,7 +267,7 @@ pub struct EnableDomainTransferLockRequest {
 }
 
 /// <p>The EnableDomainTransferLock response includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableDomainTransferLockResponse {
     /// <p>Identifier for tracking the progress of the request. To use this ID to query the operation status, use GetOperationDetail.</p>
@@ -276,7 +276,7 @@ pub struct EnableDomainTransferLockResponse {
 }
 
 /// <p>ExtraParam includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ExtraParam {
     /// <p>Name of the additional parameter required by the top-level domain. Here are the top-level domains that require additional parameters and which parameters they require:</p> <ul> <li> <p> <b>.com.au and .net.au:</b> <code>AU_ID_NUMBER</code> and <code>AU_ID_TYPE</code> </p> </li> <li> <p> <b>.ca:</b> <code>BRAND_NUMBER</code>, <code>CA_LEGAL_TYPE</code>, and <code>CA_BUSINESS_ENTITY_TYPE</code> </p> </li> <li> <p> <b>.es:</b> <code>ES_IDENTIFICATION</code>, <code>ES_IDENTIFICATION_TYPE</code>, and <code>ES_LEGAL_FORM</code> </p> </li> <li> <p> <b>.fi:</b> <code>BIRTH_DATE_IN_YYYY_MM_DD</code>, <code>FI_BUSINESS_NUMBER</code>, <code>FI_ID_NUMBER</code>, <code>FI_NATIONALITY</code>, and <code>FI_ORGANIZATION_TYPE</code> </p> </li> <li> <p> <b>.fr:</b> <code>BRAND_NUMBER</code>, <code>BIRTH_DEPARTMENT</code>, <code>BIRTH_DATE_IN_YYYY_MM_DD</code>, <code>BIRTH_COUNTRY</code>, and <code>BIRTH_CITY</code> </p> </li> <li> <p> <b>.it:</b> <code>BIRTH_COUNTRY</code>, <code>IT_PIN</code>, and <code>IT_REGISTRANT_ENTITY_TYPE</code> </p> </li> <li> <p> <b>.ru:</b> <code>BIRTH_DATE_IN_YYYY_MM_DD</code> and <code>RU_PASSPORT_DATA</code> </p> </li> <li> <p> <b>.se:</b> <code>BIRTH_COUNTRY</code> and <code>SE_ID_NUMBER</code> </p> </li> <li> <p> <b>.sg:</b> <code>SG_ID_NUMBER</code> </p> </li> <li> <p> <b>.co.uk, .me.uk, and .org.uk:</b> <code>UK_CONTACT_TYPE</code> and <code>UK_COMPANY_NUMBER</code> </p> </li> </ul> <p>In addition, many TLDs require <code>VAT_NUMBER</code>.</p>
     #[serde(rename = "Name")]
@@ -286,7 +286,7 @@ pub struct ExtraParam {
     pub value: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetContactReachabilityStatusRequest {
     /// <p>The name of the domain for which you want to know whether the registrant contact has confirmed that the email address is valid.</p>
@@ -295,7 +295,7 @@ pub struct GetContactReachabilityStatusRequest {
     pub domain_name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetContactReachabilityStatusResponse {
     /// <p>The domain name for which you requested the reachability status.</p>
@@ -309,7 +309,7 @@ pub struct GetContactReachabilityStatusResponse {
 }
 
 /// <p>The GetDomainDetail request includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDomainDetailRequest {
     /// <p>The name of the domain that you want to get detailed information about.</p>
@@ -318,7 +318,7 @@ pub struct GetDomainDetailRequest {
 }
 
 /// <p>The GetDomainDetail response includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDomainDetailResponse {
     /// <p>Email address to contact to report incorrect contact information for a domain, to report that the domain is being used to send spam, to report that someone is cybersquatting on a domain name, or report some other type of abuse.</p>
@@ -402,7 +402,7 @@ pub struct GetDomainDetailResponse {
     pub who_is_server: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDomainSuggestionsRequest {
     /// <p>A domain name that you want to use as the basis for a list of possible domain names. The domain name must contain a top-level domain (TLD), such as .com, that Amazon Route 53 supports. For a list of TLDs, see <a href="http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar-tld-list.html">Domains that You Can Register with Amazon Route 53</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>
@@ -416,7 +416,7 @@ pub struct GetDomainSuggestionsRequest {
     pub suggestion_count: i64,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDomainSuggestionsResponse {
     /// <p>A list of possible domain names. If you specified <code>true</code> for <code>OnlyAvailable</code> in the request, the list contains only domains that are available for registration.</p>
@@ -426,7 +426,7 @@ pub struct GetDomainSuggestionsResponse {
 }
 
 /// <p>The <a>GetOperationDetail</a> request includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetOperationDetailRequest {
     /// <p>The identifier for the operation for which you want to get the status. Amazon Route 53 returned the identifier in the response to the original request.</p>
@@ -435,7 +435,7 @@ pub struct GetOperationDetailRequest {
 }
 
 /// <p>The GetOperationDetail response includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetOperationDetailResponse {
     /// <p>The name of a domain.</p>
@@ -465,7 +465,7 @@ pub struct GetOperationDetailResponse {
 }
 
 /// <p>The ListDomains request includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDomainsRequest {
     /// <p>For an initial request for a list of domains, omit this element. If the number of domains that are associated with the current AWS account is greater than the value that you specified for <code>MaxItems</code>, you can use <code>Marker</code> to return additional domains. Get the value of <code>NextPageMarker</code> from the previous response, and submit another request that includes the value of <code>NextPageMarker</code> in the <code>Marker</code> element.</p> <p>Constraints: The marker must match the value specified in the previous request.</p>
@@ -479,7 +479,7 @@ pub struct ListDomainsRequest {
 }
 
 /// <p>The ListDomains response includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDomainsResponse {
     /// <p>A summary of domains.</p>
@@ -492,7 +492,7 @@ pub struct ListDomainsResponse {
 }
 
 /// <p>The ListOperations request includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOperationsRequest {
     /// <p>For an initial request for a list of operations, omit this element. If the number of operations that are not yet complete is greater than the value that you specified for <code>MaxItems</code>, you can use <code>Marker</code> to return additional operations. Get the value of <code>NextPageMarker</code> from the previous response, and submit another request that includes the value of <code>NextPageMarker</code> in the <code>Marker</code> element.</p>
@@ -510,7 +510,7 @@ pub struct ListOperationsRequest {
 }
 
 /// <p>The ListOperations response includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOperationsResponse {
     /// <p>If there are more operations than you specified for <code>MaxItems</code> in the request, submit another request and include the value of <code>NextPageMarker</code> in the value of <code>Marker</code>.</p>
@@ -523,7 +523,7 @@ pub struct ListOperationsResponse {
 }
 
 /// <p>The ListTagsForDomainRequest includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForDomainRequest {
     /// <p>The domain for which you want to get a list of tags.</p>
@@ -532,7 +532,7 @@ pub struct ListTagsForDomainRequest {
 }
 
 /// <p>The ListTagsForDomain response includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForDomainResponse {
     /// <p>A list of the tags that are associated with the specified domain.</p>
@@ -541,7 +541,7 @@ pub struct ListTagsForDomainResponse {
 }
 
 /// <p>Nameserver includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Nameserver {
     /// <p>Glue IP address of a name server entry. Glue IP addresses are required only when the name of the name server is a subdomain of the domain. For example, if your domain is example.com and the name server for the domain is ns.example.com, you need to specify the IP address for ns.example.com.</p> <p>Constraints: The list can contain only one IPv4 and one IPv6 address.</p>
     #[serde(rename = "GlueIps")]
@@ -553,7 +553,7 @@ pub struct Nameserver {
 }
 
 /// <p>OperationSummary includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OperationSummary {
     /// <p>Identifier returned to track the requested action.</p>
@@ -571,7 +571,7 @@ pub struct OperationSummary {
 }
 
 /// <p>The RegisterDomain request includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RegisterDomainRequest {
     /// <p>Provides detailed contact information.</p>
@@ -612,7 +612,7 @@ pub struct RegisterDomainRequest {
 }
 
 /// <p>The RegisterDomain response includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RegisterDomainResponse {
     /// <p>Identifier for tracking the progress of the request. To use this ID to query the operation status, use <a>GetOperationDetail</a>.</p>
@@ -621,7 +621,7 @@ pub struct RegisterDomainResponse {
 }
 
 /// <p>A <code>RenewDomain</code> request includes the number of years that you want to renew for and the current expiration year.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RenewDomainRequest {
     /// <p>The year when the registration for the domain is set to expire. This value must match the current expiration date for the domain.</p>
@@ -636,7 +636,7 @@ pub struct RenewDomainRequest {
     pub duration_in_years: Option<i64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RenewDomainResponse {
     /// <p>The identifier for tracking the progress of the request. To use this ID to query the operation status, use <a>GetOperationDetail</a>.</p>
@@ -644,7 +644,7 @@ pub struct RenewDomainResponse {
     pub operation_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResendContactReachabilityEmailRequest {
     /// <p>The name of the domain for which you want Amazon Route 53 to resend a confirmation email to the registrant contact.</p>
@@ -653,7 +653,7 @@ pub struct ResendContactReachabilityEmailRequest {
     pub domain_name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResendContactReachabilityEmailResponse {
     /// <p>The domain name for which you requested a confirmation email.</p>
@@ -671,7 +671,7 @@ pub struct ResendContactReachabilityEmailResponse {
 }
 
 /// <p>A request for the authorization code for the specified domain. To transfer a domain to another registrar, you provide this value to the new registrar.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RetrieveDomainAuthCodeRequest {
     /// <p>The name of the domain that you want to get an authorization code for.</p>
@@ -680,7 +680,7 @@ pub struct RetrieveDomainAuthCodeRequest {
 }
 
 /// <p>The RetrieveDomainAuthCode response includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RetrieveDomainAuthCodeResponse {
     /// <p>The authorization code for the domain.</p>
@@ -689,7 +689,7 @@ pub struct RetrieveDomainAuthCodeResponse {
 }
 
 /// <p>Each tag includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Tag {
     /// <p>The key (name) of a tag.</p> <p>Valid values: A-Z, a-z, 0-9, space, ".:/=+\-@"</p> <p>Constraints: Each key can be 1-128 characters long.</p>
     #[serde(rename = "Key")]
@@ -702,7 +702,7 @@ pub struct Tag {
 }
 
 /// <p>The TransferDomain request includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TransferDomainRequest {
     /// <p>Provides detailed contact information.</p>
@@ -751,7 +751,7 @@ pub struct TransferDomainRequest {
 }
 
 /// <p>The TranserDomain response includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TransferDomainResponse {
     /// <p>Identifier for tracking the progress of the request. To use this ID to query the operation status, use <a>GetOperationDetail</a>.</p>
@@ -760,7 +760,7 @@ pub struct TransferDomainResponse {
 }
 
 /// <p>The UpdateDomainContactPrivacy request includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDomainContactPrivacyRequest {
     /// <p>Whether you want to conceal contact information from WHOIS queries. If you specify <code>true</code>, WHOIS ("who is") queries return contact information either for Amazon Registrar (for .com, .net, and .org domains) or for our registrar associate, Gandi (for all other TLDs). If you specify <code>false</code>, WHOIS queries return the information that you entered for the admin contact.</p>
@@ -781,7 +781,7 @@ pub struct UpdateDomainContactPrivacyRequest {
 }
 
 /// <p>The UpdateDomainContactPrivacy response includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDomainContactPrivacyResponse {
     /// <p>Identifier for tracking the progress of the request. To use this ID to query the operation status, use GetOperationDetail.</p>
@@ -790,7 +790,7 @@ pub struct UpdateDomainContactPrivacyResponse {
 }
 
 /// <p>The UpdateDomainContact request includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDomainContactRequest {
     /// <p>Provides detailed contact information.</p>
@@ -811,7 +811,7 @@ pub struct UpdateDomainContactRequest {
 }
 
 /// <p>The UpdateDomainContact response includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDomainContactResponse {
     /// <p>Identifier for tracking the progress of the request. To use this ID to query the operation status, use <a>GetOperationDetail</a>.</p>
@@ -820,7 +820,7 @@ pub struct UpdateDomainContactResponse {
 }
 
 /// <p>Replaces the current set of name servers for the domain with the specified set of name servers. If you use Amazon Route 53 as your DNS service, specify the four name servers in the delegation set for the hosted zone for the domain.</p> <p>If successful, this operation returns an operation ID that you can use to track the progress and completion of the action. If the request is not completed successfully, the domain registrant will be notified by email. </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDomainNameserversRequest {
     /// <p>The name of the domain that you want to change name servers for.</p>
@@ -832,7 +832,7 @@ pub struct UpdateDomainNameserversRequest {
 }
 
 /// <p>The UpdateDomainNameservers response includes the following element.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDomainNameserversResponse {
     /// <p>Identifier for tracking the progress of the request. To use this ID to query the operation status, use <a>GetOperationDetail</a>.</p>
@@ -841,7 +841,7 @@ pub struct UpdateDomainNameserversResponse {
 }
 
 /// <p>The UpdateTagsForDomainRequest includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTagsForDomainRequest {
     /// <p>The domain for which you want to add or update tags.</p>
@@ -853,12 +853,12 @@ pub struct UpdateTagsForDomainRequest {
     pub tags_to_update: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTagsForDomainResponse {}
 
 /// <p>The ViewBilling request includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ViewBillingRequest {
     /// <p>The end date and time for the time period for which you want a list of billing records. Specify the date and time in Coordinated Universal time (UTC).</p>
@@ -880,7 +880,7 @@ pub struct ViewBillingRequest {
 }
 
 /// <p>The ViewBilling response includes the following elements.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ViewBillingResponse {
     /// <p>A summary of billing records.</p>

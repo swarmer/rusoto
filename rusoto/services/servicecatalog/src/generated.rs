@@ -24,7 +24,7 @@ use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AcceptPortfolioShareInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -40,12 +40,12 @@ pub struct AcceptPortfolioShareInput {
     pub portfolio_share_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcceptPortfolioShareOutput {}
 
 /// <p>The access level to use to filter results.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AccessLevelFilter {
     /// <p><p>The access level.</p> <ul> <li> <p> <code>Account</code> - Filter results based on the account.</p> </li> <li> <p> <code>Role</code> - Filter results based on the federated role of the specified user.</p> </li> <li> <p> <code>User</code> - Filter results based on the specified user.</p> </li> </ul></p>
@@ -58,7 +58,7 @@ pub struct AccessLevelFilter {
     pub value: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateBudgetWithResourceInput {
     /// <p>The name of the budget you want to associate.</p>
@@ -69,11 +69,11 @@ pub struct AssociateBudgetWithResourceInput {
     pub resource_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateBudgetWithResourceOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociatePrincipalWithPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -91,11 +91,11 @@ pub struct AssociatePrincipalWithPortfolioInput {
     pub principal_type: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociatePrincipalWithPortfolioOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateProductWithPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -114,11 +114,11 @@ pub struct AssociateProductWithPortfolioInput {
     pub source_portfolio_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateProductWithPortfolioOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateServiceActionWithProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -136,11 +136,11 @@ pub struct AssociateServiceActionWithProvisioningArtifactInput {
     pub service_action_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateServiceActionWithProvisioningArtifactOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateTagOptionWithResourceInput {
     /// <p>The resource identifier.</p>
@@ -151,11 +151,11 @@ pub struct AssociateTagOptionWithResourceInput {
     pub tag_option_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateTagOptionWithResourceOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchAssociateServiceActionWithProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -167,7 +167,7 @@ pub struct BatchAssociateServiceActionWithProvisioningArtifactInput {
     pub service_action_associations: Vec<ServiceActionAssociation>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchAssociateServiceActionWithProvisioningArtifactOutput {
     /// <p>An object that contains a list of errors, along with information to help you identify the self-service action.</p>
@@ -176,7 +176,7 @@ pub struct BatchAssociateServiceActionWithProvisioningArtifactOutput {
     pub failed_service_action_associations: Option<Vec<FailedServiceActionAssociation>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchDisassociateServiceActionFromProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -188,7 +188,7 @@ pub struct BatchDisassociateServiceActionFromProvisioningArtifactInput {
     pub service_action_associations: Vec<ServiceActionAssociation>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BatchDisassociateServiceActionFromProvisioningArtifactOutput {
     /// <p>An object that contains a list of errors, along with information to help you identify the self-service action.</p>
@@ -198,7 +198,7 @@ pub struct BatchDisassociateServiceActionFromProvisioningArtifactOutput {
 }
 
 /// <p>Information about a budget.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BudgetDetail {
     /// <p>Name of the associated budget.</p>
@@ -208,7 +208,7 @@ pub struct BudgetDetail {
 }
 
 /// <p>Information about a CloudWatch dashboard.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CloudWatchDashboard {
     /// <p>The name of the CloudWatch dashboard.</p>
@@ -218,7 +218,7 @@ pub struct CloudWatchDashboard {
 }
 
 /// <p>Information about a constraint.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConstraintDetail {
     /// <p>The identifier of the constraint.</p>
@@ -240,7 +240,7 @@ pub struct ConstraintDetail {
 }
 
 /// <p>Summary information about a constraint.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConstraintSummary {
     /// <p>The description of the constraint.</p>
@@ -253,7 +253,7 @@ pub struct ConstraintSummary {
     pub type_: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CopyProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -285,7 +285,7 @@ pub struct CopyProductInput {
     pub target_product_name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CopyProductOutput {
     /// <p>The token to use to track the progress of the operation.</p>
@@ -294,7 +294,7 @@ pub struct CopyProductOutput {
     pub copy_product_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConstraintInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -322,7 +322,7 @@ pub struct CreateConstraintInput {
     pub type_: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConstraintOutput {
     /// <p>Information about the constraint.</p>
@@ -339,7 +339,7 @@ pub struct CreateConstraintOutput {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -365,7 +365,7 @@ pub struct CreatePortfolioInput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePortfolioOutput {
     /// <p>Information about the portfolio.</p>
@@ -378,7 +378,7 @@ pub struct CreatePortfolioOutput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePortfolioShareInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -398,7 +398,7 @@ pub struct CreatePortfolioShareInput {
     pub portfolio_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePortfolioShareOutput {
     /// <p>The portfolio share unique identifier. This will only be returned if portfolio is shared to an organization node.</p>
@@ -407,7 +407,7 @@ pub struct CreatePortfolioShareOutput {
     pub portfolio_share_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -455,7 +455,7 @@ pub struct CreateProductInput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProductOutput {
     /// <p>Information about the product view.</p>
@@ -472,7 +472,7 @@ pub struct CreateProductOutput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProvisionedProductPlanInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -515,7 +515,7 @@ pub struct CreateProvisionedProductPlanInput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProvisionedProductPlanOutput {
     /// <p>The plan identifier.</p>
@@ -540,7 +540,7 @@ pub struct CreateProvisionedProductPlanOutput {
     pub provisioning_artifact_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -558,7 +558,7 @@ pub struct CreateProvisioningArtifactInput {
     pub product_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProvisioningArtifactOutput {
     /// <p>The URL of the CloudFormation template in Amazon S3, in JSON format.</p>
@@ -575,7 +575,7 @@ pub struct CreateProvisioningArtifactOutput {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -600,7 +600,7 @@ pub struct CreateServiceActionInput {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateServiceActionOutput {
     /// <p>An object containing information about the self-service action.</p>
@@ -609,7 +609,7 @@ pub struct CreateServiceActionOutput {
     pub service_action_detail: Option<ServiceActionDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateTagOptionInput {
     /// <p>The TagOption key.</p>
@@ -620,7 +620,7 @@ pub struct CreateTagOptionInput {
     pub value: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateTagOptionOutput {
     /// <p>Information about the TagOption.</p>
@@ -629,7 +629,7 @@ pub struct CreateTagOptionOutput {
     pub tag_option_detail: Option<TagOptionDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteConstraintInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -641,11 +641,11 @@ pub struct DeleteConstraintInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteConstraintOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -657,11 +657,11 @@ pub struct DeletePortfolioInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePortfolioOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePortfolioShareInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -681,7 +681,7 @@ pub struct DeletePortfolioShareInput {
     pub portfolio_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePortfolioShareOutput {
     /// <p>The portfolio share unique identifier. This will only be returned if delete is made to an organization node.</p>
@@ -690,7 +690,7 @@ pub struct DeletePortfolioShareOutput {
     pub portfolio_share_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -702,11 +702,11 @@ pub struct DeleteProductInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProductOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProvisionedProductPlanInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -722,11 +722,11 @@ pub struct DeleteProvisionedProductPlanInput {
     pub plan_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProvisionedProductPlanOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -741,11 +741,11 @@ pub struct DeleteProvisioningArtifactInput {
     pub provisioning_artifact_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProvisioningArtifactOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -757,11 +757,11 @@ pub struct DeleteServiceActionInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteServiceActionOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTagOptionInput {
     /// <p>The TagOption identifier.</p>
@@ -769,11 +769,11 @@ pub struct DeleteTagOptionInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteTagOptionOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConstraintInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -785,7 +785,7 @@ pub struct DescribeConstraintInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeConstraintOutput {
     /// <p>Information about the constraint.</p>
@@ -802,7 +802,7 @@ pub struct DescribeConstraintOutput {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCopyProductStatusInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -814,7 +814,7 @@ pub struct DescribeCopyProductStatusInput {
     pub copy_product_token: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCopyProductStatusOutput {
     /// <p>The status of the copy product operation.</p>
@@ -831,7 +831,7 @@ pub struct DescribeCopyProductStatusOutput {
     pub target_product_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -843,7 +843,7 @@ pub struct DescribePortfolioInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePortfolioOutput {
     /// <p>Information about the associated budgets.</p>
@@ -864,7 +864,7 @@ pub struct DescribePortfolioOutput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePortfolioShareStatusInput {
     /// <p>The token for the portfolio share operation. This token is returned either by CreatePortfolioShare or by DeletePortfolioShare.</p>
@@ -872,7 +872,7 @@ pub struct DescribePortfolioShareStatusInput {
     pub portfolio_share_token: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribePortfolioShareStatusOutput {
     /// <p>Organization node identifier. It can be either account id, organizational unit id or organization id.</p>
@@ -897,7 +897,7 @@ pub struct DescribePortfolioShareStatusOutput {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProductAsAdminInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -909,7 +909,7 @@ pub struct DescribeProductAsAdminInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProductAsAdminOutput {
     /// <p>Information about the associated budgets.</p>
@@ -934,7 +934,7 @@ pub struct DescribeProductAsAdminOutput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -946,7 +946,7 @@ pub struct DescribeProductInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProductOutput {
     /// <p>Information about the associated budgets.</p>
@@ -963,7 +963,7 @@ pub struct DescribeProductOutput {
     pub provisioning_artifacts: Option<Vec<ProvisioningArtifact>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProductViewInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -975,7 +975,7 @@ pub struct DescribeProductViewInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProductViewOutput {
     /// <p>Summary information about the product.</p>
@@ -988,7 +988,7 @@ pub struct DescribeProductViewOutput {
     pub provisioning_artifacts: Option<Vec<ProvisioningArtifact>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProvisionedProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1000,7 +1000,7 @@ pub struct DescribeProvisionedProductInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProvisionedProductOutput {
     /// <p>Any CloudWatch dashboards that were created when provisioning the product.</p>
@@ -1013,7 +1013,7 @@ pub struct DescribeProvisionedProductOutput {
     pub provisioned_product_detail: Option<ProvisionedProductDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProvisionedProductPlanInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1033,7 +1033,7 @@ pub struct DescribeProvisionedProductPlanInput {
     pub plan_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProvisionedProductPlanOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1050,7 +1050,7 @@ pub struct DescribeProvisionedProductPlanOutput {
     pub resource_changes: Option<Vec<ResourceChange>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1069,7 +1069,7 @@ pub struct DescribeProvisioningArtifactInput {
     pub verbose: Option<bool>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProvisioningArtifactOutput {
     /// <p>The URL of the CloudFormation template in Amazon S3.</p>
@@ -1086,7 +1086,7 @@ pub struct DescribeProvisioningArtifactOutput {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProvisioningParametersInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1105,7 +1105,7 @@ pub struct DescribeProvisioningParametersInput {
     pub provisioning_artifact_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProvisioningParametersOutput {
     /// <p>Information about the constraints used to provision the product.</p>
@@ -1130,7 +1130,7 @@ pub struct DescribeProvisioningParametersOutput {
     pub usage_instructions: Option<Vec<UsageInstruction>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeRecordInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1150,7 +1150,7 @@ pub struct DescribeRecordInput {
     pub page_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeRecordOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1167,7 +1167,7 @@ pub struct DescribeRecordOutput {
     pub record_outputs: Option<Vec<RecordOutput>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeServiceActionExecutionParametersInput {
     #[serde(rename = "AcceptLanguage")]
@@ -1179,7 +1179,7 @@ pub struct DescribeServiceActionExecutionParametersInput {
     pub service_action_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeServiceActionExecutionParametersOutput {
     #[serde(rename = "ServiceActionParameters")]
@@ -1187,7 +1187,7 @@ pub struct DescribeServiceActionExecutionParametersOutput {
     pub service_action_parameters: Option<Vec<ExecutionParameter>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1199,7 +1199,7 @@ pub struct DescribeServiceActionInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeServiceActionOutput {
     /// <p>Detailed information about the self-service action.</p>
@@ -1208,7 +1208,7 @@ pub struct DescribeServiceActionOutput {
     pub service_action_detail: Option<ServiceActionDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeTagOptionInput {
     /// <p>The TagOption identifier.</p>
@@ -1216,7 +1216,7 @@ pub struct DescribeTagOptionInput {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeTagOptionOutput {
     /// <p>Information about the TagOption.</p>
@@ -1225,15 +1225,15 @@ pub struct DescribeTagOptionOutput {
     pub tag_option_detail: Option<TagOptionDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableAWSOrganizationsAccessInput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisableAWSOrganizationsAccessOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateBudgetFromResourceInput {
     /// <p>The name of the budget you want to disassociate.</p>
@@ -1244,11 +1244,11 @@ pub struct DisassociateBudgetFromResourceInput {
     pub resource_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateBudgetFromResourceOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociatePrincipalFromPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1263,11 +1263,11 @@ pub struct DisassociatePrincipalFromPortfolioInput {
     pub principal_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociatePrincipalFromPortfolioOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateProductFromPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1282,11 +1282,11 @@ pub struct DisassociateProductFromPortfolioInput {
     pub product_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateProductFromPortfolioOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateServiceActionFromProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1304,11 +1304,11 @@ pub struct DisassociateServiceActionFromProvisioningArtifactInput {
     pub service_action_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateServiceActionFromProvisioningArtifactOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateTagOptionFromResourceInput {
     /// <p>The resource identifier.</p>
@@ -1319,19 +1319,19 @@ pub struct DisassociateTagOptionFromResourceInput {
     pub tag_option_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateTagOptionFromResourceOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableAWSOrganizationsAccessInput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EnableAWSOrganizationsAccessOutput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExecuteProvisionedProductPlanInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1346,7 +1346,7 @@ pub struct ExecuteProvisionedProductPlanInput {
     pub plan_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExecuteProvisionedProductPlanOutput {
     /// <p>Information about the result of provisioning the product.</p>
@@ -1355,7 +1355,7 @@ pub struct ExecuteProvisionedProductPlanOutput {
     pub record_detail: Option<RecordDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExecuteProvisionedProductServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1376,7 +1376,7 @@ pub struct ExecuteProvisionedProductServiceActionInput {
     pub service_action_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExecuteProvisionedProductServiceActionOutput {
     /// <p>An object containing detailed information about the result of provisioning the product.</p>
@@ -1385,7 +1385,7 @@ pub struct ExecuteProvisionedProductServiceActionOutput {
     pub record_detail: Option<RecordDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExecutionParameter {
     #[serde(rename = "DefaultValues")]
@@ -1400,7 +1400,7 @@ pub struct ExecutionParameter {
 }
 
 /// <p>An object containing information about the error, along with identifying information about the self-service action and its associations.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct FailedServiceActionAssociation {
     /// <p>The error code. Valid values are listed below.</p>
@@ -1425,11 +1425,11 @@ pub struct FailedServiceActionAssociation {
     pub service_action_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAWSOrganizationsAccessStatusInput {}
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAWSOrganizationsAccessStatusOutput {
     /// <p>The status of the portfolio share feature.</p>
@@ -1439,7 +1439,7 @@ pub struct GetAWSOrganizationsAccessStatusOutput {
 }
 
 /// <p>Summary information about a product path for a user.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LaunchPathSummary {
     /// <p>The constraints on the portfolio-product relationship.</p>
@@ -1460,7 +1460,7 @@ pub struct LaunchPathSummary {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAcceptedPortfolioSharesInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1481,7 +1481,7 @@ pub struct ListAcceptedPortfolioSharesInput {
     pub portfolio_share_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAcceptedPortfolioSharesOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1494,7 +1494,7 @@ pub struct ListAcceptedPortfolioSharesOutput {
     pub portfolio_details: Option<Vec<PortfolioDetail>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBudgetsForResourceInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1514,7 +1514,7 @@ pub struct ListBudgetsForResourceInput {
     pub resource_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBudgetsForResourceOutput {
     /// <p>Information about the associated budgets.</p>
@@ -1527,7 +1527,7 @@ pub struct ListBudgetsForResourceOutput {
     pub next_page_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConstraintsForPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1551,7 +1551,7 @@ pub struct ListConstraintsForPortfolioInput {
     pub product_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConstraintsForPortfolioOutput {
     /// <p>Information about the constraints.</p>
@@ -1564,7 +1564,7 @@ pub struct ListConstraintsForPortfolioOutput {
     pub next_page_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListLaunchPathsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1584,7 +1584,7 @@ pub struct ListLaunchPathsInput {
     pub product_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListLaunchPathsOutput {
     /// <p>Information about the launch path.</p>
@@ -1597,7 +1597,7 @@ pub struct ListLaunchPathsOutput {
     pub next_page_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListOrganizationPortfolioAccessInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1620,7 +1620,7 @@ pub struct ListOrganizationPortfolioAccessInput {
     pub portfolio_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListOrganizationPortfolioAccessOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1633,7 +1633,7 @@ pub struct ListOrganizationPortfolioAccessOutput {
     pub organization_nodes: Option<Vec<OrganizationNode>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPortfolioAccessInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1645,7 +1645,7 @@ pub struct ListPortfolioAccessInput {
     pub portfolio_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPortfolioAccessOutput {
     /// <p>Information about the AWS accounts with access to the portfolio.</p>
@@ -1658,7 +1658,7 @@ pub struct ListPortfolioAccessOutput {
     pub next_page_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPortfoliosForProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1678,7 +1678,7 @@ pub struct ListPortfoliosForProductInput {
     pub product_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPortfoliosForProductOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1691,7 +1691,7 @@ pub struct ListPortfoliosForProductOutput {
     pub portfolio_details: Option<Vec<PortfolioDetail>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPortfoliosInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1708,7 +1708,7 @@ pub struct ListPortfoliosInput {
     pub page_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPortfoliosOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1721,7 +1721,7 @@ pub struct ListPortfoliosOutput {
     pub portfolio_details: Option<Vec<PortfolioDetail>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPrincipalsForPortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1741,7 +1741,7 @@ pub struct ListPrincipalsForPortfolioInput {
     pub portfolio_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPrincipalsForPortfolioOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1754,7 +1754,7 @@ pub struct ListPrincipalsForPortfolioOutput {
     pub principals: Option<Vec<Principal>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProvisionedProductPlansInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1779,7 +1779,7 @@ pub struct ListProvisionedProductPlansInput {
     pub provision_product_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProvisionedProductPlansOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1792,7 +1792,7 @@ pub struct ListProvisionedProductPlansOutput {
     pub provisioned_product_plans: Option<Vec<ProvisionedProductPlanSummary>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProvisioningArtifactsForServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1812,7 +1812,7 @@ pub struct ListProvisioningArtifactsForServiceActionInput {
     pub service_action_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProvisioningArtifactsForServiceActionOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1825,7 +1825,7 @@ pub struct ListProvisioningArtifactsForServiceActionOutput {
     pub provisioning_artifact_views: Option<Vec<ProvisioningArtifactView>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProvisioningArtifactsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1837,7 +1837,7 @@ pub struct ListProvisioningArtifactsInput {
     pub product_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProvisioningArtifactsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1850,7 +1850,7 @@ pub struct ListProvisioningArtifactsOutput {
     pub provisioning_artifact_details: Option<Vec<ProvisioningArtifactDetail>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRecordHistoryInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1875,7 +1875,7 @@ pub struct ListRecordHistoryInput {
     pub search_filter: Option<ListRecordHistorySearchFilter>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRecordHistoryOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1889,7 +1889,7 @@ pub struct ListRecordHistoryOutput {
 }
 
 /// <p>The search filter to use when listing history records.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRecordHistorySearchFilter {
     /// <p><p>The filter key.</p> <ul> <li> <p> <code>product</code> - Filter results based on the specified product identifier.</p> </li> <li> <p> <code>provisionedproduct</code> - Filter results based on the provisioned product identifier.</p> </li> </ul></p>
@@ -1902,7 +1902,7 @@ pub struct ListRecordHistorySearchFilter {
     pub value: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListResourcesForTagOptionInput {
     /// <p>The maximum number of items to return with this call.</p>
@@ -1922,7 +1922,7 @@ pub struct ListResourcesForTagOptionInput {
     pub tag_option_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListResourcesForTagOptionOutput {
     /// <p>The page token for the next set of results. To retrieve the first set of results, use null.</p>
@@ -1935,7 +1935,7 @@ pub struct ListResourcesForTagOptionOutput {
     pub resource_details: Option<Vec<ResourceDetail>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListServiceActionsForProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1958,7 +1958,7 @@ pub struct ListServiceActionsForProvisioningArtifactInput {
     pub provisioning_artifact_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListServiceActionsForProvisioningArtifactOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -1971,7 +1971,7 @@ pub struct ListServiceActionsForProvisioningArtifactOutput {
     pub service_action_summaries: Option<Vec<ServiceActionSummary>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListServiceActionsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -1988,7 +1988,7 @@ pub struct ListServiceActionsInput {
     pub page_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListServiceActionsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -2001,7 +2001,7 @@ pub struct ListServiceActionsOutput {
     pub service_action_summaries: Option<Vec<ServiceActionSummary>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListStackInstancesForProvisionedProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -2021,7 +2021,7 @@ pub struct ListStackInstancesForProvisionedProductInput {
     pub provisioned_product_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListStackInstancesForProvisionedProductOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -2035,7 +2035,7 @@ pub struct ListStackInstancesForProvisionedProductOutput {
 }
 
 /// <p>Filters to use when listing TagOptions.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagOptionsFilters {
     /// <p>The active state.</p>
@@ -2052,7 +2052,7 @@ pub struct ListTagOptionsFilters {
     pub value: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagOptionsInput {
     /// <p>The search filters. If no search filters are specified, the output includes all TagOptions.</p>
@@ -2069,7 +2069,7 @@ pub struct ListTagOptionsInput {
     pub page_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagOptionsOutput {
     /// <p>The page token for the next set of results. To retrieve the first set of results, use null.</p>
@@ -2083,7 +2083,7 @@ pub struct ListTagOptionsOutput {
 }
 
 /// <p>Information about the organization node.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct OrganizationNode {
     /// <p>The organization node type.</p>
     #[serde(rename = "Type")]
@@ -2096,7 +2096,7 @@ pub struct OrganizationNode {
 }
 
 /// <p>The constraints that the administrator has put on the parameter.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ParameterConstraints {
     /// <p>The values that the administrator has allowed for the parameter.</p>
@@ -2106,7 +2106,7 @@ pub struct ParameterConstraints {
 }
 
 /// <p>Information about a portfolio.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PortfolioDetail {
     /// <p>The ARN assigned to the portfolio.</p>
@@ -2136,7 +2136,7 @@ pub struct PortfolioDetail {
 }
 
 /// <p>Information about a principal.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Principal {
     /// <p>The ARN of the principal (IAM user, role, or group).</p>
@@ -2150,7 +2150,7 @@ pub struct Principal {
 }
 
 /// <p>A single product view aggregation value/count pair, containing metadata about each product to which the calling user has access.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProductViewAggregationValue {
     /// <p>An approximate count of the products that match the value.</p>
@@ -2164,7 +2164,7 @@ pub struct ProductViewAggregationValue {
 }
 
 /// <p>Information about a product view.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProductViewDetail {
     /// <p>The UTC time stamp of the creation time.</p>
@@ -2186,7 +2186,7 @@ pub struct ProductViewDetail {
 }
 
 /// <p>Summary information about a product view.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProductViewSummary {
     /// <p>The distributor of the product. Contact the product administrator for the significance of this value.</p>
@@ -2235,7 +2235,7 @@ pub struct ProductViewSummary {
     pub type_: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ProvisionProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -2276,7 +2276,7 @@ pub struct ProvisionProductInput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionProductOutput {
     /// <p>Information about the result of provisioning the product.</p>
@@ -2286,7 +2286,7 @@ pub struct ProvisionProductOutput {
 }
 
 /// <p>Information about a provisioned product.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedProductAttribute {
     /// <p>The ARN of the provisioned product.</p>
@@ -2352,7 +2352,7 @@ pub struct ProvisionedProductAttribute {
 }
 
 /// <p>Information about a provisioned product.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedProductDetail {
     /// <p>The ARN of the provisioned product.</p>
@@ -2402,7 +2402,7 @@ pub struct ProvisionedProductDetail {
 }
 
 /// <p>Information about a plan.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedProductPlanDetails {
     /// <p>The UTC time stamp of the creation time.</p>
@@ -2468,7 +2468,7 @@ pub struct ProvisionedProductPlanDetails {
 }
 
 /// <p>Summary information about a plan.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisionedProductPlanSummary {
     /// <p>The plan identifier.</p>
@@ -2498,7 +2498,7 @@ pub struct ProvisionedProductPlanSummary {
 }
 
 /// <p>Information about a provisioning artifact. A provisioning artifact is also known as a product version.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifact {
     /// <p>The UTC time stamp of the creation time.</p>
@@ -2524,7 +2524,7 @@ pub struct ProvisioningArtifact {
 }
 
 /// <p>Information about a provisioning artifact (also known as a version) for a product.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactDetail {
     /// <p>Indicates whether the product version is active.</p>
@@ -2558,7 +2558,7 @@ pub struct ProvisioningArtifactDetail {
 }
 
 /// <p>Information about a parameter used to provision a product.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactParameter {
     /// <p>The default value.</p>
@@ -2588,7 +2588,7 @@ pub struct ProvisioningArtifactParameter {
 }
 
 /// <p>The user-defined preferences that will be applied during product provisioning, unless overridden by <code>ProvisioningPreferences</code> or <code>UpdateProvisioningPreferences</code>.</p> <p>For more information on maximum concurrent accounts and failure tolerance, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html#stackset-ops-options">Stack set operation options</a> in the <i>AWS CloudFormation User Guide</i>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactPreferences {
     /// <p>One or more AWS accounts where stack instances are deployed from the stack set. These accounts can be scoped in <code>ProvisioningPreferences$StackSetAccounts</code> and <code>UpdateProvisioningPreferences$StackSetAccounts</code>.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p>
@@ -2602,7 +2602,7 @@ pub struct ProvisioningArtifactPreferences {
 }
 
 /// <p>Information about a provisioning artifact (also known as a version) for a product.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ProvisioningArtifactProperties {
     /// <p>The description of the provisioning artifact, including how it differs from the previous provisioning artifact.</p>
@@ -2627,7 +2627,7 @@ pub struct ProvisioningArtifactProperties {
 }
 
 /// <p>Summary information about a provisioning artifact (also known as a version) for a product.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactSummary {
     /// <p>The UTC time stamp of the creation time.</p>
@@ -2653,7 +2653,7 @@ pub struct ProvisioningArtifactSummary {
 }
 
 /// <p>An object that contains summary information about a product view and a provisioning artifact.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProvisioningArtifactView {
     /// <p>Summary information about a product view.</p>
@@ -2667,7 +2667,7 @@ pub struct ProvisioningArtifactView {
 }
 
 /// <p>Information about a parameter used to provision a product.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ProvisioningParameter {
     /// <p>The parameter key.</p>
@@ -2681,7 +2681,7 @@ pub struct ProvisioningParameter {
 }
 
 /// <p>The user-defined preferences that will be applied when updating a provisioned product. Not all preferences are applicable to all provisioned product types.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ProvisioningPreferences {
     /// <p>One or more AWS accounts that will have access to the provisioned product.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p> <p>The AWS accounts specified should be within the list of accounts in the <code>STACKSET</code> constraint. To get the list of accounts in the <code>STACKSET</code> constraint, use the <code>DescribeProvisioningParameters</code> operation.</p> <p>If no values are specified, the default value is all accounts from the <code>STACKSET</code> constraint.</p>
@@ -2711,7 +2711,7 @@ pub struct ProvisioningPreferences {
 }
 
 /// <p>Information about a request operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecordDetail {
     /// <p>The UTC time stamp of the creation time.</p>
@@ -2769,7 +2769,7 @@ pub struct RecordDetail {
 }
 
 /// <p>The error code and description resulting from an operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecordError {
     /// <p>The numeric value of the error.</p>
@@ -2783,7 +2783,7 @@ pub struct RecordError {
 }
 
 /// <p>The output for the product created as the result of a request. For example, the output for a CloudFormation-backed product that creates an S3 bucket would include the S3 bucket URL.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecordOutput {
     /// <p>The description of the output.</p>
@@ -2801,7 +2801,7 @@ pub struct RecordOutput {
 }
 
 /// <p>Information about a tag, which is a key-value pair.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecordTag {
     /// <p>The key for this tag.</p>
@@ -2814,7 +2814,7 @@ pub struct RecordTag {
     pub value: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RejectPortfolioShareInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -2830,12 +2830,12 @@ pub struct RejectPortfolioShareInput {
     pub portfolio_share_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RejectPortfolioShareOutput {}
 
 /// <p>Information about a resource change that will occur when a plan is executed.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceChange {
     /// <p>The change action.</p>
@@ -2869,7 +2869,7 @@ pub struct ResourceChange {
 }
 
 /// <p>Information about a change to a resource attribute.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceChangeDetail {
     /// <p>The ID of the entity that caused the change.</p>
@@ -2887,7 +2887,7 @@ pub struct ResourceChangeDetail {
 }
 
 /// <p>Information about a resource.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceDetail {
     /// <p>The ARN of the resource.</p>
@@ -2913,7 +2913,7 @@ pub struct ResourceDetail {
 }
 
 /// <p>Information about a change to a resource attribute.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceTargetDefinition {
     /// <p>The attribute to be changed.</p>
@@ -2930,7 +2930,7 @@ pub struct ResourceTargetDefinition {
     pub requires_recreation: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ScanProvisionedProductsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -2951,7 +2951,7 @@ pub struct ScanProvisionedProductsInput {
     pub page_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ScanProvisionedProductsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -2964,7 +2964,7 @@ pub struct ScanProvisionedProductsOutput {
     pub provisioned_products: Option<Vec<ProvisionedProductDetail>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchProductsAsAdminInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3001,7 +3001,7 @@ pub struct SearchProductsAsAdminInput {
     pub sort_order: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchProductsAsAdminOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -3014,7 +3014,7 @@ pub struct SearchProductsAsAdminOutput {
     pub product_view_details: Option<Vec<ProductViewDetail>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchProductsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3043,7 +3043,7 @@ pub struct SearchProductsInput {
     pub sort_order: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchProductsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -3061,7 +3061,7 @@ pub struct SearchProductsOutput {
     pub product_view_summaries: Option<Vec<ProductViewSummary>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SearchProvisionedProductsInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3094,7 +3094,7 @@ pub struct SearchProvisionedProductsInput {
     pub sort_order: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SearchProvisionedProductsOutput {
     /// <p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>
@@ -3112,7 +3112,7 @@ pub struct SearchProvisionedProductsOutput {
 }
 
 /// <p>A self-service action association consisting of the Action ID, the Product ID, and the Provisioning Artifact ID.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ServiceActionAssociation {
     /// <p>The product identifier. For example, <code>prod-abcdzk7xy33qa</code>.</p>
@@ -3127,7 +3127,7 @@ pub struct ServiceActionAssociation {
 }
 
 /// <p>An object containing detailed information about the self-service action.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ServiceActionDetail {
     /// <p>A map that defines the self-service action.</p>
@@ -3141,7 +3141,7 @@ pub struct ServiceActionDetail {
 }
 
 /// <p>Detailed information about the self-service action.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ServiceActionSummary {
     /// <p>The self-service action definition type. For example, <code>SSM_AUTOMATION</code>.</p>
@@ -3163,7 +3163,7 @@ pub struct ServiceActionSummary {
 }
 
 /// <p>Information about the portfolio share operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ShareDetails {
     /// <p>List of errors.</p>
@@ -3177,7 +3177,7 @@ pub struct ShareDetails {
 }
 
 /// <p>Errors that occurred during the portfolio share operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ShareError {
     /// <p>List of accounts impacted by the error.</p>
@@ -3195,7 +3195,7 @@ pub struct ShareError {
 }
 
 /// <p>An AWS CloudFormation stack, in a specific account and region, that's part of a stack set operation. A stack instance is a reference to an attempted or actual stack in a given account within a given region. A stack instance can exist without a stack—for example, if the stack couldn't be created for some reason. A stack instance is associated with only one stack set. Each stack instance contains the ID of its associated stack set, as well as the ID of the actual stack and the stack status. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StackInstance {
     /// <p>The name of the AWS account that the stack instance is associated with.</p>
@@ -3213,7 +3213,7 @@ pub struct StackInstance {
 }
 
 /// <p>Information about a tag. A tag is a key-value pair. Tags are propagated to the resources created when provisioning a product.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Tag {
     /// <p>The tag key.</p>
     #[serde(rename = "Key")]
@@ -3224,7 +3224,7 @@ pub struct Tag {
 }
 
 /// <p>Information about a TagOption.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagOptionDetail {
     /// <p>The TagOption active state.</p>
@@ -3246,7 +3246,7 @@ pub struct TagOptionDetail {
 }
 
 /// <p>Summary information about a TagOption.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagOptionSummary {
     /// <p>The TagOption key.</p>
@@ -3259,7 +3259,7 @@ pub struct TagOptionSummary {
     pub values: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TerminateProvisionedProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3283,7 +3283,7 @@ pub struct TerminateProvisionedProductInput {
     pub terminate_token: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TerminateProvisionedProductOutput {
     /// <p>Information about the result of this request.</p>
@@ -3292,7 +3292,7 @@ pub struct TerminateProvisionedProductOutput {
     pub record_detail: Option<RecordDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateConstraintInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3312,7 +3312,7 @@ pub struct UpdateConstraintInput {
     pub parameters: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateConstraintOutput {
     /// <p>Information about the constraint.</p>
@@ -3329,7 +3329,7 @@ pub struct UpdateConstraintOutput {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePortfolioInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3361,7 +3361,7 @@ pub struct UpdatePortfolioInput {
     pub remove_tags: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePortfolioOutput {
     /// <p>Information about the portfolio.</p>
@@ -3374,7 +3374,7 @@ pub struct UpdatePortfolioOutput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3422,7 +3422,7 @@ pub struct UpdateProductInput {
     pub support_url: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProductOutput {
     /// <p>Information about the product view.</p>
@@ -3435,7 +3435,7 @@ pub struct UpdateProductOutput {
     pub tags: Option<Vec<Tag>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProvisionedProductInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3479,7 +3479,7 @@ pub struct UpdateProvisionedProductInput {
     pub update_token: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProvisionedProductOutput {
     /// <p>Information about the result of the request.</p>
@@ -3488,7 +3488,7 @@ pub struct UpdateProvisionedProductOutput {
     pub record_detail: Option<RecordDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProvisionedProductPropertiesInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3506,7 +3506,7 @@ pub struct UpdateProvisionedProductPropertiesInput {
     pub provisioned_product_properties: ::std::collections::HashMap<String, String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProvisionedProductPropertiesOutput {
     /// <p>The provisioned product identifier.</p>
@@ -3527,7 +3527,7 @@ pub struct UpdateProvisionedProductPropertiesOutput {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProvisioningArtifactInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3558,7 +3558,7 @@ pub struct UpdateProvisioningArtifactInput {
     pub provisioning_artifact_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProvisioningArtifactOutput {
     /// <p>The URL of the CloudFormation template in Amazon S3.</p>
@@ -3576,7 +3576,7 @@ pub struct UpdateProvisioningArtifactOutput {
 }
 
 /// <p>The parameter key-value pair used to update a provisioned product.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct UpdateProvisioningParameter {
     /// <p>The parameter key.</p>
     #[serde(rename = "Key")]
@@ -3593,7 +3593,7 @@ pub struct UpdateProvisioningParameter {
 }
 
 /// <p>The user-defined preferences that will be applied when updating a provisioned product. Not all preferences are applicable to all provisioned product types.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProvisioningPreferences {
     /// <p>One or more AWS accounts that will have access to the provisioned product.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p> <p>The AWS accounts specified should be within the list of accounts in the <code>STACKSET</code> constraint. To get the list of accounts in the <code>STACKSET</code> constraint, use the <code>DescribeProvisioningParameters</code> operation.</p> <p>If no values are specified, the default value is all accounts from the <code>STACKSET</code> constraint.</p>
@@ -3626,7 +3626,7 @@ pub struct UpdateProvisioningPreferences {
     pub stack_set_regions: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateServiceActionInput {
     /// <p><p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul></p>
@@ -3650,7 +3650,7 @@ pub struct UpdateServiceActionInput {
     pub name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateServiceActionOutput {
     /// <p>Detailed information about the self-service action.</p>
@@ -3659,7 +3659,7 @@ pub struct UpdateServiceActionOutput {
     pub service_action_detail: Option<ServiceActionDetail>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTagOptionInput {
     /// <p>The updated active state.</p>
@@ -3675,7 +3675,7 @@ pub struct UpdateTagOptionInput {
     pub value: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateTagOptionOutput {
     /// <p>Information about the TagOption.</p>
@@ -3685,7 +3685,7 @@ pub struct UpdateTagOptionOutput {
 }
 
 /// <p>Additional information provided by the administrator.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UsageInstruction {
     /// <p>The usage instruction type for the value.</p>

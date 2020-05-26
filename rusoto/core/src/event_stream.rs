@@ -30,6 +30,7 @@ pub trait DeserializeEvent: Sized {
 ///
 /// TODO
 #[pin_project]
+#[derive(Debug)]
 pub struct EventStream<T: DeserializeEvent> {
     #[pin]
     response_body: ByteStream,

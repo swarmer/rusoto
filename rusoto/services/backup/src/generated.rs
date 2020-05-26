@@ -26,7 +26,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Contains detailed information about a backup job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupJob {
     /// <p>Uniquely identifies a request to AWS Backup to back up a resource.</p>
@@ -100,7 +100,7 @@ pub struct BackupJob {
 }
 
 /// <p>Contains an optional backup plan display name and an array of <code>BackupRule</code> objects, each of which specifies a backup rule. Each rule in a backup plan is a separate scheduled task and can back up a different selection of AWS resources.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupPlan {
     /// <p>The display name of a backup plan.</p>
@@ -112,7 +112,7 @@ pub struct BackupPlan {
 }
 
 /// <p>Contains an optional backup plan display name and an array of <code>BackupRule</code> objects, each of which specifies a backup rule. Each rule in a backup plan is a separate scheduled task and can back up a different selection of AWS resources.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BackupPlanInput {
     /// <p>The display name of a backup plan.</p>
@@ -124,7 +124,7 @@ pub struct BackupPlanInput {
 }
 
 /// <p>An object specifying metadata associated with a backup plan template.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupPlanTemplatesListMember {
     /// <p>Uniquely identifies a stored backup plan template.</p>
@@ -138,7 +138,7 @@ pub struct BackupPlanTemplatesListMember {
 }
 
 /// <p>Contains metadata about a backup plan.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupPlansListMember {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for example, <code>arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50</code>.</p>
@@ -176,7 +176,7 @@ pub struct BackupPlansListMember {
 }
 
 /// <p>Specifies a scheduled task used to back up a selection of resources.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupRule {
     /// <p>A value in minutes after a backup job is successfully started before it must be completed or it is canceled by AWS Backup. This value is optional.</p>
@@ -216,7 +216,7 @@ pub struct BackupRule {
 }
 
 /// <p>Specifies a scheduled task used to back up a selection of resources.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BackupRuleInput {
     /// <p>The amount of time AWS Backup attempts a backup before canceling the job and returning an error.</p>
@@ -252,7 +252,7 @@ pub struct BackupRuleInput {
 }
 
 /// <p>Used to specify a set of resources to a backup plan.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct BackupSelection {
     /// <p>The ARN of the IAM role that AWS Backup uses to authenticate when restoring the target resource; for example, <code>arn:aws:iam::123456789012:role/S3Access</code>.</p>
     #[serde(rename = "IamRoleArn")]
@@ -271,7 +271,7 @@ pub struct BackupSelection {
 }
 
 /// <p>Contains metadata about a <code>BackupSelection</code> object.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupSelectionsListMember {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -301,7 +301,7 @@ pub struct BackupSelectionsListMember {
 }
 
 /// <p>Contains metadata about a backup vault.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BackupVaultListMember {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>
@@ -331,7 +331,7 @@ pub struct BackupVaultListMember {
 }
 
 /// <p>Contains <code>DeleteAt</code> and <code>MoveToColdStorageAt</code> timestamps, which are used to specify a lifecycle for a recovery point.</p> <p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. AWS Backup transitions and expires backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “expire after days” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CalculatedLifecycle {
     /// <p>A timestamp that specifies when to delete a recovery point.</p>
@@ -345,7 +345,7 @@ pub struct CalculatedLifecycle {
 }
 
 /// <p>Contains an array of triplets made up of a condition type (such as <code>STRINGEQUALS</code>), a key, and a value. Conditions are used to filter resources in a selection that is assigned to a backup plan.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Condition {
     /// <p>The key in a key-value pair. For example, in <code>"ec2:ResourceTag/Department": "accounting"</code>, <code>"ec2:ResourceTag/Department"</code> is the key.</p>
     #[serde(rename = "ConditionKey")]
@@ -359,7 +359,7 @@ pub struct Condition {
 }
 
 /// <p>The details of the copy operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CopyAction {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies the destination backup vault for the copied backup. For example, arn:aws:backup:us-east-1:123456789012:vault:aBackupVault.</p>
     #[serde(rename = "DestinationBackupVaultArn")]
@@ -370,7 +370,7 @@ pub struct CopyAction {
 }
 
 /// <p>Contains detailed information about a copy job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CopyJob {
     /// <p>The size, in bytes, of a copy job.</p>
@@ -430,7 +430,7 @@ pub struct CopyJob {
     pub status_message: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateBackupPlanInput {
     /// <p>Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one or more sets of <code>Rules</code>.</p>
@@ -446,7 +446,7 @@ pub struct CreateBackupPlanInput {
     pub creator_request_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateBackupPlanOutput {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for example, <code>arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50</code>.</p>
@@ -467,7 +467,7 @@ pub struct CreateBackupPlanOutput {
     pub version_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateBackupSelectionInput {
     /// <p>Uniquely identifies the backup plan to be associated with the selection of resources.</p>
@@ -482,7 +482,7 @@ pub struct CreateBackupSelectionInput {
     pub creator_request_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateBackupSelectionOutput {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -499,7 +499,7 @@ pub struct CreateBackupSelectionOutput {
     pub selection_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateBackupVaultInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -519,7 +519,7 @@ pub struct CreateBackupVaultInput {
     pub encryption_key_arn: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateBackupVaultOutput {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>
@@ -536,7 +536,7 @@ pub struct CreateBackupVaultOutput {
     pub creation_date: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBackupPlanInput {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -544,7 +544,7 @@ pub struct DeleteBackupPlanInput {
     pub backup_plan_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteBackupPlanOutput {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for example, <code>arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50</code>.</p>
@@ -565,7 +565,7 @@ pub struct DeleteBackupPlanOutput {
     pub version_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBackupSelectionInput {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -576,7 +576,7 @@ pub struct DeleteBackupSelectionInput {
     pub selection_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBackupVaultAccessPolicyInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -584,7 +584,7 @@ pub struct DeleteBackupVaultAccessPolicyInput {
     pub backup_vault_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBackupVaultInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and theAWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -592,7 +592,7 @@ pub struct DeleteBackupVaultInput {
     pub backup_vault_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteBackupVaultNotificationsInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -600,7 +600,7 @@ pub struct DeleteBackupVaultNotificationsInput {
     pub backup_vault_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRecoveryPointInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -611,7 +611,7 @@ pub struct DeleteRecoveryPointInput {
     pub recovery_point_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBackupJobInput {
     /// <p>Uniquely identifies a request to AWS Backup to back up a resource.</p>
@@ -619,7 +619,7 @@ pub struct DescribeBackupJobInput {
     pub backup_job_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBackupJobOutput {
     /// <p>Uniquely identifies a request to AWS Backup to back up a resource.</p>
@@ -692,7 +692,7 @@ pub struct DescribeBackupJobOutput {
     pub status_message: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeBackupVaultInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -700,7 +700,7 @@ pub struct DescribeBackupVaultInput {
     pub backup_vault_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeBackupVaultOutput {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>
@@ -729,7 +729,7 @@ pub struct DescribeBackupVaultOutput {
     pub number_of_recovery_points: Option<i64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCopyJobInput {
     /// <p>Uniquely identifies a request to AWS Backup to copy a resource.</p>
@@ -737,7 +737,7 @@ pub struct DescribeCopyJobInput {
     pub copy_job_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeCopyJobOutput {
     /// <p>Contains detailed information about a copy job.</p>
@@ -746,7 +746,7 @@ pub struct DescribeCopyJobOutput {
     pub copy_job: Option<CopyJob>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProtectedResourceInput {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a resource. The format of the ARN depends on the resource type.</p>
@@ -754,7 +754,7 @@ pub struct DescribeProtectedResourceInput {
     pub resource_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProtectedResourceOutput {
     /// <p>The date and time that a resource was last backed up, in Unix format and Coordinated Universal Time (UTC). The value of <code>LastBackupTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>
@@ -771,7 +771,7 @@ pub struct DescribeProtectedResourceOutput {
     pub resource_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeRecoveryPointInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -782,7 +782,7 @@ pub struct DescribeRecoveryPointInput {
     pub recovery_point_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeRecoveryPointOutput {
     /// <p>The size, in bytes, of a backup.</p>
@@ -855,7 +855,7 @@ pub struct DescribeRecoveryPointOutput {
     pub storage_class: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeRestoreJobInput {
     /// <p>Uniquely identifies the job that restores a recovery point.</p>
@@ -863,7 +863,7 @@ pub struct DescribeRestoreJobInput {
     pub restore_job_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeRestoreJobOutput {
     /// <p>The size, in bytes, of the restored resource.</p>
@@ -912,7 +912,7 @@ pub struct DescribeRestoreJobOutput {
     pub status_message: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExportBackupPlanTemplateInput {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -920,7 +920,7 @@ pub struct ExportBackupPlanTemplateInput {
     pub backup_plan_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportBackupPlanTemplateOutput {
     /// <p><p>The body of a backup plan template in JSON format.</p> <note> <p>This is a signed JSON document that cannot be modified before being passed to <code>GetBackupPlanFromJSON.</code> </p> </note></p>
@@ -929,7 +929,7 @@ pub struct ExportBackupPlanTemplateOutput {
     pub backup_plan_template_json: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBackupPlanFromJSONInput {
     /// <p>A customer-supplied backup plan document in JSON format.</p>
@@ -937,7 +937,7 @@ pub struct GetBackupPlanFromJSONInput {
     pub backup_plan_template_json: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBackupPlanFromJSONOutput {
     /// <p>Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one or more sets of <code>Rules</code>.</p>
@@ -946,7 +946,7 @@ pub struct GetBackupPlanFromJSONOutput {
     pub backup_plan: Option<BackupPlan>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBackupPlanFromTemplateInput {
     /// <p>Uniquely identifies a stored backup plan template.</p>
@@ -954,7 +954,7 @@ pub struct GetBackupPlanFromTemplateInput {
     pub backup_plan_template_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBackupPlanFromTemplateOutput {
     /// <p>Returns the body of a backup plan based on the target template, including the name, rules, and backup vault of the plan.</p>
@@ -963,7 +963,7 @@ pub struct GetBackupPlanFromTemplateOutput {
     pub backup_plan_document: Option<BackupPlan>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBackupPlanInput {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -975,7 +975,7 @@ pub struct GetBackupPlanInput {
     pub version_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBackupPlanOutput {
     /// <p>Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one or more sets of <code>Rules</code>.</p>
@@ -1012,7 +1012,7 @@ pub struct GetBackupPlanOutput {
     pub version_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBackupSelectionInput {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -1023,7 +1023,7 @@ pub struct GetBackupSelectionInput {
     pub selection_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBackupSelectionOutput {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -1048,7 +1048,7 @@ pub struct GetBackupSelectionOutput {
     pub selection_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBackupVaultAccessPolicyInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -1056,7 +1056,7 @@ pub struct GetBackupVaultAccessPolicyInput {
     pub backup_vault_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBackupVaultAccessPolicyOutput {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>
@@ -1073,7 +1073,7 @@ pub struct GetBackupVaultAccessPolicyOutput {
     pub policy: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBackupVaultNotificationsInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -1081,7 +1081,7 @@ pub struct GetBackupVaultNotificationsInput {
     pub backup_vault_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBackupVaultNotificationsOutput {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>
@@ -1102,7 +1102,7 @@ pub struct GetBackupVaultNotificationsOutput {
     pub sns_topic_arn: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRecoveryPointRestoreMetadataInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -1113,7 +1113,7 @@ pub struct GetRecoveryPointRestoreMetadataInput {
     pub recovery_point_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRecoveryPointRestoreMetadataOutput {
     /// <p>An ARN that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>
@@ -1130,7 +1130,7 @@ pub struct GetRecoveryPointRestoreMetadataOutput {
     pub restore_metadata: Option<::std::collections::HashMap<String, String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetSupportedResourceTypesOutput {
     /// <p><p>Contains a string with the supported AWS resource types:</p> <ul> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>Storage Gateway</code> for AWS Storage Gateway</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>DDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> </ul></p>
@@ -1140,7 +1140,7 @@ pub struct GetSupportedResourceTypesOutput {
 }
 
 /// <p>Contains an array of <code>Transition</code> objects specifying how long in days before a recovery point transitions to cold storage or is deleted.</p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, on the console, the “expire after days” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Lifecycle {
     /// <p>Specifies the number of days after creation that a recovery point is deleted. Must be greater than 90 days plus <code>MoveToColdStorageAfterDays</code>.</p>
     #[serde(rename = "DeleteAfterDays")]
@@ -1152,7 +1152,7 @@ pub struct Lifecycle {
     pub move_to_cold_storage_after_days: Option<i64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBackupJobsInput {
     /// <p>Returns only backup jobs that will be stored in the specified backup vault. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -1189,7 +1189,7 @@ pub struct ListBackupJobsInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBackupJobsOutput {
     /// <p>An array of structures containing metadata about your backup jobs returned in JSON format.</p>
@@ -1202,7 +1202,7 @@ pub struct ListBackupJobsOutput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBackupPlanTemplatesInput {
     /// <p>The maximum number of items to be returned.</p>
@@ -1215,7 +1215,7 @@ pub struct ListBackupPlanTemplatesInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBackupPlanTemplatesOutput {
     /// <p>An array of template list items containing metadata about your saved templates.</p>
@@ -1228,7 +1228,7 @@ pub struct ListBackupPlanTemplatesOutput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBackupPlanVersionsInput {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -1244,7 +1244,7 @@ pub struct ListBackupPlanVersionsInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBackupPlanVersionsOutput {
     /// <p>An array of version list items containing metadata about your backup plans.</p>
@@ -1257,7 +1257,7 @@ pub struct ListBackupPlanVersionsOutput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBackupPlansInput {
     /// <p>A Boolean value with a default value of <code>FALSE</code> that returns deleted backup plans when set to <code>TRUE</code>.</p>
@@ -1274,7 +1274,7 @@ pub struct ListBackupPlansInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBackupPlansOutput {
     /// <p>An array of backup plan list items containing metadata about your saved backup plans.</p>
@@ -1287,7 +1287,7 @@ pub struct ListBackupPlansOutput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBackupSelectionsInput {
     /// <p>Uniquely identifies a backup plan.</p>
@@ -1303,7 +1303,7 @@ pub struct ListBackupSelectionsInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBackupSelectionsOutput {
     /// <p>An array of backup selection list items containing metadata about each resource in the list.</p>
@@ -1316,7 +1316,7 @@ pub struct ListBackupSelectionsOutput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListBackupVaultsInput {
     /// <p>The maximum number of items to be returned.</p>
@@ -1329,7 +1329,7 @@ pub struct ListBackupVaultsInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListBackupVaultsOutput {
     /// <p>An array of backup vault list members containing vault metadata, including Amazon Resource Name (ARN), display name, creation date, number of saved recovery points, and encryption information if the resources saved in the backup vault are encrypted.</p>
@@ -1342,7 +1342,7 @@ pub struct ListBackupVaultsOutput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListCopyJobsInput {
     /// <p>Returns only copy jobs that were created after the specified date.</p>
@@ -1379,7 +1379,7 @@ pub struct ListCopyJobsInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListCopyJobsOutput {
     /// <p>An array of structures containing metadata about your copy jobs returned in JSON format. </p>
@@ -1392,7 +1392,7 @@ pub struct ListCopyJobsOutput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProtectedResourcesInput {
     /// <p>The maximum number of items to be returned.</p>
@@ -1405,7 +1405,7 @@ pub struct ListProtectedResourcesInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProtectedResourcesOutput {
     /// <p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
@@ -1418,7 +1418,7 @@ pub struct ListProtectedResourcesOutput {
     pub results: Option<Vec<ProtectedResource>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRecoveryPointsByBackupVaultInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -1454,7 +1454,7 @@ pub struct ListRecoveryPointsByBackupVaultInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRecoveryPointsByBackupVaultOutput {
     /// <p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
@@ -1467,7 +1467,7 @@ pub struct ListRecoveryPointsByBackupVaultOutput {
     pub recovery_points: Option<Vec<RecoveryPointByBackupVault>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRecoveryPointsByResourceInput {
     /// <p>The maximum number of items to be returned.</p>
@@ -1483,7 +1483,7 @@ pub struct ListRecoveryPointsByResourceInput {
     pub resource_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRecoveryPointsByResourceOutput {
     /// <p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
@@ -1496,7 +1496,7 @@ pub struct ListRecoveryPointsByResourceOutput {
     pub recovery_points: Option<Vec<RecoveryPointByResource>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRestoreJobsInput {
     /// <p>The maximum number of items to be returned.</p>
@@ -1509,7 +1509,7 @@ pub struct ListRestoreJobsInput {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRestoreJobsOutput {
     /// <p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
@@ -1522,7 +1522,7 @@ pub struct ListRestoreJobsOutput {
     pub restore_jobs: Option<Vec<RestoreJobsListMember>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsInput {
     /// <p>The maximum number of items to be returned.</p>
@@ -1538,7 +1538,7 @@ pub struct ListTagsInput {
     pub resource_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsOutput {
     /// <p>The next item following a partial list of returned items. For example, if a request is made to return <code>maxResults</code> number of items, <code>NextToken</code> allows you to return more items in your list starting at the location pointed to by the next token.</p>
@@ -1552,7 +1552,7 @@ pub struct ListTagsOutput {
 }
 
 /// <p>A structure that contains information about a backed-up resource.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProtectedResource {
     /// <p>The date and time a resource was last backed up, in Unix format and Coordinated Universal Time (UTC). The value of <code>LastBackupTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>
@@ -1569,7 +1569,7 @@ pub struct ProtectedResource {
     pub resource_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutBackupVaultAccessPolicyInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -1581,7 +1581,7 @@ pub struct PutBackupVaultAccessPolicyInput {
     pub policy: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutBackupVaultNotificationsInput {
     /// <p>An array of events that indicate the status of jobs to back up resources to the backup vault.</p>
@@ -1596,7 +1596,7 @@ pub struct PutBackupVaultNotificationsInput {
 }
 
 /// <p>Contains detailed information about the recovery points stored in a backup vault.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecoveryPointByBackupVault {
     /// <p>The size, in bytes, of a backup.</p>
@@ -1666,7 +1666,7 @@ pub struct RecoveryPointByBackupVault {
 }
 
 /// <p>Contains detailed information about a saved recovery point.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecoveryPointByResource {
     /// <p>The size, in bytes, of a backup.</p>
@@ -1696,7 +1696,7 @@ pub struct RecoveryPointByResource {
 }
 
 /// <p>Contains information about the backup plan and rule that AWS Backup used to initiate the recovery point backup.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecoveryPointCreator {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for example, <code>arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50</code>.</p>
@@ -1718,7 +1718,7 @@ pub struct RecoveryPointCreator {
 }
 
 /// <p>Contains metadata about a restore job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RestoreJobsListMember {
     /// <p>The size, in bytes, of the restored resource.</p>
@@ -1767,7 +1767,7 @@ pub struct RestoreJobsListMember {
     pub status_message: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartBackupJobInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -1801,7 +1801,7 @@ pub struct StartBackupJobInput {
     pub start_window_minutes: Option<i64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartBackupJobOutput {
     /// <p>Uniquely identifies a request to AWS Backup to back up a resource.</p>
@@ -1818,7 +1818,7 @@ pub struct StartBackupJobOutput {
     pub recovery_point_arn: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartCopyJobInput {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a destination backup vault to copy to; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>
@@ -1842,7 +1842,7 @@ pub struct StartCopyJobInput {
     pub source_backup_vault_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartCopyJobOutput {
     /// <p>Uniquely identifies a request to AWS Backup to copy a resource.</p>
@@ -1855,7 +1855,7 @@ pub struct StartCopyJobOutput {
     pub creation_date: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartRestoreJobInput {
     /// <p>The Amazon Resource Name (ARN) of the IAM role that AWS Backup uses to create the target recovery point; for example, <code>arn:aws:iam::123456789012:role/S3Access</code>.</p>
@@ -1877,7 +1877,7 @@ pub struct StartRestoreJobInput {
     pub resource_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartRestoreJobOutput {
     /// <p>Uniquely identifies the job that restores a recovery point.</p>
@@ -1886,7 +1886,7 @@ pub struct StartRestoreJobOutput {
     pub restore_job_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StopBackupJobInput {
     /// <p>Uniquely identifies a request to AWS Backup to back up a resource.</p>
@@ -1894,7 +1894,7 @@ pub struct StopBackupJobInput {
     pub backup_job_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceInput {
     /// <p>An ARN that uniquely identifies a resource. The format of the ARN depends on the type of the tagged resource.</p>
@@ -1905,7 +1905,7 @@ pub struct TagResourceInput {
     pub tags: ::std::collections::HashMap<String, String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceInput {
     /// <p>An ARN that uniquely identifies a resource. The format of the ARN depends on the type of the tagged resource.</p>
@@ -1916,7 +1916,7 @@ pub struct UntagResourceInput {
     pub tag_key_list: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateBackupPlanInput {
     /// <p>Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one or more sets of <code>Rules</code>.</p>
@@ -1927,7 +1927,7 @@ pub struct UpdateBackupPlanInput {
     pub backup_plan_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateBackupPlanOutput {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for example, <code>arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50</code>.</p>
@@ -1948,7 +1948,7 @@ pub struct UpdateBackupPlanOutput {
     pub version_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateRecoveryPointLifecycleInput {
     /// <p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>
@@ -1963,7 +1963,7 @@ pub struct UpdateRecoveryPointLifecycleInput {
     pub recovery_point_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateRecoveryPointLifecycleOutput {
     /// <p>An ARN that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>

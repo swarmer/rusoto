@@ -24,7 +24,7 @@ use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVocabularyFilterRequest {
     /// <p>The language code of the words in the vocabulary filter. All words in the filter must be in the same language. The vocabulary filter can only be used with transcription jobs in the specified language.</p>
@@ -43,7 +43,7 @@ pub struct CreateVocabularyFilterRequest {
     pub words: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVocabularyFilterResponse {
     /// <p>The language code of the words in the collection.</p>
@@ -60,7 +60,7 @@ pub struct CreateVocabularyFilterResponse {
     pub vocabulary_filter_name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateVocabularyRequest {
     /// <p>The language code of the vocabulary entries.</p>
@@ -79,7 +79,7 @@ pub struct CreateVocabularyRequest {
     pub vocabulary_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateVocabularyResponse {
     /// <p>If the <code>VocabularyState</code> field is <code>FAILED</code>, this field contains information about why the job failed.</p>
@@ -104,7 +104,7 @@ pub struct CreateVocabularyResponse {
     pub vocabulary_state: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteTranscriptionJobRequest {
     /// <p>The name of the transcription job to be deleted.</p>
@@ -112,7 +112,7 @@ pub struct DeleteTranscriptionJobRequest {
     pub transcription_job_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVocabularyFilterRequest {
     /// <p>The name of the vocabulary filter to remove.</p>
@@ -120,7 +120,7 @@ pub struct DeleteVocabularyFilterRequest {
     pub vocabulary_filter_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteVocabularyRequest {
     /// <p>The name of the vocabulary to delete. </p>
@@ -128,7 +128,7 @@ pub struct DeleteVocabularyRequest {
     pub vocabulary_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetTranscriptionJobRequest {
     /// <p>The name of the job.</p>
@@ -136,7 +136,7 @@ pub struct GetTranscriptionJobRequest {
     pub transcription_job_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetTranscriptionJobResponse {
     /// <p>An object that contains the results of the transcription job.</p>
@@ -145,7 +145,7 @@ pub struct GetTranscriptionJobResponse {
     pub transcription_job: Option<TranscriptionJob>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVocabularyFilterRequest {
     /// <p>The name of the vocabulary filter for which to return information.</p>
@@ -153,7 +153,7 @@ pub struct GetVocabularyFilterRequest {
     pub vocabulary_filter_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVocabularyFilterResponse {
     /// <p>The URI of the list of words in the vocabulary filter. You can use this URI to get the list of words.</p>
@@ -174,7 +174,7 @@ pub struct GetVocabularyFilterResponse {
     pub vocabulary_filter_name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetVocabularyRequest {
     /// <p>The name of the vocabulary to return information about. The name is case-sensitive.</p>
@@ -182,7 +182,7 @@ pub struct GetVocabularyRequest {
     pub vocabulary_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetVocabularyResponse {
     /// <p>The S3 location where the vocabulary is stored. Use this URI to get the contents of the vocabulary. The URI is available for a limited time.</p>
@@ -212,7 +212,7 @@ pub struct GetVocabularyResponse {
 }
 
 /// <p>Provides information about when a transcription job should be executed.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct JobExecutionSettings {
     /// <p>Indicates whether a job should be queued by Amazon Transcribe when the concurrent execution limit is exceeded. When the <code>AllowDeferredExecution</code> field is true, jobs are queued and will be executed when the number of executing jobs falls below the concurrent execution limit. If the field is false, Amazon Transcribe returns a <code>LimitExceededException</code> exception.</p> <p>If you specify the <code>AllowDeferredExecution</code> field, you must specify the <code>DataAccessRoleArn</code> field.</p>
     #[serde(rename = "AllowDeferredExecution")]
@@ -224,7 +224,7 @@ pub struct JobExecutionSettings {
     pub data_access_role_arn: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTranscriptionJobsRequest {
     /// <p>When specified, the jobs returned in the list are limited to jobs whose name contains the specified string.</p>
@@ -245,7 +245,7 @@ pub struct ListTranscriptionJobsRequest {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTranscriptionJobsResponse {
     /// <p>The <code>ListTranscriptionJobs</code> operation returns a page of jobs at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListTranscriptionJobs</code> operation to return in the next page of jobs.</p>
@@ -262,7 +262,7 @@ pub struct ListTranscriptionJobsResponse {
     pub transcription_job_summaries: Option<Vec<TranscriptionJobSummary>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListVocabulariesRequest {
     /// <p>The maximum number of vocabularies to return in the response. If there are fewer results in the list, this response contains only the actual results.</p>
@@ -283,7 +283,7 @@ pub struct ListVocabulariesRequest {
     pub state_equals: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListVocabulariesResponse {
     /// <p>The <code>ListVocabularies</code> operation returns a page of vocabularies at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListVocabularies</code> operation to return in the next page of jobs.</p>
@@ -300,7 +300,7 @@ pub struct ListVocabulariesResponse {
     pub vocabularies: Option<Vec<VocabularyInfo>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListVocabularyFiltersRequest {
     /// <p>The maximum number of filters to return in the response. If there are fewer results in the list, this response contains only the actual results.</p>
@@ -317,7 +317,7 @@ pub struct ListVocabularyFiltersRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListVocabularyFiltersResponse {
     /// <p>The <code>ListVocabularyFilters</code> operation returns a page of collections at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Transcribe returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListVocabularyFilters</code> operation to return in the next page of jobs.</p>
@@ -331,7 +331,7 @@ pub struct ListVocabularyFiltersResponse {
 }
 
 /// <p>Describes the input media file in a transcription request.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Media {
     /// <p>The S3 location of the input media file. The URI must be in the same region as the API endpoint that you are calling. The general form is:</p> <p> <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code> </p> <p>For example:</p> <p> <code>https://s3.us-east-1.amazonaws.com/examplebucket/example.mp4</code> </p> <p> <code>https://s3.us-east-1.amazonaws.com/examplebucket/mediadocs/example.mp4</code> </p> <p>For more information about S3 object names, see <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys">Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.</p>
     #[serde(rename = "MediaFileUri")]
@@ -340,7 +340,7 @@ pub struct Media {
 }
 
 /// <p>Provides optional settings for the <code>StartTranscriptionJob</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Settings {
     /// <p>Instructs Amazon Transcribe to process each audio channel separately and then merge the transcription output of each channel into a single transcription. </p> <p>Amazon Transcribe also produces a transcription of each item detected on an audio channel, including the start time and end time of the item and alternative transcriptions of the item including the confidence that Amazon Transcribe has in the transcription.</p> <p>You can't set both <code>ShowSpeakerLabels</code> and <code>ChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>
     #[serde(rename = "ChannelIdentification")]
@@ -376,7 +376,7 @@ pub struct Settings {
     pub vocabulary_name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartTranscriptionJobRequest {
     /// <p>Provides information about how a transcription job is executed. Use this field to indicate that the job can be queued for deferred execution if the concurrency limit is reached and there are no slots available to immediately run the job.</p>
@@ -414,7 +414,7 @@ pub struct StartTranscriptionJobRequest {
     pub transcription_job_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartTranscriptionJobResponse {
     /// <p>An object containing details of the asynchronous transcription job.</p>
@@ -424,7 +424,7 @@ pub struct StartTranscriptionJobResponse {
 }
 
 /// <p>Identifies the location of a transcription.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Transcript {
     /// <p>The location where the transcription is stored.</p> <p>Use this URI to access the transcription. If you specified an S3 bucket in the <code>OutputBucketName</code> field when you created the job, this is the URI of that bucket. If you chose to store the transcription in Amazon Transcribe, this is a shareable URL that provides secure access to that location.</p>
@@ -434,7 +434,7 @@ pub struct Transcript {
 }
 
 /// <p>Describes an asynchronous transcription job that was created with the <code>StartTranscriptionJob</code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TranscriptionJob {
     /// <p>A timestamp that shows when the job was completed.</p>
@@ -492,7 +492,7 @@ pub struct TranscriptionJob {
 }
 
 /// <p>Provides a summary of information about a transcription job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TranscriptionJobSummary {
     /// <p>A timestamp that shows when the job was completed.</p>
@@ -529,7 +529,7 @@ pub struct TranscriptionJobSummary {
     pub transcription_job_status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateVocabularyFilterRequest {
     /// <p>The Amazon S3 location of a text file used as input to create the vocabulary filter. Only use characters from the character set defined for custom vocabularies. For a list of character sets, see <a href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets">Character Sets for Custom Vocabularies</a>.</p> <p>The specified file must be less than 50 KB of UTF-8 characters.</p> <p>If you provide the location of a list of words in the <code>VocabularyFilterFileUri</code> parameter, you can't use the <code>Words</code> parameter.</p>
@@ -545,7 +545,7 @@ pub struct UpdateVocabularyFilterRequest {
     pub words: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateVocabularyFilterResponse {
     /// <p>The language code of the words in the vocabulary filter.</p>
@@ -562,7 +562,7 @@ pub struct UpdateVocabularyFilterResponse {
     pub vocabulary_filter_name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateVocabularyRequest {
     /// <p>The language code of the vocabulary entries.</p>
@@ -581,7 +581,7 @@ pub struct UpdateVocabularyRequest {
     pub vocabulary_name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateVocabularyResponse {
     /// <p>The language code of the vocabulary entries.</p>
@@ -603,7 +603,7 @@ pub struct UpdateVocabularyResponse {
 }
 
 /// <p>Provides information about a vocabulary filter.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VocabularyFilterInfo {
     /// <p>The language code of the words in the vocabulary filter.</p>
@@ -621,7 +621,7 @@ pub struct VocabularyFilterInfo {
 }
 
 /// <p>Provides information about a custom vocabulary. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VocabularyInfo {
     /// <p>The language code of the vocabulary entries.</p>

@@ -26,7 +26,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Required when you set (Codec) under (AudioDescriptions)&gt;(CodecSettings) to the value AAC. The service accepts one of two mutually exclusive groups of AAC settings--VBR and CBR. To select one of these modes, set the value of Bitrate control mode (rateControlMode) to &quot;VBR&quot; or &quot;CBR&quot;.  In VBR mode, you control the audio quality with the setting VBR quality (vbrQuality). In CBR mode, you use the setting Bitrate (bitrate). Defaults and valid values depend on the rate control mode.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AacSettings {
     /// <p>Choose BROADCASTER<em>MIXED</em>AD when the input contains pre-mixed main audio + audio description (AD) as a stereo pair. The value for AudioType will be set to 3, which signals to downstream systems that this stream contains &quot;broadcaster mixed AD&quot;. Note that the input received by the encoder must contain pre-mixed audio; the encoder does not perform the mixing. When you choose BROADCASTER<em>MIXED</em>AD, the encoder ignores any values you provide in AudioType and  FollowInputAudioType. Choose NORMAL when the input does not contain pre-mixed audio + audio description (AD). In this case, the encoder will use any values you provide for AudioType and FollowInputAudioType.</p>
     #[serde(rename = "AudioDescriptionBroadcasterMix")]
@@ -67,7 +67,7 @@ pub struct AacSettings {
 }
 
 /// <p>Required when you set (Codec) under (AudioDescriptions)&gt;(CodecSettings) to the value AC3.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Ac3Settings {
     /// <p>Specify the average bitrate in bits per second. Valid bitrates depend on the coding mode.</p>
     #[serde(rename = "Bitrate")]
@@ -104,7 +104,7 @@ pub struct Ac3Settings {
 }
 
 /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AccelerationSettings {
     /// <p>Specify the conditions when the service will run your job with accelerated transcoding.</p>
     #[serde(rename = "Mode")]
@@ -112,7 +112,7 @@ pub struct AccelerationSettings {
 }
 
 /// <p>Required when you set (Codec) under (AudioDescriptions)&gt;(CodecSettings) to the value AIFF.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AiffSettings {
     /// <p>Specify Bit depth (BitDepth), in bits per sample, to choose the encoding quality for this audio track.</p>
     #[serde(rename = "BitDepth")]
@@ -129,7 +129,7 @@ pub struct AiffSettings {
 }
 
 /// <p>Settings for ancillary captions source.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AncillarySourceSettings {
     /// <p>Specify whether this set of input captions appears in your outputs in both 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes the captions data in two ways: it passes the 608 data through using the 608 compatibility bytes fields of the 708 wrapper, and it also translates the 608 data into 708.</p>
     #[serde(rename = "Convert608To708")]
@@ -145,7 +145,7 @@ pub struct AncillarySourceSettings {
     pub terminate_captions: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateCertificateRequest {
     /// <p>The ARN of the ACM certificate that you want to associate with your MediaConvert resource.</p>
@@ -153,12 +153,12 @@ pub struct AssociateCertificateRequest {
     pub arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateCertificateResponse {}
 
 /// <p>Audio codec settings (CodecSettings) under (AudioDescriptions) contains the group of settings related to audio encoding. The settings in this group vary depending on the value that you choose for Audio codec (Codec). For each codec enum that you choose, define the corresponding settings object. The following lists the codec enum, settings object pairs. * AAC, AacSettings * MP2, Mp2Settings * MP3, Mp3Settings * WAV, WavSettings * AIFF, AiffSettings * AC3, Ac3Settings * EAC3, Eac3Settings * EAC3_ATMOS, Eac3AtmosSettings</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AudioCodecSettings {
     /// <p>Required when you set (Codec) under (AudioDescriptions)&gt;(CodecSettings) to the value AAC. The service accepts one of two mutually exclusive groups of AAC settings--VBR and CBR. To select one of these modes, set the value of Bitrate control mode (rateControlMode) to &quot;VBR&quot; or &quot;CBR&quot;.  In VBR mode, you control the audio quality with the setting VBR quality (vbrQuality). In CBR mode, you use the setting Bitrate (bitrate). Defaults and valid values depend on the rate control mode.</p>
     #[serde(rename = "AacSettings")]
@@ -199,7 +199,7 @@ pub struct AudioCodecSettings {
 }
 
 /// <p>Description of audio output</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AudioDescription {
     /// <p>Advanced audio normalization settings. Ignore these settings unless you need to comply with a loudness standard.</p>
     #[serde(rename = "AudioNormalizationSettings")]
@@ -244,7 +244,7 @@ pub struct AudioDescription {
 }
 
 /// <p>Advanced audio normalization settings. Ignore these settings unless you need to comply with a loudness standard.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AudioNormalizationSettings {
     /// <p>Choose one of the following audio normalization algorithms: ITU-R BS.1770-1: Ungated loudness. A measurement of ungated average loudness for an entire piece of content, suitable for measurement of short-form content under ATSC recommendation A/85. Supports up to 5.1 audio channels. ITU-R BS.1770-2: Gated loudness. A measurement of gated average loudness compliant with the requirements of EBU-R128. Supports up to 5.1 audio channels. ITU-R BS.1770-3: Modified peak. The same loudness measurement algorithm as 1770-2, with an updated true peak measurement. ITU-R BS.1770-4: Higher channel count. Allows for more audio channels than the other algorithms, including configurations such as 7.1.</p>
     #[serde(rename = "Algorithm")]
@@ -273,7 +273,7 @@ pub struct AudioNormalizationSettings {
 }
 
 /// <p>Selector for Audio</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AudioSelector {
     /// <p>Selects a specific language code from within an audio source, using the ISO 639-2 or ISO 639-3 three-letter language code</p>
     #[serde(rename = "CustomLanguageCode")]
@@ -318,7 +318,7 @@ pub struct AudioSelector {
 }
 
 /// <p>Group of Audio Selectors</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AudioSelectorGroup {
     /// <p>Name of an Audio Selector within the same input to include in the group.  Audio selector names are standardized, based on their order within the input (e.g., &quot;Audio Selector 1&quot;). The audio selector name parameter can be repeated to add any number of audio selectors to the group.</p>
     #[serde(rename = "AudioSelectorNames")]
@@ -327,7 +327,7 @@ pub struct AudioSelectorGroup {
 }
 
 /// <p>Settings for Avail Blanking</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AvailBlanking {
     /// <p>Blanking image to be used. Leave empty for solid black. Only bmp and png images are supported.</p>
     #[serde(rename = "AvailBlankingImage")]
@@ -336,7 +336,7 @@ pub struct AvailBlanking {
 }
 
 /// <p>Burn-In Destination Settings.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct BurninDestinationSettings {
     /// <p>If no explicit x<em>position or y</em>position is provided, setting alignment to centered will place the captions at the bottom center of the output. Similarly, setting a left alignment will align captions to the bottom left of the output. If x and y positions are given in conjunction with the alignment parameter, the font will be justified (either left or centered) relative to those coordinates. This option is not valid for source captions that are STL, 608/embedded or teletext. These source settings are already pre-defined by the caption stream. All burn-in and DVB-Sub font settings must match.</p>
     #[serde(rename = "Alignment")]
@@ -412,7 +412,7 @@ pub struct BurninDestinationSettings {
     pub y_position: Option<i64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelJobRequest {
     /// <p>The Job ID of the job to be cancelled.</p>
@@ -420,12 +420,12 @@ pub struct CancelJobRequest {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelJobResponse {}
 
 /// <p>Description of Caption output</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CaptionDescription {
     /// <p>Specifies which &quot;Caption Selector&quot;:#inputs-caption_selector to use from each input when generating captions. The name should be of the format &quot;Caption Selector <N>&quot;, which denotes that the Nth Caption Selector will be used from each input.</p>
     #[serde(rename = "CaptionSelectorName")]
@@ -450,7 +450,7 @@ pub struct CaptionDescription {
 }
 
 /// <p>Caption Description for preset</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CaptionDescriptionPreset {
     /// <p>Specify the language for this captions output track. For most captions output formats, the encoder puts this language information in the output captions metadata. If your output captions format is DVB-Sub or Burn in, the encoder uses this language information when automatically selecting the font script for rendering the captions text. For all outputs, you can use an ISO 639-2 or ISO 639-3 code. For streaming outputs, you can also use any other code in the full RFC-5646 specification. Streaming outputs are those that are in one of the following output groups: CMAF, DASH ISO, Apple HLS, or Microsoft Smooth Streaming.</p>
     #[serde(rename = "CustomLanguageCode")]
@@ -471,7 +471,7 @@ pub struct CaptionDescriptionPreset {
 }
 
 /// <p>Specific settings required by destination type. Note that burnin<em>destination</em>settings are not available if the source of the caption data is Embedded or Teletext.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CaptionDestinationSettings {
     /// <p>Burn-In Destination Settings.</p>
     #[serde(rename = "BurninDestinationSettings")]
@@ -508,7 +508,7 @@ pub struct CaptionDestinationSettings {
 }
 
 /// <p>Set up captions in your outputs by first selecting them from your input here.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CaptionSelector {
     /// <p>The specific language to extract from source, using the ISO 639-2 or ISO 639-3 three-letter language code. If input is SCTE-27, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub and output is Burn-in or SMPTE-TT, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub that is being passed through, omit this field (and PID field); there is no way to extract a specific language with pass-through captions.</p>
     #[serde(rename = "CustomLanguageCode")]
@@ -525,7 +525,7 @@ pub struct CaptionSelector {
 }
 
 /// <p>If your input captions are SCC, TTML, STL, SMI, SRT, or IMSC in an xml file, specify the URI of the input captions source file. If your input captions are IMSC in an IMF package, use TrackSourceSettings instead of FileSoureSettings.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CaptionSourceSettings {
     /// <p>Settings for ancillary captions source.</p>
     #[serde(rename = "AncillarySourceSettings")]
@@ -558,7 +558,7 @@ pub struct CaptionSourceSettings {
 }
 
 /// <p>Channel mapping (ChannelMapping) contains the group of fields that hold the remixing value for each channel. Units are in dB. Acceptable values are within the range from -60 (mute) through 6. A setting of 0 passes the input channel unchanged to the output channel (no attenuation or amplification).</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ChannelMapping {
     /// <p>List of output channels</p>
     #[serde(rename = "OutputChannels")]
@@ -567,7 +567,7 @@ pub struct ChannelMapping {
 }
 
 /// <p>Specify the details for each pair of HLS and DASH additional manifests that you want the service to generate for this CMAF output group. Each pair of manifests can reference a different subset of outputs in the group.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CmafAdditionalManifest {
     /// <p>Specify a name modifier that the service adds to the name of this manifest to make it different from the file names of the other main manifests in the output group. For example, say that the default main manifest for your HLS group is film-name.m3u8. If you enter &quot;-no-premium&quot; for this setting, then the file name the service generates for this top-level manifest is film-name-no-premium.m3u8. For HLS output groups, specify a manifestNameModifier that is different from the nameModifier of the output. The service uses the output name modifier to create unique names for the individual variant manifests.</p>
     #[serde(rename = "ManifestNameModifier")]
@@ -580,7 +580,7 @@ pub struct CmafAdditionalManifest {
 }
 
 /// <p>Settings for CMAF encryption</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CmafEncryptionSettings {
     /// <p>This is a 128-bit, 16-byte hex value represented by a 32-character text string. If this parameter is not set then the Initialization Vector will follow the segment number by default.</p>
     #[serde(rename = "ConstantInitializationVector")]
@@ -609,7 +609,7 @@ pub struct CmafEncryptionSettings {
 }
 
 /// <p>Required when you set (Type) under (OutputGroups)&gt;(OutputGroupSettings) to CMAF<em>GROUP</em>SETTINGS. Each output in a CMAF Output Group may only contain a single video, audio, or caption output.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CmafGroupSettings {
     /// <p>By default, the service creates one top-level .m3u8 HLS manifest and one top -level .mpd DASH manifest for each CMAF output group in your job. These default manifests reference every output in the output group. To create additional top-level manifests that reference a subset of the outputs in the output group, specify a list of them here. For each additional manifest that you specify, the service creates one HLS manifest and one DASH manifest.</p>
     #[serde(rename = "AdditionalManifests")]
@@ -690,7 +690,7 @@ pub struct CmafGroupSettings {
 }
 
 /// <p>Settings for MP4 segments in CMAF</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CmfcSettings {
     /// <p>Use this setting only when you specify SCTE-35 markers from ESAM. Choose INSERT to put SCTE-35 markers in this output at the insertion points that you specify in an ESAM XML document. Provide the document in the setting SCC XML (sccXml).</p>
     #[serde(rename = "Scte35Esam")]
@@ -703,7 +703,7 @@ pub struct CmfcSettings {
 }
 
 /// <p>Settings for color correction.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ColorCorrector {
     /// <p>Brightness level.</p>
     #[serde(rename = "Brightness")]
@@ -732,7 +732,7 @@ pub struct ColorCorrector {
 }
 
 /// <p>Container specific settings.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ContainerSettings {
     /// <p>Settings for MP4 segments in CMAF</p>
     #[serde(rename = "CmfcSettings")]
@@ -768,7 +768,7 @@ pub struct ContainerSettings {
     pub mpd_settings: Option<MpdSettings>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateJobRequest {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.</p>
@@ -819,7 +819,7 @@ pub struct CreateJobRequest {
     pub user_metadata: Option<::std::collections::HashMap<String, String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateJobResponse {
     /// <p>Each job converts an input file into an output file or files. For more information, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html</p>
@@ -828,7 +828,7 @@ pub struct CreateJobResponse {
     pub job: Option<Job>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateJobTemplateRequest {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.</p>
@@ -867,7 +867,7 @@ pub struct CreateJobTemplateRequest {
     pub tags: Option<::std::collections::HashMap<String, String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateJobTemplateResponse {
     /// <p>A job template is a pre-made set of encoding instructions that you can use to quickly create a job.</p>
@@ -876,7 +876,7 @@ pub struct CreateJobTemplateResponse {
     pub job_template: Option<JobTemplate>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePresetRequest {
     /// <p>Optional. A category for the preset you are creating.</p>
@@ -899,7 +899,7 @@ pub struct CreatePresetRequest {
     pub tags: Option<::std::collections::HashMap<String, String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreatePresetResponse {
     /// <p>A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.</p>
@@ -908,7 +908,7 @@ pub struct CreatePresetResponse {
     pub preset: Option<Preset>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateQueueRequest {
     /// <p>Optional. A description of the queue that you are creating.</p>
@@ -936,7 +936,7 @@ pub struct CreateQueueRequest {
     pub tags: Option<::std::collections::HashMap<String, String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateQueueResponse {
     /// <p>You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don&#39;t specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html.</p>
@@ -946,7 +946,7 @@ pub struct CreateQueueResponse {
 }
 
 /// <p>Specify the details for each additional DASH manifest that you want the service to generate for this output group. Each manifest can reference a different subset of outputs in the group.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DashAdditionalManifest {
     /// <p>Specify a name modifier that the service adds to the name of this manifest to make it different from the file names of the other main manifests in the output group. For example, say that the default main manifest for your DASH group is film-name.mpd. If you enter &quot;-no-premium&quot; for this setting, then the file name the service generates for this top-level manifest is film-name-no-premium.mpd.</p>
     #[serde(rename = "ManifestNameModifier")]
@@ -959,7 +959,7 @@ pub struct DashAdditionalManifest {
 }
 
 /// <p>Specifies DRM settings for DASH outputs.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DashIsoEncryptionSettings {
     /// <p>This setting can improve the compatibility of your output with video players on obsolete devices. It applies only to DASH H.264 outputs with DRM encryption. Choose Unencrypted SEI (UNENCRYPTED<em>SEI) only to correct problems with playback on older devices. Otherwise, keep the default setting CENC v1 (CENC</em>V1). If you choose Unencrypted SEI, for that output, the service will exclude the access unit delimiter and will leave the SEI NAL units unencrypted.</p>
     #[serde(rename = "PlaybackDeviceCompatibility")]
@@ -972,7 +972,7 @@ pub struct DashIsoEncryptionSettings {
 }
 
 /// <p>Required when you set (Type) under (OutputGroups)&gt;(OutputGroupSettings) to DASH<em>ISO</em>GROUP_SETTINGS.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DashIsoGroupSettings {
     /// <p>By default, the service creates one .mpd DASH manifest for each DASH ISO output group in your job. This default manifest references every output in the output group. To create additional DASH manifests that reference a subset of the outputs in the output group, specify a list of them here.</p>
     #[serde(rename = "AdditionalManifests")]
@@ -1025,7 +1025,7 @@ pub struct DashIsoGroupSettings {
 }
 
 /// <p>Settings for deinterlacer</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Deinterlacer {
     /// <p>Only applies when you set Deinterlacer (DeinterlaceMode) to Deinterlace (DEINTERLACE) or Adaptive (ADAPTIVE). Motion adaptive interpolate (INTERPOLATE) produces sharper pictures, while blend (BLEND) produces smoother motion. Use (INTERPOLATE<em>TICKER) OR (BLEND</em>TICKER) if your source file includes a ticker, such as a scrolling headline at the bottom of the frame.</p>
     #[serde(rename = "Algorithm")]
@@ -1043,7 +1043,7 @@ pub struct Deinterlacer {
     pub mode: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteJobTemplateRequest {
     /// <p>The name of the job template to be deleted.</p>
@@ -1051,11 +1051,11 @@ pub struct DeleteJobTemplateRequest {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteJobTemplateResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePresetRequest {
     /// <p>The name of the preset to be deleted.</p>
@@ -1063,11 +1063,11 @@ pub struct DeletePresetRequest {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeletePresetResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteQueueRequest {
     /// <p>The name of the queue that you want to delete.</p>
@@ -1075,12 +1075,12 @@ pub struct DeleteQueueRequest {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteQueueResponse {}
 
 /// <p>DescribeEndpointsRequest</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEndpointsRequest {
     /// <p>Optional. Max number of endpoints, up to twenty, that will be returned at one time.</p>
@@ -1097,7 +1097,7 @@ pub struct DescribeEndpointsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEndpointsResponse {
     /// <p>List of endpoints</p>
@@ -1111,7 +1111,7 @@ pub struct DescribeEndpointsResponse {
 }
 
 /// <p>Settings associated with the destination. Will vary based on the type of destination</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DestinationSettings {
     /// <p>Settings associated with S3 destination</p>
     #[serde(rename = "S3Settings")]
@@ -1119,7 +1119,7 @@ pub struct DestinationSettings {
     pub s3_settings: Option<S3DestinationSettings>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateCertificateRequest {
     /// <p>The ARN of the ACM certificate that you want to disassociate from your MediaConvert resource.</p>
@@ -1127,12 +1127,12 @@ pub struct DisassociateCertificateRequest {
     pub arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateCertificateResponse {}
 
 /// <p>Settings for Dolby Vision</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DolbyVision {
     /// <p>Use these settings when you set DolbyVisionLevel6Mode to SPECIFY to override the MaxCLL and MaxFALL values in your input with new values.</p>
     #[serde(rename = "L6Metadata")]
@@ -1149,7 +1149,7 @@ pub struct DolbyVision {
 }
 
 /// <p>Use these settings when you set DolbyVisionLevel6Mode to SPECIFY to override the MaxCLL and MaxFALL values in your input with new values.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DolbyVisionLevel6Metadata {
     /// <p>Maximum Content Light Level. Static HDR metadata that corresponds to the brightest pixel in the entire stream. Measured in nits.</p>
     #[serde(rename = "MaxCll")]
@@ -1162,7 +1162,7 @@ pub struct DolbyVisionLevel6Metadata {
 }
 
 /// <p>Inserts DVB Network Information Table (NIT) at the specified table repetition interval.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DvbNitSettings {
     /// <p>The numeric value placed in the Network Information Table (NIT).</p>
     #[serde(rename = "NetworkId")]
@@ -1179,7 +1179,7 @@ pub struct DvbNitSettings {
 }
 
 /// <p>Inserts DVB Service Description Table (NIT) at the specified table repetition interval.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DvbSdtSettings {
     /// <p>Selects method of inserting SDT information into output stream.  &quot;Follow input SDT&quot; copies SDT information from input stream to  output stream. &quot;Follow input SDT if present&quot; copies SDT information from  input stream to output stream if SDT information is present in the input, otherwise it will fall back on the user-defined values. Enter &quot;SDT  Manually&quot; means user will enter the SDT information. &quot;No SDT&quot; means output  stream will not contain SDT information.</p>
     #[serde(rename = "OutputSdt")]
@@ -1200,7 +1200,7 @@ pub struct DvbSdtSettings {
 }
 
 /// <p>DVB-Sub Destination Settings</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DvbSubDestinationSettings {
     /// <p>If no explicit x<em>position or y</em>position is provided, setting alignment to centered will place the captions at the bottom center of the output. Similarly, setting a left alignment will align captions to the bottom left of the output. If x and y positions are given in conjunction with the alignment parameter, the font will be justified (either left or centered) relative to those coordinates. This option is not valid for source captions that are STL, 608/embedded or teletext. These source settings are already pre-defined by the caption stream. All burn-in and DVB-Sub font settings must match.</p>
     #[serde(rename = "Alignment")]
@@ -1281,7 +1281,7 @@ pub struct DvbSubDestinationSettings {
 }
 
 /// <p>DVB Sub Source Settings</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DvbSubSourceSettings {
     /// <p>When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through, regardless of selectors.</p>
     #[serde(rename = "Pid")]
@@ -1290,7 +1290,7 @@ pub struct DvbSubSourceSettings {
 }
 
 /// <p>Inserts DVB Time and Date Table (TDT) at the specified table repetition interval.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DvbTdtSettings {
     /// <p>The number of milliseconds between instances of this table in the output transport stream.</p>
     #[serde(rename = "TdtInterval")]
@@ -1299,7 +1299,7 @@ pub struct DvbTdtSettings {
 }
 
 /// <p>Required when you set (Codec) under (AudioDescriptions)&gt;(CodecSettings) to the value EAC3_ATMOS.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Eac3AtmosSettings {
     /// <p>Specify the average bitrate in bits per second.
     /// Valid values: 384k, 448k, 640k, 768k</p>
@@ -1368,7 +1368,7 @@ pub struct Eac3AtmosSettings {
 }
 
 /// <p>Required when you set (Codec) under (AudioDescriptions)&gt;(CodecSettings) to the value EAC3.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Eac3Settings {
     /// <p>If set to ATTENUATE<em>3</em>DB, applies a 3 dB attenuation to the surround channels. Only used for 3/2 coding mode.</p>
     #[serde(rename = "AttenuationControl")]
@@ -1457,7 +1457,7 @@ pub struct Eac3Settings {
 }
 
 /// <p>Settings specific to embedded/ancillary caption outputs, including 608/708 Channel destination number.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EmbeddedDestinationSettings {
     /// <p>Ignore this setting unless your input captions are SCC format and your output captions are embedded in the video stream. Specify a CC number for each captions channel in this output. If you have two channels, choose CC numbers that aren&#39;t in the same field. For example, choose 1 and 3. For more information, see https://docs.aws.amazon.com/console/mediaconvert/dual-scc-to-embedded.</p>
     #[serde(rename = "Destination608ChannelNumber")]
@@ -1470,7 +1470,7 @@ pub struct EmbeddedDestinationSettings {
 }
 
 /// <p>Settings for embedded captions Source</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EmbeddedSourceSettings {
     /// <p>Specify whether this set of input captions appears in your outputs in both 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes the captions data in two ways: it passes the 608 data through using the 608 compatibility bytes fields of the 708 wrapper, and it also translates the 608 data into 708.</p>
     #[serde(rename = "Convert608To708")]
@@ -1491,7 +1491,7 @@ pub struct EmbeddedSourceSettings {
 }
 
 /// <p>Describes an account-specific API endpoint.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Endpoint {
     /// <p>URL of endpoint</p>
@@ -1501,7 +1501,7 @@ pub struct Endpoint {
 }
 
 /// <p>ESAM ManifestConfirmConditionNotification defined by OC-SP-ESAM-API-I03-131025.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EsamManifestConfirmConditionNotification {
     /// <p>Provide your ESAM ManifestConfirmConditionNotification XML document inside your JSON job settings. Form the XML document as per OC-SP-ESAM-API-I03-131025. The transcoder will use the Manifest Conditioning instructions in the message that you supply.</p>
     #[serde(rename = "MccXml")]
@@ -1510,7 +1510,7 @@ pub struct EsamManifestConfirmConditionNotification {
 }
 
 /// <p>Settings for Event Signaling And Messaging (ESAM). If you don&#39;t do ad insertion, you can ignore these settings.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EsamSettings {
     /// <p>Specifies an ESAM ManifestConfirmConditionNotification XML as per OC-SP-ESAM-API-I03-131025. The transcoder uses the manifest conditioning instructions that you provide in the setting MCC XML (mccXml).</p>
     #[serde(rename = "ManifestConfirmConditionNotification")]
@@ -1527,7 +1527,7 @@ pub struct EsamSettings {
 }
 
 /// <p>ESAM SignalProcessingNotification data defined by OC-SP-ESAM-API-I03-131025.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EsamSignalProcessingNotification {
     /// <p>Provide your ESAM SignalProcessingNotification XML document inside your JSON job settings. Form the XML document as per OC-SP-ESAM-API-I03-131025. The transcoder will use the signal processing instructions in the message that you supply. Provide your ESAM SignalProcessingNotification XML document inside your JSON job settings. For your MPEG2-TS file outputs, if you want the service to place SCTE-35 markers at the insertion points you specify in the XML document, you must also enable SCTE-35 ESAM (scte35Esam). Note that you can either specify an ESAM XML document or enable SCTE-35 passthrough. You can&#39;t do both.</p>
     #[serde(rename = "SccXml")]
@@ -1536,7 +1536,7 @@ pub struct EsamSignalProcessingNotification {
 }
 
 /// <p>Settings for F4v container</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct F4vSettings {
     /// <p>If set to PROGRESSIVE_DOWNLOAD, the MOOV atom is relocated to the beginning of the archive as required for progressive downloading. Otherwise it is placed normally at the end.</p>
     #[serde(rename = "MoovPlacement")]
@@ -1545,7 +1545,7 @@ pub struct F4vSettings {
 }
 
 /// <p>Required when you set (Type) under (OutputGroups)&gt;(OutputGroupSettings) to FILE<em>GROUP</em>SETTINGS.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct FileGroupSettings {
     /// <p>Use Destination (Destination) to specify the S3 output location and the output filename base. Destination accepts format identifiers. If you do not specify the base filename in the URI, the service will use the filename of the input file. If your job has multiple inputs, the service uses the filename of the first input file.</p>
     #[serde(rename = "Destination")]
@@ -1558,7 +1558,7 @@ pub struct FileGroupSettings {
 }
 
 /// <p>If your input captions are SCC, SMI, SRT, STL, TTML, or IMSC 1.1 in an xml file, specify the URI of the input caption source file. If your caption source is IMSC in an IMF package, use TrackSourceSettings instead of FileSoureSettings.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct FileSourceSettings {
     /// <p>Specify whether this set of input captions appears in your outputs in both 608 and 708 format. If you choose Upconvert (UPCONVERT), MediaConvert includes the captions data in two ways: it passes the 608 data through using the 608 compatibility bytes fields of the 708 wrapper, and it also translates the 608 data into 708.</p>
     #[serde(rename = "Convert608To708")]
@@ -1575,7 +1575,7 @@ pub struct FileSourceSettings {
 }
 
 /// <p>Required when you set (Codec) under (VideoDescription)&gt;(CodecSettings) to the value FRAME_CAPTURE.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct FrameCaptureSettings {
     /// <p>Frame capture will encode the first frame of the output stream, then one frame every framerateDenominator/framerateNumerator seconds. For example, settings of framerateNumerator = 1 and framerateDenominator = 3 (a rate of 1/3 frame per second) will capture the first frame, then 1 frame every 3s. Files will be named as filename.n.jpg where n is the 0-based sequence number of each Capture.</p>
     #[serde(rename = "FramerateDenominator")]
@@ -1595,7 +1595,7 @@ pub struct FrameCaptureSettings {
     pub quality: Option<i64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobRequest {
     /// <p>the job ID of the job.</p>
@@ -1603,7 +1603,7 @@ pub struct GetJobRequest {
     pub id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobResponse {
     /// <p>Each job converts an input file into an output file or files. For more information, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html</p>
@@ -1612,7 +1612,7 @@ pub struct GetJobResponse {
     pub job: Option<Job>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobTemplateRequest {
     /// <p>The name of the job template.</p>
@@ -1620,7 +1620,7 @@ pub struct GetJobTemplateRequest {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobTemplateResponse {
     /// <p>A job template is a pre-made set of encoding instructions that you can use to quickly create a job.</p>
@@ -1629,7 +1629,7 @@ pub struct GetJobTemplateResponse {
     pub job_template: Option<JobTemplate>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetPresetRequest {
     /// <p>The name of the preset.</p>
@@ -1637,7 +1637,7 @@ pub struct GetPresetRequest {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetPresetResponse {
     /// <p>A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.</p>
@@ -1646,7 +1646,7 @@ pub struct GetPresetResponse {
     pub preset: Option<Preset>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetQueueRequest {
     /// <p>The name of the queue that you want information about.</p>
@@ -1654,7 +1654,7 @@ pub struct GetQueueRequest {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetQueueResponse {
     /// <p>You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don&#39;t specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html.</p>
@@ -1664,7 +1664,7 @@ pub struct GetQueueResponse {
 }
 
 /// <p>Settings for quality-defined variable bitrate encoding with the H.264 codec. Required when you set Rate control mode to QVBR. Not valid when you set Rate control mode to a value other than QVBR, or when you don&#39;t define Rate control mode.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct H264QvbrSettings {
     /// <p>Use this setting only when Rate control mode is QVBR and Quality tuning level is Multi-pass HQ. For Max average bitrate values suited to the complexity of your input video, the service limits the average bitrate of the video part of this output to the value that you choose. That is, the total size of the video element is less than or equal to the value you set multiplied by the number of seconds of encoded output.</p>
     #[serde(rename = "MaxAverageBitrate")]
@@ -1677,7 +1677,7 @@ pub struct H264QvbrSettings {
 }
 
 /// <p>Required when you set (Codec) under (VideoDescription)&gt;(CodecSettings) to the value H_264.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct H264Settings {
     /// <p>Adaptive quantization. Allows intra-frame quantizers to vary to improve visual quality.</p>
     #[serde(rename = "AdaptiveQuantization")]
@@ -1840,7 +1840,7 @@ pub struct H264Settings {
 }
 
 /// <p>Settings for quality-defined variable bitrate encoding with the H.265 codec. Required when you set Rate control mode to QVBR. Not valid when you set Rate control mode to a value other than QVBR, or when you don&#39;t define Rate control mode.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct H265QvbrSettings {
     /// <p>Use this setting only when Rate control mode is QVBR and Quality tuning level is Multi-pass HQ. For Max average bitrate values suited to the complexity of your input video, the service limits the average bitrate of the video part of this output to the value that you choose. That is, the total size of the video element is less than or equal to the value you set multiplied by the number of seconds of encoded output.</p>
     #[serde(rename = "MaxAverageBitrate")]
@@ -1853,7 +1853,7 @@ pub struct H265QvbrSettings {
 }
 
 /// <p>Settings for H265 codec</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct H265Settings {
     /// <p>Adaptive quantization. Allows intra-frame quantizers to vary to improve visual quality.</p>
     #[serde(rename = "AdaptiveQuantization")]
@@ -2014,7 +2014,7 @@ pub struct H265Settings {
 }
 
 /// <p>Use these settings to specify static color calibration metadata, as defined by SMPTE ST 2086. These values don&#39;t affect the pixel values that are encoded in the video stream. They are intended to help the downstream video player display content in a way that reflects the intentions of the the content creator.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Hdr10Metadata {
     /// <p>HDR Master Display Information must be provided by a color grader, using color grading tools. Range is 0 to 50,000, each increment represents 0.00002 in CIE1931 color coordinate. Note that this setting is not for color correction.</p>
     #[serde(rename = "BluePrimaryX")]
@@ -2067,7 +2067,7 @@ pub struct Hdr10Metadata {
 }
 
 /// <p>Specify the details for each additional HLS manifest that you want the service to generate for this output group. Each manifest can reference a different subset of outputs in the group.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct HlsAdditionalManifest {
     /// <p>Specify a name modifier that the service adds to the name of this manifest to make it different from the file names of the other main manifests in the output group. For example, say that the default main manifest for your HLS group is film-name.m3u8. If you enter &quot;-no-premium&quot; for this setting, then the file name the service generates for this top-level manifest is film-name-no-premium.m3u8. For HLS output groups, specify a manifestNameModifier that is different from the nameModifier of the output. The service uses the output name modifier to create unique names for the individual variant manifests.</p>
     #[serde(rename = "ManifestNameModifier")]
@@ -2080,7 +2080,7 @@ pub struct HlsAdditionalManifest {
 }
 
 /// <p>Caption Language Mapping</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct HlsCaptionLanguageMapping {
     /// <p>Caption channel.</p>
     #[serde(rename = "CaptionChannel")]
@@ -2101,7 +2101,7 @@ pub struct HlsCaptionLanguageMapping {
 }
 
 /// <p>Settings for HLS encryption</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct HlsEncryptionSettings {
     /// <p>This is a 128-bit, 16-byte hex value represented by a 32-character text string. If this parameter is not set then the Initialization Vector will follow the segment number by default.</p>
     #[serde(rename = "ConstantInitializationVector")]
@@ -2134,7 +2134,7 @@ pub struct HlsEncryptionSettings {
 }
 
 /// <p>Required when you set (Type) under (OutputGroups)&gt;(OutputGroupSettings) to HLS<em>GROUP</em>SETTINGS.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct HlsGroupSettings {
     /// <p>Choose one or more ad marker types to decorate your Apple HLS manifest. This setting does not determine whether SCTE-35 markers appear in the outputs themselves.</p>
     #[serde(rename = "AdMarkers")]
@@ -2239,7 +2239,7 @@ pub struct HlsGroupSettings {
 }
 
 /// <p>Settings for HLS output groups</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct HlsSettings {
     /// <p>Specifies the group to which the audio Rendition belongs.</p>
     #[serde(rename = "AudioGroupId")]
@@ -2268,7 +2268,7 @@ pub struct HlsSettings {
 }
 
 /// <p>To insert ID3 tags in your output, specify two values. Use ID3 tag (Id3) to specify the base 64 encoded string and use Timecode (TimeCode) to specify the time when the tag should be inserted. To insert multiple ID3 tags in your output, create multiple instances of ID3 insertion (Id3Insertion).</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Id3Insertion {
     /// <p>Use ID3 tag (Id3) to provide a tag value in base64-encode format.</p>
     #[serde(rename = "Id3")]
@@ -2281,7 +2281,7 @@ pub struct Id3Insertion {
 }
 
 /// <p>Enable the image inserter feature to include a graphic overlay on your video. Enable or disable this feature for each input or output individually. This setting is disabled by default.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ImageInserter {
     /// <p>Specify the images that you want to overlay on your video. The images must be PNG or TGA files.</p>
     #[serde(rename = "InsertableImages")]
@@ -2290,7 +2290,7 @@ pub struct ImageInserter {
 }
 
 /// <p>Settings specific to IMSC caption outputs.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ImscDestinationSettings {
     /// <p>Keep this setting enabled to have MediaConvert use the font style and position information from the captions source in the output. This option is available only when your input captions are CFF-TT, IMSC, SMPTE-TT, or TTML. Disable this setting for simplified output captions.</p>
     #[serde(rename = "StylePassthrough")]
@@ -2299,7 +2299,7 @@ pub struct ImscDestinationSettings {
 }
 
 /// <p>Specifies media input</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Input {
     /// <p>Specifies set of audio selectors within an input to combine. An input may have multiple audio selector groups. See &quot;Audio Selector Group&quot;:#inputs-audio<em>selector</em>group for more information.</p>
     #[serde(rename = "AudioSelectorGroups")]
@@ -2380,7 +2380,7 @@ pub struct Input {
 }
 
 /// <p>To transcode only portions of your input (clips), include one Input clipping (one instance of InputClipping in the JSON job file) for each input clip. All input clips you specify will be included in every output of the job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct InputClipping {
     /// <p>Set End timecode (EndTimecode) to the end of the portion of the input you are clipping. The frame corresponding to the End timecode value is included in the clip. Start timecode or End timecode may be left blank, but not both. Use the format HH:MM:SS:FF or HH:MM:SS;FF, where HH is the hour, MM is the minute, SS is the second, and FF is the frame number. When choosing this value, take into account your setting for timecode source under input settings (InputTimecodeSource). For example, if you have embedded timecodes that start at 01:00:00:00 and you want your clip to end six minutes into the video, use 01:06:00:00.</p>
     #[serde(rename = "EndTimecode")]
@@ -2393,7 +2393,7 @@ pub struct InputClipping {
 }
 
 /// <p>Settings for decrypting any input files that you encrypt before you upload them to Amazon S3. MediaConvert can decrypt files only when you use AWS Key Management Service (KMS) to encrypt the data key that you use to encrypt your content.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct InputDecryptionSettings {
     /// <p>Specify the encryption mode that you used to encrypt your input files.</p>
     #[serde(rename = "DecryptionMode")]
@@ -2414,7 +2414,7 @@ pub struct InputDecryptionSettings {
 }
 
 /// <p>Specified video input in a template.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct InputTemplate {
     /// <p>Specifies set of audio selectors within an input to combine. An input may have multiple audio selector groups. See &quot;Audio Selector Group&quot;:#inputs-audio<em>selector</em>group for more information.</p>
     #[serde(rename = "AudioSelectorGroups")]
@@ -2483,7 +2483,7 @@ pub struct InputTemplate {
 }
 
 /// <p>Settings that specify how your still graphic overlay appears.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct InsertableImage {
     /// <p>Specify the time, in milliseconds, for the image to remain on the output video. This duration includes fade-in time but not fade-out time.</p>
     #[serde(rename = "Duration")]
@@ -2532,7 +2532,7 @@ pub struct InsertableImage {
 }
 
 /// <p>Each job converts an input file into an output file or files. For more information, see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Job {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content.</p>
@@ -2628,7 +2628,7 @@ pub struct Job {
 }
 
 /// <p>Provides messages from the service about jobs that you have already successfully submitted.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobMessages {
     /// <p>List of messages that are informational only and don&#39;t indicate a problem with your job.</p>
@@ -2642,7 +2642,7 @@ pub struct JobMessages {
 }
 
 /// <p>JobSettings contains all the transcode settings for a job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct JobSettings {
     /// <p>When specified, this offset (in milliseconds) is added to the input Ad Avail PTS time.</p>
     #[serde(rename = "AdAvailOffset")]
@@ -2683,7 +2683,7 @@ pub struct JobSettings {
 }
 
 /// <p>A job template is a pre-made set of encoding instructions that you can use to quickly create a job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobTemplate {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content.</p>
@@ -2735,7 +2735,7 @@ pub struct JobTemplate {
 }
 
 /// <p>JobTemplateSettings contains all the transcode settings saved in the template that will be applied to jobs created from it.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct JobTemplateSettings {
     /// <p>When specified, this offset (in milliseconds) is added to the input Ad Avail PTS time.</p>
     #[serde(rename = "AdAvailOffset")]
@@ -2775,7 +2775,7 @@ pub struct JobTemplateSettings {
     pub timed_metadata_insertion: Option<TimedMetadataInsertion>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobTemplatesRequest {
     /// <p>Optionally, specify a job template category to limit responses to only job templates from that category.</p>
@@ -2800,7 +2800,7 @@ pub struct ListJobTemplatesRequest {
     pub order: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobTemplatesResponse {
     /// <p>List of Job templates.</p>
@@ -2813,7 +2813,7 @@ pub struct ListJobTemplatesResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobsRequest {
     /// <p>Optional. Number of jobs, up to twenty, that will be returned at one time.</p>
@@ -2838,7 +2838,7 @@ pub struct ListJobsRequest {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobsResponse {
     /// <p>List of jobs</p>
@@ -2851,7 +2851,7 @@ pub struct ListJobsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPresetsRequest {
     /// <p>Optionally, specify a preset category to limit responses to only presets from that category.</p>
@@ -2876,7 +2876,7 @@ pub struct ListPresetsRequest {
     pub order: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListPresetsResponse {
     /// <p>Use this string to request the next batch of presets.</p>
@@ -2889,7 +2889,7 @@ pub struct ListPresetsResponse {
     pub presets: Option<Vec<Preset>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListQueuesRequest {
     /// <p>Optional. When you request a list of queues, you can choose to list them alphabetically by NAME or chronologically by CREATION_DATE. If you don&#39;t specify, the service will list them by creation date.</p>
@@ -2910,7 +2910,7 @@ pub struct ListQueuesRequest {
     pub order: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListQueuesResponse {
     /// <p>Use this string to request the next batch of queues.</p>
@@ -2923,7 +2923,7 @@ pub struct ListQueuesResponse {
     pub queues: Option<Vec<Queue>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource that you want to list tags for. To get the ARN, send a GET request with the resource name.</p>
@@ -2931,7 +2931,7 @@ pub struct ListTagsForResourceRequest {
     pub arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>The Amazon Resource Name (ARN) and tags for an AWS Elemental MediaConvert resource.</p>
@@ -2941,7 +2941,7 @@ pub struct ListTagsForResourceResponse {
 }
 
 /// <p>Settings for SCTE-35 signals from ESAM. Include this in your job settings to put SCTE-35 markers in your HLS and transport stream outputs at the insertion points that you specify in an ESAM XML document. Provide the document in the setting SCC XML (sccXml).</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct M2tsScte35Esam {
     /// <p>Packet Identifier (PID) of the SCTE-35 stream in the transport stream generated by ESAM.</p>
     #[serde(rename = "Scte35EsamPid")]
@@ -2950,7 +2950,7 @@ pub struct M2tsScte35Esam {
 }
 
 /// <p>MPEG-2 TS container settings. These apply to outputs in a File output group when the output&#39;s container (ContainerType) is MPEG-2 Transport Stream (M2TS). In these assets, data is organized by the program map table (PMT). Each transport stream program contains subsets of data, including audio, video, and metadata. Each of these subsets of data has a numerical label called a packet identifier (PID). Each transport stream program corresponds to one MediaConvert output. The PMT lists the types of data in a program along with their PID. Downstream systems and players use the program map table to look up the PID for each type of data it accesses and then uses the PIDs to locate specific data within the asset.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct M2tsSettings {
     /// <p>Selects between the DVB and ATSC buffer models for Dolby Digital audio.</p>
     #[serde(rename = "AudioBufferModel")]
@@ -3099,7 +3099,7 @@ pub struct M2tsSettings {
 }
 
 /// <p>Settings for TS segments in HLS</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct M3u8Settings {
     /// <p>The number of audio frames to insert for each PES packet.</p>
     #[serde(rename = "AudioFramesPerPes")]
@@ -3168,7 +3168,7 @@ pub struct M3u8Settings {
 }
 
 /// <p>Overlay motion graphics on top of your video at the time that you specify.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct MotionImageInserter {
     /// <p>If your motion graphic asset is a .mov file, keep this setting unspecified. If your motion graphic asset is a series of .png files, specify the frame rate of the overlay in frames per second, as a fraction. For example, specify 24 fps as 24/1. Make sure that the number of images in your series matches the frame rate and your intended overlay duration. For example, if you want a 30-second overlay at 30 fps, you should have 900 .png images. This overlay frame rate doesn&#39;t need to match the frame rate of the underlying video.</p>
     #[serde(rename = "Framerate")]
@@ -3197,7 +3197,7 @@ pub struct MotionImageInserter {
 }
 
 /// <p>For motion overlays that don&#39;t have a built-in frame rate, specify the frame rate of the overlay in frames per second, as a fraction. For example, specify 24 fps as 24/1. The overlay frame rate doesn&#39;t need to match the frame rate of the underlying video.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct MotionImageInsertionFramerate {
     /// <p>The bottom of the fraction that expresses your overlay frame rate. For example, if your frame rate is 24 fps, set this value to 1.</p>
     #[serde(rename = "FramerateDenominator")]
@@ -3210,7 +3210,7 @@ pub struct MotionImageInsertionFramerate {
 }
 
 /// <p>Specify the offset between the upper-left corner of the video frame and the top left corner of the overlay.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct MotionImageInsertionOffset {
     /// <p>Set the distance, in pixels, between the overlay and the left edge of the video frame.</p>
     #[serde(rename = "ImageX")]
@@ -3223,7 +3223,7 @@ pub struct MotionImageInsertionOffset {
 }
 
 /// <p>Settings for MOV Container.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct MovSettings {
     /// <p>When enabled, include &#39;clap&#39; atom if appropriate for the video output settings.</p>
     #[serde(rename = "ClapAtom")]
@@ -3248,7 +3248,7 @@ pub struct MovSettings {
 }
 
 /// <p>Required when you set (Codec) under (AudioDescriptions)&gt;(CodecSettings) to the value MP2.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Mp2Settings {
     /// <p>Specify the average bitrate in bits per second.</p>
     #[serde(rename = "Bitrate")]
@@ -3265,7 +3265,7 @@ pub struct Mp2Settings {
 }
 
 /// <p>Required when you set Codec, under AudioDescriptions&gt;CodecSettings, to the value MP3.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Mp3Settings {
     /// <p>Specify the average bitrate in bits per second.</p>
     #[serde(rename = "Bitrate")]
@@ -3290,7 +3290,7 @@ pub struct Mp3Settings {
 }
 
 /// <p>Settings for MP4 container. You can create audio-only AAC outputs with this container.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Mp4Settings {
     /// <p>When enabled, file composition times will start at zero, composition times in the &#39;ctts&#39; (composition time to sample) box for B-frames will be negative, and a &#39;cslg&#39; (composition shift least greatest) box will be included per 14496-1 amendment 1. This improves compatibility with Apple players and tools.</p>
     #[serde(rename = "CslgAtom")]
@@ -3315,7 +3315,7 @@ pub struct Mp4Settings {
 }
 
 /// <p>Settings for MP4 segments in DASH</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct MpdSettings {
     /// <p>Use this setting only in DASH output groups that include sidecar TTML or IMSC captions.  You specify sidecar captions in a separate output from your audio and video. Choose Raw (RAW) for captions in a single XML file in a raw container. Choose Fragmented MPEG-4 (FRAGMENTED_MP4) for captions in XML format contained within fragmented MP4 files. This set of fragmented MP4 files is separate from your video and audio fragmented MP4 files.</p>
     #[serde(rename = "CaptionContainerType")]
@@ -3332,7 +3332,7 @@ pub struct MpdSettings {
 }
 
 /// <p>Required when you set (Codec) under (VideoDescription)&gt;(CodecSettings) to the value MPEG2.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Mpeg2Settings {
     /// <p>Adaptive quantization. Allows intra-frame quantizers to vary to improve visual quality.</p>
     #[serde(rename = "AdaptiveQuantization")]
@@ -3463,7 +3463,7 @@ pub struct Mpeg2Settings {
 }
 
 /// <p>Specify the details for each additional Microsoft Smooth Streaming manifest that you want the service to generate for this output group. Each manifest can reference a different subset of outputs in the group.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct MsSmoothAdditionalManifest {
     /// <p>Specify a name modifier that the service adds to the name of this manifest to make it different from the file names of the other main manifests in the output group. For example, say that the default main manifest for your Microsoft Smooth group is film-name.ismv. If you enter &quot;-no-premium&quot; for this setting, then the file name the service generates for this top-level manifest is film-name-no-premium.ismv.</p>
     #[serde(rename = "ManifestNameModifier")]
@@ -3476,7 +3476,7 @@ pub struct MsSmoothAdditionalManifest {
 }
 
 /// <p>If you are using DRM, set DRM System (MsSmoothEncryptionSettings) to specify the value SpekeKeyProvider.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct MsSmoothEncryptionSettings {
     /// <p>If your output group type is HLS, DASH, or Microsoft Smooth, use these settings when doing DRM encryption with a SPEKE-compliant key provider.  If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.</p>
     #[serde(rename = "SpekeKeyProvider")]
@@ -3485,7 +3485,7 @@ pub struct MsSmoothEncryptionSettings {
 }
 
 /// <p>Required when you set (Type) under (OutputGroups)&gt;(OutputGroupSettings) to MS<em>SMOOTH</em>GROUP_SETTINGS.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct MsSmoothGroupSettings {
     /// <p>By default, the service creates one .ism Microsoft Smooth Streaming manifest for each Microsoft Smooth Streaming output group in your job. This default manifest references every output in the output group. To create additional manifests that reference a subset of the outputs in the output group, specify a list of them here.</p>
     #[serde(rename = "AdditionalManifests")]
@@ -3518,7 +3518,7 @@ pub struct MsSmoothGroupSettings {
 }
 
 /// <p>Settings for your Nielsen configuration. If you don&#39;t do Nielsen measurement and analytics, ignore these settings. When you enable Nielsen configuration (nielsenConfiguration), MediaConvert enables PCM to ID3 tagging for all outputs in the job. To enable Nielsen configuration programmatically, include an instance of nielsenConfiguration in your JSON job specification. Even if you don&#39;t include any children of nielsenConfiguration, you still enable the setting.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct NielsenConfiguration {
     /// <p>Nielsen has discontinued the use of breakout code functionality. If you must include this property, set the value to zero.</p>
     #[serde(rename = "BreakoutCode")]
@@ -3531,7 +3531,7 @@ pub struct NielsenConfiguration {
 }
 
 /// <p>Enable the Noise reducer (NoiseReducer) feature to remove noise from your video output if necessary. Enable or disable this feature for each output individually. This setting is disabled by default. When you enable Noise reducer (NoiseReducer), you must also select a value for Noise reducer filter (NoiseReducerFilter).</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct NoiseReducer {
     /// <p>Use Noise reducer filter (NoiseReducerFilter) to select one of the following spatial image filtering functions. To use this setting, you must also enable Noise reducer (NoiseReducer). * Bilateral preserves edges while reducing noise. * Mean (softest), Gaussian, Lanczos, and Sharpen (sharpest) do convolution filtering. * Conserve does min/max noise reduction. * Spatial does frequency-domain filtering based on JND principles. * Temporal optimizes video quality for complex motion.</p>
     #[serde(rename = "Filter")]
@@ -3552,7 +3552,7 @@ pub struct NoiseReducer {
 }
 
 /// <p>Settings for a noise reducer filter</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct NoiseReducerFilterSettings {
     /// <p>Relative strength of noise reducing filter. Higher values produce stronger filtering.</p>
     #[serde(rename = "Strength")]
@@ -3561,7 +3561,7 @@ pub struct NoiseReducerFilterSettings {
 }
 
 /// <p>Noise reducer filter settings for spatial filter.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct NoiseReducerSpatialFilterSettings {
     /// <p>Specify strength of post noise reduction sharpening filter, with 0 disabling the filter and 3 enabling it at maximum strength.</p>
     #[serde(rename = "PostFilterSharpenStrength")]
@@ -3578,7 +3578,7 @@ pub struct NoiseReducerSpatialFilterSettings {
 }
 
 /// <p>Noise reducer filter settings for temporal filter.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct NoiseReducerTemporalFilterSettings {
     /// <p>Use Aggressive mode for content that has complex motion. Higher values produce stronger temporal filtering. This filters highly complex scenes more aggressively and creates better VQ for low bitrate outputs.</p>
     #[serde(rename = "AggressiveMode")]
@@ -3595,7 +3595,7 @@ pub struct NoiseReducerTemporalFilterSettings {
 }
 
 /// <p>An output object describes the settings for a single output file or stream in an output group.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Output {
     /// <p>(AudioDescriptions) contains groups of audio encoding settings organized by audio codec. Include one instance of (AudioDescriptions) per output. (AudioDescriptions) can contain multiple groups of encoding settings.</p>
     #[serde(rename = "AudioDescriptions")]
@@ -3632,7 +3632,7 @@ pub struct Output {
 }
 
 /// <p>OutputChannel mapping settings.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct OutputChannelMapping {
     /// <p>List of input channels</p>
     #[serde(rename = "InputChannels")]
@@ -3641,7 +3641,7 @@ pub struct OutputChannelMapping {
 }
 
 /// <p>Details regarding output</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OutputDetail {
     /// <p>Duration in milliseconds</p>
@@ -3655,7 +3655,7 @@ pub struct OutputDetail {
 }
 
 /// <p>Group of outputs</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct OutputGroup {
     /// <p>Use Custom Group Name (CustomName) to specify a name for the output group. This value is displayed on the console and can make your job settings JSON more human-readable. It does not affect your outputs. Use up to twelve characters that are either letters, numbers, spaces, or underscores.</p>
     #[serde(rename = "CustomName")]
@@ -3676,7 +3676,7 @@ pub struct OutputGroup {
 }
 
 /// <p>Contains details about the output groups specified in the job settings.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OutputGroupDetail {
     /// <p>Details about the output</p>
@@ -3686,7 +3686,7 @@ pub struct OutputGroupDetail {
 }
 
 /// <p>Output Group settings, including type</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct OutputGroupSettings {
     /// <p>Required when you set (Type) under (OutputGroups)&gt;(OutputGroupSettings) to CMAF<em>GROUP</em>SETTINGS. Each output in a CMAF Output Group may only contain a single video, audio, or caption output.</p>
     #[serde(rename = "CmafGroupSettings")]
@@ -3715,7 +3715,7 @@ pub struct OutputGroupSettings {
 }
 
 /// <p>Specific settings for this type of output.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct OutputSettings {
     /// <p>Settings for HLS output groups</p>
     #[serde(rename = "HlsSettings")]
@@ -3724,7 +3724,7 @@ pub struct OutputSettings {
 }
 
 /// <p>A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Preset {
     /// <p>An identifier for this resource that is unique within all of AWS.</p>
@@ -3760,7 +3760,7 @@ pub struct Preset {
 }
 
 /// <p>Settings for preset</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct PresetSettings {
     /// <p>(AudioDescriptions) contains groups of audio encoding settings organized by audio codec. Include one instance of (AudioDescriptions) per output. (AudioDescriptions) can contain multiple groups of encoding settings.</p>
     #[serde(rename = "AudioDescriptions")]
@@ -3781,7 +3781,7 @@ pub struct PresetSettings {
 }
 
 /// <p>Required when you set (Codec) under (VideoDescription)&gt;(CodecSettings) to the value PRORES.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ProresSettings {
     /// <p>Use Profile (ProResCodecProfile) to specifiy the type of Apple ProRes codec to use for this output.</p>
     #[serde(rename = "CodecProfile")]
@@ -3832,7 +3832,7 @@ pub struct ProresSettings {
 }
 
 /// <p>You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don&#39;t specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Queue {
     /// <p>An identifier for this resource that is unique within all of AWS.</p>
@@ -3881,7 +3881,7 @@ pub struct Queue {
 }
 
 /// <p>Use Rectangle to identify a specific area of the video frame.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Rectangle {
     /// <p>Height of rectangle in pixels. Specify only even numbers.</p>
     #[serde(rename = "Height")]
@@ -3902,7 +3902,7 @@ pub struct Rectangle {
 }
 
 /// <p>Use Manual audio remixing (RemixSettings) to adjust audio levels for each audio channel in each output of your job. With audio remixing, you can output more or fewer audio channels than your input audio source provides.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct RemixSettings {
     /// <p>Channel mapping (ChannelMapping) contains the group of fields that hold the remixing value for each channel. Units are in dB. Acceptable values are within the range from -60 (mute) through 6. A setting of 0 passes the input channel unchanged to the output channel (no attenuation or amplification).</p>
     #[serde(rename = "ChannelMapping")]
@@ -3919,7 +3919,7 @@ pub struct RemixSettings {
 }
 
 /// <p>Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReservationPlan {
     /// <p>The length of the term of your reserved queue pricing plan commitment.</p>
@@ -3949,7 +3949,7 @@ pub struct ReservationPlan {
 }
 
 /// <p>Details about the pricing plan for your reserved queue. Required for reserved queues and not applicable to on-demand queues.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReservationPlanSettings {
     /// <p>The length of the term of your reserved queue pricing plan commitment.</p>
@@ -3964,7 +3964,7 @@ pub struct ReservationPlanSettings {
 }
 
 /// <p>The Amazon Resource Name (ARN) and tags for an AWS Elemental MediaConvert resource.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResourceTags {
     /// <p>The Amazon Resource Name (ARN) of the resource.</p>
@@ -3978,7 +3978,7 @@ pub struct ResourceTags {
 }
 
 /// <p>Optional. Have MediaConvert automatically apply Amazon S3 access control for the outputs in this output group. When you don&#39;t use this setting, S3 automatically applies the default access control list PRIVATE.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct S3DestinationAccessControl {
     /// <p>Choose an Amazon S3 canned ACL for MediaConvert to apply to this output.</p>
     #[serde(rename = "CannedAcl")]
@@ -3987,7 +3987,7 @@ pub struct S3DestinationAccessControl {
 }
 
 /// <p>Settings associated with S3 destination</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct S3DestinationSettings {
     /// <p>Optional. Have MediaConvert automatically apply Amazon S3 access control for the outputs in this output group. When you don&#39;t use this setting, S3 automatically applies the default access control list PRIVATE.</p>
     #[serde(rename = "AccessControl")]
@@ -4000,7 +4000,7 @@ pub struct S3DestinationSettings {
 }
 
 /// <p>Settings for how your job outputs are encrypted as they are uploaded to Amazon S3.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct S3EncryptionSettings {
     /// <p>Specify how you want your data keys managed. AWS uses data keys to encrypt your content. AWS also encrypts the data keys themselves, using a customer master key (CMK), and then stores the encrypted data keys alongside your encrypted content. Use this setting to specify which AWS service manages the CMK. For simplest set up, choose Amazon S3 (SERVER<em>SIDE</em>ENCRYPTION<em>S3). If you want your master key to be managed by AWS Key Management Service (KMS), choose AWS KMS (SERVER</em>SIDE<em>ENCRYPTION</em>KMS). By default, when you choose AWS KMS, KMS uses the AWS managed customer master key (CMK) associated with Amazon S3 to encrypt your data keys. You can optionally choose to specify a different, customer managed CMK. Do so by specifying the Amazon Resource Name (ARN) of the key for the setting  KMS ARN (kmsKeyArn).</p>
     #[serde(rename = "EncryptionType")]
@@ -4013,7 +4013,7 @@ pub struct S3EncryptionSettings {
 }
 
 /// <p>Settings for SCC caption output.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct SccDestinationSettings {
     /// <p>Set Framerate (SccDestinationFramerate) to make sure that the captions and the video are synchronized in the output. Specify a frame rate that matches the frame rate of the associated video. If the video frame rate is 29.97, choose 29.97 dropframe (FRAMERATE<em>29</em>97<em>DROPFRAME) only if the video has video</em>insertion=true and drop<em>frame</em>timecode=true; otherwise, choose 29.97 non-dropframe (FRAMERATE<em>29</em>97<em>NON</em>DROPFRAME).</p>
     #[serde(rename = "Framerate")]
@@ -4022,7 +4022,7 @@ pub struct SccDestinationSettings {
 }
 
 /// <p>If your output group type is HLS, DASH, or Microsoft Smooth, use these settings when doing DRM encryption with a SPEKE-compliant key provider.  If your output group type is CMAF, use the SpekeKeyProviderCmaf settings instead.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct SpekeKeyProvider {
     /// <p>If you want your key provider to encrypt the content keys that it provides to MediaConvert, set up a certificate with a master key using AWS Certificate Manager. Specify the certificate&#39;s Amazon Resource Name (ARN) here.</p>
     #[serde(rename = "CertificateArn")]
@@ -4044,7 +4044,7 @@ pub struct SpekeKeyProvider {
 }
 
 /// <p>If your output group type is CMAF, use these settings when doing DRM encryption with a SPEKE-compliant key provider. If your output group type is HLS, DASH, or Microsoft Smooth, use the SpekeKeyProvider settings instead.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct SpekeKeyProviderCmaf {
     /// <p>If you want your key provider to encrypt the content keys that it provides to MediaConvert, set up a certificate with a master key using AWS Certificate Manager. Specify the certificate&#39;s Amazon Resource Name (ARN) here.</p>
     #[serde(rename = "CertificateArn")]
@@ -4069,7 +4069,7 @@ pub struct SpekeKeyProviderCmaf {
 }
 
 /// <p>Use these settings to set up encryption with a static key provider.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct StaticKeyProvider {
     /// <p>Relates to DRM implementation. Sets the value of the KEYFORMAT attribute. Must be &#39;identity&#39; or a reverse DNS string. May be omitted to indicate an implicit value of &#39;identity&#39;.</p>
     #[serde(rename = "KeyFormat")]
@@ -4089,7 +4089,7 @@ pub struct StaticKeyProvider {
     pub url: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource that you want to tag. To get the ARN, send a GET request with the resource name.</p>
@@ -4100,12 +4100,12 @@ pub struct TagResourceRequest {
     pub tags: ::std::collections::HashMap<String, String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct TagResourceResponse {}
 
 /// <p>Settings for Teletext caption output</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct TeletextDestinationSettings {
     /// <p>Set pageNumber to the Teletext page number for the destination captions for this output. This value must be a three-digit hexadecimal string; strings ending in -FF are invalid. If you are passing through the entire set of Teletext data, do not use this field.</p>
     #[serde(rename = "PageNumber")]
@@ -4118,7 +4118,7 @@ pub struct TeletextDestinationSettings {
 }
 
 /// <p>Settings specific to Teletext caption sources, including Page number.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct TeletextSourceSettings {
     /// <p>Use Page Number (PageNumber) to specify the three-digit hexadecimal page number that will be used for Teletext captions. Do not use this setting if you are passing through teletext from the input source to output.</p>
     #[serde(rename = "PageNumber")]
@@ -4127,7 +4127,7 @@ pub struct TeletextSourceSettings {
 }
 
 /// <p>Timecode burn-in (TimecodeBurnIn)--Burns the output timecode and specified prefix into the output.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct TimecodeBurnin {
     /// <p>Use Font Size (FontSize) to set the font size of any burned-in timecode. Valid values are 10, 16, 32, 48.</p>
     #[serde(rename = "FontSize")]
@@ -4144,7 +4144,7 @@ pub struct TimecodeBurnin {
 }
 
 /// <p>These settings control how the service handles timecodes throughout the job. These settings don&#39;t affect input clipping.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct TimecodeConfig {
     /// <p>If you use an editing platform that relies on an anchor timecode, use Anchor Timecode (Anchor) to specify a timecode that will match the input video frame to the output video frame. Use 24-hour format with frame number, (HH:MM:SS:FF) or (HH:MM:SS;FF). This setting ignores frame rate conversion. System behavior for Anchor Timecode varies depending on your setting for Source (TimecodeSource). * If Source (TimecodeSource) is set to Specified Start (SPECIFIEDSTART), the first input frame is the specified value in Start Timecode (Start). Anchor Timecode (Anchor) and Start Timecode (Start) are used calculate output timecode. * If Source (TimecodeSource) is set to Start at 0 (ZEROBASED)  the  first frame is 00:00:00:00. * If Source (TimecodeSource) is set to Embedded (EMBEDDED), the  first frame is the timecode value on the first input frame of the input.</p>
     #[serde(rename = "Anchor")]
@@ -4165,7 +4165,7 @@ pub struct TimecodeConfig {
 }
 
 /// <p>Enable Timed metadata insertion (TimedMetadataInsertion) to include ID3 tags in your job. To include timed metadata, you must enable it here, enable it in each output container, and specify tags and timecodes in ID3 insertion (Id3Insertion) objects.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct TimedMetadataInsertion {
     /// <p>Id3Insertions contains the array of Id3Insertion instances.</p>
     #[serde(rename = "Id3Insertions")]
@@ -4174,7 +4174,7 @@ pub struct TimedMetadataInsertion {
 }
 
 /// <p>Information about when jobs are submitted, started, and finished is specified in Unix epoch format in seconds.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Timing {
     /// <p>The time, in Unix epoch format, that the transcoding job finished</p>
@@ -4192,7 +4192,7 @@ pub struct Timing {
 }
 
 /// <p>Settings specific to caption sources that are specified by track number. Currently, this is only IMSC captions in an IMF package. If your caption source is IMSC 1.1 in a separate xml file, use FileSourceSettings instead of TrackSourceSettings.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct TrackSourceSettings {
     /// <p>Use this setting to select a single captions track from a source. Track numbers correspond to the order in the captions source file. For IMF sources, track numbering is based on the order that the captions appear in the CPL. For example, use 1 to select the captions asset that is listed first in the CPL. To include more than one captions track in your job outputs, create multiple input captions selectors. Specify one track per selector.</p>
     #[serde(rename = "TrackNumber")]
@@ -4201,7 +4201,7 @@ pub struct TrackSourceSettings {
 }
 
 /// <p>Settings specific to TTML caption outputs, including Pass style information (TtmlStylePassthrough).</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct TtmlDestinationSettings {
     /// <p>Pass through style and position information from a TTML-like input source (TTML, SMPTE-TT, CFF-TT) to the CFF-TT output or TTML output.</p>
     #[serde(rename = "StylePassthrough")]
@@ -4209,7 +4209,7 @@ pub struct TtmlDestinationSettings {
     pub style_passthrough: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>The Amazon Resource Name (ARN) of the resource that you want to remove tags from. To get the ARN, send a GET request with the resource name.</p>
@@ -4221,11 +4221,11 @@ pub struct UntagResourceRequest {
     pub tag_keys: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UntagResourceResponse {}
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateJobTemplateRequest {
     /// <p>Accelerated transcoding can significantly speed up jobs with long, visually complex content. Outputs that use this feature incur pro-tier pricing. For information about feature limitations, see the AWS Elemental MediaConvert User Guide.</p>
@@ -4261,7 +4261,7 @@ pub struct UpdateJobTemplateRequest {
     pub status_update_interval: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateJobTemplateResponse {
     /// <p>A job template is a pre-made set of encoding instructions that you can use to quickly create a job.</p>
@@ -4270,7 +4270,7 @@ pub struct UpdateJobTemplateResponse {
     pub job_template: Option<JobTemplate>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdatePresetRequest {
     /// <p>The new category for the preset, if you are changing it.</p>
@@ -4290,7 +4290,7 @@ pub struct UpdatePresetRequest {
     pub settings: Option<PresetSettings>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdatePresetResponse {
     /// <p>A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.</p>
@@ -4299,7 +4299,7 @@ pub struct UpdatePresetResponse {
     pub preset: Option<Preset>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateQueueRequest {
     /// <p>The new description for the queue, if you are changing it.</p>
@@ -4319,7 +4319,7 @@ pub struct UpdateQueueRequest {
     pub status: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateQueueResponse {
     /// <p>You can use queues to manage the resources that are available to your AWS account for running multiple transcoding jobs at the same time. If you don&#39;t specify a queue, the service sends all jobs through the default queue. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html.</p>
@@ -4329,7 +4329,7 @@ pub struct UpdateQueueResponse {
 }
 
 /// <p>Video codec settings, (CodecSettings) under (VideoDescription), contains the group of settings related to video encoding. The settings in this group vary depending on the value that you choose for Video codec (Codec). For each codec enum that you choose, define the corresponding settings object. The following lists the codec enum, settings object pairs. * FRAME<em>CAPTURE, FrameCaptureSettings * H</em>264, H264Settings * H_265, H265Settings * MPEG2, Mpeg2Settings * PRORES, ProresSettings</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct VideoCodecSettings {
     /// <p>Specifies the video codec. This must be equal to one of the enum values defined by the object  VideoCodec.</p>
     #[serde(rename = "Codec")]
@@ -4358,7 +4358,7 @@ pub struct VideoCodecSettings {
 }
 
 /// <p>Settings for video outputs</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct VideoDescription {
     /// <p>This setting only applies to H.264, H.265, and MPEG2 outputs. Use Insert AFD signaling (AfdSignaling) to specify whether the service includes AFD values in the output video data and what those values are. * Choose None to remove all AFD values from this output. * Choose Fixed to ignore input AFD values and instead encode the value specified in the job. * Choose Auto to calculate output AFD values based on the input AFD scaler data.</p>
     #[serde(rename = "AfdSignaling")]
@@ -4423,7 +4423,7 @@ pub struct VideoDescription {
 }
 
 /// <p>Contains details about the output&#39;s video stream</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VideoDetail {
     /// <p>Height in pixels for the output</p>
@@ -4437,7 +4437,7 @@ pub struct VideoDetail {
 }
 
 /// <p>Find additional transcoding features under Preprocessors (VideoPreprocessors). Enable the features at each output individually. These features are disabled by default.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct VideoPreprocessor {
     /// <p>Enable the Color corrector (ColorCorrector) feature if necessary. Enable or disable this feature for each output individually. This setting is disabled by default.</p>
     #[serde(rename = "ColorCorrector")]
@@ -4466,7 +4466,7 @@ pub struct VideoPreprocessor {
 }
 
 /// <p>Selector for video.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct VideoSelector {
     /// <p>Ignore this setting unless this input is a QuickTime animation with an alpha channel. Use this setting to create separate Key and Fill outputs. In each output, specify which part of the input MediaConvert uses. Leave this setting at the default value DISCARD to delete the alpha channel and preserve the video. Set it to REMAP<em>TO</em>LUMA to delete the video and map the alpha channel to the luma channel of your outputs.</p>
     #[serde(rename = "AlphaBehavior")]
@@ -4499,7 +4499,7 @@ pub struct VideoSelector {
 }
 
 /// <p>Required when you set (Codec) under (AudioDescriptions)&gt;(CodecSettings) to the value WAV.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct WavSettings {
     /// <p>Specify Bit depth (BitDepth), in bits per sample, to choose the encoding quality for this audio track.</p>
     #[serde(rename = "BitDepth")]

@@ -37,7 +37,7 @@ use xml::reader::ParserConfig;
 use xml::EventReader;
 
 /// <p>Represents the input of an AddTagsToResource operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddTagsToResourceMessage {
     /// <p>The Amazon Resource Name (ARN) of the resource to which the tags are to be added, for example <code>arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster</code> or <code>arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot</code>. ElastiCache resources are <i>cluster</i> and <i>snapshot</i>.</p> <p>For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
@@ -73,7 +73,7 @@ impl AllowedNodeGroupIdDeserializer {
     }
 }
 /// <p>Represents the allowed node types you can use to modify your cluster or replication group.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct AllowedNodeTypeModificationsMessage {
     /// <p>A string list, each element of which specifies a cache node type which you can use to scale your cluster or replication group.</p> <p>When scaling down on a Redis cluster or replication group using <code>ModifyCacheCluster</code> or <code>ModifyReplicationGroup</code>, use a value from this list for the <code>CacheNodeType</code> parameter.</p>
@@ -125,7 +125,7 @@ impl AuthTokenUpdateStatusDeserializer {
     }
 }
 /// <p>Represents the input of an AuthorizeCacheSecurityGroupIngress operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AuthorizeCacheSecurityGroupIngressMessage {
     /// <p>The cache security group that allows network ingress.</p>
@@ -160,7 +160,7 @@ impl AuthorizeCacheSecurityGroupIngressMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct AuthorizeCacheSecurityGroupIngressResult {
     pub cache_security_group: Option<CacheSecurityGroup>,
@@ -206,7 +206,7 @@ impl AutomaticFailoverStatusDeserializer {
     }
 }
 /// <p>Describes an Availability Zone in which the cluster is launched.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct AvailabilityZone {
     /// <p>The name of the Availability Zone.</p>
@@ -262,7 +262,7 @@ impl AvailabilityZonesListSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchApplyUpdateActionMessage {
     /// <p>The cache cluster IDs</p>
@@ -303,7 +303,7 @@ impl BatchApplyUpdateActionMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BatchStopUpdateActionMessage {
     /// <p>The cache cluster IDs</p>
@@ -369,7 +369,7 @@ impl BooleanOptionalDeserializer {
     }
 }
 /// <p>Contains all of the attributes of a specific cluster.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheCluster {
     /// <p>A flag that enables encryption at-rest when set to <code>true</code>.</p> <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the cluster is created. To enable at-rest encryption on a cluster you must set <code>AtRestEncryptionEnabled</code> to <code>true</code> when you create a cluster.</p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p>
@@ -626,7 +626,7 @@ impl CacheClusterListDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeCacheClusters</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheClusterMessage {
     /// <p>A list of clusters. Each item in the list contains detailed information about one cluster.</p>
@@ -660,7 +660,7 @@ impl CacheClusterMessageDeserializer {
     }
 }
 /// <p>Provides all of the details about a particular cache engine version.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheEngineVersion {
     /// <p>The description of the cache engine.</p>
@@ -738,7 +738,7 @@ impl CacheEngineVersionListDeserializer {
     }
 }
 /// <p>Represents the output of a <a>DescribeCacheEngineVersions</a> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheEngineVersionMessage {
     /// <p>A list of cache engine version details. Each element in the list contains detailed information about one cache engine version.</p>
@@ -779,7 +779,7 @@ impl CacheEngineVersionMessageDeserializer {
     }
 }
 /// <p><p>Represents an individual cache node within a cluster. Each cache node runs its own instance of the cluster&#39;s protocol-compliant caching software - either Memcached or Redis.</p> <p>The following node types are supported by ElastiCache. Generally speaking, the current generation types provide more memory and computational power at lower cost when compared to their equivalent previous generation counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current generation: </p> <p> <b>M5 node types:</b> <code>cache.m5.large</code>, <code>cache.m5.xlarge</code>, <code>cache.m5.2xlarge</code>, <code>cache.m5.4xlarge</code>, <code>cache.m5.12xlarge</code>, <code>cache.m5.24xlarge</code> </p> <p> <b>M4 node types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>, <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>, <code>cache.m4.10xlarge</code> </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>, <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> </li> <li> <p>Previous generation: (not recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p> <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>, <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> <p> <b>M3 node types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>, <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p> </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation: </p> <p> <b>R5 node types:</b> <code>cache.r5.large</code>, <code>cache.r5.xlarge</code>, <code>cache.r5.2xlarge</code>, <code>cache.r5.4xlarge</code>, <code>cache.r5.12xlarge</code>, <code>cache.r5.24xlarge</code> </p> <p> <b>R4 node types:</b> <code>cache.r4.large</code>, <code>cache.r4.xlarge</code>, <code>cache.r4.2xlarge</code>, <code>cache.r4.4xlarge</code>, <code>cache.r4.8xlarge</code>, <code>cache.r4.16xlarge</code> </p> </li> <li> <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b> <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>, <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>, <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Additional node type info</b> </p> <ul> <li> <p>All current generation instance types are created in Amazon VPC by default.</p> </li> <li> <p>Redis append-only files (AOF) are not supported for T1 or T2 instances.</p> </li> <li> <p>Redis Multi-AZ with automatic failover is not supported on T1 instances.</p> </li> <li> <p>Redis configuration variables <code>appendonly</code> and <code>appendfsync</code> are not supported on Redis version 2.8.22 and later.</p> </li> </ul></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheNode {
     /// <p>The date and time when the cache node was created.</p>
@@ -896,7 +896,7 @@ impl CacheNodeListDeserializer {
     }
 }
 /// <p>A parameter that has a different value for each cache node type it is applied to. For example, in a Redis cluster, a <code>cache.m1.large</code> cache node type would have a larger <code>maxmemory</code> value than a <code>cache.m1.small</code> type.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheNodeTypeSpecificParameter {
     /// <p>The valid range of values for the parameter.</p>
@@ -1001,7 +1001,7 @@ impl CacheNodeTypeSpecificParametersListDeserializer {
     }
 }
 /// <p>A value that applies only to a certain cache node type.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheNodeTypeSpecificValue {
     /// <p>The cache node type for which this value applies.</p>
@@ -1059,7 +1059,7 @@ impl CacheNodeTypeSpecificValueListDeserializer {
     }
 }
 /// <p>The status of the service update on the cache node</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheNodeUpdateStatus {
     /// <p>The node ID of the cache cluster</p>
@@ -1161,7 +1161,7 @@ impl CacheNodeUpdateStatusListDeserializer {
     }
 }
 /// <p>Represents the output of a <code>CreateCacheParameterGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheParameterGroup {
     /// <p>The name of the cache parameter group family that this cache parameter group is compatible with.</p> <p>Valid values are: <code>memcached1.4</code> | <code>memcached1.5</code> | <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> | </p>
@@ -1204,7 +1204,7 @@ impl CacheParameterGroupDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeCacheParameters</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheParameterGroupDetails {
     /// <p>A list of parameters specific to a particular cache node type. Each element in the list contains detailed information about one parameter.</p>
@@ -1275,7 +1275,7 @@ impl CacheParameterGroupListDeserializer {
     }
 }
 /// <p><p>Represents the output of one of the following operations:</p> <ul> <li> <p> <code>ModifyCacheParameterGroup</code> </p> </li> <li> <p> <code>ResetCacheParameterGroup</code> </p> </li> </ul></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheParameterGroupNameMessage {
     /// <p>The name of the cache parameter group.</p>
@@ -1309,7 +1309,7 @@ impl CacheParameterGroupNameMessageDeserializer {
     }
 }
 /// <p>Status of the cache parameter group.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheParameterGroupStatus {
     /// <p>A list of the cache node IDs which need to be rebooted for parameter changes to be applied. A node ID is a numeric identifier (0001, 0002, etc.).</p>
@@ -1361,7 +1361,7 @@ impl CacheParameterGroupStatusDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeCacheParameterGroups</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheParameterGroupsMessage {
     /// <p>A list of cache parameter groups. Each element in the list contains detailed information about one cache parameter group.</p>
@@ -1402,7 +1402,7 @@ impl CacheParameterGroupsMessageDeserializer {
     }
 }
 /// <p><p>Represents the output of one of the following operations:</p> <ul> <li> <p> <code>AuthorizeCacheSecurityGroupIngress</code> </p> </li> <li> <p> <code>CreateCacheSecurityGroup</code> </p> </li> <li> <p> <code>RevokeCacheSecurityGroupIngress</code> </p> </li> </ul></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheSecurityGroup {
     /// <p>The name of the cache security group.</p>
@@ -1449,7 +1449,7 @@ impl CacheSecurityGroupDeserializer {
     }
 }
 /// <p>Represents a cluster's status within a particular cache security group.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheSecurityGroupMembership {
     /// <p>The name of the cache security group.</p>
@@ -1509,7 +1509,7 @@ impl CacheSecurityGroupMembershipListDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeCacheSecurityGroups</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheSecurityGroupMessage {
     /// <p>A list of cache security groups. Each element in the list contains detailed information about one group.</p>
@@ -1583,7 +1583,7 @@ impl CacheSecurityGroupsDeserializer {
     }
 }
 /// <p><p>Represents the output of one of the following operations:</p> <ul> <li> <p> <code>CreateCacheSubnetGroup</code> </p> </li> <li> <p> <code>ModifyCacheSubnetGroup</code> </p> </li> </ul></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheSubnetGroup {
     /// <p>The description of the cache subnet group.</p>
@@ -1633,7 +1633,7 @@ impl CacheSubnetGroupDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeCacheSubnetGroups</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CacheSubnetGroupMessage {
     /// <p>A list of cache subnet groups. Each element in the list contains detailed information about one group.</p>
@@ -1721,7 +1721,7 @@ impl ClusterIdListDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CompleteMigrationMessage {
     /// <p>Forces the migration to stop without ensuring that data is in sync. It is recommended to use this option only to abort the migration and not recommended when application wants to continue migration to ElastiCache.</p>
@@ -1749,7 +1749,7 @@ impl CompleteMigrationMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CompleteMigrationResponse {
     pub replication_group: Option<ReplicationGroup>,
@@ -1782,7 +1782,7 @@ impl CompleteMigrationResponseDeserializer {
     }
 }
 /// <p>Node group (shard) configuration options when adding or removing replicas. Each node group (shard) configuration has the following members: NodeGroupId, NewReplicaCount, and PreferredAvailabilityZones. </p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ConfigureShard {
     /// <p><p>The number of replicas you want in this node group at the end of this operation. The maximum value for <code>NewReplicaCount</code> is 5. The minimum value depends upon the type of Redis replication group you are working with.</p> <p>The minimum number of replicas in a shard or replication group is:</p> <ul> <li> <p>Redis (cluster mode disabled)</p> <ul> <li> <p>If Multi-AZ with Automatic Failover is enabled: 1</p> </li> <li> <p>If Multi-AZ with Automatic Failover is not enable: 0</p> </li> </ul> </li> <li> <p>Redis (cluster mode enabled): 0 (though you will not be able to failover to a replica if your primary node fails)</p> </li> </ul></p>
@@ -1818,7 +1818,7 @@ impl ConfigureShardSerializer {
 }
 
 /// <p>Represents the input of a <code>CopySnapshotMessage</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CopySnapshotMessage {
     /// <p>The ID of the KMS key used to encrypt the target snapshot.</p>
@@ -1857,7 +1857,7 @@ impl CopySnapshotMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CopySnapshotResult {
     pub snapshot: Option<Snapshot>,
@@ -1883,7 +1883,7 @@ impl CopySnapshotResultDeserializer {
     }
 }
 /// <p>Represents the input of a CreateCacheCluster operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCacheClusterMessage {
     /// <p>Specifies whether the nodes in this Memcached cluster are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region.</p> <p>This parameter is only supported for Memcached clusters.</p> <p>If the <code>AZMode</code> and <code>PreferredAvailabilityZones</code> are not specified, ElastiCache assumes <code>single-az</code> mode.</p>
@@ -2053,7 +2053,7 @@ impl CreateCacheClusterMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CreateCacheClusterResult {
     pub cache_cluster: Option<CacheCluster>,
@@ -2086,7 +2086,7 @@ impl CreateCacheClusterResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>CreateCacheParameterGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCacheParameterGroupMessage {
     /// <p>The name of the cache parameter group family that the cache parameter group can be used with.</p> <p>Valid values are: <code>memcached1.4</code> | <code>memcached1.5</code> | <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> | </p>
@@ -2118,7 +2118,7 @@ impl CreateCacheParameterGroupMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CreateCacheParameterGroupResult {
     pub cache_parameter_group: Option<CacheParameterGroup>,
@@ -2152,7 +2152,7 @@ impl CreateCacheParameterGroupResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>CreateCacheSecurityGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCacheSecurityGroupMessage {
     /// <p>A name for the cache security group. This value is stored as a lowercase string.</p> <p>Constraints: Must contain no more than 255 alphanumeric characters. Cannot be the word "Default".</p> <p>Example: <code>mysecuritygroup</code> </p>
@@ -2178,7 +2178,7 @@ impl CreateCacheSecurityGroupMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CreateCacheSecurityGroupResult {
     pub cache_security_group: Option<CacheSecurityGroup>,
@@ -2212,7 +2212,7 @@ impl CreateCacheSecurityGroupResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>CreateCacheSubnetGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateCacheSubnetGroupMessage {
     /// <p>A description for the cache subnet group.</p>
@@ -2248,7 +2248,7 @@ impl CreateCacheSubnetGroupMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CreateCacheSubnetGroupResult {
     pub cache_subnet_group: Option<CacheSubnetGroup>,
@@ -2281,7 +2281,7 @@ impl CreateCacheSubnetGroupResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>CreateReplicationGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateReplicationGroupMessage {
     /// <p>A flag that enables encryption at rest when set to <code>true</code>.</p> <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the replication group is created. To enable encryption at rest on a replication group you must set <code>AtRestEncryptionEnabled</code> to <code>true</code> when you create the replication group. </p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p>
@@ -2495,7 +2495,7 @@ impl CreateReplicationGroupMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CreateReplicationGroupResult {
     pub replication_group: Option<ReplicationGroup>,
@@ -2528,7 +2528,7 @@ impl CreateReplicationGroupResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>CreateSnapshot</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateSnapshotMessage {
     /// <p>The identifier of an existing cluster. The snapshot is created from this cluster.</p>
@@ -2563,7 +2563,7 @@ impl CreateSnapshotMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CreateSnapshotResult {
     pub snapshot: Option<Snapshot>,
@@ -2589,7 +2589,7 @@ impl CreateSnapshotResultDeserializer {
     }
 }
 /// <p>The endpoint from which data should be migrated.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CustomerNodeEndpoint {
     /// <p>The address of the node endpoint</p>
@@ -2627,7 +2627,7 @@ impl CustomerNodeEndpointListSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DecreaseReplicaCountMessage {
     /// <p>If <code>True</code>, the number of replica nodes is decreased immediately. <code>ApplyImmediately=False</code> is not currently supported.</p>
@@ -2679,7 +2679,7 @@ impl DecreaseReplicaCountMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DecreaseReplicaCountResult {
     pub replication_group: Option<ReplicationGroup>,
@@ -2712,7 +2712,7 @@ impl DecreaseReplicaCountResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>DeleteCacheCluster</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCacheClusterMessage {
     /// <p>The cluster identifier for the cluster to be deleted. This parameter is not case sensitive.</p>
@@ -2743,7 +2743,7 @@ impl DeleteCacheClusterMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DeleteCacheClusterResult {
     pub cache_cluster: Option<CacheCluster>,
@@ -2776,7 +2776,7 @@ impl DeleteCacheClusterResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>DeleteCacheParameterGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCacheParameterGroupMessage {
     /// <p><p>The name of the cache parameter group to delete.</p> <note> <p>The specified cache security group must not be associated with any clusters.</p> </note></p>
@@ -2800,7 +2800,7 @@ impl DeleteCacheParameterGroupMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DeleteCacheSecurityGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCacheSecurityGroupMessage {
     /// <p><p>The name of the cache security group to delete.</p> <note> <p>You cannot delete the default security group.</p> </note></p>
@@ -2824,7 +2824,7 @@ impl DeleteCacheSecurityGroupMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DeleteCacheSubnetGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteCacheSubnetGroupMessage {
     /// <p>The name of the cache subnet group to delete.</p> <p>Constraints: Must contain no more than 255 alphanumeric characters or hyphens.</p>
@@ -2848,7 +2848,7 @@ impl DeleteCacheSubnetGroupMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DeleteReplicationGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteReplicationGroupMessage {
     /// <p>The name of a final node group (shard) snapshot. ElastiCache creates the snapshot from the primary node in the cluster, rather than one of the replicas; this is to ensure that it captures the freshest data. After the final snapshot is taken, the replication group is immediately deleted.</p>
@@ -2887,7 +2887,7 @@ impl DeleteReplicationGroupMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DeleteReplicationGroupResult {
     pub replication_group: Option<ReplicationGroup>,
@@ -2920,7 +2920,7 @@ impl DeleteReplicationGroupResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>DeleteSnapshot</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteSnapshotMessage {
     /// <p>The name of the snapshot to be deleted.</p>
@@ -2940,7 +2940,7 @@ impl DeleteSnapshotMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DeleteSnapshotResult {
     pub snapshot: Option<Snapshot>,
@@ -2966,7 +2966,7 @@ impl DeleteSnapshotResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>DescribeCacheClusters</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCacheClustersMessage {
     /// <p>The user-supplied cluster identifier. If this parameter is specified, only information about that specific cluster is returned. This parameter isn't case sensitive.</p>
@@ -3012,7 +3012,7 @@ impl DescribeCacheClustersMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DescribeCacheEngineVersions</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCacheEngineVersionsMessage {
     /// <p><p>The name of a specific cache parameter group family to return details for.</p> <p>Valid values are: <code>memcached1.4</code> | <code>memcached1.5</code> | <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> | </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 alphanumeric characters</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul></p>
@@ -3063,7 +3063,7 @@ impl DescribeCacheEngineVersionsMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DescribeCacheParameterGroups</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCacheParameterGroupsMessage {
     /// <p>The name of a specific cache parameter group to return details for.</p>
@@ -3099,7 +3099,7 @@ impl DescribeCacheParameterGroupsMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DescribeCacheParameters</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCacheParametersMessage {
     /// <p>The name of a specific cache parameter group to return details for.</p>
@@ -3138,7 +3138,7 @@ impl DescribeCacheParametersMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DescribeCacheSecurityGroups</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCacheSecurityGroupsMessage {
     /// <p>The name of the cache security group to return details for.</p>
@@ -3174,7 +3174,7 @@ impl DescribeCacheSecurityGroupsMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DescribeCacheSubnetGroups</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeCacheSubnetGroupsMessage {
     /// <p>The name of the cache subnet group to return details for.</p>
@@ -3210,7 +3210,7 @@ impl DescribeCacheSubnetGroupsMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DescribeEngineDefaultParameters</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEngineDefaultParametersMessage {
     /// <p>The name of the cache parameter group family.</p> <p>Valid values are: <code>memcached1.4</code> | <code>memcached1.5</code> | <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> | </p>
@@ -3243,7 +3243,7 @@ impl DescribeEngineDefaultParametersMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeEngineDefaultParametersResult {
     pub engine_defaults: Option<EngineDefaults>,
@@ -3276,7 +3276,7 @@ impl DescribeEngineDefaultParametersResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>DescribeEvents</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventsMessage {
     /// <p>The number of minutes worth of events to retrieve.</p>
@@ -3329,7 +3329,7 @@ impl DescribeEventsMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DescribeReplicationGroups</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeReplicationGroupsMessage {
     /// <p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>
@@ -3362,7 +3362,7 @@ impl DescribeReplicationGroupsMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DescribeReservedCacheNodes</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeReservedCacheNodesMessage {
     /// <p><p>The cache node type filter value. Use this parameter to show only those reservations matching the specified cache node type.</p> <p>The following node types are supported by ElastiCache. Generally speaking, the current generation types provide more memory and computational power at lower cost when compared to their equivalent previous generation counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current generation: </p> <p> <b>M5 node types:</b> <code>cache.m5.large</code>, <code>cache.m5.xlarge</code>, <code>cache.m5.2xlarge</code>, <code>cache.m5.4xlarge</code>, <code>cache.m5.12xlarge</code>, <code>cache.m5.24xlarge</code> </p> <p> <b>M4 node types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>, <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>, <code>cache.m4.10xlarge</code> </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>, <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> </li> <li> <p>Previous generation: (not recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p> <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>, <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> <p> <b>M3 node types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>, <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p> </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation: </p> <p> <b>R5 node types:</b> <code>cache.r5.large</code>, <code>cache.r5.xlarge</code>, <code>cache.r5.2xlarge</code>, <code>cache.r5.4xlarge</code>, <code>cache.r5.12xlarge</code>, <code>cache.r5.24xlarge</code> </p> <p> <b>R4 node types:</b> <code>cache.r4.large</code>, <code>cache.r4.xlarge</code>, <code>cache.r4.2xlarge</code>, <code>cache.r4.4xlarge</code>, <code>cache.r4.8xlarge</code>, <code>cache.r4.16xlarge</code> </p> </li> <li> <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b> <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>, <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>, <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Additional node type info</b> </p> <ul> <li> <p>All current generation instance types are created in Amazon VPC by default.</p> </li> <li> <p>Redis append-only files (AOF) are not supported for T1 or T2 instances.</p> </li> <li> <p>Redis Multi-AZ with automatic failover is not supported on T1 instances.</p> </li> <li> <p>Redis configuration variables <code>appendonly</code> and <code>appendfsync</code> are not supported on Redis version 2.8.22 and later.</p> </li> </ul></p>
@@ -3426,7 +3426,7 @@ impl DescribeReservedCacheNodesMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>DescribeReservedCacheNodesOfferings</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeReservedCacheNodesOfferingsMessage {
     /// <p><p>The cache node type filter value. Use this parameter to show only the available offerings matching the specified cache node type.</p> <p>The following node types are supported by ElastiCache. Generally speaking, the current generation types provide more memory and computational power at lower cost when compared to their equivalent previous generation counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current generation: </p> <p> <b>M5 node types:</b> <code>cache.m5.large</code>, <code>cache.m5.xlarge</code>, <code>cache.m5.2xlarge</code>, <code>cache.m5.4xlarge</code>, <code>cache.m5.12xlarge</code>, <code>cache.m5.24xlarge</code> </p> <p> <b>M4 node types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>, <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>, <code>cache.m4.10xlarge</code> </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>, <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> </li> <li> <p>Previous generation: (not recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p> <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>, <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> <p> <b>M3 node types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>, <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p> </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation: </p> <p> <b>R5 node types:</b> <code>cache.r5.large</code>, <code>cache.r5.xlarge</code>, <code>cache.r5.2xlarge</code>, <code>cache.r5.4xlarge</code>, <code>cache.r5.12xlarge</code>, <code>cache.r5.24xlarge</code> </p> <p> <b>R4 node types:</b> <code>cache.r4.large</code>, <code>cache.r4.xlarge</code>, <code>cache.r4.2xlarge</code>, <code>cache.r4.4xlarge</code>, <code>cache.r4.8xlarge</code>, <code>cache.r4.16xlarge</code> </p> </li> <li> <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b> <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>, <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>, <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Additional node type info</b> </p> <ul> <li> <p>All current generation instance types are created in Amazon VPC by default.</p> </li> <li> <p>Redis append-only files (AOF) are not supported for T1 or T2 instances.</p> </li> <li> <p>Redis Multi-AZ with automatic failover is not supported on T1 instances.</p> </li> <li> <p>Redis configuration variables <code>appendonly</code> and <code>appendfsync</code> are not supported on Redis version 2.8.22 and later.</p> </li> </ul></p>
@@ -3485,7 +3485,7 @@ impl DescribeReservedCacheNodesOfferingsMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeServiceUpdatesMessage {
     /// <p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>
@@ -3527,7 +3527,7 @@ impl DescribeServiceUpdatesMessageSerializer {
 }
 
 /// <p>Represents the output of a <code>DescribeSnapshots</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeSnapshotsListMessage {
     /// <p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>
@@ -3565,7 +3565,7 @@ impl DescribeSnapshotsListMessageDeserializer {
     }
 }
 /// <p>Represents the input of a <code>DescribeSnapshotsMessage</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeSnapshotsMessage {
     /// <p>A user-supplied cluster identifier. If this parameter is specified, only snapshots associated with that specific cluster are described.</p>
@@ -3620,7 +3620,7 @@ impl DescribeSnapshotsMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeUpdateActionsMessage {
     /// <p>The cache cluster IDs</p>
@@ -3723,7 +3723,7 @@ impl DoubleDeserializer {
     }
 }
 /// <p>Provides ownership and status information for an Amazon EC2 security group.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EC2SecurityGroup {
     /// <p>The name of the Amazon EC2 security group.</p>
@@ -3787,7 +3787,7 @@ impl EC2SecurityGroupListDeserializer {
     }
 }
 /// <p>Represents the information required for client programs to connect to a cache node.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Endpoint {
     /// <p>The DNS hostname of the cache node.</p>
@@ -3819,7 +3819,7 @@ impl EndpointDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeEngineDefaultParameters</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EngineDefaults {
     /// <p>A list of parameters specific to a particular cache node type. Each element in the list contains detailed information about one parameter.</p>
@@ -3873,7 +3873,7 @@ impl EngineDefaultsDeserializer {
     }
 }
 /// <p>Represents a single occurrence of something interesting within the system. Some examples of events are creating a cluster, adding or removing a cache node, or rebooting a node.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Event {
     /// <p>The date and time when the event occurred.</p>
@@ -3932,7 +3932,7 @@ impl EventListDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeEvents</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EventsMessage {
     /// <p>A list of events. Each element in the list contains detailed information about one event.</p>
@@ -3965,7 +3965,7 @@ impl EventsMessageDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct IncreaseReplicaCountMessage {
     /// <p>If <code>True</code>, the number of replica nodes is increased immediately. <code>ApplyImmediately=False</code> is not currently supported.</p>
@@ -4008,7 +4008,7 @@ impl IncreaseReplicaCountMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct IncreaseReplicaCountResult {
     pub replication_group: Option<ReplicationGroup>,
@@ -4077,7 +4077,7 @@ impl KeyListSerializer {
 }
 
 /// <p>The input parameters for the <code>ListAllowedNodeTypeModifications</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAllowedNodeTypeModificationsMessage {
     /// <p><p>The name of the cluster you want to scale up to a larger node instanced type. ElastiCache uses the cluster id to identify the current node type of this cluster and from that to create a list of node types you can scale up to.</p> <important> <p>You must provide a value for either the <code>CacheClusterId</code> or the <code>ReplicationGroupId</code>.</p> </important></p>
@@ -4105,7 +4105,7 @@ impl ListAllowedNodeTypeModificationsMessageSerializer {
 }
 
 /// <p>The input parameters for the <code>ListTagsForResource</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceMessage {
     /// <p>The Amazon Resource Name (ARN) of the resource for which you want the list of tags, for example <code>arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster</code> or <code>arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot</code>.</p> <p>For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
@@ -4126,7 +4126,7 @@ impl ListTagsForResourceMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>ModifyCacheCluster</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ModifyCacheClusterMessage {
     /// <p><p>Specifies whether the new nodes in this Memcached cluster are all created in a single Availability Zone or created across multiple Availability Zones.</p> <p>Valid values: <code>single-az</code> | <code>cross-az</code>.</p> <p>This option is only supported for Memcached clusters.</p> <note> <p>You cannot specify <code>single-az</code> if the Memcached cluster already has cache nodes in different Availability Zones. If <code>cross-az</code> is specified, existing Memcached nodes remain in their current Availability Zone.</p> <p>Only newly created nodes are located in different Availability Zones. </p> </note></p>
@@ -4276,7 +4276,7 @@ impl ModifyCacheClusterMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ModifyCacheClusterResult {
     pub cache_cluster: Option<CacheCluster>,
@@ -4309,7 +4309,7 @@ impl ModifyCacheClusterResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>ModifyCacheParameterGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ModifyCacheParameterGroupMessage {
     /// <p>The name of the cache parameter group to modify.</p>
@@ -4340,7 +4340,7 @@ impl ModifyCacheParameterGroupMessageSerializer {
 }
 
 /// <p>Represents the input of a <code>ModifyCacheSubnetGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ModifyCacheSubnetGroupMessage {
     /// <p>A description of the cache subnet group.</p>
@@ -4380,7 +4380,7 @@ impl ModifyCacheSubnetGroupMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ModifyCacheSubnetGroupResult {
     pub cache_subnet_group: Option<CacheSubnetGroup>,
@@ -4413,7 +4413,7 @@ impl ModifyCacheSubnetGroupResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>ModifyReplicationGroups</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ModifyReplicationGroupMessage {
     /// <p>If <code>true</code>, this parameter causes the modifications in this request and any pending modifications to be applied, asynchronously and as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code> setting for the replication group.</p> <p>If <code>false</code>, changes to the nodes in the replication group are applied on the next maintenance reboot, or the next failure reboot, whichever occurs first.</p> <p>Valid values: <code>true</code> | <code>false</code> </p> <p>Default: <code>false</code> </p>
@@ -4565,7 +4565,7 @@ impl ModifyReplicationGroupMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ModifyReplicationGroupResult {
     pub replication_group: Option<ReplicationGroup>,
@@ -4598,7 +4598,7 @@ impl ModifyReplicationGroupResultDeserializer {
     }
 }
 /// <p>Represents the input for a <code>ModifyReplicationGroupShardConfiguration</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ModifyReplicationGroupShardConfigurationMessage {
     /// <p>Indicates that the shard reconfiguration process begins immediately. At present, the only permitted value for this parameter is <code>true</code>.</p> <p>Value: true</p>
@@ -4664,7 +4664,7 @@ impl ModifyReplicationGroupShardConfigurationMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ModifyReplicationGroupShardConfigurationResult {
     pub replication_group: Option<ReplicationGroup>,
@@ -4697,7 +4697,7 @@ impl ModifyReplicationGroupShardConfigurationResultDeserializer {
     }
 }
 /// <p>Represents a collection of cache nodes in a replication group. One node in the node group is the read/write primary node. All the other nodes are read-only Replica nodes.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct NodeGroup {
     /// <p>The identifier for the node group (shard). A Redis (cluster mode disabled) replication group contains only 1 node group; therefore, the node group ID is 0001. A Redis (cluster mode enabled) replication group contains 1 to 90 node groups numbered 0001 to 0090. Optionally, the user can provide the id for a node group. </p>
@@ -4754,7 +4754,7 @@ impl NodeGroupDeserializer {
     }
 }
 /// <p>Node group (shard) configuration options. Each node group (shard) configuration has the following: <code>Slots</code>, <code>PrimaryAvailabilityZone</code>, <code>ReplicaAvailabilityZones</code>, <code>ReplicaCount</code>.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct NodeGroupConfiguration {
@@ -4880,7 +4880,7 @@ impl NodeGroupListDeserializer {
     }
 }
 /// <p>Represents a single node within a node group (shard).</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct NodeGroupMember {
     /// <p>The ID of the cluster to which the node belongs.</p>
@@ -4954,7 +4954,7 @@ impl NodeGroupMemberListDeserializer {
     }
 }
 /// <p>The status of the service update on the node group member </p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct NodeGroupMemberUpdateStatus {
     /// <p>The cache cluster ID</p>
@@ -5065,7 +5065,7 @@ impl NodeGroupMemberUpdateStatusListDeserializer {
     }
 }
 /// <p>The status of the service update on the node group </p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct NodeGroupUpdateStatus {
     /// <p>The ID of the node group</p>
@@ -5147,7 +5147,7 @@ impl NodeGroupsToRetainListSerializer {
 }
 
 /// <p>Represents an individual cache node in a snapshot of a cluster.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct NodeSnapshot {
     /// <p>A unique identifier for the source cluster.</p>
@@ -5280,7 +5280,7 @@ impl NodeUpdateStatusDeserializer {
     }
 }
 /// <p>Describes a notification topic and its status. Notification topics are used for publishing ElastiCache events to subscribers using Amazon Simple Notification Service (SNS).</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct NotificationConfiguration {
     /// <p>The Amazon Resource Name (ARN) that identifies the topic.</p>
@@ -5317,7 +5317,7 @@ impl NotificationConfigurationDeserializer {
     }
 }
 /// <p>Describes an individual setting that controls some aspect of ElastiCache behavior.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Parameter {
     /// <p>The valid range of values for the parameter.</p>
@@ -5392,7 +5392,7 @@ impl ParameterDeserializer {
     }
 }
 /// <p>Describes a name-value pair that is used to update the value of a parameter.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ParameterNameValue {
     /// <p>The name of the parameter.</p>
@@ -5461,7 +5461,7 @@ impl PendingAutomaticFailoverStatusDeserializer {
     }
 }
 /// <p>A group of settings that are applied to the cluster in the future, or that are currently being applied.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PendingModifiedValues {
     /// <p>The auth token status</p>
@@ -5530,7 +5530,7 @@ impl PreferredAvailabilityZoneListSerializer {
 }
 
 /// <p>Update action that has been processed for the corresponding apply/stop request</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ProcessedUpdateAction {
     /// <p>The ID of the cache cluster</p>
@@ -5601,7 +5601,7 @@ impl ProcessedUpdateActionListDeserializer {
     }
 }
 /// <p>Represents the input of a <code>PurchaseReservedCacheNodesOffering</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PurchaseReservedCacheNodesOfferingMessage {
     /// <p>The number of cache node instances to reserve.</p> <p>Default: <code>1</code> </p>
@@ -5637,7 +5637,7 @@ impl PurchaseReservedCacheNodesOfferingMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PurchaseReservedCacheNodesOfferingResult {
     pub reserved_cache_node: Option<ReservedCacheNode>,
@@ -5670,7 +5670,7 @@ impl PurchaseReservedCacheNodesOfferingResultDeserializer {
     }
 }
 /// <p>Represents the input of a <code>RebootCacheCluster</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RebootCacheClusterMessage {
     /// <p>The cluster identifier. This parameter is stored as a lowercase string.</p>
@@ -5700,7 +5700,7 @@ impl RebootCacheClusterMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct RebootCacheClusterResult {
     pub cache_cluster: Option<CacheCluster>,
@@ -5733,7 +5733,7 @@ impl RebootCacheClusterResultDeserializer {
     }
 }
 /// <p>Contains the specific price and frequency of a recurring charges for a reserved cache node, or for a reserved cache node offering.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct RecurringCharge {
     /// <p>The monetary amount of the recurring charge.</p>
@@ -5804,7 +5804,7 @@ impl RemoveReplicasListSerializer {
 }
 
 /// <p>Represents the input of a <code>RemoveTagsFromResource</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveTagsFromResourceMessage {
     /// <p>The Amazon Resource Name (ARN) of the resource from which you want the tags removed, for example <code>arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster</code> or <code>arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot</code>.</p> <p>For more information about ARNs, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>
@@ -5839,7 +5839,7 @@ impl ReplicaConfigurationListSerializer {
 }
 
 /// <p>Contains all of the attributes of a specific Redis replication group.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ReplicationGroup {
     /// <p>A flag that enables encryption at-rest when set to <code>true</code>.</p> <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the cluster is created. To enable encryption at-rest on a cluster you must set <code>AtRestEncryptionEnabled</code> to <code>true</code> when you create a cluster.</p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p>
@@ -6026,7 +6026,7 @@ impl ReplicationGroupListDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeReplicationGroups</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ReplicationGroupMessage {
     /// <p>Provides an identifier to allow retrieval of paginated results.</p>
@@ -6067,7 +6067,7 @@ impl ReplicationGroupMessageDeserializer {
     }
 }
 /// <p>The settings to be applied to the Redis replication group, either immediately or during the next maintenance window.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ReplicationGroupPendingModifiedValues {
     /// <p>The auth token status</p>
@@ -6125,7 +6125,7 @@ impl ReplicationGroupPendingModifiedValuesDeserializer {
     }
 }
 /// <p>Represents the output of a <code>PurchaseReservedCacheNodesOffering</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ReservedCacheNode {
     /// <p>The number of cache nodes that have been reserved.</p>
@@ -6248,7 +6248,7 @@ impl ReservedCacheNodeListDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeReservedCacheNodes</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ReservedCacheNodeMessage {
     /// <p>Provides an identifier to allow retrieval of paginated results.</p>
@@ -6289,7 +6289,7 @@ impl ReservedCacheNodeMessageDeserializer {
     }
 }
 /// <p>Describes all of the attributes of a reserved cache node offering.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ReservedCacheNodesOffering {
     /// <p><p>The cache node type for the reserved cache node.</p> <p>The following node types are supported by ElastiCache. Generally speaking, the current generation types provide more memory and computational power at lower cost when compared to their equivalent previous generation counterparts.</p> <ul> <li> <p>General purpose:</p> <ul> <li> <p>Current generation: </p> <p> <b>M5 node types:</b> <code>cache.m5.large</code>, <code>cache.m5.xlarge</code>, <code>cache.m5.2xlarge</code>, <code>cache.m5.4xlarge</code>, <code>cache.m5.12xlarge</code>, <code>cache.m5.24xlarge</code> </p> <p> <b>M4 node types:</b> <code>cache.m4.large</code>, <code>cache.m4.xlarge</code>, <code>cache.m4.2xlarge</code>, <code>cache.m4.4xlarge</code>, <code>cache.m4.10xlarge</code> </p> <p> <b>T2 node types:</b> <code>cache.t2.micro</code>, <code>cache.t2.small</code>, <code>cache.t2.medium</code> </p> </li> <li> <p>Previous generation: (not recommended)</p> <p> <b>T1 node types:</b> <code>cache.t1.micro</code> </p> <p> <b>M1 node types:</b> <code>cache.m1.small</code>, <code>cache.m1.medium</code>, <code>cache.m1.large</code>, <code>cache.m1.xlarge</code> </p> <p> <b>M3 node types:</b> <code>cache.m3.medium</code>, <code>cache.m3.large</code>, <code>cache.m3.xlarge</code>, <code>cache.m3.2xlarge</code> </p> </li> </ul> </li> <li> <p>Compute optimized:</p> <ul> <li> <p>Previous generation: (not recommended)</p> <p> <b>C1 node types:</b> <code>cache.c1.xlarge</code> </p> </li> </ul> </li> <li> <p>Memory optimized:</p> <ul> <li> <p>Current generation: </p> <p> <b>R5 node types:</b> <code>cache.r5.large</code>, <code>cache.r5.xlarge</code>, <code>cache.r5.2xlarge</code>, <code>cache.r5.4xlarge</code>, <code>cache.r5.12xlarge</code>, <code>cache.r5.24xlarge</code> </p> <p> <b>R4 node types:</b> <code>cache.r4.large</code>, <code>cache.r4.xlarge</code>, <code>cache.r4.2xlarge</code>, <code>cache.r4.4xlarge</code>, <code>cache.r4.8xlarge</code>, <code>cache.r4.16xlarge</code> </p> </li> <li> <p>Previous generation: (not recommended)</p> <p> <b>M2 node types:</b> <code>cache.m2.xlarge</code>, <code>cache.m2.2xlarge</code>, <code>cache.m2.4xlarge</code> </p> <p> <b>R3 node types:</b> <code>cache.r3.large</code>, <code>cache.r3.xlarge</code>, <code>cache.r3.2xlarge</code>, <code>cache.r3.4xlarge</code>, <code>cache.r3.8xlarge</code> </p> </li> </ul> </li> </ul> <p> <b>Additional node type info</b> </p> <ul> <li> <p>All current generation instance types are created in Amazon VPC by default.</p> </li> <li> <p>Redis append-only files (AOF) are not supported for T1 or T2 instances.</p> </li> <li> <p>Redis Multi-AZ with automatic failover is not supported on T1 instances.</p> </li> <li> <p>Redis configuration variables <code>appendonly</code> and <code>appendfsync</code> are not supported on Redis version 2.8.22 and later.</p> </li> </ul></p>
@@ -6390,7 +6390,7 @@ impl ReservedCacheNodesOfferingListDeserializer {
     }
 }
 /// <p>Represents the output of a <code>DescribeReservedCacheNodesOfferings</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ReservedCacheNodesOfferingMessage {
     /// <p>Provides an identifier to allow retrieval of paginated results.</p>
@@ -6431,7 +6431,7 @@ impl ReservedCacheNodesOfferingMessageDeserializer {
     }
 }
 /// <p>Represents the input of a <code>ResetCacheParameterGroup</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ResetCacheParameterGroupMessage {
     /// <p>The name of the cache parameter group to reset.</p>
@@ -6469,7 +6469,7 @@ impl ResetCacheParameterGroupMessageSerializer {
 }
 
 /// <p>A list of <code>PreferredAvailabilityZones</code> objects that specifies the configuration of a node group in the resharded cluster.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ReshardingConfiguration {
     /// <p>Either the ElastiCache for Redis supplied 4-digit id or a user supplied id for the node group these configuration values apply to.</p>
@@ -6512,7 +6512,7 @@ impl ReshardingConfigurationListSerializer {
 }
 
 /// <p>The status of an online resharding operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ReshardingStatus {
     /// <p>Represents the progress of an online resharding operation.</p>
@@ -6542,7 +6542,7 @@ impl ReshardingStatusDeserializer {
     }
 }
 /// <p>Represents the input of a <code>RevokeCacheSecurityGroupIngress</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RevokeCacheSecurityGroupIngressMessage {
     /// <p>The name of the cache security group to revoke ingress from.</p>
@@ -6577,7 +6577,7 @@ impl RevokeCacheSecurityGroupIngressMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct RevokeCacheSecurityGroupIngressResult {
     pub cache_security_group: Option<CacheSecurityGroup>,
@@ -6623,7 +6623,7 @@ impl SecurityGroupIdsListSerializer {
 }
 
 /// <p>Represents a single cache security group and its status.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct SecurityGroupMembership {
     /// <p>The identifier of the cache security group.</p>
@@ -6680,7 +6680,7 @@ impl SecurityGroupMembershipListDeserializer {
     }
 }
 /// <p>An update that you can apply to your Redis clusters.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ServiceUpdate {
     /// <p>Indicates whether the service update will be automatically applied once the recommended apply-by date has expired. </p>
@@ -6862,7 +6862,7 @@ impl ServiceUpdateTypeDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ServiceUpdatesMessage {
     /// <p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>
@@ -6908,7 +6908,7 @@ impl SlaMetDeserializer {
     }
 }
 /// <p>Represents the progress of an online resharding operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct SlotMigration {
     /// <p>The percentage of the slot migration that is complete.</p>
@@ -6938,7 +6938,7 @@ impl SlotMigrationDeserializer {
     }
 }
 /// <p>Represents a copy of an entire Redis cluster as of the time when the snapshot was taken.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Snapshot {
     /// <p>This parameter is currently disabled.</p>
@@ -7172,7 +7172,7 @@ impl SourceTypeDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartMigrationMessage {
     /// <p>List of endpoints from which data should be migrated. For Redis (cluster mode disabled), list should have only one element.</p>
@@ -7202,7 +7202,7 @@ impl StartMigrationMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct StartMigrationResponse {
     pub replication_group: Option<ReplicationGroup>,
@@ -7243,7 +7243,7 @@ impl StringDeserializer {
     }
 }
 /// <p>Represents the subnet associated with a cluster. This parameter refers to subnets defined in Amazon Virtual Private Cloud (Amazon VPC) and used with ElastiCache.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Subnet {
     /// <p>The Availability Zone associated with the subnet.</p>
@@ -7318,7 +7318,7 @@ impl TStampDeserializer {
     }
 }
 /// <p>A cost allocation Tag that can be added to an ElastiCache cluster or replication group. Tags are composed of a Key/Value pair. A tag with a null Value is permitted.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Tag {
@@ -7397,7 +7397,7 @@ impl TagListSerializer {
 }
 
 /// <p>Represents the output from the <code>AddTagsToResource</code>, <code>ListTagsForResource</code>, and <code>RemoveTagsFromResource</code> operations.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct TagListMessage {
     /// <p>A list of cost allocation tags as key-value pairs.</p>
@@ -7425,7 +7425,7 @@ impl TagListMessageDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TestFailoverMessage {
     /// <p>The name of the node group (called shard in the console) in this replication group on which automatic failover is to be tested. You may test automatic failover on up to 5 node groups in any rolling 24-hour period.</p>
@@ -7451,7 +7451,7 @@ impl TestFailoverMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct TestFailoverResult {
     pub replication_group: Option<ReplicationGroup>,
@@ -7480,7 +7480,7 @@ impl TestFailoverResultDeserializer {
     }
 }
 /// <p>Filters update actions from the service updates that are in available status during the time range.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TimeRangeFilter {
     /// <p>The end time of the time range filter</p>
@@ -7508,7 +7508,7 @@ impl TimeRangeFilterSerializer {
 }
 
 /// <p>Update action that has failed to be processed for the corresponding apply/stop request</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct UnprocessedUpdateAction {
     /// <p>The ID of the cache cluster</p>
@@ -7586,7 +7586,7 @@ impl UnprocessedUpdateActionListDeserializer {
     }
 }
 /// <p>The status of the service update for a specific replication group</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct UpdateAction {
     /// <p>The ID of the cache cluster</p>
@@ -7758,7 +7758,7 @@ impl UpdateActionListDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct UpdateActionResultsMessage {
     /// <p>Update actions that have been processed successfully</p>
@@ -7827,7 +7827,7 @@ impl UpdateActionStatusListSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct UpdateActionsMessage {
     /// <p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>

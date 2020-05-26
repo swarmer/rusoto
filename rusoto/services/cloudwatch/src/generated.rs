@@ -73,7 +73,7 @@ impl AlarmDescriptionDeserializer {
     }
 }
 /// <p>Represents the history of a specific alarm.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct AlarmHistoryItem {
     /// <p>The descriptive name for the alarm.</p>
@@ -169,7 +169,7 @@ impl AlarmNamesSerializer {
 }
 
 /// <p>An anomaly detection model associated with a particular CloudWatch metric and statistic. You can use the model to display a band of expected normal values when the metric is graphed.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct AnomalyDetector {
     /// <p>The configuration specifies details about how the anomaly detection model is to be trained, including time ranges to exclude from use for training the model, and the time zone to use for the metric.</p>
@@ -231,7 +231,7 @@ impl AnomalyDetectorDeserializer {
     }
 }
 /// <p>The configuration specifies details about how the anomaly detection model is to be trained, including time ranges to exclude from use for training the model and the time zone to use for the metric.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AnomalyDetectorConfiguration {
@@ -456,7 +456,7 @@ impl DashboardEntriesDeserializer {
     }
 }
 /// <p>Represents a specific dashboard.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DashboardEntry {
     /// <p>The Amazon Resource Name (ARN) of the dashboard.</p>
@@ -531,7 +531,7 @@ impl DashboardNamesSerializer {
 }
 
 /// <p>An error or warning for the operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DashboardValidationMessage {
     /// <p>The data path related to the message.</p>
@@ -599,7 +599,7 @@ impl DataPathDeserializer {
     }
 }
 /// <p>Encapsulates the statistical data that CloudWatch computes from metric data.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Datapoint {
     /// <p>The average of the metric values that correspond to the data point.</p>
@@ -750,7 +750,7 @@ impl DatapointsToAlarmDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAlarmsInput {
     /// <p>The alarms to be deleted.</p>
@@ -774,7 +774,7 @@ impl DeleteAlarmsInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAnomalyDetectorInput {
     /// <p>The metric dimensions associated with the anomaly detection model to delete.</p>
@@ -809,7 +809,7 @@ impl DeleteAnomalyDetectorInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DeleteAnomalyDetectorOutput {}
 
@@ -830,7 +830,7 @@ impl DeleteAnomalyDetectorOutputDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDashboardsInput {
     /// <p>The dashboards to be deleted. This parameter is required.</p>
@@ -854,7 +854,7 @@ impl DeleteDashboardsInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DeleteDashboardsOutput {}
 
@@ -875,7 +875,7 @@ impl DeleteDashboardsOutputDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteInsightRulesInput {
     /// <p>An array of the rule names to delete. If you need to find out the names of your rules, use <a>DescribeInsightRules</a>.</p>
@@ -899,7 +899,7 @@ impl DeleteInsightRulesInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DeleteInsightRulesOutput {
     /// <p>An array listing the rules that could not be deleted. You cannot delete built-in rules.</p>
@@ -931,7 +931,7 @@ impl DeleteInsightRulesOutputDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAlarmHistoryInput {
     /// <p>The name of the alarm.</p>
@@ -978,7 +978,7 @@ impl DescribeAlarmHistoryInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeAlarmHistoryOutput {
     /// <p>The alarm histories, in JSON format.</p>
@@ -1016,7 +1016,7 @@ impl DescribeAlarmHistoryOutputDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAlarmsForMetricInput {
     /// <p>The dimensions associated with the metric. If the metric has any associated dimensions, you must specify them in order for the call to succeed.</p>
@@ -1068,7 +1068,7 @@ impl DescribeAlarmsForMetricInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeAlarmsForMetricOutput {
     /// <p>The information for each alarm with the specified metric.</p>
@@ -1100,7 +1100,7 @@ impl DescribeAlarmsForMetricOutputDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAlarmsInput {
     /// <p>The action name prefix.</p>
@@ -1151,7 +1151,7 @@ impl DescribeAlarmsInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeAlarmsOutput {
     /// <p>The information for the specified alarms.</p>
@@ -1184,7 +1184,7 @@ impl DescribeAlarmsOutputDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAnomalyDetectorsInput {
     /// <p>Limits the results to only the anomaly detection models that are associated with the specified metric dimensions. If there are multiple metrics that have these dimensions and have anomaly detection models associated, they're all returned.</p>
@@ -1230,7 +1230,7 @@ impl DescribeAnomalyDetectorsInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeAnomalyDetectorsOutput {
     /// <p>The list of anomaly detection models returned by the operation.</p>
@@ -1268,7 +1268,7 @@ impl DescribeAnomalyDetectorsOutputDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInsightRulesInput {
     /// <p>This parameter is not currently used. Reserved for future use. If it is used in the future, the maximum value may be different.</p>
@@ -1295,7 +1295,7 @@ impl DescribeInsightRulesInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeInsightRulesOutput {
     /// <p>The rules returned by the operation.</p>
@@ -1334,7 +1334,7 @@ impl DescribeInsightRulesOutputDeserializer {
     }
 }
 /// <p>Expands the identity of a metric.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Dimension {
@@ -1382,7 +1382,7 @@ impl DimensionSerializer {
 }
 
 /// <p>Represents filters for a dimension.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DimensionFilter {
     /// <p>The dimension name to be matched.</p>
@@ -1472,7 +1472,7 @@ impl DimensionsSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableAlarmActionsInput {
     /// <p>The names of the alarms.</p>
@@ -1496,7 +1496,7 @@ impl DisableAlarmActionsInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisableInsightRulesInput {
     /// <p>An array of the rule names to disable. If you need to find out the names of your rules, use <a>DescribeInsightRules</a>.</p>
@@ -1520,7 +1520,7 @@ impl DisableInsightRulesInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DisableInsightRulesOutput {
     /// <p>An array listing the rules that could not be disabled. You cannot disable built-in rules.</p>
@@ -1552,7 +1552,7 @@ impl DisableInsightRulesOutputDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableAlarmActionsInput {
     /// <p>The names of the alarms.</p>
@@ -1576,7 +1576,7 @@ impl EnableAlarmActionsInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnableInsightRulesInput {
     /// <p>An array of the rule names to enable. If you need to find out the names of your rules, use <a>DescribeInsightRules</a>.</p>
@@ -1600,7 +1600,7 @@ impl EnableInsightRulesInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EnableInsightRulesOutput {
     /// <p>An array listing the rules that could not be enabled. You cannot disable or enable built-in rules.</p>
@@ -1728,7 +1728,7 @@ impl FailureResourceDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDashboardInput {
     /// <p>The name of the dashboard to be described.</p>
@@ -1751,7 +1751,7 @@ impl GetDashboardInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct GetDashboardOutput {
     /// <p>The Amazon Resource Name (ARN) of the dashboard.</p>
@@ -1796,7 +1796,7 @@ impl GetDashboardOutputDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetInsightRuleReportInput {
     /// <p>The end time of the data to use in the report. When used in a raw HTTP Query API, it is formatted as <code>yyyy-MM-dd'T'HH:mm:ss</code>. For example, <code>2019-07-01T23:59:59</code>.</p>
@@ -1847,7 +1847,7 @@ impl GetInsightRuleReportInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct GetInsightRuleReportOutput {
     /// <p>The sum of the values from all individual contributors that match the rule.</p>
@@ -1929,7 +1929,7 @@ impl GetInsightRuleReportOutputDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMetricDataInput {
     /// <p>The time stamp indicating the latest data to be returned.</p> <p>The value specified is exclusive; results include data points up to the specified time stamp.</p> <p>For better performance, specify <code>StartTime</code> and <code>EndTime</code> values that align with the value of the metric's <code>Period</code> and sync up with the beginning and end of an hour. For example, if the <code>Period</code> of a metric is 5 minutes, specifying 12:05 or 12:30 as <code>EndTime</code> can get a faster response from CloudWatch than setting 12:07 or 12:29 as the <code>EndTime</code>.</p>
@@ -1974,7 +1974,7 @@ impl GetMetricDataInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct GetMetricDataOutput {
     /// <p>Contains a message about this <code>GetMetricData</code> operation, if the operation results in such a message. An example of a message that may be returned is <code>Maximum number of allowed metrics exceeded</code>. If there is a message, as much of the operation as possible is still executed.</p> <p>A message appears here only if it is related to the global <code>GetMetricData</code> operation. Any message about a specific metric returned by the operation appears in the <code>MetricDataResult</code> object returned for that metric.</p>
@@ -2014,7 +2014,7 @@ impl GetMetricDataOutputDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMetricStatisticsInput {
     /// <p>The dimensions. If the metric contains multiple dimensions, you must include a value for each dimension. CloudWatch treats each unique combination of dimensions as a separate metric. If a specific combination of dimensions was not published, you can't retrieve statistics for it. You must specify the same dimensions that were used when the metrics were created. For an example, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#dimension-combinations">Dimension Combinations</a> in the <i>Amazon CloudWatch User Guide</i>. For more information about specifying dimensions, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html">Publishing Metrics</a> in the <i>Amazon CloudWatch User Guide</i>.</p>
@@ -2078,7 +2078,7 @@ impl GetMetricStatisticsInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct GetMetricStatisticsOutput {
     /// <p>The data points for the specified metric.</p>
@@ -2115,7 +2115,7 @@ impl GetMetricStatisticsOutputDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetMetricWidgetImageInput {
     /// <p>A JSON string that defines the bitmap graph to be retrieved. The string includes the metrics to include in the graph, statistics, annotations, title, axis limits, and so on. You can include only one <code>MetricWidget</code> parameter in each <code>GetMetricWidgetImage</code> call.</p> <p>For more information about the syntax of <code>MetricWidget</code> see <a>CloudWatch-Metric-Widget-Structure</a>.</p> <p>If any metric on the graph could not load all the requested data points, an orange triangle with an exclamation point appears next to the graph legend.</p>
@@ -2140,7 +2140,7 @@ impl GetMetricWidgetImageInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct GetMetricWidgetImageOutput {
     /// <p>The image of the graph, in the output format specified.</p>
@@ -2210,7 +2210,7 @@ impl HistorySummaryDeserializer {
     }
 }
 /// <p>This structure contains the definition for a Contributor Insights rule.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct InsightRule {
     /// <p>The definition of the rule, as a JSON object. The definition contains the keywords used to define contributors, the value to aggregate on if this rule returns a sum instead of a count, and the filters. For details on the valid syntax, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContributorInsights-RuleSyntax.html">Contributor Insights Rule Syntax</a>.</p>
@@ -2265,7 +2265,7 @@ impl InsightRuleAggregationStatisticDeserializer {
     }
 }
 /// <p>One of the unique contributors found by a Contributor Insights rule. If the rule contains multiple keys, then a unique contributor is a unique combination of values from all the keys in the rule.</p> <p>If the rule contains a single key, then each unique contributor is each unique value for this key.</p> <p>For more information, see <a>GetInsightRuleReport</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct InsightRuleContributor {
     /// <p>An approximation of the aggregate value that comes from this contributor.</p>
@@ -2314,7 +2314,7 @@ impl InsightRuleContributorDeserializer {
     }
 }
 /// <p>One data point related to one contributor.</p> <p>For more information, see <a>GetInsightRuleReport</a> and <a>InsightRuleContributor</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct InsightRuleContributorDatapoint {
     /// <p>The approximate value that this contributor added during this timestamp.</p>
@@ -2469,7 +2469,7 @@ impl InsightRuleDefinitionDeserializer {
     }
 }
 /// <p>One data point from the metric time series returned in a Contributor Insights rule report.</p> <p>For more information, see <a>GetInsightRuleReport</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct InsightRuleMetricDatapoint {
     /// <p>The average value from all contributors during the time period represented by that data point.</p> <p>This statistic is returned only if you included it in the <code>Metrics</code> array in your request.</p>
@@ -2687,7 +2687,7 @@ impl LastModifiedDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDashboardsInput {
     /// <p>If you specify this parameter, only the dashboards with names starting with the specified string are listed. The maximum length is 255, and valid characters are A-Z, a-z, 0-9, ".", "-", and "_". </p>
@@ -2717,7 +2717,7 @@ impl ListDashboardsInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ListDashboardsOutput {
     /// <p>The list of matching dashboards.</p>
@@ -2750,7 +2750,7 @@ impl ListDashboardsOutputDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListMetricsInput {
     /// <p>The dimensions to filter against.</p>
@@ -2791,7 +2791,7 @@ impl ListMetricsInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ListMetricsOutput {
     /// <p>The metrics.</p>
@@ -2824,7 +2824,7 @@ impl ListMetricsOutputDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceInput {
     /// <p>The ARN of the CloudWatch resource that you want to view tags for. For more information on ARN format, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-cloudwatch">Example ARNs</a> in the <i>Amazon Web Services General Reference</i>.</p>
@@ -2844,7 +2844,7 @@ impl ListTagsForResourceInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ListTagsForResourceOutput {
     /// <p>The list of tag keys and values associated with the resource you specified.</p>
@@ -2889,7 +2889,7 @@ impl MessageDeserializer {
     }
 }
 /// <p>A message returned by the <code>GetMetricData</code>API, including a code and a description.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct MessageData {
     /// <p>The error code or status code associated with the message.</p>
@@ -2945,7 +2945,7 @@ impl MessageDataValueDeserializer {
     }
 }
 /// <p>Represents a specific metric.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Metric {
@@ -3009,7 +3009,7 @@ impl MetricSerializer {
 }
 
 /// <p>Represents an alarm.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct MetricAlarm {
     /// <p>Indicates whether actions should be executed during any changes to the alarm state.</p>
@@ -3277,7 +3277,7 @@ impl MetricDataQueriesSerializer {
 }
 
 /// <p>This structure is used in both <code>GetMetricData</code> and <code>PutMetricAlarm</code>. The supported use of this structure is different for those two operations.</p> <p>When used in <code>GetMetricData</code>, it indicates the metric data to return, and whether this call is just retrieving a batch set of data for one metric, or is performing a math expression on metric data. A single <code>GetMetricData</code> call can include up to 100 <code>MetricDataQuery</code> structures.</p> <p>When used in <code>PutMetricAlarm</code>, it enables you to create an alarm based on a metric math expression. Each <code>MetricDataQuery</code> in the array specifies either a metric to retrieve, or a math expression to be performed on retrieved metrics. A single <code>PutMetricAlarm</code> call can include up to 20 <code>MetricDataQuery</code> structures in the array. The 20 structures can include as many as 10 structures that contain a <code>MetricStat</code> parameter to retrieve a metric, and as many as 10 structures that contain the <code>Expression</code> parameter to perform a math expression. Of those <code>Expression</code> structures, one must have <code>True</code> as the value for <code>ReturnData</code>. The result of this expression is the value the alarm watches.</p> <p>Any expression used in a <code>PutMetricAlarm</code> operation must return a single time series. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/using-metric-math.html#metric-math-syntax">Metric Math Syntax and Functions</a> in the <i>Amazon CloudWatch User Guide</i>.</p> <p>Some of the parameters of this structure also have different uses whether you are using this structure in a <code>GetMetricData</code> operation or a <code>PutMetricAlarm</code> operation. These differences are explained in the following parameter list.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MetricDataQuery {
@@ -3368,7 +3368,7 @@ impl MetricDataQuerySerializer {
 }
 
 /// <p>A <code>GetMetricData</code> call returns an array of <code>MetricDataResult</code> structures. Each of these structures includes the data points for that metric, along with the timestamps of those data points and other identifying information.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct MetricDataResult {
     /// <p>The short name you specified to represent this metric.</p>
@@ -3463,7 +3463,7 @@ impl MetricDataResultsDeserializer {
     }
 }
 /// <p>Encapsulates the information sent to either create a metric or add new values to be aggregated into an existing metric.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MetricDatum {
     /// <p>Array of numbers that is used along with the <code>Values</code> array. Each number in the <code>Count</code> array is the number of times the corresponding value in the <code>Values</code> array occurred during the period. </p> <p>If you omit the <code>Counts</code> array, the default of 1 is used as the value for each count. If you include a <code>Counts</code> array, it must include the same amount of values as the <code>Values</code> array.</p>
@@ -3580,7 +3580,7 @@ impl MetricNameDeserializer {
     }
 }
 /// <p>This structure defines the metric to be returned, along with the statistics, period, and units.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MetricStat {
@@ -3699,7 +3699,7 @@ impl NextTokenDeserializer {
     }
 }
 /// <p>This array is empty if the API operation was successful for all the rules specified in the request. If the operation could not process one of the rules, the following data is returned for each of those rules.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PartialFailure {
     /// <p>The type of error.</p>
@@ -3762,7 +3762,7 @@ impl PeriodDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutAnomalyDetectorInput {
     /// <p>The configuration specifies details about how the anomaly detection model is to be trained, including time ranges to exclude when training and updating the model. You can specify as many as 10 time ranges.</p> <p>The configuration can also include the time zone to use for the metric.</p> <p>You can in</p>
@@ -3806,7 +3806,7 @@ impl PutAnomalyDetectorInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PutAnomalyDetectorOutput {}
 
@@ -3827,7 +3827,7 @@ impl PutAnomalyDetectorOutputDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutDashboardInput {
     /// <p>The detailed information about the dashboard in JSON format, including the widgets to include and their location on the dashboard. This parameter is required.</p> <p>For more information about the syntax, see <a>CloudWatch-Dashboard-Body-Structure</a>.</p>
@@ -3856,7 +3856,7 @@ impl PutDashboardInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PutDashboardOutput {
     /// <p>If the input for <code>PutDashboard</code> was correct and the dashboard was successfully created or modified, this result is empty.</p> <p>If this result includes only warning messages, then the input was valid enough for the dashboard to be created or modified, but some elements of the dashboard may not render.</p> <p>If this result includes error messages, the input was not valid and the operation failed.</p>
@@ -3887,7 +3887,7 @@ impl PutDashboardOutputDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutInsightRuleInput {
     /// <p>The definition of the rule, as a JSON object. For details on the valid syntax, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContributorInsights-RuleSyntax.html">Contributor Insights Rule Syntax</a>.</p>
@@ -3918,7 +3918,7 @@ impl PutInsightRuleInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PutInsightRuleOutput {}
 
@@ -3939,7 +3939,7 @@ impl PutInsightRuleOutputDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutMetricAlarmInput {
     /// <p>Indicates whether actions should be executed during any changes to the alarm state. The default is <code>TRUE</code>.</p>
@@ -4089,7 +4089,7 @@ impl PutMetricAlarmInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PutMetricDataInput {
     /// <p>The data for the metric. The array can include no more than 20 metrics per call.</p>
@@ -4117,7 +4117,7 @@ impl PutMetricDataInputSerializer {
 }
 
 /// <p>Specifies one range of days or times to exclude from use for training an anomaly detection model.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Range {
@@ -4215,7 +4215,7 @@ impl ReturnDataDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SetAlarmStateInput {
     /// <p>The name for the alarm. This name must be unique within the AWS account. The maximum length is 255 characters.</p>
@@ -4331,7 +4331,7 @@ impl StatisticDeserializer {
     }
 }
 /// <p>Represents a set of statistics that describes a specific metric. </p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StatisticSet {
     /// <p>The maximum value of the sample set.</p>
@@ -4384,7 +4384,7 @@ impl StatusCodeDeserializer {
     }
 }
 /// <p>A key-value pair associated with a CloudWatch resource.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Tag {
@@ -4482,7 +4482,7 @@ impl TagListSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceInput {
     /// <p>The ARN of the CloudWatch alarm that you're adding tags to. The ARN format is <code>arn:aws:cloudwatch:<i>Region</i>:<i>account-id</i>:alarm:<i>alarm-name</i> </code> </p>
@@ -4505,7 +4505,7 @@ impl TagResourceInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct TagResourceOutput {}
 
@@ -4592,7 +4592,7 @@ impl TreatMissingDataDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceInput {
     /// <p>The ARN of the CloudWatch resource that you're removing tags from. For more information on ARN format, see <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-cloudwatch">Example ARNs</a> in the <i>Amazon Web Services General Reference</i>.</p>
@@ -4615,7 +4615,7 @@ impl UntagResourceInputSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct UntagResourceOutput {}
 

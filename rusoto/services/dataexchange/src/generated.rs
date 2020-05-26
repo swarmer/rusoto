@@ -26,7 +26,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>The destination for the asset.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AssetDestinationEntry {
     /// <p>The unique identifier for the asset.</p>
     #[serde(rename = "AssetId")]
@@ -40,7 +40,7 @@ pub struct AssetDestinationEntry {
     pub key: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssetDetails {
     #[serde(rename = "S3SnapshotAsset")]
@@ -49,7 +49,7 @@ pub struct AssetDetails {
 }
 
 /// <p>An asset in AWS Data Exchange is a piece of data that can be stored as an S3 object. The asset can be a structured data file, an image file, or some other data file. When you create an import job for your files, you create an asset in AWS Data Exchange for each of those files.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssetEntry {
     /// <p>The ARN for the asset.</p>
@@ -86,7 +86,7 @@ pub struct AssetEntry {
 }
 
 /// <p>The source of the assets.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AssetSourceEntry {
     /// <p>The S3 bucket that's part of the source of the asset.</p>
     #[serde(rename = "Bucket")]
@@ -96,7 +96,7 @@ pub struct AssetSourceEntry {
     pub key: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelJobRequest {
     /// <p>The unique identifier for a job.</p>
@@ -105,7 +105,7 @@ pub struct CancelJobRequest {
 }
 
 /// <p>The request body for CreateDataSet.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateDataSetRequest {
     /// <p>The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT.</p>
@@ -123,7 +123,7 @@ pub struct CreateDataSetRequest {
     pub tags: Option<::std::collections::HashMap<String, String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateDataSetResponse {
     /// <p>The ARN for the data set.</p>
@@ -173,7 +173,7 @@ pub struct CreateDataSetResponse {
 }
 
 /// <p>The request body for CreateJob.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateJobRequest {
     /// <p>The details for the CreateJob request.</p>
@@ -184,7 +184,7 @@ pub struct CreateJobRequest {
     pub type_: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateJobResponse {
     /// <p>The ARN for the job.</p>
@@ -222,7 +222,7 @@ pub struct CreateJobResponse {
 }
 
 /// <p>The request body for CreateRevision.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateRevisionRequest {
     /// <p>An optional comment about the revision.</p>
@@ -238,7 +238,7 @@ pub struct CreateRevisionRequest {
     pub tags: Option<::std::collections::HashMap<String, String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateRevisionResponse {
     /// <p>The ARN for the revision</p>
@@ -280,7 +280,7 @@ pub struct CreateRevisionResponse {
 }
 
 /// <p>A data set is an AWS resource with one or more revisions.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DataSetEntry {
     /// <p>The ARN for the data set.</p>
@@ -317,7 +317,7 @@ pub struct DataSetEntry {
     pub updated_at: f64,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAssetRequest {
     /// <p>The unique identifier for an asset.</p>
@@ -331,7 +331,7 @@ pub struct DeleteAssetRequest {
     pub revision_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteDataSetRequest {
     /// <p>The unique identifier for a data set.</p>
@@ -339,7 +339,7 @@ pub struct DeleteDataSetRequest {
     pub data_set_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteRevisionRequest {
     /// <p>The unique identifier for a data set.</p>
@@ -350,7 +350,7 @@ pub struct DeleteRevisionRequest {
     pub revision_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Details {
     #[serde(rename = "ImportAssetFromSignedUrlJobErrorDetails")]
@@ -363,7 +363,7 @@ pub struct Details {
 }
 
 /// <p>Details of the operation to be performed by the job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExportAssetToSignedUrlRequestDetails {
     /// <p>The unique identifier for the asset that is exported to a signed URL.</p>
@@ -378,7 +378,7 @@ pub struct ExportAssetToSignedUrlRequestDetails {
 }
 
 /// <p>The details of the export to signed URL response.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportAssetToSignedUrlResponseDetails {
     /// <p>The unique identifier for the asset associated with this export job.</p>
@@ -401,7 +401,7 @@ pub struct ExportAssetToSignedUrlResponseDetails {
 }
 
 /// <p>Details of the operation to be performed by the job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ExportAssetsToS3RequestDetails {
     /// <p>The destination for the asset.</p>
@@ -416,7 +416,7 @@ pub struct ExportAssetsToS3RequestDetails {
 }
 
 /// <p>Details about the export to Amazon S3 response.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ExportAssetsToS3ResponseDetails {
     /// <p>The destination in Amazon S3 where the asset is exported.</p>
@@ -430,7 +430,7 @@ pub struct ExportAssetsToS3ResponseDetails {
     pub revision_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetAssetRequest {
     /// <p>The unique identifier for an asset.</p>
@@ -444,7 +444,7 @@ pub struct GetAssetRequest {
     pub revision_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetAssetResponse {
     /// <p>The ARN for the asset.</p>
@@ -489,7 +489,7 @@ pub struct GetAssetResponse {
     pub updated_at: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetDataSetRequest {
     /// <p>The unique identifier for a data set.</p>
@@ -497,7 +497,7 @@ pub struct GetDataSetRequest {
     pub data_set_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetDataSetResponse {
     /// <p>The ARN for the data set.</p>
@@ -546,7 +546,7 @@ pub struct GetDataSetResponse {
     pub updated_at: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetJobRequest {
     /// <p>The unique identifier for a job.</p>
@@ -554,7 +554,7 @@ pub struct GetJobRequest {
     pub job_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetJobResponse {
     /// <p>The ARN for the job.</p>
@@ -591,7 +591,7 @@ pub struct GetJobResponse {
     pub updated_at: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetRevisionRequest {
     /// <p>The unique identifier for a data set.</p>
@@ -602,7 +602,7 @@ pub struct GetRevisionRequest {
     pub revision_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetRevisionResponse {
     /// <p>The ARN for the revision</p>
@@ -643,7 +643,7 @@ pub struct GetRevisionResponse {
     pub updated_at: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImportAssetFromSignedUrlJobErrorDetails {
     #[serde(rename = "AssetName")]
@@ -651,7 +651,7 @@ pub struct ImportAssetFromSignedUrlJobErrorDetails {
 }
 
 /// <p>Details of the operation to be performed by the job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ImportAssetFromSignedUrlRequestDetails {
     /// <p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name.</p>
@@ -669,7 +669,7 @@ pub struct ImportAssetFromSignedUrlRequestDetails {
 }
 
 /// <p>The details in the response for an import request, including the signed URL and other information.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImportAssetFromSignedUrlResponseDetails {
     /// <p>The name for the asset associated with this import response.</p>
@@ -696,7 +696,7 @@ pub struct ImportAssetFromSignedUrlResponseDetails {
 }
 
 /// <p>Details of the operation to be performed by the job.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ImportAssetsFromS3RequestDetails {
     /// <p>Is a list of S3 bucket and object key pairs.</p>
@@ -711,7 +711,7 @@ pub struct ImportAssetsFromS3RequestDetails {
 }
 
 /// <p>Details from an import from Amazon S3 response.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ImportAssetsFromS3ResponseDetails {
     /// <p>Is a list of Amazon S3 bucket and object key pairs.</p>
@@ -726,7 +726,7 @@ pub struct ImportAssetsFromS3ResponseDetails {
 }
 
 /// <p>AWS Data Exchange Jobs are asynchronous import or export operations used to create or copy assets. A data set owner can both import and export as they see fit. Someone with an entitlement to a data set can only export. Jobs are deleted 90 days after they are created.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobEntry {
     /// <p>The ARN for the job.</p>
@@ -757,7 +757,7 @@ pub struct JobEntry {
 }
 
 /// <p>An error that occurred with the job request.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JobError {
     /// <p>The code for the job error.</p>
@@ -787,7 +787,7 @@ pub struct JobError {
     pub resource_type: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDataSetRevisionsRequest {
     /// <p>The unique identifier for a data set.</p>
@@ -803,7 +803,7 @@ pub struct ListDataSetRevisionsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDataSetRevisionsResponse {
     /// <p>The token value retrieved from a previous call to access the next page of results.</p>
@@ -816,7 +816,7 @@ pub struct ListDataSetRevisionsResponse {
     pub revisions: Option<Vec<RevisionEntry>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListDataSetsRequest {
     /// <p>The maximum number of results returned by a single call.</p>
@@ -833,7 +833,7 @@ pub struct ListDataSetsRequest {
     pub origin: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDataSetsResponse {
     /// <p>The data set objects listed by the request.</p>
@@ -846,7 +846,7 @@ pub struct ListDataSetsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListJobsRequest {
     /// <p>The unique identifier for a data set.</p>
@@ -867,7 +867,7 @@ pub struct ListJobsRequest {
     pub revision_id: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListJobsResponse {
     /// <p>The jobs listed by the request.</p>
@@ -880,7 +880,7 @@ pub struct ListJobsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRevisionAssetsRequest {
     /// <p>The unique identifier for a data set.</p>
@@ -899,7 +899,7 @@ pub struct ListRevisionAssetsRequest {
     pub revision_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRevisionAssetsResponse {
     /// <p>The asset objects listed by the request.</p>
@@ -912,7 +912,7 @@ pub struct ListRevisionAssetsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.</p>
@@ -920,7 +920,7 @@ pub struct ListTagsForResourceRequest {
     pub resource_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <p>A label that consists of a customer-defined key and an optional value.</p>
@@ -929,7 +929,7 @@ pub struct ListTagsForResourceResponse {
     pub tags: Option<::std::collections::HashMap<String, String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OriginDetails {
     #[serde(rename = "ProductId")]
@@ -937,7 +937,7 @@ pub struct OriginDetails {
 }
 
 /// <p>The details for the request.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RequestDetails {
     /// <p>Details about the export to signed URL request.</p>
@@ -959,7 +959,7 @@ pub struct RequestDetails {
 }
 
 /// <p>Details for the response.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ResponseDetails {
     /// <p>Details for the export to signed URL response.</p>
@@ -981,7 +981,7 @@ pub struct ResponseDetails {
 }
 
 /// <p>A revision is a container for one or more assets.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RevisionEntry {
     /// <p>The ARN for the revision.</p>
@@ -1014,7 +1014,7 @@ pub struct RevisionEntry {
 }
 
 /// <p>The S3 object that is the asset.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct S3SnapshotAsset {
     /// <p>The size of the S3 object that is the object.</p>
@@ -1022,7 +1022,7 @@ pub struct S3SnapshotAsset {
     pub size: f64,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartJobRequest {
     /// <p>The unique identifier for a job.</p>
@@ -1030,12 +1030,12 @@ pub struct StartJobRequest {
     pub job_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartJobResponse {}
 
 /// <p>The request body for TagResource.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.</p>
@@ -1046,7 +1046,7 @@ pub struct TagResourceRequest {
     pub tags: ::std::collections::HashMap<String, String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <p>An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.</p>
@@ -1058,7 +1058,7 @@ pub struct UntagResourceRequest {
 }
 
 /// <p>The request body for UpdateAsset.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateAssetRequest {
     /// <p>The unique identifier for an asset.</p>
@@ -1075,7 +1075,7 @@ pub struct UpdateAssetRequest {
     pub revision_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateAssetResponse {
     /// <p>The ARN for the asset.</p>
@@ -1121,7 +1121,7 @@ pub struct UpdateAssetResponse {
 }
 
 /// <p>The request body for UpdateDataSet.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateDataSetRequest {
     /// <p>The unique identifier for a data set.</p>
@@ -1137,7 +1137,7 @@ pub struct UpdateDataSetRequest {
     pub name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateDataSetResponse {
     /// <p>The ARN for the data set.</p>
@@ -1183,7 +1183,7 @@ pub struct UpdateDataSetResponse {
 }
 
 /// <p>The request body for UpdateRevision.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateRevisionRequest {
     /// <p>An optional comment about the revision.</p>
@@ -1202,7 +1202,7 @@ pub struct UpdateRevisionRequest {
     pub revision_id: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateRevisionResponse {
     /// <p>The ARN for the revision.</p>

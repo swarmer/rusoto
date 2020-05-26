@@ -25,7 +25,7 @@ use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
 use serde::{Deserialize, Serialize};
 use serde_json;
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AssociateRepositoryRequest {
     /// <p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p> <p>If you want to add a new repository association, this parameter specifies a unique identifier for the new repository association that helps ensure idempotency.</p> <p>If you use the AWS CLI or one of the AWS SDK to call this operation, then you can leave this parameter empty. The CLI or SDK generates a random UUID for you and includes that in the request. If you don't use the SDK and instead generate a raw HTTP request to the Secrets Manager service endpoint, then you must generate a ClientRequestToken yourself for new versions and include that value in the request.</p> <p>You typically only need to interact with this value if you implement your own retry logic and want to ensure that a given repository association is not created twice. We recommend that you generate a UUID-type value to ensure uniqueness within the specified repository association.</p> <p>Amazon CodeGuru Reviewer uses this value to prevent the accidental creation of duplicate repository associations if there are failures and retries. </p>
@@ -37,7 +37,7 @@ pub struct AssociateRepositoryRequest {
     pub repository: Repository,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AssociateRepositoryResponse {
     /// <p>Information about the repository association.</p>
@@ -47,7 +47,7 @@ pub struct AssociateRepositoryResponse {
 }
 
 /// <p>Information about an AWS CodeCommit repository.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CodeCommitRepository {
     /// <p>The name of the AWS CodeCommit repository.</p>
@@ -55,7 +55,7 @@ pub struct CodeCommitRepository {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeRepositoryAssociationRequest {
     /// <p>The Amazon Resource Name (ARN) identifying the association.</p>
@@ -63,7 +63,7 @@ pub struct DescribeRepositoryAssociationRequest {
     pub association_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeRepositoryAssociationResponse {
     /// <p>Information about the repository association.</p>
@@ -72,7 +72,7 @@ pub struct DescribeRepositoryAssociationResponse {
     pub repository_association: Option<RepositoryAssociation>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DisassociateRepositoryRequest {
     /// <p>The Amazon Resource Name (ARN) identifying the association.</p>
@@ -80,7 +80,7 @@ pub struct DisassociateRepositoryRequest {
     pub association_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DisassociateRepositoryResponse {
     /// <p>Information about the disassociated repository.</p>
@@ -89,7 +89,7 @@ pub struct DisassociateRepositoryResponse {
     pub repository_association: Option<RepositoryAssociation>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListRepositoryAssociationsRequest {
     /// <p>The maximum number of repository association results returned by <code>ListRepositoryAssociations</code> in paginated output. When this parameter is used, <code>ListRepositoryAssociations</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListRepositoryAssociations</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListRepositoryAssociations</code> returns up to 100 results and a <code>nextToken</code> value if applicable. </p>
@@ -118,7 +118,7 @@ pub struct ListRepositoryAssociationsRequest {
     pub states: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListRepositoryAssociationsResponse {
     /// <p>The <code>nextToken</code> value to include in a future <code>ListRecommendations</code> request. When the results of a <code>ListRecommendations</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>
@@ -132,7 +132,7 @@ pub struct ListRepositoryAssociationsResponse {
 }
 
 /// <p>Information about a repository.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Repository {
     /// <p>Information about an AWS CodeCommit repository.</p>
@@ -142,7 +142,7 @@ pub struct Repository {
 }
 
 /// <p>Information about a repository association.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RepositoryAssociation {
     /// <p>The Amazon Resource Name (ARN) identifying the repository association.</p>
@@ -184,7 +184,7 @@ pub struct RepositoryAssociation {
 }
 
 /// <p>Information about a repository association.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RepositoryAssociationSummary {
     /// <p>The Amazon Resource Name (ARN) identifying the repository association.</p>

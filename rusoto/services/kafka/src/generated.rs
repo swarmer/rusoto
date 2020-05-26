@@ -27,7 +27,7 @@ use serde::{Deserialize, Serialize};
 use serde_json;
 /// <pre><code>        &lt;p&gt;Specifies the EBS volume upgrade information. The broker identifier must be set to the keyword ALL. This means the changes apply to all the brokers in the cluster.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct BrokerEBSVolumeInfo {
     /// <pre><code>        &lt;p&gt;The ID of the broker to update.&lt;/p&gt;
     /// </code></pre>
@@ -41,7 +41,7 @@ pub struct BrokerEBSVolumeInfo {
 
 /// <pre><code>        &lt;p&gt;Describes the setup to be used for Kafka broker nodes in the cluster.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct BrokerNodeGroupInfo {
     /// <pre><code>        &lt;p&gt;The distribution of broker nodes across Availability Zones. This is an optional parameter. If you don&#39;t specify it, Amazon MSK gives it the value DEFAULT. You can also explicitly set this parameter to the value DEFAULT. No other values are currently allowed.&lt;/p&gt;
     /// &lt;p&gt;Amazon MSK distributes the broker nodes evenly across the Availability Zones that correspond to the subnets you provide when you create the cluster.&lt;/p&gt;
@@ -73,7 +73,7 @@ pub struct BrokerNodeGroupInfo {
 
 /// <pre><code>        &lt;p&gt;BrokerNodeInfo&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BrokerNodeInfo {
     /// <pre><code>        &lt;p&gt;The attached elastic network interface of the broker.&lt;/p&gt;
@@ -110,7 +110,7 @@ pub struct BrokerNodeInfo {
 
 /// <pre><code>        &lt;p&gt;Information about the current software installed on the cluster.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct BrokerSoftwareInfo {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration used for the cluster. This field isn&#39;t visible in this preview release.&lt;/p&gt;
@@ -132,7 +132,7 @@ pub struct BrokerSoftwareInfo {
 
 /// <pre><code>        &lt;p&gt;Includes all client authentication information.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ClientAuthentication {
     /// <pre><code>        &lt;p&gt;Details for ClientAuthentication using TLS.&lt;/p&gt;
     /// </code></pre>
@@ -143,7 +143,7 @@ pub struct ClientAuthentication {
 
 /// <pre><code>        &lt;p&gt;Returns information about a cluster.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ClusterInfo {
     /// <pre><code>        &lt;p&gt;Arn of active cluster operation.&lt;/p&gt;
@@ -225,7 +225,7 @@ pub struct ClusterInfo {
 
 /// <pre><code>        &lt;p&gt;Returns information about a cluster operation.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ClusterOperationInfo {
     /// <pre><code>        &lt;p&gt;The ID of the API request that triggered this operation.&lt;/p&gt;
@@ -282,7 +282,7 @@ pub struct ClusterOperationInfo {
 
 /// <pre><code>        &lt;p&gt;Represents an MSK Configuration.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Configuration {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration.&lt;/p&gt;
@@ -313,7 +313,7 @@ pub struct Configuration {
 
 /// <pre><code>        &lt;p&gt;Specifies the configuration to use for the brokers.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ConfigurationInfo {
     /// <pre><code>        &lt;p&gt;ARN of the configuration to use.&lt;/p&gt;
     /// </code></pre>
@@ -327,7 +327,7 @@ pub struct ConfigurationInfo {
 
 /// <pre><code>        &lt;p&gt;Describes a configuration revision.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConfigurationRevision {
     /// <pre><code>        &lt;p&gt;The time when the configuration revision was created.&lt;/p&gt;
@@ -345,7 +345,7 @@ pub struct ConfigurationRevision {
     pub revision: i64,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateClusterRequest {
     /// <pre><code>        &lt;p&gt;Information about the broker nodes in the cluster.&lt;/p&gt;
@@ -396,7 +396,7 @@ pub struct CreateClusterRequest {
     pub tags: Option<::std::collections::HashMap<String, String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateClusterResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
@@ -416,7 +416,7 @@ pub struct CreateClusterResponse {
     pub state: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConfigurationRequest {
     /// <pre><code>        &lt;p&gt;The description of the configuration.&lt;/p&gt;
@@ -444,7 +444,7 @@ pub struct CreateConfigurationRequest {
     pub server_properties: bytes::Bytes,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateConfigurationResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration.&lt;/p&gt;
@@ -469,7 +469,7 @@ pub struct CreateConfigurationResponse {
     pub name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteClusterRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
@@ -483,7 +483,7 @@ pub struct DeleteClusterRequest {
     pub current_version: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteClusterResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
@@ -498,7 +498,7 @@ pub struct DeleteClusterResponse {
     pub state: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeClusterOperationRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the MSK cluster operation.&lt;/p&gt;
@@ -507,7 +507,7 @@ pub struct DescribeClusterOperationRequest {
     pub cluster_operation_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeClusterOperationResponse {
     /// <pre><code>        &lt;p&gt;Cluster operation information&lt;/p&gt;
@@ -517,7 +517,7 @@ pub struct DescribeClusterOperationResponse {
     pub cluster_operation_info: Option<ClusterOperationInfo>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeClusterRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
@@ -526,7 +526,7 @@ pub struct DescribeClusterRequest {
     pub cluster_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeClusterResponse {
     /// <pre><code>        &lt;p&gt;The cluster information.&lt;/p&gt;
@@ -536,7 +536,7 @@ pub struct DescribeClusterResponse {
     pub cluster_info: Option<ClusterInfo>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConfigurationRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies an MSK configuration and all of its revisions.&lt;/p&gt;
@@ -545,7 +545,7 @@ pub struct DescribeConfigurationRequest {
     pub arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeConfigurationResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration.&lt;/p&gt;
@@ -580,7 +580,7 @@ pub struct DescribeConfigurationResponse {
     pub name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConfigurationRevisionRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies an MSK configuration and all of its revisions.&lt;/p&gt;
@@ -593,7 +593,7 @@ pub struct DescribeConfigurationRevisionRequest {
     pub revision: i64,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeConfigurationRevisionResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the configuration.&lt;/p&gt;
@@ -631,7 +631,7 @@ pub struct DescribeConfigurationRevisionResponse {
 
 /// <pre><code>        &lt;p&gt;Contains information about the EBS storage volumes attached to Kafka broker nodes.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EBSStorageInfo {
     /// <pre><code>        &lt;p&gt;The size in GiB of the EBS volume for the data drive on each broker node.&lt;/p&gt;
     /// </code></pre>
@@ -642,7 +642,7 @@ pub struct EBSStorageInfo {
 
 /// <pre><code>        &lt;p&gt;The data-volume encryption details.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EncryptionAtRest {
     /// <pre><code>        &lt;p&gt;The ARN of the AWS KMS key for encrypting data at rest. If you don&#39;t specify a KMS key, MSK creates one for you and uses it.&lt;/p&gt;
     /// </code></pre>
@@ -652,7 +652,7 @@ pub struct EncryptionAtRest {
 
 /// <pre><code>        &lt;p&gt;The settings for encrypting data in transit.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EncryptionInTransit {
     /// <pre><code>        &lt;p&gt;Indicates the encryption setting for data in transit between clients and brokers. The following are the possible values.&lt;/p&gt;
     /// &lt;p&gt;
@@ -676,7 +676,7 @@ pub struct EncryptionInTransit {
 
 /// <pre><code>        &lt;p&gt;Includes encryption-related information, such as the AWS KMS key used for encrypting data at rest and whether you want MSK to encrypt your data in transit.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EncryptionInfo {
     /// <pre><code>        &lt;p&gt;The data-volume encryption details.&lt;/p&gt;
     /// </code></pre>
@@ -692,7 +692,7 @@ pub struct EncryptionInfo {
 
 /// <pre><code>        &lt;p&gt;Returns information about an error state of the cluster.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ErrorInfo {
     /// <pre><code>        &lt;p&gt;A number describing the error programmatically.&lt;/p&gt;
@@ -707,7 +707,7 @@ pub struct ErrorInfo {
     pub error_string: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetBootstrapBrokersRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
@@ -716,7 +716,7 @@ pub struct GetBootstrapBrokersRequest {
     pub cluster_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetBootstrapBrokersResponse {
     /// <pre><code>        &lt;p&gt;A string containing one or more hostname:port pairs.&lt;/p&gt;
@@ -733,7 +733,7 @@ pub struct GetBootstrapBrokersResponse {
 
 /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct JmxExporter {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
@@ -744,7 +744,7 @@ pub struct JmxExporter {
 
 /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct JmxExporterInfo {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
@@ -753,7 +753,7 @@ pub struct JmxExporterInfo {
     pub enabled_in_broker: bool,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListClusterOperationsRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
@@ -773,7 +773,7 @@ pub struct ListClusterOperationsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListClusterOperationsResponse {
     /// <pre><code>        &lt;p&gt;An array of cluster operation information objects.&lt;/p&gt;
@@ -788,7 +788,7 @@ pub struct ListClusterOperationsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListClustersRequest {
     /// <pre><code>        &lt;p&gt;Specify a prefix of the name of the clusters that you want to list. The service lists all the clusters whose names start with this prefix.&lt;/p&gt;
@@ -809,7 +809,7 @@ pub struct ListClustersRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListClustersResponse {
     /// <pre><code>        &lt;p&gt;Information on each of the MSK clusters in the response.&lt;/p&gt;
@@ -825,7 +825,7 @@ pub struct ListClustersResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConfigurationRevisionsRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies an MSK configuration and all of its revisions.&lt;/p&gt;
@@ -845,7 +845,7 @@ pub struct ListConfigurationRevisionsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConfigurationRevisionsResponse {
     /// <pre><code>        &lt;p&gt;Paginated results marker.&lt;/p&gt;
@@ -860,7 +860,7 @@ pub struct ListConfigurationRevisionsResponse {
     pub revisions: Option<Vec<ConfigurationRevision>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListConfigurationsRequest {
     /// <pre><code>        &lt;p&gt;The maximum number of results to return in the response. If there are more results, the response includes a NextToken parameter.&lt;/p&gt;
@@ -876,7 +876,7 @@ pub struct ListConfigurationsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListConfigurationsResponse {
     /// <pre><code>        &lt;p&gt;An array of MSK configurations.&lt;/p&gt;
@@ -892,7 +892,7 @@ pub struct ListConfigurationsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListNodesRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
@@ -912,7 +912,7 @@ pub struct ListNodesRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListNodesResponse {
     /// <pre><code>        &lt;p&gt;The paginated results marker. When the result of a ListNodes operation is truncated, the call returns NextToken in the response.
@@ -928,7 +928,7 @@ pub struct ListNodesResponse {
     pub node_info_list: Option<Vec<NodeInfo>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the resource that&#39;s associated with the tags.&lt;/p&gt;
@@ -937,7 +937,7 @@ pub struct ListTagsForResourceRequest {
     pub resource_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsForResourceResponse {
     /// <pre><code>        &lt;p&gt;The key-value pair for the resource tag.&lt;/p&gt;
@@ -949,7 +949,7 @@ pub struct ListTagsForResourceResponse {
 
 /// <pre><code>        &lt;p&gt;Information about cluster attributes that can be updated via update APIs.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct MutableClusterInfo {
     /// <pre><code>        &lt;p&gt;Specifies the size of the EBS volume and the ID of the associated broker.&lt;/p&gt;
@@ -981,7 +981,7 @@ pub struct MutableClusterInfo {
 
 /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the Node Exporter.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NodeExporter {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the Node Exporter.&lt;/p&gt;
@@ -992,7 +992,7 @@ pub struct NodeExporter {
 
 /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the Node Exporter.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct NodeExporterInfo {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the Node Exporter.&lt;/p&gt;
@@ -1003,7 +1003,7 @@ pub struct NodeExporterInfo {
 
 /// <pre><code>        &lt;p&gt;The node information object.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NodeInfo {
     /// <pre><code>        &lt;p&gt;The start time.&lt;/p&gt;
@@ -1040,7 +1040,7 @@ pub struct NodeInfo {
 
 /// <pre><code>        &lt;p&gt;JMX and Node monitoring for the MSK cluster.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OpenMonitoring {
     /// <pre><code>        &lt;p&gt;Prometheus settings.&lt;/p&gt;
@@ -1051,7 +1051,7 @@ pub struct OpenMonitoring {
 
 /// <pre><code>        &lt;p&gt;JMX and Node monitoring for the MSK cluster.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct OpenMonitoringInfo {
     /// <pre><code>        &lt;p&gt;Prometheus settings.&lt;/p&gt;
@@ -1062,7 +1062,7 @@ pub struct OpenMonitoringInfo {
 
 /// <pre><code>        &lt;p&gt;Prometheus settings.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Prometheus {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
@@ -1079,7 +1079,7 @@ pub struct Prometheus {
 
 /// <pre><code>        &lt;p&gt;Prometheus settings.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PrometheusInfo {
     /// <pre><code>        &lt;p&gt;Indicates whether you want to enable or disable the JMX Exporter.&lt;/p&gt;
@@ -1096,7 +1096,7 @@ pub struct PrometheusInfo {
 
 /// <pre><code>        &lt;p&gt;Contains information about storage volumes attached to MSK broker nodes.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct StorageInfo {
     /// <pre><code>        &lt;p&gt;EBS volume information.&lt;/p&gt;
     /// </code></pre>
@@ -1105,7 +1105,7 @@ pub struct StorageInfo {
     pub ebs_storage_info: Option<EBSStorageInfo>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TagResourceRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the resource that&#39;s associated with the tags.&lt;/p&gt;
@@ -1120,7 +1120,7 @@ pub struct TagResourceRequest {
 
 /// <pre><code>        &lt;p&gt;Details for client authentication using TLS.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Tls {
     /// <pre><code>        &lt;p&gt;List of ACM Certificate Authority ARNs.&lt;/p&gt;
     /// </code></pre>
@@ -1129,7 +1129,7 @@ pub struct Tls {
     pub certificate_authority_arn_list: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UntagResourceRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the resource that&#39;s associated with the tags.&lt;/p&gt;
@@ -1161,7 +1161,7 @@ pub struct UntagResourceRequest {
     pub tag_keys: Vec<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateBrokerCountRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
@@ -1178,7 +1178,7 @@ pub struct UpdateBrokerCountRequest {
     pub target_number_of_broker_nodes: i64,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateBrokerCountResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
@@ -1193,7 +1193,7 @@ pub struct UpdateBrokerCountResponse {
     pub cluster_operation_arn: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateBrokerStorageRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
@@ -1210,7 +1210,7 @@ pub struct UpdateBrokerStorageRequest {
     pub target_broker_ebs_volume_info: Vec<BrokerEBSVolumeInfo>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateBrokerStorageResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
@@ -1225,7 +1225,7 @@ pub struct UpdateBrokerStorageResponse {
     pub cluster_operation_arn: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateClusterConfigurationRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
@@ -1242,7 +1242,7 @@ pub struct UpdateClusterConfigurationRequest {
     pub current_version: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateClusterConfigurationResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
@@ -1258,7 +1258,7 @@ pub struct UpdateClusterConfigurationResponse {
 }
 
 /// <p>Request body for UpdateMonitoring.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateMonitoringRequest {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) that uniquely identifies the cluster.&lt;/p&gt;
@@ -1281,7 +1281,7 @@ pub struct UpdateMonitoringRequest {
     pub open_monitoring: Option<OpenMonitoringInfo>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateMonitoringResponse {
     /// <pre><code>        &lt;p&gt;The Amazon Resource Name (ARN) of the cluster.&lt;/p&gt;
@@ -1298,7 +1298,7 @@ pub struct UpdateMonitoringResponse {
 
 /// <pre><code>        &lt;p&gt;Zookeeper node information.&lt;/p&gt;
 /// </code></pre>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ZookeeperNodeInfo {
     /// <pre><code>        &lt;p&gt;The attached elastic network interface of the broker.&lt;/p&gt;

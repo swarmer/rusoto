@@ -26,7 +26,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>The configured access rules for the domain's document and search endpoints, and the current status of those rules.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AccessPoliciesStatus {
     /// <p>The access policy configured for the Elasticsearch domain. Access policies may be resource-based, IP-based, or IAM-based. See <a href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-access-policies" target="_blank"> Configuring Access Policies</a>for more information.</p>
@@ -38,7 +38,7 @@ pub struct AccessPoliciesStatus {
 }
 
 /// <p>Container for the parameters to the <code><a>AddTags</a></code> operation. Specify the tags that you want to attach to the Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AddTagsRequest {
     /// <p> Specify the <code>ARN</code> for which you want to add the tags.</p>
@@ -50,7 +50,7 @@ pub struct AddTagsRequest {
 }
 
 /// <p> List of limits that are specific to a given InstanceType and for each of it's <code> <a>InstanceRole</a> </code> . </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AdditionalLimit {
     /// <p> Name of Additional Limit is specific to a given InstanceType and for each of it's <code> <a>InstanceRole</a> </code> etc. <br/> Attributes and their details: <br/> <ul> <li>MaximumNumberOfDataNodesSupported</li> This attribute will be present in Master node only to specify how much data nodes upto which given <code> <a>ESPartitionInstanceType</a> </code> can support as master node. <li>MaximumNumberOfDataNodesWithoutMasterNode</li> This attribute will be present in Data node only to specify how much data nodes of given <code> <a>ESPartitionInstanceType</a> </code> upto which you don't need any master nodes to govern them. </ul> </p>
@@ -64,7 +64,7 @@ pub struct AdditionalLimit {
 }
 
 /// <p> Status of the advanced options for the specified Elasticsearch domain. Currently, the following advanced options are available:</p> <ul> <li>Option to allow references to indices in an HTTP request body. Must be <code>false</code> when configuring access to individual sub-resources. By default, the value is <code>true</code>. See <a href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options" target="_blank">Configuration Advanced Options</a> for more information.</li> <li>Option to specify the percentage of heap space that is allocated to field data. By default, this setting is unbounded.</li> </ul> <p>For more information, see <a href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-advanced-options">Configuring Advanced Options</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AdvancedOptionsStatus {
     /// <p> Specifies the status of advanced options for the specified Elasticsearch domain.</p>
@@ -76,7 +76,7 @@ pub struct AdvancedOptionsStatus {
 }
 
 /// <p>Container for the parameters to the <code><a>CancelElasticsearchServiceSoftwareUpdate</a></code> operation. Specifies the name of the Elasticsearch domain that you wish to cancel a service software update on.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CancelElasticsearchServiceSoftwareUpdateRequest {
     /// <p>The name of the domain that you want to stop the latest service software update on.</p>
@@ -85,7 +85,7 @@ pub struct CancelElasticsearchServiceSoftwareUpdateRequest {
 }
 
 /// <p>The result of a <code>CancelElasticsearchServiceSoftwareUpdate</code> operation. Contains the status of the update.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CancelElasticsearchServiceSoftwareUpdateResponse {
     /// <p>The current status of the Elasticsearch service software update.</p>
@@ -95,7 +95,7 @@ pub struct CancelElasticsearchServiceSoftwareUpdateResponse {
 }
 
 /// <p>Options to specify the Cognito user and identity pools for Kibana authentication. For more information, see <a href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html" target="_blank">Amazon Cognito Authentication for Kibana</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct CognitoOptions {
     /// <p>Specifies the option to enable Cognito for Kibana authentication.</p>
     #[serde(rename = "Enabled")]
@@ -116,7 +116,7 @@ pub struct CognitoOptions {
 }
 
 /// <p>Status of the Cognito options for the specified Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CognitoOptionsStatus {
     /// <p>Specifies the Cognito options for the specified Elasticsearch domain.</p>
@@ -128,7 +128,7 @@ pub struct CognitoOptionsStatus {
 }
 
 /// <p> A map from an <code> <a>ElasticsearchVersion</a> </code> to a list of compatible <code> <a>ElasticsearchVersion</a> </code> s to which the domain can be upgraded. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CompatibleVersionsMap {
     /// <p>The current version of Elasticsearch on which a domain is.</p>
@@ -140,7 +140,7 @@ pub struct CompatibleVersionsMap {
     pub target_versions: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateElasticsearchDomainRequest {
     /// <p> IAM access policy as a JSON-formatted string.</p>
@@ -197,7 +197,7 @@ pub struct CreateElasticsearchDomainRequest {
 }
 
 /// <p>The result of a <code>CreateElasticsearchDomain</code> operation. Contains the status of the newly created Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateElasticsearchDomainResponse {
     /// <p>The status of the newly created Elasticsearch domain. </p>
@@ -207,7 +207,7 @@ pub struct CreateElasticsearchDomainResponse {
 }
 
 /// <p>Container for the parameters to the <code><a>DeleteElasticsearchDomain</a></code> operation. Specifies the name of the Elasticsearch domain that you want to delete.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteElasticsearchDomainRequest {
     /// <p>The name of the Elasticsearch domain that you want to permanently delete.</p>
@@ -216,7 +216,7 @@ pub struct DeleteElasticsearchDomainRequest {
 }
 
 /// <p>The result of a <code>DeleteElasticsearchDomain</code> request. Contains the status of the pending deletion, or no status if the domain and all of its resources have been deleted.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteElasticsearchDomainResponse {
     /// <p>The status of the Elasticsearch domain being deleted.</p>
@@ -226,7 +226,7 @@ pub struct DeleteElasticsearchDomainResponse {
 }
 
 /// <p> Container for the parameters to the <code>DescribeElasticsearchDomainConfig</code> operation. Specifies the domain name for which you want configuration information.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeElasticsearchDomainConfigRequest {
     /// <p>The Elasticsearch domain that you want to get information about.</p>
@@ -235,7 +235,7 @@ pub struct DescribeElasticsearchDomainConfigRequest {
 }
 
 /// <p>The result of a <code>DescribeElasticsearchDomainConfig</code> request. Contains the configuration information of the requested domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeElasticsearchDomainConfigResponse {
     /// <p>The configuration information of the domain requested in the <code>DescribeElasticsearchDomainConfig</code> request.</p>
@@ -244,7 +244,7 @@ pub struct DescribeElasticsearchDomainConfigResponse {
 }
 
 /// <p>Container for the parameters to the <code><a>DescribeElasticsearchDomain</a></code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeElasticsearchDomainRequest {
     /// <p>The name of the Elasticsearch domain for which you want information.</p>
@@ -253,7 +253,7 @@ pub struct DescribeElasticsearchDomainRequest {
 }
 
 /// <p>The result of a <code>DescribeElasticsearchDomain</code> request. Contains the status of the domain specified in the request.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeElasticsearchDomainResponse {
     /// <p>The current status of the Elasticsearch domain.</p>
@@ -262,7 +262,7 @@ pub struct DescribeElasticsearchDomainResponse {
 }
 
 /// <p>Container for the parameters to the <code><a>DescribeElasticsearchDomains</a></code> operation. By default, the API returns the status of all Elasticsearch domains.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeElasticsearchDomainsRequest {
     /// <p>The Elasticsearch domains for which you want information.</p>
@@ -271,7 +271,7 @@ pub struct DescribeElasticsearchDomainsRequest {
 }
 
 /// <p>The result of a <code>DescribeElasticsearchDomains</code> request. Contains the status of the specified domains or all domains owned by the account.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeElasticsearchDomainsResponse {
     /// <p>The status of the domains requested in the <code>DescribeElasticsearchDomains</code> request.</p>
@@ -280,7 +280,7 @@ pub struct DescribeElasticsearchDomainsResponse {
 }
 
 /// <p> Container for the parameters to <code> <a>DescribeElasticsearchInstanceTypeLimits</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeElasticsearchInstanceTypeLimitsRequest {
     /// <p> DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for Elasticsearch <code> <a>Limits</a> </code> for existing domain. </p>
@@ -296,7 +296,7 @@ pub struct DescribeElasticsearchInstanceTypeLimitsRequest {
 }
 
 /// <p> Container for the parameters received from <code> <a>DescribeElasticsearchInstanceTypeLimits</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeElasticsearchInstanceTypeLimitsResponse {
     #[serde(rename = "LimitsByRole")]
@@ -305,7 +305,7 @@ pub struct DescribeElasticsearchInstanceTypeLimitsResponse {
 }
 
 /// <p>Container for parameters to <code>DescribeReservedElasticsearchInstanceOfferings</code></p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeReservedElasticsearchInstanceOfferingsRequest {
     /// <p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>
@@ -323,7 +323,7 @@ pub struct DescribeReservedElasticsearchInstanceOfferingsRequest {
 }
 
 /// <p>Container for results from <code>DescribeReservedElasticsearchInstanceOfferings</code></p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeReservedElasticsearchInstanceOfferingsResponse {
     /// <p>Provides an identifier to allow retrieval of paginated results.</p>
@@ -338,7 +338,7 @@ pub struct DescribeReservedElasticsearchInstanceOfferingsResponse {
 }
 
 /// <p>Container for parameters to <code>DescribeReservedElasticsearchInstances</code></p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeReservedElasticsearchInstancesRequest {
     /// <p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>
@@ -356,7 +356,7 @@ pub struct DescribeReservedElasticsearchInstancesRequest {
 }
 
 /// <p>Container for results from <code>DescribeReservedElasticsearchInstances</code></p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeReservedElasticsearchInstancesResponse {
     /// <p>Provides an identifier to allow retrieval of paginated results.</p>
@@ -370,7 +370,7 @@ pub struct DescribeReservedElasticsearchInstancesResponse {
 }
 
 /// <p>Options to configure endpoint for the Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct DomainEndpointOptions {
     /// <p>Specify if only HTTPS endpoint should be enabled for the Elasticsearch domain.</p>
     #[serde(rename = "EnforceHTTPS")]
@@ -383,7 +383,7 @@ pub struct DomainEndpointOptions {
 }
 
 /// <p>The configured endpoint options for the domain and their current status.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DomainEndpointOptionsStatus {
     /// <p>Options to configure endpoint for the Elasticsearch domain.</p>
@@ -394,7 +394,7 @@ pub struct DomainEndpointOptionsStatus {
     pub status: OptionStatus,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DomainInfo {
     /// <p> Specifies the <code>DomainName</code>.</p>
@@ -404,7 +404,7 @@ pub struct DomainInfo {
 }
 
 /// <p>Options to enable, disable, and specify the properties of EBS storage volumes. For more information, see <a href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs" target="_blank"> Configuring EBS-based Storage</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EBSOptions {
     /// <p>Specifies whether EBS-based storage is enabled.</p>
     #[serde(rename = "EBSEnabled")]
@@ -425,7 +425,7 @@ pub struct EBSOptions {
 }
 
 /// <p> Status of the EBS options for the specified Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EBSOptionsStatus {
     /// <p> Specifies the EBS options for the specified Elasticsearch domain.</p>
@@ -437,7 +437,7 @@ pub struct EBSOptionsStatus {
 }
 
 /// <p>Specifies the configuration for the domain cluster, such as the type and number of instances.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ElasticsearchClusterConfig {
     /// <p>Total number of dedicated master nodes, active and on standby, for the cluster.</p>
     #[serde(rename = "DedicatedMasterCount")]
@@ -482,7 +482,7 @@ pub struct ElasticsearchClusterConfig {
 }
 
 /// <p> Specifies the configuration status for the specified Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ElasticsearchClusterConfigStatus {
     /// <p> Specifies the cluster configuration for the specified Elasticsearch domain.</p>
@@ -494,7 +494,7 @@ pub struct ElasticsearchClusterConfigStatus {
 }
 
 /// <p>The configuration of an Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ElasticsearchDomainConfig {
     /// <p>IAM access policy as a JSON-formatted string.</p>
@@ -548,7 +548,7 @@ pub struct ElasticsearchDomainConfig {
 }
 
 /// <p>The current status of an Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ElasticsearchDomainStatus {
     /// <p>The Amazon resource name (ARN) of an Elasticsearch domain. See <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/index.html?Using_Identifiers.html" target="_blank">Identifiers for IAM Entities</a> in <i>Using AWS Identity and Access Management</i> for more information.</p>
@@ -637,7 +637,7 @@ pub struct ElasticsearchDomainStatus {
 }
 
 /// <p> Status of the Elasticsearch version options for the specified Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ElasticsearchVersionStatus {
     /// <p> Specifies the Elasticsearch version for the specified Elasticsearch domain.</p>
@@ -649,7 +649,7 @@ pub struct ElasticsearchVersionStatus {
 }
 
 /// <p>Specifies the Encryption At Rest Options.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct EncryptionAtRestOptions {
     /// <p>Specifies the option to enable Encryption At Rest.</p>
     #[serde(rename = "Enabled")]
@@ -662,7 +662,7 @@ pub struct EncryptionAtRestOptions {
 }
 
 /// <p> Status of the Encryption At Rest options for the specified Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EncryptionAtRestOptionsStatus {
     /// <p> Specifies the Encryption At Rest options for the specified Elasticsearch domain.</p>
@@ -674,7 +674,7 @@ pub struct EncryptionAtRestOptionsStatus {
 }
 
 /// <p> Container for request parameters to <code> <a>GetCompatibleElasticsearchVersions</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetCompatibleElasticsearchVersionsRequest {
     #[serde(rename = "DomainName")]
@@ -683,7 +683,7 @@ pub struct GetCompatibleElasticsearchVersionsRequest {
 }
 
 /// <p> Container for response returned by <code> <a>GetCompatibleElasticsearchVersions</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetCompatibleElasticsearchVersionsResponse {
     /// <p> A map of compatible Elasticsearch versions returned as part of the <code> <a>GetCompatibleElasticsearchVersions</a> </code> operation. </p>
@@ -693,7 +693,7 @@ pub struct GetCompatibleElasticsearchVersionsResponse {
 }
 
 /// <p> Container for request parameters to <code> <a>GetUpgradeHistory</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetUpgradeHistoryRequest {
     #[serde(rename = "DomainName")]
@@ -707,7 +707,7 @@ pub struct GetUpgradeHistoryRequest {
 }
 
 /// <p> Container for response returned by <code> <a>GetUpgradeHistory</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetUpgradeHistoryResponse {
     /// <p>Pagination token that needs to be supplied to the next call to get the next page of results</p>
@@ -721,7 +721,7 @@ pub struct GetUpgradeHistoryResponse {
 }
 
 /// <p> Container for request parameters to <code> <a>GetUpgradeStatus</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetUpgradeStatusRequest {
     #[serde(rename = "DomainName")]
@@ -729,7 +729,7 @@ pub struct GetUpgradeStatusRequest {
 }
 
 /// <p> Container for response returned by <code> <a>GetUpgradeStatus</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct GetUpgradeStatusResponse {
     /// <p> One of 4 statuses that a step can go through returned as part of the <code> <a>GetUpgradeStatusResponse</a> </code> object. The status can take one of the following values: <ul> <li>In Progress</li> <li>Succeeded</li> <li>Succeeded with Issues</li> <li>Failed</li> </ul> </p>
@@ -747,7 +747,7 @@ pub struct GetUpgradeStatusResponse {
 }
 
 /// <p> InstanceCountLimits represents the limits on number of instances that be created in Amazon Elasticsearch for given InstanceType. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceCountLimits {
     #[serde(rename = "MaximumInstanceCount")]
@@ -759,7 +759,7 @@ pub struct InstanceCountLimits {
 }
 
 /// <p>InstanceLimits represents the list of instance related attributes that are available for given InstanceType. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct InstanceLimits {
     #[serde(rename = "InstanceCountLimits")]
@@ -768,7 +768,7 @@ pub struct InstanceLimits {
 }
 
 /// <p> Limits for given InstanceType and for each of it's role. <br/> Limits contains following <code> <a>StorageTypes,</a> </code> <code> <a>InstanceLimits</a> </code> and <code> <a>AdditionalLimits</a> </code> </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Limits {
     /// <p> List of additional limits that are specific to a given InstanceType and for each of it's <code> <a>InstanceRole</a> </code> . </p>
@@ -785,7 +785,7 @@ pub struct Limits {
 }
 
 /// <p>The result of a <code>ListDomainNames</code> operation. Contains the names of all Elasticsearch domains owned by this account.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListDomainNamesResponse {
     /// <p>List of Elasticsearch domain names.</p>
@@ -795,7 +795,7 @@ pub struct ListDomainNamesResponse {
 }
 
 /// <p> Container for the parameters to the <code> <a>ListElasticsearchInstanceTypes</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListElasticsearchInstanceTypesRequest {
     /// <p>DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for list of available Elasticsearch instance types when modifying existing domain. </p>
@@ -816,7 +816,7 @@ pub struct ListElasticsearchInstanceTypesRequest {
 }
 
 /// <p> Container for the parameters returned by <code> <a>ListElasticsearchInstanceTypes</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListElasticsearchInstanceTypesResponse {
     /// <p> List of instance types supported by Amazon Elasticsearch service for given <code> <a>ElasticsearchVersion</a> </code> </p>
@@ -830,7 +830,7 @@ pub struct ListElasticsearchInstanceTypesResponse {
 }
 
 /// <p> Container for the parameters to the <code> <a>ListElasticsearchVersions</a> </code> operation. <p> Use <code> <a>MaxResults</a> </code> to control the maximum number of results to retrieve in a single call. </p> <p> Use <code> <a>NextToken</a> </code> in response to retrieve more results. If the received response does not contain a NextToken, then there are no more results to retrieve. </p> </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListElasticsearchVersionsRequest {
     /// <p> Set this value to limit the number of results returned. Value provided must be greater than 10 else it wont be honored. </p>
@@ -843,7 +843,7 @@ pub struct ListElasticsearchVersionsRequest {
 }
 
 /// <p> Container for the parameters for response received from <code> <a>ListElasticsearchVersions</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListElasticsearchVersionsResponse {
     #[serde(rename = "ElasticsearchVersions")]
@@ -855,7 +855,7 @@ pub struct ListElasticsearchVersionsResponse {
 }
 
 /// <p>Container for the parameters to the <code><a>ListTags</a></code> operation. Specify the <code>ARN</code> for the Elasticsearch domain to which the tags are attached that you want to view are attached.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsRequest {
     /// <p> Specify the <code>ARN</code> for the Elasticsearch domain to which the tags are attached that you want to view.</p>
@@ -864,7 +864,7 @@ pub struct ListTagsRequest {
 }
 
 /// <p>The result of a <code>ListTags</code> operation. Contains tags for all requested Elasticsearch domains.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListTagsResponse {
     /// <p> List of <code>Tag</code> for the requested Elasticsearch domain.</p>
@@ -874,7 +874,7 @@ pub struct ListTagsResponse {
 }
 
 /// <p>Log Publishing option that is set for given domain. <br/>Attributes and their details: <ul> <li>CloudWatchLogsLogGroupArn: ARN of the Cloudwatch log group to which log needs to be published.</li> <li>Enabled: Whether the log publishing for given log type is enabled or not</li> </ul> </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct LogPublishingOption {
     #[serde(rename = "CloudWatchLogsLogGroupArn")]
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -886,7 +886,7 @@ pub struct LogPublishingOption {
 }
 
 /// <p>The configured log publishing options for the domain and their current status.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct LogPublishingOptionsStatus {
     /// <p>The log publishing options configured for the Elasticsearch domain.</p>
@@ -900,7 +900,7 @@ pub struct LogPublishingOptionsStatus {
 }
 
 /// <p>Specifies the node-to-node encryption options.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct NodeToNodeEncryptionOptions {
     /// <p>Specify true to enable node-to-node encryption.</p>
     #[serde(rename = "Enabled")]
@@ -909,7 +909,7 @@ pub struct NodeToNodeEncryptionOptions {
 }
 
 /// <p>Status of the node-to-node encryption options for the specified Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct NodeToNodeEncryptionOptionsStatus {
     /// <p>Specifies the node-to-node encryption options for the specified Elasticsearch domain.</p>
@@ -921,7 +921,7 @@ pub struct NodeToNodeEncryptionOptionsStatus {
 }
 
 /// <p>Provides the current status of the entity.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OptionStatus {
     /// <p>Timestamp which tells the creation date for the entity.</p>
@@ -944,7 +944,7 @@ pub struct OptionStatus {
 }
 
 /// <p>Container for parameters to <code>PurchaseReservedElasticsearchInstanceOffering</code></p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PurchaseReservedElasticsearchInstanceOfferingRequest {
     /// <p>The number of Elasticsearch instances to reserve.</p>
@@ -960,7 +960,7 @@ pub struct PurchaseReservedElasticsearchInstanceOfferingRequest {
 }
 
 /// <p>Represents the output of a <code>PurchaseReservedElasticsearchInstanceOffering</code> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PurchaseReservedElasticsearchInstanceOfferingResponse {
     /// <p>The customer-specified identifier used to track this reservation.</p>
@@ -974,7 +974,7 @@ pub struct PurchaseReservedElasticsearchInstanceOfferingResponse {
 }
 
 /// <p>Contains the specific price and frequency of a recurring charges for a reserved Elasticsearch instance, or for a reserved Elasticsearch instance offering.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct RecurringCharge {
     /// <p>The monetary amount of the recurring charge.</p>
@@ -988,7 +988,7 @@ pub struct RecurringCharge {
 }
 
 /// <p>Container for the parameters to the <code><a>RemoveTags</a></code> operation. Specify the <code>ARN</code> for the Elasticsearch domain from which you want to remove the specified <code>TagKey</code>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RemoveTagsRequest {
     /// <p>Specifies the <code>ARN</code> for the Elasticsearch domain from which you want to delete the specified tags.</p>
@@ -1000,7 +1000,7 @@ pub struct RemoveTagsRequest {
 }
 
 /// <p>Details of a reserved Elasticsearch instance.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReservedElasticsearchInstance {
     /// <p>The currency code for the reserved Elasticsearch instance offering.</p>
@@ -1058,7 +1058,7 @@ pub struct ReservedElasticsearchInstance {
 }
 
 /// <p>Details of a reserved Elasticsearch instance offering.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ReservedElasticsearchInstanceOffering {
     /// <p>The currency code for the reserved Elasticsearch instance offering.</p>
@@ -1096,7 +1096,7 @@ pub struct ReservedElasticsearchInstanceOffering {
 }
 
 /// <p>The current options of an Elasticsearch domain service software options.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ServiceSoftwareOptions {
     /// <p>Timestamp, in Epoch time, until which you can manually request a service software update. After this date, we automatically update your service software.</p>
@@ -1130,7 +1130,7 @@ pub struct ServiceSoftwareOptions {
 }
 
 /// <p>Specifies the time, in UTC format, when the service takes a daily automated snapshot of the specified Elasticsearch domain. Default value is <code>0</code> hours.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct SnapshotOptions {
     /// <p>Specifies the time, in UTC format, when the service takes a daily automated snapshot of the specified Elasticsearch domain. Default value is <code>0</code> hours.</p>
     #[serde(rename = "AutomatedSnapshotStartHour")]
@@ -1139,7 +1139,7 @@ pub struct SnapshotOptions {
 }
 
 /// <p>Status of a daily automated snapshot.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct SnapshotOptionsStatus {
     /// <p>Specifies the daily snapshot options specified for the Elasticsearch domain.</p>
@@ -1151,7 +1151,7 @@ pub struct SnapshotOptionsStatus {
 }
 
 /// <p>Container for the parameters to the <code><a>StartElasticsearchServiceSoftwareUpdate</a></code> operation. Specifies the name of the Elasticsearch domain that you wish to schedule a service software update on.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct StartElasticsearchServiceSoftwareUpdateRequest {
     /// <p>The name of the domain that you want to update to the latest service software.</p>
@@ -1160,7 +1160,7 @@ pub struct StartElasticsearchServiceSoftwareUpdateRequest {
 }
 
 /// <p>The result of a <code>StartElasticsearchServiceSoftwareUpdate</code> operation. Contains the status of the update.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StartElasticsearchServiceSoftwareUpdateResponse {
     /// <p>The current status of the Elasticsearch service software update.</p>
@@ -1170,7 +1170,7 @@ pub struct StartElasticsearchServiceSoftwareUpdateResponse {
 }
 
 /// <p>StorageTypes represents the list of storage related types and their attributes that are available for given InstanceType. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StorageType {
     #[serde(rename = "StorageSubTypeName")]
@@ -1186,7 +1186,7 @@ pub struct StorageType {
 }
 
 /// <p>Limits that are applicable for given storage type. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct StorageTypeLimit {
     /// <p> Name of storage limits that are applicable for given storage type. If <code> <a>StorageType</a> </code> is ebs, following storage options are applicable <ol> <li>MinimumVolumeSize</li> Minimum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumVolumeSize</li> Maximum amount of volume size that is applicable for given storage type.It can be empty if it is not applicable. <li>MaximumIops</li> Maximum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. <li>MinimumIops</li> Minimum amount of Iops that is applicable for given storage type.It can be empty if it is not applicable. </ol> </p>
@@ -1200,7 +1200,7 @@ pub struct StorageTypeLimit {
 }
 
 /// <p>Specifies a key value pair for a resource tag.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct Tag {
     /// <p>Specifies the <code>TagKey</code>, the name of the tag. Tag keys must be unique for the Elasticsearch domain to which they are attached.</p>
     #[serde(rename = "Key")]
@@ -1211,7 +1211,7 @@ pub struct Tag {
 }
 
 /// <p>Container for the parameters to the <code><a>UpdateElasticsearchDomain</a></code> operation. Specifies the type and number of instances in the domain cluster.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateElasticsearchDomainConfigRequest {
     /// <p>IAM access policy as a JSON-formatted string.</p>
@@ -1256,7 +1256,7 @@ pub struct UpdateElasticsearchDomainConfigRequest {
 }
 
 /// <p>The result of an <code>UpdateElasticsearchDomain</code> request. Contains the status of the Elasticsearch domain being updated.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateElasticsearchDomainConfigResponse {
     /// <p>The status of the updated Elasticsearch domain. </p>
@@ -1265,7 +1265,7 @@ pub struct UpdateElasticsearchDomainConfigResponse {
 }
 
 /// <p> Container for request parameters to <code> <a>UpgradeElasticsearchDomain</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpgradeElasticsearchDomainRequest {
     #[serde(rename = "DomainName")]
@@ -1280,7 +1280,7 @@ pub struct UpgradeElasticsearchDomainRequest {
 }
 
 /// <p> Container for response returned by <code> <a>UpgradeElasticsearchDomain</a> </code> operation. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpgradeElasticsearchDomainResponse {
     #[serde(rename = "DomainName")]
@@ -1297,7 +1297,7 @@ pub struct UpgradeElasticsearchDomainResponse {
 }
 
 /// <p>History of the last 10 Upgrades and Upgrade Eligibility Checks.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpgradeHistory {
     /// <p>UTC Timestamp at which the Upgrade API call was made in "yyyy-MM-ddTHH:mm:ssZ" format.</p>
@@ -1319,7 +1319,7 @@ pub struct UpgradeHistory {
 }
 
 /// <p>Represents a single step of the Upgrade or Upgrade Eligibility Check workflow.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpgradeStepItem {
     /// <p>A list of strings containing detailed information about the errors encountered in a particular step.</p>
@@ -1341,7 +1341,7 @@ pub struct UpgradeStepItem {
 }
 
 /// <p>Options to specify the subnets and security groups for VPC endpoint. For more information, see <a href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html" target="_blank"> VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VPCDerivedInfo {
     /// <p>The availability zones for the Elasticsearch domain. Exists only if the domain was created with VPCOptions.</p>
@@ -1363,7 +1363,7 @@ pub struct VPCDerivedInfo {
 }
 
 /// <p> Status of the VPC options for the specified Elasticsearch domain.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct VPCDerivedInfoStatus {
     /// <p> Specifies the VPC options for the specified Elasticsearch domain.</p>
@@ -1375,7 +1375,7 @@ pub struct VPCDerivedInfoStatus {
 }
 
 /// <p>Options to specify the subnets and security groups for VPC endpoint. For more information, see <a href="http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html" target="_blank"> VPC Endpoints for Amazon Elasticsearch Service Domains</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct VPCOptions {
     /// <p>Specifies the security groups for VPC endpoint.</p>
@@ -1389,7 +1389,7 @@ pub struct VPCOptions {
 }
 
 /// <p>Specifies the zone awareness configuration for the domain cluster, such as the number of availability zones.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct ZoneAwarenessConfig {
     /// <p>An integer value to indicate the number of availability zones for a domain when zone awareness is enabled. This should be equal to number of subnets if VPC endpoints is enabled</p>
     #[serde(rename = "AvailabilityZoneCount")]

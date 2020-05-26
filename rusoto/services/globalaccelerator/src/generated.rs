@@ -25,7 +25,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>An accelerator is a complex type that includes one or more listeners that process inbound connections and then direct traffic to one or more endpoint groups, each of which includes endpoints, such as load balancers.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Accelerator {
     /// <p>The Amazon Resource Name (ARN) of the accelerator.</p>
@@ -67,7 +67,7 @@ pub struct Accelerator {
 }
 
 /// <p>Attributes of an accelerator.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AcceleratorAttributes {
     /// <p>Indicates whether flow logs are enabled. The default value is false. If the value is true, <code>FlowLogsS3Bucket</code> and <code>FlowLogsS3Prefix</code> must be specified.</p> <p>For more information, see <a href="https://docs.aws.amazon.com/global-accelerator/latest/dg/monitoring-global-accelerator.flow-logs.html">Flow Logs</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>
@@ -84,7 +84,7 @@ pub struct AcceleratorAttributes {
     pub flow_logs_s3_prefix: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateAcceleratorRequest {
     /// <p>Indicates whether an accelerator is enabled. The value is true or false. The default value is true. </p> <p>If the value is set to true, an accelerator cannot be deleted. If set to false, the accelerator can be deleted.</p>
@@ -103,7 +103,7 @@ pub struct CreateAcceleratorRequest {
     pub name: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateAcceleratorResponse {
     /// <p>The accelerator that is created by specifying a listener and the supported IP address types.</p>
@@ -112,7 +112,7 @@ pub struct CreateAcceleratorResponse {
     pub accelerator: Option<Accelerator>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateEndpointGroupRequest {
     /// <p>The list of endpoint objects.</p>
@@ -154,7 +154,7 @@ pub struct CreateEndpointGroupRequest {
     pub traffic_dial_percentage: Option<f32>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateEndpointGroupResponse {
     /// <p>The information about the endpoint group that was created.</p>
@@ -163,7 +163,7 @@ pub struct CreateEndpointGroupResponse {
     pub endpoint_group: Option<EndpointGroup>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateListenerRequest {
     /// <p>The Amazon Resource Name (ARN) of your accelerator.</p>
@@ -184,7 +184,7 @@ pub struct CreateListenerRequest {
     pub protocol: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateListenerResponse {
     /// <p>The listener that you've created.</p>
@@ -193,7 +193,7 @@ pub struct CreateListenerResponse {
     pub listener: Option<Listener>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteAcceleratorRequest {
     /// <p>The Amazon Resource Name (ARN) of an accelerator.</p>
@@ -201,7 +201,7 @@ pub struct DeleteAcceleratorRequest {
     pub accelerator_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteEndpointGroupRequest {
     /// <p>The Amazon Resource Name (ARN) of the endpoint group to delete.</p>
@@ -209,7 +209,7 @@ pub struct DeleteEndpointGroupRequest {
     pub endpoint_group_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteListenerRequest {
     /// <p>The Amazon Resource Name (ARN) of the listener.</p>
@@ -217,7 +217,7 @@ pub struct DeleteListenerRequest {
     pub listener_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAcceleratorAttributesRequest {
     /// <p>The Amazon Resource Name (ARN) of the accelerator with the attributes that you want to describe.</p>
@@ -225,7 +225,7 @@ pub struct DescribeAcceleratorAttributesRequest {
     pub accelerator_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAcceleratorAttributesResponse {
     /// <p>The attributes of the accelerator.</p>
@@ -234,7 +234,7 @@ pub struct DescribeAcceleratorAttributesResponse {
     pub accelerator_attributes: Option<AcceleratorAttributes>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAcceleratorRequest {
     /// <p>The Amazon Resource Name (ARN) of the accelerator to describe.</p>
@@ -242,7 +242,7 @@ pub struct DescribeAcceleratorRequest {
     pub accelerator_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAcceleratorResponse {
     /// <p>The description of the accelerator.</p>
@@ -251,7 +251,7 @@ pub struct DescribeAcceleratorResponse {
     pub accelerator: Option<Accelerator>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEndpointGroupRequest {
     /// <p>The Amazon Resource Name (ARN) of the endpoint group to describe.</p>
@@ -259,7 +259,7 @@ pub struct DescribeEndpointGroupRequest {
     pub endpoint_group_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEndpointGroupResponse {
     /// <p>The description of an endpoint group.</p>
@@ -268,7 +268,7 @@ pub struct DescribeEndpointGroupResponse {
     pub endpoint_group: Option<EndpointGroup>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeListenerRequest {
     /// <p>The Amazon Resource Name (ARN) of the listener to describe.</p>
@@ -276,7 +276,7 @@ pub struct DescribeListenerRequest {
     pub listener_arn: String,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeListenerResponse {
     /// <p>The description of a listener.</p>
@@ -286,7 +286,7 @@ pub struct DescribeListenerResponse {
 }
 
 /// <p>A complex type for endpoints.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EndpointConfiguration {
     /// <p>Indicates whether client IP address preservation is enabled for an Application Load Balancer endpoint. The value is true or false. The default value is true for new accelerators. </p> <p>If the value is set to true, the client's IP address is preserved in the <code>X-Forwarded-For</code> request header as traffic travels to applications on the Application Load Balancer endpoint fronted by the accelerator.</p> <p>For more information, see <a href="https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works-client-ip.html"> Viewing Client IP Addresses in AWS Global Accelerator</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>
@@ -304,7 +304,7 @@ pub struct EndpointConfiguration {
 }
 
 /// <p>A complex type for an endpoint. Each endpoint group can include one or more endpoints, such as load balancers.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EndpointDescription {
     /// <p>Indicates whether client IP address preservation is enabled for an Application Load Balancer endpoint. The value is true or false. The default value is true for new accelerators. </p> <p>If the value is set to true, the client's IP address is preserved in the <code>X-Forwarded-For</code> request header as traffic travels to applications on the Application Load Balancer endpoint fronted by the accelerator.</p> <p>For more information, see <a href="https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works-client-ip.html"> Viewing Client IP Addresses in AWS Global Accelerator</a> in the <i>AWS Global Accelerator Developer Guide</i>.</p>
@@ -330,7 +330,7 @@ pub struct EndpointDescription {
 }
 
 /// <p>A complex type for the endpoint group. An AWS Region can have only one endpoint group for a specific listener. </p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EndpointGroup {
     /// <p>The list of endpoint objects.</p>
@@ -372,7 +372,7 @@ pub struct EndpointGroup {
 }
 
 /// <p>A complex type for the set of IP addresses for an accelerator.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct IpSet {
     /// <p>The array of IP addresses in the IP address set. An IP address set can have a maximum of two IP addresses.</p>
@@ -385,7 +385,7 @@ pub struct IpSet {
     pub ip_family: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListAcceleratorsRequest {
     /// <p>The number of Global Accelerator objects that you want to return with this call. The default value is 10.</p>
@@ -398,7 +398,7 @@ pub struct ListAcceleratorsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListAcceleratorsResponse {
     /// <p>The list of accelerators for a customer account.</p>
@@ -411,7 +411,7 @@ pub struct ListAcceleratorsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListEndpointGroupsRequest {
     /// <p>The Amazon Resource Name (ARN) of the listener.</p>
@@ -427,7 +427,7 @@ pub struct ListEndpointGroupsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListEndpointGroupsResponse {
     /// <p>The list of the endpoint groups associated with a listener.</p>
@@ -440,7 +440,7 @@ pub struct ListEndpointGroupsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListListenersRequest {
     /// <p>The Amazon Resource Name (ARN) of the accelerator for which you want to list listener objects.</p>
@@ -456,7 +456,7 @@ pub struct ListListenersRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListListenersResponse {
     /// <p>The list of listeners for an accelerator.</p>
@@ -470,7 +470,7 @@ pub struct ListListenersResponse {
 }
 
 /// <p>A complex type for a listener.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Listener {
     /// <p>Client affinity lets you direct all requests from a user to the same endpoint, if you have stateful applications, regardless of the port and protocol of the client request. Clienty affinity gives you control over whether to always route each client to the same specific endpoint.</p> <p>AWS Global Accelerator uses a consistent-flow hashing algorithm to choose the optimal endpoint for a connection. If client affinity is <code>NONE</code>, Global Accelerator uses the "five-tuple" (5-tuple) properties—source IP address, source port, destination IP address, destination port, and protocol—to select the hash value, and then chooses the best endpoint. However, with this setting, if someone uses different ports to connect to Global Accelerator, their connections might not be always routed to the same endpoint because the hash value changes. </p> <p>If you want a given client to always be routed to the same endpoint, set client affinity to <code>SOURCE_IP</code> instead. When you use the <code>SOURCE_IP</code> setting, Global Accelerator uses the "two-tuple" (2-tuple) properties— source (client) IP address and destination IP address—to select the hash value.</p> <p>The default value is <code>NONE</code>.</p>
@@ -492,7 +492,7 @@ pub struct Listener {
 }
 
 /// <p>A complex type for a range of ports for a listener.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct PortRange {
     /// <p>The first port in the range of ports, inclusive.</p>
     #[serde(rename = "FromPort")]
@@ -504,7 +504,7 @@ pub struct PortRange {
     pub to_port: Option<i64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateAcceleratorAttributesRequest {
     /// <p>The Amazon Resource Name (ARN) of the accelerator that you want to update.</p>
@@ -524,7 +524,7 @@ pub struct UpdateAcceleratorAttributesRequest {
     pub flow_logs_s3_prefix: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateAcceleratorAttributesResponse {
     /// <p>Updated attributes for the accelerator.</p>
@@ -533,7 +533,7 @@ pub struct UpdateAcceleratorAttributesResponse {
     pub accelerator_attributes: Option<AcceleratorAttributes>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateAcceleratorRequest {
     /// <p>The Amazon Resource Name (ARN) of the accelerator to update.</p>
@@ -553,7 +553,7 @@ pub struct UpdateAcceleratorRequest {
     pub name: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateAcceleratorResponse {
     /// <p>Information about the updated accelerator.</p>
@@ -562,7 +562,7 @@ pub struct UpdateAcceleratorResponse {
     pub accelerator: Option<Accelerator>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateEndpointGroupRequest {
     /// <p>The list of endpoint objects.</p>
@@ -598,7 +598,7 @@ pub struct UpdateEndpointGroupRequest {
     pub traffic_dial_percentage: Option<f32>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateEndpointGroupResponse {
     /// <p>The information about the endpoint group that was updated.</p>
@@ -607,7 +607,7 @@ pub struct UpdateEndpointGroupResponse {
     pub endpoint_group: Option<EndpointGroup>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateListenerRequest {
     /// <p>Client affinity lets you direct all requests from a user to the same endpoint, if you have stateful applications, regardless of the port and protocol of the client request. Clienty affinity gives you control over whether to always route each client to the same specific endpoint.</p> <p>AWS Global Accelerator uses a consistent-flow hashing algorithm to choose the optimal endpoint for a connection. If client affinity is <code>NONE</code>, Global Accelerator uses the "five-tuple" (5-tuple) properties—source IP address, source port, destination IP address, destination port, and protocol—to select the hash value, and then chooses the best endpoint. However, with this setting, if someone uses different ports to connect to Global Accelerator, their connections might not be always routed to the same endpoint because the hash value changes. </p> <p>If you want a given client to always be routed to the same endpoint, set client affinity to <code>SOURCE_IP</code> instead. When you use the <code>SOURCE_IP</code> setting, Global Accelerator uses the "two-tuple" (2-tuple) properties— source (client) IP address and destination IP address—to select the hash value.</p> <p>The default value is <code>NONE</code>.</p>
@@ -627,7 +627,7 @@ pub struct UpdateListenerRequest {
     pub protocol: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateListenerResponse {
     /// <p>Information for the updated listener.</p>

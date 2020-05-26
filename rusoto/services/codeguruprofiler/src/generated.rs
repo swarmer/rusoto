@@ -26,7 +26,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>The configuration for the agent to use.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AgentConfiguration {
     /// <p>Specifies the period to follow the configuration (to profile or not) and call back to get a new configuration.</p>
@@ -38,7 +38,7 @@ pub struct AgentConfiguration {
 }
 
 /// <p>Configuration to orchestrate agents to create and report agent profiles of the profiling group. Agents are orchestrated if they follow the agent orchestration protocol.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq, Serialize)]
 pub struct AgentOrchestrationConfig {
     /// <p>If the agents should be enabled to create and report profiles.</p>
     #[serde(rename = "profilingEnabled")]
@@ -46,7 +46,7 @@ pub struct AgentOrchestrationConfig {
 }
 
 /// <p>The time range of an aggregated profile.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AggregatedProfileTime {
     /// <p>The aggregation period of the aggregated profile.</p>
@@ -60,7 +60,7 @@ pub struct AggregatedProfileTime {
 }
 
 /// <p>Request for ConfigureAgent operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ConfigureAgentRequest {
     #[serde(rename = "fleetInstanceId")]
@@ -71,7 +71,7 @@ pub struct ConfigureAgentRequest {
 }
 
 /// <p>Response for ConfigureAgent operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ConfigureAgentResponse {
     /// <p>The configuration for the agent to use.</p>
@@ -80,7 +80,7 @@ pub struct ConfigureAgentResponse {
 }
 
 /// <p>Request for CreateProfilingGroup operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateProfilingGroupRequest {
     #[serde(rename = "agentOrchestrationConfig")]
@@ -93,7 +93,7 @@ pub struct CreateProfilingGroupRequest {
 }
 
 /// <p>Response for CreateProfilingGroup operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct CreateProfilingGroupResponse {
     #[serde(rename = "profilingGroup")]
@@ -101,7 +101,7 @@ pub struct CreateProfilingGroupResponse {
 }
 
 /// <p>Request for DeleteProfilingGroup operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteProfilingGroupRequest {
     #[serde(rename = "profilingGroupName")]
@@ -109,12 +109,12 @@ pub struct DeleteProfilingGroupRequest {
 }
 
 /// <p>Response for DeleteProfilingGroup operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DeleteProfilingGroupResponse {}
 
 /// <p>Request for DescribeProfilingGroup operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeProfilingGroupRequest {
     #[serde(rename = "profilingGroupName")]
@@ -122,7 +122,7 @@ pub struct DescribeProfilingGroupRequest {
 }
 
 /// <p>Response for DescribeProfilingGroup operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeProfilingGroupResponse {
     #[serde(rename = "profilingGroup")]
@@ -130,7 +130,7 @@ pub struct DescribeProfilingGroupResponse {
 }
 
 /// <p>Request for GetProfile operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct GetProfileRequest {
     /// <p>The format of the profile to return. Supports application/json or application/x-amzn-ion. Defaults to application/x-amzn-ion.</p>
@@ -157,7 +157,7 @@ pub struct GetProfileRequest {
 }
 
 /// <p>Response for GetProfile operation.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 pub struct GetProfileResponse {
     /// <p>The content encoding of the profile in the payload.</p>
     pub content_encoding: Option<String>,
@@ -167,7 +167,7 @@ pub struct GetProfileResponse {
 }
 
 /// <p>Request for ListProfileTimes operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProfileTimesRequest {
     /// <p>The end time of the time range to list profiles until.</p>
@@ -194,7 +194,7 @@ pub struct ListProfileTimesRequest {
 }
 
 /// <p>Response for ListProfileTimes operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProfileTimesResponse {
     #[serde(rename = "nextToken")]
@@ -206,7 +206,7 @@ pub struct ListProfileTimesResponse {
 }
 
 /// <p>Request for ListProfilingGroups operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListProfilingGroupsRequest {
     /// <p>If set to true, returns the full description of the profiling groups instead of the names. Defaults to false.</p>
@@ -222,7 +222,7 @@ pub struct ListProfilingGroupsRequest {
 }
 
 /// <p>Response for ListProfilingGroups operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ListProfilingGroupsResponse {
     #[serde(rename = "nextToken")]
@@ -236,7 +236,7 @@ pub struct ListProfilingGroupsResponse {
 }
 
 /// <p>Request for PostAgentProfile operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PostAgentProfileRequest {
     #[serde(rename = "agentProfile")]
@@ -258,12 +258,12 @@ pub struct PostAgentProfileRequest {
 }
 
 /// <p>Response for PostAgentProfile operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct PostAgentProfileResponse {}
 
 /// <p>Periods of time used for aggregation of profiles, represented using ISO 8601 format.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProfileTime {
     /// <p>The start time of the profile.</p>
@@ -273,7 +273,7 @@ pub struct ProfileTime {
 }
 
 /// <p>The description of a profiling group.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProfilingGroupDescription {
     #[serde(rename = "agentOrchestrationConfig")]
@@ -299,7 +299,7 @@ pub struct ProfilingGroupDescription {
 }
 
 /// <p>The status of profiling of a profiling group.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct ProfilingStatus {
     /// <p>Timestamp of when the last interaction of the agent with configureAgent API for orchestration.</p>
@@ -317,7 +317,7 @@ pub struct ProfilingStatus {
 }
 
 /// <p>Request for UpdateProfilingGroup operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateProfilingGroupRequest {
     /// <p>Remote configuration to configure the agents of the profiling group.</p>
@@ -328,7 +328,7 @@ pub struct UpdateProfilingGroupRequest {
 }
 
 /// <p>Response for UpdateProfilingGroup operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct UpdateProfilingGroupResponse {
     #[serde(rename = "profilingGroup")]

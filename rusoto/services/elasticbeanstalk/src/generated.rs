@@ -49,7 +49,7 @@ impl ARNDeserializer {
     }
 }
 /// <p><p/></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct AbortEnvironmentUpdateMessage {
     /// <p>This specifies the ID of the environment with the in-progress update that you want to cancel.</p>
@@ -137,7 +137,7 @@ impl ApplicationArnDeserializer {
     }
 }
 /// <p>Describes the properties of an application.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ApplicationDescription {
     /// <p>The Amazon Resource Name (ARN) of the application.</p>
@@ -239,7 +239,7 @@ impl ApplicationDescriptionListDeserializer {
     }
 }
 /// <p>Result message containing a single description of an application.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ApplicationDescriptionMessage {
     /// <p> The <a>ApplicationDescription</a> of the application. </p>
@@ -273,7 +273,7 @@ impl ApplicationDescriptionMessageDeserializer {
     }
 }
 /// <p>Result message containing a list of application descriptions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ApplicationDescriptionsMessage {
     /// <p>This parameter contains a list of <a>ApplicationDescription</a>.</p>
@@ -309,7 +309,7 @@ impl ApplicationDescriptionsMessageDeserializer {
     }
 }
 /// <p>Application request metrics for an AWS Elastic Beanstalk environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ApplicationMetrics {
     /// <p>The amount of time that the metrics cover (usually 10 seconds). For example, you might have 5 requests (<code>request_count</code>) within the most recent time slice of 10 seconds (<code>duration</code>).</p>
@@ -380,7 +380,7 @@ impl ApplicationNamesListSerializer {
 }
 
 /// <p>The resource lifecycle configuration for an application. Defines lifecycle settings for resources that belong to the application, and the service role that Elastic Beanstalk assumes in order to apply lifecycle settings. The version lifecycle configuration defines lifecycle settings for application versions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ApplicationResourceLifecycleConfig {
@@ -444,7 +444,7 @@ impl ApplicationResourceLifecycleConfigSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ApplicationResourceLifecycleDescriptionMessage {
     /// <p>The name of the application.</p>
@@ -499,7 +499,7 @@ impl ApplicationVersionArnDeserializer {
     }
 }
 /// <p>Describes the properties of an application version.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ApplicationVersionDescription {
     /// <p>The name of the application to which the application version belongs.</p>
@@ -615,7 +615,7 @@ impl ApplicationVersionDescriptionListDeserializer {
     }
 }
 /// <p>Result message wrapping a single description of an application version.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ApplicationVersionDescriptionMessage {
     /// <p> The <a>ApplicationVersionDescription</a> of the application version. </p>
@@ -650,7 +650,7 @@ impl ApplicationVersionDescriptionMessageDeserializer {
     }
 }
 /// <p>Result message wrapping a list of application version descriptions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ApplicationVersionDescriptionsMessage {
     /// <p>List of <code>ApplicationVersionDescription</code> objects sorted in order of creation.</p>
@@ -691,7 +691,7 @@ impl ApplicationVersionDescriptionsMessageDeserializer {
     }
 }
 /// <p>The application version lifecycle settings for an application. Defines the rules that Elastic Beanstalk applies to an application's versions in order to avoid hitting the per-region limit for application versions.</p> <p>When Elastic Beanstalk deletes an application version from its database, you can no longer deploy that version to an environment. The source bundle remains in S3 unless you configure the rule to delete it.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ApplicationVersionLifecycleConfig {
@@ -771,7 +771,7 @@ impl ApplicationVersionStatusDeserializer {
     }
 }
 /// <p>Request to execute a scheduled managed action immediately.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ApplyEnvironmentManagedActionRequest {
     /// <p>The action ID of the scheduled managed action to execute.</p>
@@ -802,7 +802,7 @@ impl ApplyEnvironmentManagedActionRequestSerializer {
 }
 
 /// <p>The result message containing information about the managed action.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ApplyEnvironmentManagedActionResult {
     /// <p>A description of the managed action.</p>
@@ -850,7 +850,7 @@ impl ApplyEnvironmentManagedActionResultDeserializer {
     }
 }
 /// <p>Describes an Auto Scaling launch configuration.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct AutoScalingGroup {
     /// <p>The name of the <code>AutoScalingGroup</code> . </p>
@@ -957,7 +957,7 @@ impl BoxedIntDeserializer {
     }
 }
 /// <p>Settings for an AWS CodeBuild build.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct BuildConfiguration {
     /// <p>The name of the artifact of the CodeBuild build. If provided, Elastic Beanstalk stores the build artifact in the S3 location <i>S3-bucket</i>/resources/<i>application-name</i>/codebuild/codebuild-<i>version-label</i>-<i>artifact-name</i>.zip. If not provided, Elastic Beanstalk stores the build artifact in the S3 location <i>S3-bucket</i>/resources/<i>application-name</i>/codebuild/codebuild-<i>version-label</i>.zip. </p>
@@ -999,7 +999,7 @@ impl BuildConfigurationSerializer {
 }
 
 /// <p>The builder used to build the custom platform.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Builder {
     /// <p>The ARN of the builder.</p>
@@ -1026,7 +1026,7 @@ impl BuilderDeserializer {
     }
 }
 /// <p>CPU utilization metrics for an instance.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CPUUtilization {
     /// <p>Available on Linux environments only.</p> <p>Percentage of time that the CPU has spent in the <code>I/O Wait</code> state over the last 10 seconds.</p>
@@ -1121,7 +1121,7 @@ impl CausesDeserializer {
     }
 }
 /// <p>Results message indicating whether a CNAME is available.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CheckDNSAvailabilityMessage {
     /// <p>The prefix used when this CNAME is reserved.</p>
@@ -1142,7 +1142,7 @@ impl CheckDNSAvailabilityMessageSerializer {
 }
 
 /// <p>Indicates if the specified CNAME is available.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CheckDNSAvailabilityResultMessage {
     /// <p><p>Indicates if the specified CNAME is available:</p> <ul> <li> <p> <code>true</code> : The CNAME is available.</p> </li> <li> <p> <code>false</code> : The CNAME is not available.</p> </li> </ul></p>
@@ -1196,7 +1196,7 @@ impl CnameAvailabilityDeserializer {
     }
 }
 /// <p>Request to create or update a group of environments.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ComposeEnvironmentsMessage {
     /// <p>The name of the application to which the specified source bundles belong.</p>
@@ -1257,7 +1257,7 @@ impl ConfigurationOptionDefaultValueDeserializer {
     }
 }
 /// <p>Describes the possible values for a configuration option.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ConfigurationOptionDescription {
     /// <p><p>An indication of which action is required if the value for this configuration option changes:</p> <ul> <li> <p> <code>NoInterruption</code> : There is no interruption to the environment or application availability.</p> </li> <li> <p> <code>RestartEnvironment</code> : The environment is entirely restarted, all AWS resources are deleted and recreated, and the environment is unavailable during the process.</p> </li> <li> <p> <code>RestartApplicationServer</code> : The environment is available the entire time. However, a short application outage occurs when the application servers on the running Amazon EC2 instances are restarted.</p> </li> </ul></p>
@@ -1436,7 +1436,7 @@ impl ConfigurationOptionPossibleValuesDeserializer {
     }
 }
 /// <p> A specification identifying an individual configuration option along with its current value. For a list of possible option values, go to <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html">Option Values</a> in the <i>AWS Elastic Beanstalk Developer Guide</i>. </p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ConfigurationOptionSetting {
@@ -1587,7 +1587,7 @@ impl ConfigurationOptionValueTypeDeserializer {
     }
 }
 /// <p>Describes the settings for a specified configuration set.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ConfigurationOptionsDescription {
     /// <p> A list of <a>ConfigurationOptionDescription</a>. </p>
@@ -1636,7 +1636,7 @@ impl ConfigurationOptionsDescriptionDeserializer {
     }
 }
 /// <p>Describes the settings for a configuration set.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ConfigurationSettingsDescription {
     /// <p>The name of the application associated with this configuration set.</p>
@@ -1758,7 +1758,7 @@ impl ConfigurationSettingsDescriptionListDeserializer {
     }
 }
 /// <p>The results from a request to change the configuration settings of an environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ConfigurationSettingsDescriptions {
     /// <p> A list of <a>ConfigurationSettingsDescription</a>. </p>
@@ -1794,7 +1794,7 @@ impl ConfigurationSettingsDescriptionsDeserializer {
     }
 }
 /// <p>Provides a list of validation messages.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ConfigurationSettingsValidationMessages {
     /// <p> A list of <a>ValidationMessage</a>. </p>
@@ -1859,7 +1859,7 @@ impl ConfigurationTemplateNamesListDeserializer {
     }
 }
 /// <p>Request to create an application.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateApplicationMessage {
     /// <p>The name of the application.</p> <p>Constraint: This name must be unique within your account. If the specified name already exists, the action returns an <code>InvalidParameterValue</code> error.</p>
@@ -1902,7 +1902,7 @@ impl CreateApplicationMessageSerializer {
 }
 
 /// <p><p/></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateApplicationVersionMessage {
     /// <p> The name of the application. If no application is found with this name, and <code>AutoCreateApplication</code> is <code>false</code>, returns an <code>InvalidParameterValue</code> error. </p>
@@ -1979,7 +1979,7 @@ impl CreateApplicationVersionMessageSerializer {
 }
 
 /// <p>Request to create a configuration template.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateConfigurationTemplateMessage {
     /// <p>The name of the application to associate with this configuration template. If no application is found with this name, AWS Elastic Beanstalk returns an <code>InvalidParameterValue</code> error. </p>
@@ -2049,7 +2049,7 @@ impl CreateConfigurationTemplateMessageSerializer {
 }
 
 /// <p><p/></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreateEnvironmentMessage {
     /// <p>The name of the application that contains the version to be deployed.</p> <p> If no application is found with this name, <code>CreateEnvironment</code> returns an <code>InvalidParameterValue</code> error. </p>
@@ -2145,7 +2145,7 @@ impl CreateEnvironmentMessageSerializer {
 }
 
 /// <p>Request to create a new platform version.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct CreatePlatformVersionRequest {
     /// <p>The name of the builder environment.</p>
@@ -2197,7 +2197,7 @@ impl CreatePlatformVersionRequestSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CreatePlatformVersionResult {
     /// <p>The builder used to create the custom platform.</p>
@@ -2236,7 +2236,7 @@ impl CreatePlatformVersionResultDeserializer {
     }
 }
 /// <p>Results of a <a>CreateStorageLocationResult</a> call.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CreateStorageLocationResultMessage {
     /// <p>The name of the Amazon S3 bucket created.</p>
@@ -2279,7 +2279,7 @@ impl CreationDateDeserializer {
     }
 }
 /// <p>A custom AMI available to platforms.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct CustomAmi {
     /// <p>THe ID of the image used to create the custom AMI.</p>
@@ -2344,7 +2344,7 @@ impl DNSCnameDeserializer {
     }
 }
 /// <p>Request to delete an application.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteApplicationMessage {
     /// <p>The name of the application to delete.</p>
@@ -2376,7 +2376,7 @@ impl DeleteApplicationMessageSerializer {
 }
 
 /// <p>Request to delete an application version.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteApplicationVersionMessage {
     /// <p>The name of the application to which the version belongs.</p>
@@ -2408,7 +2408,7 @@ impl DeleteApplicationVersionMessageSerializer {
 }
 
 /// <p>Request to delete a configuration template.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteConfigurationTemplateMessage {
     /// <p>The name of the application to delete the configuration template from.</p>
@@ -2435,7 +2435,7 @@ impl DeleteConfigurationTemplateMessageSerializer {
 }
 
 /// <p>Request to delete a draft environment configuration.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeleteEnvironmentConfigurationMessage {
     /// <p>The name of the application the environment is associated with.</p>
@@ -2464,7 +2464,7 @@ impl DeleteEnvironmentConfigurationMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DeletePlatformVersionRequest {
     /// <p>The ARN of the version of the custom platform.</p>
@@ -2486,7 +2486,7 @@ impl DeletePlatformVersionRequestSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DeletePlatformVersionResult {
     /// <p>Detailed information about the version of the custom platform.</p>
@@ -2520,7 +2520,7 @@ impl DeletePlatformVersionResultDeserializer {
     }
 }
 /// <p>Information about an application version deployment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Deployment {
     /// <p>The ID of the deployment. This number increases by one each time that you deploy source code or change instance configuration settings.</p>
@@ -2580,7 +2580,7 @@ impl DeploymentTimestampDeserializer {
         Ok(obj)
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeAccountAttributesResult {
     /// <p>The Elastic Beanstalk resource quotas associated with the calling AWS account.</p>
@@ -2614,7 +2614,7 @@ impl DescribeAccountAttributesResultDeserializer {
     }
 }
 /// <p>Request to describe application versions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeApplicationVersionsMessage {
     /// <p>Specify an application name to show only application versions for that application.</p>
@@ -2656,7 +2656,7 @@ impl DescribeApplicationVersionsMessageSerializer {
 }
 
 /// <p>Request to describe one or more applications.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeApplicationsMessage {
     /// <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include those with the specified names.</p>
@@ -2683,7 +2683,7 @@ impl DescribeApplicationsMessageSerializer {
 }
 
 /// <p>Result message containing a list of application version descriptions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConfigurationOptionsMessage {
     /// <p>The name of the application associated with the configuration template or environment. Only needed if you want to describe the configuration options associated with either the configuration template or environment.</p>
@@ -2735,7 +2735,7 @@ impl DescribeConfigurationOptionsMessageSerializer {
 }
 
 /// <p>Result message containing all of the configuration settings for a specified solution stack or configuration template.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeConfigurationSettingsMessage {
     /// <p>The application for the environment or configuration template.</p>
@@ -2769,7 +2769,7 @@ impl DescribeConfigurationSettingsMessageSerializer {
 }
 
 /// <p>See the example below to learn how to create a request body.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentHealthRequest {
     /// <p>Specify the response elements to return. To retrieve all attributes, set to <code>All</code>. If no attribute names are specified, returns the name of the environment.</p>
@@ -2806,7 +2806,7 @@ impl DescribeEnvironmentHealthRequestSerializer {
 }
 
 /// <p>Health details for an AWS Elastic Beanstalk environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeEnvironmentHealthResult {
     /// <p>Application request metrics for the environment.</p>
@@ -2888,7 +2888,7 @@ impl DescribeEnvironmentHealthResultDeserializer {
     }
 }
 /// <p>Request to list completed and failed managed actions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentManagedActionHistoryRequest {
     /// <p>The environment ID of the target environment.</p>
@@ -2930,7 +2930,7 @@ impl DescribeEnvironmentManagedActionHistoryRequestSerializer {
 }
 
 /// <p>A result message containing a list of completed and failed managed actions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeEnvironmentManagedActionHistoryResult {
     /// <p>A list of completed and failed managed actions.</p>
@@ -2971,7 +2971,7 @@ impl DescribeEnvironmentManagedActionHistoryResultDeserializer {
     }
 }
 /// <p>Request to list an environment's upcoming and in-progress managed actions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentManagedActionsRequest {
     /// <p>The environment ID of the target environment.</p>
@@ -3004,7 +3004,7 @@ impl DescribeEnvironmentManagedActionsRequestSerializer {
 }
 
 /// <p>The result message containing a list of managed actions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeEnvironmentManagedActionsResult {
     /// <p>A list of upcoming and in-progress managed actions.</p>
@@ -3037,7 +3037,7 @@ impl DescribeEnvironmentManagedActionsResultDeserializer {
     }
 }
 /// <p>Request to describe the resources in an environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentResourcesMessage {
     /// <p>The ID of the environment to retrieve AWS resource usage data.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
@@ -3065,7 +3065,7 @@ impl DescribeEnvironmentResourcesMessageSerializer {
 }
 
 /// <p>Request to describe one or more environments.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEnvironmentsMessage {
     /// <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.</p>
@@ -3134,7 +3134,7 @@ impl DescribeEnvironmentsMessageSerializer {
 }
 
 /// <p>Request to retrieve a list of events for an environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventsMessage {
     /// <p>If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those associated with this application.</p>
@@ -3212,7 +3212,7 @@ impl DescribeEventsMessageSerializer {
 }
 
 /// <p>Parameters for a call to <code>DescribeInstancesHealth</code>.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeInstancesHealthRequest {
     /// <p>Specifies the response elements you wish to receive. To retrieve all attributes, set to <code>All</code>. If no attribute names are specified, returns a list of instances.</p>
@@ -3254,7 +3254,7 @@ impl DescribeInstancesHealthRequestSerializer {
 }
 
 /// <p>Detailed health information about the Amazon EC2 instances in an AWS Elastic Beanstalk environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribeInstancesHealthResult {
     /// <p>Detailed health information about each instance.</p> <p>The output differs slightly between Linux and Windows environments. There is a difference in the members that are supported under the <code>&lt;CPUUtilization&gt;</code> type.</p>
@@ -3301,7 +3301,7 @@ impl DescribeInstancesHealthResultDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribePlatformVersionRequest {
     /// <p>The ARN of the version of the platform.</p>
@@ -3323,7 +3323,7 @@ impl DescribePlatformVersionRequestSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct DescribePlatformVersionResult {
     /// <p>Detailed information about the version of the platform.</p>
@@ -3406,7 +3406,7 @@ impl EnvironmentArnDeserializer {
     }
 }
 /// <p>Describes the properties of an environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EnvironmentDescription {
     /// <p>Indicates if there is an in-progress environment configuration update or application version deployment that you can cancel.</p> <p> <code>true:</code> There is an update in progress. </p> <p> <code>false:</code> There are no updates currently in progress. </p>
@@ -3586,7 +3586,7 @@ impl EnvironmentDescriptionsListDeserializer {
     }
 }
 /// <p>Result message containing a list of environment descriptions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EnvironmentDescriptionsMessage {
     /// <p> Returns an <a>EnvironmentDescription</a> list. </p>
@@ -3687,7 +3687,7 @@ impl EnvironmentIdListSerializer {
 }
 
 /// <p>The information retrieved from the Amazon EC2 instances.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EnvironmentInfoDescription {
     /// <p>The Amazon EC2 Instance ID for this information.</p>
@@ -3773,7 +3773,7 @@ impl EnvironmentInfoTypeDeserializer {
     }
 }
 /// <p>A link to another environment, defined in the environment's manifest. Links provide connection information in system properties that can be used to connect to another environment in the same group. See <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-cfg-manifest.html">Environment Manifest (env.yaml)</a> for details.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EnvironmentLink {
     /// <p>The name of the linked environment (the dependency).</p>
@@ -3848,7 +3848,7 @@ impl EnvironmentNamesListSerializer {
 }
 
 /// <p>Describes the AWS resources in use by this environment. This data is live.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EnvironmentResourceDescription {
     /// <p> The <code>AutoScalingGroups</code> used by this environment. </p>
@@ -3937,7 +3937,7 @@ impl EnvironmentResourceDescriptionDeserializer {
     }
 }
 /// <p>Result message containing a list of environment resource descriptions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EnvironmentResourceDescriptionsMessage {
     /// <p> A list of <a>EnvironmentResourceDescription</a>. </p>
@@ -3972,7 +3972,7 @@ impl EnvironmentResourceDescriptionsMessageDeserializer {
     }
 }
 /// <p>Describes the AWS resources in use by this environment. This data is not live data.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EnvironmentResourcesDescription {
     /// <p>Describes the LoadBalancer.</p>
@@ -4018,7 +4018,7 @@ impl EnvironmentStatusDeserializer {
     }
 }
 /// <p>Describes the properties of an environment tier</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EnvironmentTier {
@@ -4090,7 +4090,7 @@ impl EventDateDeserializer {
     }
 }
 /// <p>Describes an event.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EventDescription {
     /// <p>The application associated with the event.</p>
@@ -4188,7 +4188,7 @@ impl EventDescriptionListDeserializer {
     }
 }
 /// <p>Result message wrapping a list of event descriptions.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct EventDescriptionsMessage {
     /// <p> A list of <a>EventDescription</a>. </p>
@@ -4286,7 +4286,7 @@ impl ImageIdDeserializer {
     }
 }
 /// <p>The description of an Amazon EC2 instance.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Instance {
     /// <p>The ID of the Amazon EC2 instance.</p>
@@ -4333,7 +4333,7 @@ impl InstanceHealthListDeserializer {
     }
 }
 /// <p>Represents summary information about the health of an instance. For more information, see <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html">Health Colors and Statuses</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct InstanceHealthSummary {
     /// <p> <b>Red.</b> The health agent is reporting a high number of request failures or other issues for an instance or environment.</p>
@@ -4450,7 +4450,7 @@ impl IntegerDeserializer {
     }
 }
 /// <p>Represents the average latency for the slowest X percent of requests over the last 10 seconds.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Latency {
     /// <p>The average latency for the slowest 90 percent of requests over the last 10 seconds.</p>
@@ -4512,7 +4512,7 @@ impl LatencyDeserializer {
     }
 }
 /// <p>Describes an Auto Scaling launch configuration.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct LaunchConfiguration {
     /// <p>The name of the launch configuration.</p>
@@ -4559,7 +4559,7 @@ impl LaunchConfigurationListDeserializer {
     }
 }
 /// <p>Describes an Amazon EC2 launch template.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct LaunchTemplate {
     /// <p>The ID of the launch template.</p>
@@ -4616,7 +4616,7 @@ impl LaunchedAtDeserializer {
     }
 }
 /// <p>A list of available AWS Elastic Beanstalk solution stacks.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ListAvailableSolutionStacksResultMessage {
     /// <p> A list of available solution stacks and their <a>SolutionStackDescription</a>. </p>
@@ -4661,7 +4661,7 @@ impl ListAvailableSolutionStacksResultMessageDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListPlatformVersionsRequest {
     /// <p>List only the platforms where the platform member value relates to one of the supplied values.</p>
@@ -4697,7 +4697,7 @@ impl ListPlatformVersionsRequestSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ListPlatformVersionsResult {
     /// <p>The starting index into the remaining list of platforms. if this value is not <code>null</code>, you can use it in a subsequent <code>ListPlatformVersion</code> call. </p>
@@ -4737,7 +4737,7 @@ impl ListPlatformVersionsResultDeserializer {
         )
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ListTagsForResourceMessage {
     /// <p>The Amazon Resource Name (ARN) of the resouce for which a tag list is requested.</p> <p>Must be the ARN of an Elastic Beanstalk environment.</p>
@@ -4758,7 +4758,7 @@ impl ListTagsForResourceMessageSerializer {
 }
 
 /// <p>Describes the properties of a Listener for the LoadBalancer.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Listener {
     /// <p>The port that is used by the Listener.</p>
@@ -4820,7 +4820,7 @@ impl LoadAverageValueDeserializer {
     }
 }
 /// <p>Describes a LoadBalancer.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct LoadBalancer {
     /// <p>The name of the LoadBalancer.</p>
@@ -4847,7 +4847,7 @@ impl LoadBalancerDeserializer {
     }
 }
 /// <p>Describes the details of a LoadBalancer.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct LoadBalancerDescription {
     /// <p>The domain name of the LoadBalancer.</p>
@@ -4942,7 +4942,7 @@ impl MaintainerDeserializer {
     }
 }
 /// <p>The record of an upcoming or in-progress managed action.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ManagedAction {
     /// <p>A description of the managed action.</p>
@@ -4994,7 +4994,7 @@ impl ManagedActionDeserializer {
     }
 }
 /// <p>The record of a completed or failed managed action.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ManagedActionHistoryItem {
     /// <p>A description of the managed action.</p>
@@ -5108,7 +5108,7 @@ impl ManagedActionsDeserializer {
     }
 }
 /// <p>A lifecycle rule that deletes application versions after the specified number of days.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MaxAgeRule {
@@ -5170,7 +5170,7 @@ impl MaxAgeRuleSerializer {
 }
 
 /// <p>A lifecycle rule that deletes the oldest application version when the maximum count is exceeded.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct MaxCountRule {
@@ -5363,7 +5363,7 @@ impl OptionRestrictionMinValueDeserializer {
     }
 }
 /// <p>A regular expression representing a restriction on a string configuration option value.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct OptionRestrictionRegex {
     /// <p>A unique name representing this regular expression.</p>
@@ -5395,7 +5395,7 @@ impl OptionRestrictionRegexDeserializer {
     }
 }
 /// <p>A specification identifying an individual configuration option.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct OptionSpecification {
     /// <p>A unique namespace identifying the option's associated AWS resource.</p>
@@ -5463,7 +5463,7 @@ impl PlatformCategoryDeserializer {
     }
 }
 /// <p>Detailed information about a platform.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PlatformDescription {
     /// <p>The custom AMIs supported by the platform.</p>
@@ -5618,7 +5618,7 @@ impl PlatformDescriptionDeserializer {
     }
 }
 /// <p>Specify criteria to restrict the results when listing custom platforms.</p> <p>The filter is evaluated as the expression:</p> <p> <code>Type</code> <code>Operator</code> <code>Values[i]</code> </p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct PlatformFilter {
     /// <p>The operator to apply to the <code>Type</code> with each of the <code>Values</code>.</p> <p> Valid Values: <code>=</code> (equal to) | <code>!=</code> (not equal to) | <code>&lt;</code> (less than) | <code>&lt;=</code> (less than or equal to) | <code>&gt;</code> (greater than) | <code>&gt;=</code> (greater than or equal to) | <code>contains</code> | <code>begins_with</code> | <code>ends_with</code> </p>
@@ -5677,7 +5677,7 @@ impl PlatformFiltersSerializer {
 }
 
 /// <p>A framework supported by the custom platform.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PlatformFramework {
     /// <p>The name of the framework.</p>
@@ -5751,7 +5751,7 @@ impl PlatformOwnerDeserializer {
     }
 }
 /// <p>A programming language supported by the platform.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PlatformProgrammingLanguage {
     /// <p>The name of the programming language.</p>
@@ -5819,7 +5819,7 @@ impl PlatformStatusDeserializer {
     }
 }
 /// <p>Detailed information about a platform.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct PlatformSummary {
     /// <p>The operating system used by the platform.</p>
@@ -5932,7 +5932,7 @@ impl PlatformVersionDeserializer {
     }
 }
 /// <p>Describes a queue.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Queue {
     /// <p>The name of the queue.</p>
@@ -5979,7 +5979,7 @@ impl QueueListDeserializer {
     }
 }
 /// <p><p/></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RebuildEnvironmentMessage {
     /// <p>The ID of the environment to rebuild.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
@@ -6055,7 +6055,7 @@ impl RequestCountDeserializer {
     }
 }
 /// <p>Request to retrieve logs from an environment and store them in your Elastic Beanstalk storage bucket.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RequestEnvironmentInfoMessage {
     /// <p>The ID of the environment of the requested data.</p> <p>If no such environment is found, <code>RequestEnvironmentInfo</code> returns an <code>InvalidParameterValue</code> error. </p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
@@ -6134,7 +6134,7 @@ impl ResourceNameDeserializer {
     }
 }
 /// <p>The AWS Elastic Beanstalk quota information for a single resource type in an AWS account. It reflects the resource's limits for this account.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ResourceQuota {
     /// <p>The maximum number of instances of this Elastic Beanstalk resource type that an AWS account can use.</p>
@@ -6161,7 +6161,7 @@ impl ResourceQuotaDeserializer {
     }
 }
 /// <p>A set of per-resource AWS Elastic Beanstalk quotas associated with an AWS account. They reflect Elastic Beanstalk resource limits for this account.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ResourceQuotas {
     /// <p>The quota for applications in the AWS account.</p>
@@ -6223,7 +6223,7 @@ impl ResourceQuotasDeserializer {
         })
     }
 }
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ResourceTagsDescriptionMessage {
     /// <p>The Amazon Resource Name (ARN) of the resouce for which a tag list was requested.</p>
@@ -6262,7 +6262,7 @@ impl ResourceTagsDescriptionMessageDeserializer {
     }
 }
 /// <p><p/></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RestartAppServerMessage {
     /// <p>The ID of the environment to restart the server for.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
@@ -6290,7 +6290,7 @@ impl RestartAppServerMessageSerializer {
 }
 
 /// <p>Request to download logs retrieved with <a>RequestEnvironmentInfo</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct RetrieveEnvironmentInfoMessage {
     /// <p>The ID of the data's environment.</p> <p>If no such environment is found, returns an <code>InvalidParameterValue</code> error.</p> <p>Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error.</p>
@@ -6321,7 +6321,7 @@ impl RetrieveEnvironmentInfoMessageSerializer {
 }
 
 /// <p>Result message containing a description of the requested environment info.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct RetrieveEnvironmentInfoResultMessage {
     /// <p> The <a>EnvironmentInfoDescription</a> of the environment. </p>
@@ -6381,7 +6381,7 @@ impl S3KeyDeserializer {
     }
 }
 /// <p>The bucket and key of an item stored in Amazon S3.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct S3Location {
@@ -6445,7 +6445,7 @@ impl SampleTimestampDeserializer {
     }
 }
 /// <p>Detailed health information about an Amazon EC2 instance in your Elastic Beanstalk environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct SingleInstanceHealth {
     /// <p>Request metrics from your application.</p>
@@ -6528,7 +6528,7 @@ impl SingleInstanceHealthDeserializer {
     }
 }
 /// <p>Describes the solution stack.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct SolutionStackDescription {
     /// <p>The permitted file types allowed for a solution stack.</p>
@@ -6602,7 +6602,7 @@ impl SolutionStackNameDeserializer {
     }
 }
 /// <p>Location of the source code for an application version.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SourceBuildInformation {
@@ -6664,7 +6664,7 @@ impl SourceBuildInformationSerializer {
 }
 
 /// <p>A specification for an environment configuration</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SourceConfiguration {
     /// <p>The name of the application associated with the configuration.</p>
@@ -6728,7 +6728,7 @@ impl SourceTypeDeserializer {
     }
 }
 /// <p>Represents the percentage of requests over the last 10 seconds that resulted in each type of status code response. For more information, see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status Code Definitions</a>.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct StatusCodes {
     /// <p>The percentage of requests over the last 10 seconds that resulted in a 2xx (200, 201, etc.) status code.</p>
@@ -6854,7 +6854,7 @@ impl SupportedTierListDeserializer {
     }
 }
 /// <p>Swaps the CNAMEs of two environments.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct SwapEnvironmentCNAMEsMessage {
     /// <p>The ID of the destination environment.</p> <p> Condition: You must specify at least the <code>DestinationEnvironmentID</code> or the <code>DestinationEnvironmentName</code>. You may also specify both. You must specify the <code>SourceEnvironmentId</code> with the <code>DestinationEnvironmentId</code>. </p>
@@ -6904,7 +6904,7 @@ impl SwapEnvironmentCNAMEsMessageSerializer {
 }
 
 /// <p>CPU utilization and load average metrics for an Amazon EC2 instance.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct SystemStatus {
     /// <p>CPU utilization metrics for the instance.</p>
@@ -6941,7 +6941,7 @@ impl SystemStatusDeserializer {
     }
 }
 /// <p>Describes a tag applied to a resource in an environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct Tag {
@@ -7068,7 +7068,7 @@ impl TagsSerializer {
 }
 
 /// <p>Request to terminate an environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct TerminateEnvironmentMessage {
     /// <p>The ID of the environment to terminate.</p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>
@@ -7130,7 +7130,7 @@ impl TokenDeserializer {
     }
 }
 /// <p>Describes a trigger.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct Trigger {
     /// <p>The name of the trigger.</p>
@@ -7175,7 +7175,7 @@ impl TriggerListDeserializer {
     }
 }
 /// <p>Request to update an application.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateApplicationMessage {
     /// <p>The name of the application to update. If no such application is found, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error. </p>
@@ -7203,7 +7203,7 @@ impl UpdateApplicationMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateApplicationResourceLifecycleMessage {
     /// <p>The name of the application.</p>
@@ -7234,7 +7234,7 @@ impl UpdateApplicationResourceLifecycleMessageSerializer {
 }
 
 /// <p><p/></p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateApplicationVersionMessage {
     /// <p>The name of the application associated with this version.</p> <p> If no application is found with this name, <code>UpdateApplication</code> returns an <code>InvalidParameterValue</code> error.</p>
@@ -7266,7 +7266,7 @@ impl UpdateApplicationVersionMessageSerializer {
 }
 
 /// <p>The result message containing the options for the specified solution stack.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateConfigurationTemplateMessage {
     /// <p>The name of the application associated with the configuration template to update.</p> <p> If no application is found with this name, <code>UpdateConfigurationTemplate</code> returns an <code>InvalidParameterValue</code> error. </p>
@@ -7328,7 +7328,7 @@ impl UpdateDateDeserializer {
     }
 }
 /// <p>Request to update an environment.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateEnvironmentMessage {
     /// <p>The name of the application with which the environment is associated.</p>
@@ -7417,7 +7417,7 @@ impl UpdateEnvironmentMessageSerializer {
     }
 }
 
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct UpdateTagsForResourceMessage {
     /// <p>The Amazon Resource Name (ARN) of the resouce to be updated.</p> <p>Must be the ARN of an Elastic Beanstalk environment.</p>
@@ -7468,7 +7468,7 @@ impl UserDefinedOptionDeserializer {
     }
 }
 /// <p>A list of validation messages for a specified configuration template.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct ValidateConfigurationSettingsMessage {
     /// <p>The name of the application that the configuration template or environment belongs to.</p>
@@ -7509,7 +7509,7 @@ impl ValidateConfigurationSettingsMessageSerializer {
 }
 
 /// <p>An error or warning for a desired configuration option value.</p>
-#[derive(Default, Debug, Clone, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 #[cfg_attr(feature = "serialize_structs", derive(Serialize))]
 pub struct ValidationMessage {
     /// <p>A message describing the error or warning.</p>

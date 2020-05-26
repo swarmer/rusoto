@@ -25,7 +25,7 @@ use rusoto_core::signature::SignedRequest;
 use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Information about an entity that is affected by a Health event.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct AffectedEntity {
     /// <p>The 12-digit AWS account number that contains the affected entity.</p>
@@ -63,7 +63,7 @@ pub struct AffectedEntity {
 }
 
 /// <p>A range of dates and times that is used by the <a>EventFilter</a> and <a>EntityFilter</a> objects. If <code>from</code> is set and <code>to</code> is set: match items where the timestamp (<code>startTime</code>, <code>endTime</code>, or <code>lastUpdatedTime</code>) is between <code>from</code> and <code>to</code> inclusive. If <code>from</code> is set and <code>to</code> is not set: match items where the timestamp value is equal to or after <code>from</code>. If <code>from</code> is not set and <code>to</code> is set: match items where the timestamp value is equal to or before <code>to</code>.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DateTimeRange {
     /// <p>The starting date and time of a time range.</p>
@@ -76,7 +76,7 @@ pub struct DateTimeRange {
     pub to: Option<f64>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAffectedAccountsForOrganizationRequest {
     /// <p>The unique identifier for the event. Format: <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code>. Example: <code>Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>
@@ -92,7 +92,7 @@ pub struct DescribeAffectedAccountsForOrganizationRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAffectedAccountsForOrganizationResponse {
     /// <p>A JSON set of elements of the affected accounts.</p>
@@ -105,7 +105,7 @@ pub struct DescribeAffectedAccountsForOrganizationResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAffectedEntitiesForOrganizationRequest {
     /// <p>The locale (language) to return information in. English (en) is the default and the only supported value at this time.</p>
@@ -125,7 +125,7 @@ pub struct DescribeAffectedEntitiesForOrganizationRequest {
     pub organization_entity_filters: Vec<EventAccountFilter>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAffectedEntitiesForOrganizationResponse {
     /// <p>A JSON set of elements including the <code>awsAccountId</code> and its <code>entityArn</code>, <code>entityValue</code> and its <code>entityArn</code>, <code>lastUpdatedTime</code>, <code>statusCode</code>, and <code>tags</code>.</p>
@@ -142,7 +142,7 @@ pub struct DescribeAffectedEntitiesForOrganizationResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeAffectedEntitiesRequest {
     /// <p>Values to narrow the results returned. At least one event ARN is required.</p>
@@ -162,7 +162,7 @@ pub struct DescribeAffectedEntitiesRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeAffectedEntitiesResponse {
     /// <p>The entities that match the filter criteria.</p>
@@ -175,7 +175,7 @@ pub struct DescribeAffectedEntitiesResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEntityAggregatesRequest {
     /// <p>A list of event ARNs (unique identifiers). For example: <code>"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456", "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"</code> </p>
@@ -184,7 +184,7 @@ pub struct DescribeEntityAggregatesRequest {
     pub event_arns: Option<Vec<String>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEntityAggregatesResponse {
     /// <p>The number of entities that are affected by each of the specified events.</p>
@@ -193,7 +193,7 @@ pub struct DescribeEntityAggregatesResponse {
     pub entity_aggregates: Option<Vec<EntityAggregate>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventAggregatesRequest {
     /// <p>The only currently supported value is <code>eventTypeCategory</code>.</p>
@@ -213,7 +213,7 @@ pub struct DescribeEventAggregatesRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventAggregatesResponse {
     /// <p>The number of events in each category that meet the optional filter criteria.</p>
@@ -226,7 +226,7 @@ pub struct DescribeEventAggregatesResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventDetailsForOrganizationRequest {
     /// <p>The locale (language) to return information in. English (en) is the default and the only supported value at this time.</p>
@@ -238,7 +238,7 @@ pub struct DescribeEventDetailsForOrganizationRequest {
     pub organization_event_detail_filters: Vec<EventAccountFilter>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventDetailsForOrganizationResponse {
     /// <p>Error messages for any events that could not be retrieved.</p>
@@ -251,7 +251,7 @@ pub struct DescribeEventDetailsForOrganizationResponse {
     pub successful_set: Option<Vec<OrganizationEventDetails>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventDetailsRequest {
     /// <p>A list of event ARNs (unique identifiers). For example: <code>"arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456", "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"</code> </p>
@@ -263,7 +263,7 @@ pub struct DescribeEventDetailsRequest {
     pub locale: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventDetailsResponse {
     /// <p>Error messages for any events that could not be retrieved.</p>
@@ -276,7 +276,7 @@ pub struct DescribeEventDetailsResponse {
     pub successful_set: Option<Vec<EventDetails>>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventTypesRequest {
     /// <p>Values to narrow the results returned.</p>
@@ -297,7 +297,7 @@ pub struct DescribeEventTypesRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventTypesResponse {
     /// <p>A list of event types that match the filter criteria. Event types have a category (<code>issue</code>, <code>accountNotification</code>, or <code>scheduledChange</code>), a service (for example, <code>EC2</code>, <code>RDS</code>, <code>DATAPIPELINE</code>, <code>BILLING</code>), and a code (in the format <code>AWS_<i>SERVICE</i>_<i>DESCRIPTION</i> </code>; for example, <code>AWS_EC2_SYSTEM_MAINTENANCE_EVENT</code>).</p>
@@ -310,7 +310,7 @@ pub struct DescribeEventTypesResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventsForOrganizationRequest {
     /// <p>Values to narrow the results returned.</p>
@@ -331,7 +331,7 @@ pub struct DescribeEventsForOrganizationRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventsForOrganizationResponse {
     /// <p>The events that match the specified filter criteria.</p>
@@ -344,7 +344,7 @@ pub struct DescribeEventsForOrganizationResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct DescribeEventsRequest {
     /// <p>Values to narrow the results returned.</p>
@@ -365,7 +365,7 @@ pub struct DescribeEventsRequest {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeEventsResponse {
     /// <p>The events that match the specified filter criteria.</p>
@@ -378,7 +378,7 @@ pub struct DescribeEventsResponse {
     pub next_token: Option<String>,
 }
 
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct DescribeHealthServiceStatusForOrganizationResponse {
     /// <p>Information about the status of enabling or disabling AWS Health Organizational View in your organization.</p> <p>Valid values are <code>ENABLED | DISABLED | PENDING</code>. </p>
@@ -388,7 +388,7 @@ pub struct DescribeHealthServiceStatusForOrganizationResponse {
 }
 
 /// <p>The number of entities that are affected by one or more events. Returned by the <a>DescribeEntityAggregates</a> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EntityAggregate {
     /// <p>The number entities that match the criteria for the specified events.</p>
@@ -402,7 +402,7 @@ pub struct EntityAggregate {
 }
 
 /// <p>The values to use to filter results from the <a>DescribeAffectedEntities</a> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EntityFilter {
     /// <p>A list of entity ARNs (unique identifiers).</p>
@@ -431,7 +431,7 @@ pub struct EntityFilter {
 }
 
 /// <p>Summary information about an AWS Health event.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct Event {
     /// <p>The unique identifier for the event. Format: <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code>. Example: <code>Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>
@@ -477,7 +477,7 @@ pub struct Event {
 }
 
 /// <p>The values used to filter results from the <a>DescribeEventDetailsForOrganization</a> and <a>DescribeAffectedEntitiesForOrganization</a> operations.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EventAccountFilter {
     /// <p>The 12-digit AWS account numbers that contains the affected entities.</p>
@@ -489,7 +489,7 @@ pub struct EventAccountFilter {
 }
 
 /// <p>The number of events of each issue type. Returned by the <a>DescribeEventAggregates</a> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventAggregate {
     /// <p>The issue type for the associated count.</p>
@@ -503,7 +503,7 @@ pub struct EventAggregate {
 }
 
 /// <p>Detailed information about an event. A combination of an <a>Event</a> object, an <a>EventDescription</a> object, and additional metadata about the event. Returned by the <a>DescribeEventDetails</a> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventDetails {
     /// <p>Summary information about the event.</p>
@@ -521,7 +521,7 @@ pub struct EventDetails {
 }
 
 /// <p>Error information returned when a <a>DescribeEventDetails</a> operation cannot find a specified event.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct EventDetailsErrorItem {
     /// <p>A message that describes the error.</p>
@@ -539,7 +539,7 @@ pub struct EventDetailsErrorItem {
 }
 
 /// <p>The values to use to filter results from the <a>DescribeEvents</a> and <a>DescribeEventAggregates</a> operations.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EventFilter {
     /// <p>A list of AWS availability zones.</p>
@@ -597,7 +597,7 @@ pub struct EventFilter {
 }
 
 /// <p>The values to use to filter results from the <a>DescribeEventTypes</a> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct EventTypeFilter {
     /// <p>A list of event type category codes (<code>issue</code>, <code>scheduledChange</code>, or <code>accountNotification</code>).</p>
@@ -615,7 +615,7 @@ pub struct EventTypeFilter {
 }
 
 /// <p>Error information returned when a <a>DescribeAffectedEntitiesForOrganization</a> operation cannot find or process a specific entity.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrganizationAffectedEntitiesErrorItem {
     /// <p>The 12-digit AWS account numbers that contains the affected entities.</p>
@@ -637,7 +637,7 @@ pub struct OrganizationAffectedEntitiesErrorItem {
 }
 
 /// <p>Summary information about an event, returned by the <a>DescribeEventsForOrganization</a> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrganizationEvent {
     /// <p>The unique identifier for the event. Format: <code>arn:aws:health:<i>event-region</i>::event/<i>SERVICE</i>/<i>EVENT_TYPE_CODE</i>/<i>EVENT_TYPE_PLUS_ID</i> </code>. Example: <code>Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456</code> </p>
@@ -679,7 +679,7 @@ pub struct OrganizationEvent {
 }
 
 /// <p>Detailed information about an event. A combination of an <a>Event</a> object, an <a>EventDescription</a> object, and additional metadata about the event. Returned by the <a>DescribeEventDetailsForOrganization</a> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrganizationEventDetails {
     /// <p>The 12-digit AWS account numbers that contains the affected entities.</p>
@@ -699,7 +699,7 @@ pub struct OrganizationEventDetails {
 }
 
 /// <p>Error information returned when a <a>DescribeEventDetailsForOrganization</a> operation cannot find a specified event.</p>
-#[derive(Default, Debug, Clone, PartialEq, Deserialize)]
+#[derive(Clone, Debug, Default, Deserialize, PartialEq)]
 #[cfg_attr(any(test, feature = "serialize_structs"), derive(Serialize))]
 pub struct OrganizationEventDetailsErrorItem {
     /// <p>Error information returned when a <a>DescribeEventDetailsForOrganization</a> operation cannot find a specified event.</p>
@@ -721,7 +721,7 @@ pub struct OrganizationEventDetailsErrorItem {
 }
 
 /// <p>The values to filter results from the <a>DescribeEventsForOrganization</a> operation.</p>
-#[derive(Default, Debug, Clone, PartialEq, Serialize)]
+#[derive(Clone, Debug, Default, PartialEq, Serialize)]
 #[cfg_attr(feature = "deserialize_structs", derive(Deserialize))]
 pub struct OrganizationEventFilter {
     /// <p>A list of 12-digit AWS account numbers that contains the affected entities.</p>
