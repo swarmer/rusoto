@@ -295,13 +295,22 @@ fn is_streaming_shape(service: &Service<'_>, name: &str) -> bool {
         .any(|(_, shape)| streaming_members(shape).any(|member| member.shape == name))
 }
 
-fn contains_eventstreams(service: &Service<'_>, shape: &Shape) -> bool {
-    shape
+fn eventstream_field_name(service: &Service<'_>, shape: &Shape) -> Option<String> {
+    let field_names: Vec<String> = shape
         .members
         .iter()
-        .map(|map| map.values().into_iter())
+        .map(|map| map.iter())
         .flatten()
-        .any(|m: &Member| service.get_shape(&m.shape).map_or(false, |s| s.eventstream()))
+        .filter_map(|(name, member)| service.get_shape(&member.shape).map_or(None, |s|
+            if s.eventstream() { Some(generate_field_name(name)) } else { None }))
+        .collect();
+
+    assert!(field_names.len() <= 1);
+    field_names.into_iter().next()
+}
+
+fn contains_eventstreams(service: &Service<'_>, shape: &Shape) -> bool {
+    eventstream_field_name(service, shape).is_some()
 }
 
 // do any type name mutation needed to avoid collisions with Rust types

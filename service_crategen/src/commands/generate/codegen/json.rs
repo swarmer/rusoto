@@ -1,7 +1,7 @@
 use inflector::Inflector;
 use std::io::Write;
 
-use super::{contains_eventstreams, error_type_name, FileWriter, GenerateProtocol, IoResult};
+use super::{eventstream_field_name, error_type_name, FileWriter, GenerateProtocol, IoResult};
 use crate::botocore::Operation;
 use crate::Service;
 
@@ -189,10 +189,11 @@ fn generate_ok_response(
     if operation.output.is_some() {
         let output_shape = service.get_shape(output_type).unwrap();
 
-        if contains_eventstreams(service, output_shape) {
+        if let Some(eventstream_field) = eventstream_field_name(service, output_shape) {
             format!(
-                "Ok({output_type} {{ event_stream: EventStream::new(response) }})",
+                "Ok({output_type} {{ {eventstream_field}: EventStream::new(response) }})",
                 output_type = output_type,
+                eventstream_field = eventstream_field,
             )
         } else {
             format!(
