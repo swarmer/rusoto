@@ -14,18 +14,18 @@ pub fn filter_types(service: &Service<'_>) -> (BTreeSet<String>, BTreeSet<String
                 .expect("Shape type missing from service definition");
 
             if !can_skip_deserializer_recursively(service, output_shape) {
-                recurse_find_shapes(service, &mut deserialized_types, &output.shape);
+                recurse_find_serializable_shapes(service, &mut deserialized_types, &output.shape);
             }
         }
         if let Some(ref input) = operation.input {
-            recurse_find_shapes(service, &mut serialized_types, &input.shape);
+            recurse_find_serializable_shapes(service, &mut serialized_types, &input.shape);
         }
     }
 
     (serialized_types, deserialized_types)
 }
 
-fn recurse_find_shapes(service: &Service<'_>, types: &mut BTreeSet<String>, shape_name: &str) {
+fn recurse_find_serializable_shapes(service: &Service<'_>, types: &mut BTreeSet<String>, shape_name: &str) {
     let shape = service
         .get_shape(shape_name)
         .expect("Shape type missing from service definition");
@@ -45,17 +45,17 @@ fn recurse_find_shapes(service: &Service<'_>, types: &mut BTreeSet<String>, shap
                         && member.location != Some("headers".to_owned())
                         && !types.contains(&member.shape)
                     {
-                        recurse_find_shapes(service, types, &member.shape);
+                        recurse_find_serializable_shapes(service, types, &member.shape);
                     }
                 }
             }
         }
         ShapeType::Map => {
-            recurse_find_shapes(service, types, shape.key_type());
-            recurse_find_shapes(service, types, shape.value_type());
+            recurse_find_serializable_shapes(service, types, shape.key_type());
+            recurse_find_serializable_shapes(service, types, shape.value_type());
         }
         ShapeType::List => {
-            recurse_find_shapes(service, types, shape.member_type());
+            recurse_find_serializable_shapes(service, types, shape.member_type());
         }
         _ => {}
     }
