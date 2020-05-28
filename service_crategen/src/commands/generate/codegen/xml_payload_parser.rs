@@ -1,6 +1,6 @@
 use inflector::Inflector;
 
-use super::{generate_field_name, mutate_type_name};
+use super::{eventstream_field_name, generate_field_name, mutate_type_name};
 use crate::botocore::{Member, Operation, Shape, ShapeType};
 use crate::Service;
 
@@ -66,6 +66,7 @@ pub fn generate_response_parser(
     // the entire payload is set as one of the struct members, and not parsed
     match output_shape.payload {
         None => xml_body_parser(
+            service,
             &output_shape,
             &mutated_shape_name,
             result_wrapper,
@@ -95,6 +96,7 @@ pub fn generate_response_parser(
                         )
                     }
                 _ => xml_body_parser(
+                    service,
                     &output_shape,
                     &mutated_shape_name,
                     result_wrapper,
@@ -153,12 +155,17 @@ fn payload_body_parser(
 }
 
 fn xml_body_parser(
+    service: &Service<'_>,
     shape: &Shape,
     output_shape: &str,
     result_wrapper: &Option<String>,
     mutable_result: bool,
     parse_non_payload: &str,
 ) -> String {
+    if let Some(_eventstream_field) = eventstream_field_name(service, shape) {
+        return "unimplemented!()".to_string();
+    }
+
     let let_result = if mutable_result {
         "let mut result;"
     } else {

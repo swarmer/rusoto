@@ -23,7 +23,7 @@ use rusoto_core::event_stream::{DeserializeEvent, EventStream};
 use rusoto_core::proto;
 use rusoto_core::signature::SignedRequest;
 #[allow(unused_imports)]
-use serde::{Deserialize, Deserializer, Serialize};
+use serde::{Deserialize, Serialize};
 use serde_json;
 /// <p>Represents the input for <code>AddTagsToStream</code>.</p>
 #[derive(Clone, Debug, Default, PartialEq, Serialize)]
@@ -988,10 +988,9 @@ pub enum SubscribeToShardEventStreamItem {
 }
 
 impl DeserializeEvent for SubscribeToShardEventStreamItem {
-    fn deserialize_event<'de, D: Deserializer<'de>>(
-        event_type: &str,
-        deserializer: D,
-    ) -> Result<Self, D::Error> {
+    fn deserialize_event(event_type: &str, data: &bytes::Bytes) -> Result<Self, RusotoError<()>> {
+        let deserializer = &mut serde_json::Deserializer::from_slice(data);
+
         let deserialized = match event_type {
             "InternalFailureException" => {
                 SubscribeToShardEventStreamItem::InternalFailureException(
@@ -1031,7 +1030,7 @@ impl DeserializeEvent for SubscribeToShardEventStreamItem {
             "SubscribeToShardEvent" => SubscribeToShardEventStreamItem::SubscribeToShardEvent(
                 SubscribeToShardEvent::deserialize(deserializer)?,
             ),
-            _ => Err(<D::Error as serde::de::Error>::custom(format!(
+            _ => Err(RusotoError::ParseError(format!(
                 "Invalid event type: {}",
                 event_type
             )))?,

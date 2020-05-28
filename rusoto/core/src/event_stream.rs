@@ -5,10 +5,10 @@
 use std::marker::PhantomData;
 use std::pin::Pin;
 
+use bytes::Bytes;
 use futures::task::{Context, Poll};
 use futures::Stream;
 use pin_project::pin_project;
-use serde::de::Deserializer;
 
 use crate::error::RusotoError;
 use crate::request::HttpResponse;
@@ -17,10 +17,10 @@ use crate::stream::ByteStream;
 /// TODO
 pub trait DeserializeEvent: Sized {
     /// TODO
-    fn deserialize_event<'de, D: Deserializer<'de>>(
+    fn deserialize_event(
         event_type: &str,
-        deserializer: D,
-    ) -> Result<Self, <D as Deserializer<'de>>::Error>;
+        data: &Bytes,
+    ) -> Result<Self, RusotoError<()>>;
 }
 
 /// Event Stream.
@@ -97,11 +97,7 @@ impl<T: DeserializeEvent> futures::stream::Stream for EventStream<T> {
                     println!("Got json bytes: {:?}", json_bytes);
 
                     // TODO
-                    let mut deserializer = serde_json::Deserializer::from_slice(&json_bytes);
-                    let parsed_event =
-                        T::deserialize_event("SubscribeToShardEvent", &mut deserializer);
-                    // let parsed_event = proto::json::ResponsePayload::from_body(&Bytes::from(extended_json))
-                    //     .deserialize::<T, _>();
+                    let parsed_event = T::deserialize_event("SubscribeToShardEvent", &json_bytes);
                     Poll::Ready(Some(parsed_event.map_err(RusotoError::from)))
                 }
                 Err(e) => Poll::Ready(Some(Err(RusotoError::from(e)))),

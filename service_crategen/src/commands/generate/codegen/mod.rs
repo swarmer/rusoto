@@ -79,6 +79,26 @@ pub trait GenerateProtocol {
 
     /// Return the type used by this protocol for timestamps
     fn timestamp_type(&self) -> &'static str;
+
+    fn generate_event_enum_deserialize_impl(
+        &self,
+        _service: &Service<'_>,
+        name: &str,
+        _shape: &Shape,
+    ) -> String {
+        format!(
+            "impl DeserializeEvent for {name} {{
+                fn deserialize_event(
+                    _event_type: &str,
+                    _data: &bytes::Bytes,
+                ) -> Result<Self, RusotoError<()>> {{
+                    unimplemented!()
+                }}
+            }}
+            ",
+            name = name,
+        )
+    }
 }
 
 pub fn generate_source(service: &Service<'_>, writer: &mut FileWriter) -> IoResult {
@@ -527,8 +547,8 @@ where
         attributes = attributes,
         name = name,
         struct_fields = generate_event_enum_fields(service, shape, protocol_generator),
-        deserialize_impl = generate_event_enum_deserialize_impl(
-            service, name, shape, protocol_generator
+        deserialize_impl = protocol_generator.generate_event_enum_deserialize_impl(
+            service, name, shape
         ),
     )
 }
@@ -562,66 +582,6 @@ fn generate_event_enum_fields<P: GenerateProtocol>(
 
         Some(lines.join("\n"))
     }).collect::<Vec<String>>().join("\n")
-}
-
-fn generate_event_enum_deserialize_impl<P>(
-    service: &Service<'_>,
-    name: &str,
-    shape: &Shape,
-    protocol_generator: &P,
-) -> String
-where
-    P: GenerateProtocol,
-{
-    let match_arms = shape.members.as_ref().unwrap().iter().filter_map(|(member_name, member)| {
-        if member.deprecated == Some(true) {
-            return None;
-        }
-
-        let member_shape = service.shape_for_member(member).unwrap();
-        let rs_type = get_rust_type(
-            service,
-            &member.shape,
-            member_shape,
-            member.streaming(),
-            protocol_generator.timestamp_type(),
-        );
-
-        Some(
-            format!(
-                "\"{member_name}\" => {name}::{member_name}({rs_type}::deserialize(deserializer)?),",
-                name = name,
-                rs_type = rs_type,
-                member_name = member_name,
-            )
-        )
-    })
-        .chain(
-            std::iter::once(
-                format!(
-                    "_ => Err(<D::Error as serde::de::Error>::custom({err_fmt}))?",
-                    err_fmt = "format!(\"Invalid event type: {}\", event_type)",
-                )
-            )
-        )
-        .collect::<Vec<String>>().join("\n");
-
-    format!(
-        "impl DeserializeEvent for {name} {{
-            fn deserialize_event<'de, D: Deserializer<'de>>(
-                event_type: &str,
-                deserializer: D,
-            ) -> Result<Self, D::Error> {{
-                let deserialized = match event_type {{
-                    {match_arms}
-                }};
-                Ok(deserialized)
-            }}
-        }}
-        ",
-        name = name,
-        match_arms = match_arms,
-    )
 }
 
 fn generate_struct<P>(

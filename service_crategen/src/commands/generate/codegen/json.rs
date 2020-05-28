@@ -1,8 +1,11 @@
 use inflector::Inflector;
 use std::io::Write;
 
-use super::{eventstream_field_name, error_type_name, FileWriter, GenerateProtocol, IoResult};
-use crate::botocore::Operation;
+use super::{
+    eventstream_field_name, error_type_name, FileWriter, GenerateProtocol,
+    get_rust_type, IoResult,
+};
+use crate::botocore::{Operation, Shape};
 use crate::Service;
 
 pub struct JsonGenerator;
@@ -74,17 +77,7 @@ impl GenerateProtocol for JsonGenerator {
     }
 
     fn generate_prelude(&self, writer: &mut FileWriter, service: &Service<'_>) -> IoResult {
-        let has_event_streams = service
-            .shapes()
-            .values()
-            .into_iter()
-            .any(|s| s.eventstream());
-
-        let mut serde_imports = vec!["Deserialize", "Serialize"];
-        if has_event_streams {
-            serde_imports.push("Deserializer");
-        }
-        serde_imports.sort();
+        let serde_imports = vec!["Deserialize", "Serialize"];
 
         writeln!(
             writer,
@@ -97,8 +90,7 @@ impl GenerateProtocol for JsonGenerator {
         if service.needs_serde_json_crate() {
             writeln!(writer, "use serde_json;")?;
         }
-
-        if has_event_streams {
+        if service.has_event_streams() {
             writeln!(
                 writer,
                 "use rusoto_core::event_stream::{{DeserializeEvent, EventStream}};"
@@ -118,6 +110,65 @@ impl GenerateProtocol for JsonGenerator {
 
     fn timestamp_type(&self) -> &'static str {
         "f64"
+    }
+
+    fn generate_event_enum_deserialize_impl(
+        &self,
+        service: &Service<'_>,
+        name: &str,
+        shape: &Shape,
+    ) -> String {
+        let match_arms = shape.members.as_ref().unwrap().iter().filter_map(|(member_name, member)| {
+            if member.deprecated == Some(true) {
+                return None;
+            }
+
+            let member_shape = service.shape_for_member(member).unwrap();
+            let rs_type = get_rust_type(
+                service,
+                &member.shape,
+                member_shape,
+                member.streaming(),
+                self.timestamp_type(),
+            );
+
+            Some(
+                format!(
+                    "\"{member_name}\" => {name}::{member_name}({rs_type}::deserialize(deserializer)?),",
+                    name = name,
+                    rs_type = rs_type,
+                    member_name = member_name,
+                )
+            )
+        })
+            .chain(
+                std::iter::once(
+                    format!(
+                        "_ => Err(RusotoError::ParseError({err_fmt}))?",
+                        err_fmt = "format!(\"Invalid event type: {}\", event_type)",
+                    )
+                )
+            )
+            .collect::<Vec<String>>().join("\n");
+
+        format!(
+            "impl DeserializeEvent for {name} {{
+                fn deserialize_event(
+                    event_type: &str,
+                    data: &bytes::Bytes,
+                ) -> Result<Self, RusotoError<()>> {{
+                    let deserializer = &mut serde_json::Deserializer::from_slice(data);
+
+                    let deserialized = match event_type {{
+                        {match_arms}
+                    }};
+                    Ok(deserialized)
+                }}
+            }}
+            ",
+            name = name,
+            match_arms = match_arms,
+        )
     }
 }
 
