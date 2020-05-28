@@ -974,7 +974,7 @@ pub struct SubscribeToShardEvent {
 }
 
 #[derive(Debug, Clone, PartialEq)]
-pub enum SubscribeToShardEventStream {
+pub enum SubscribeToShardEventStreamItem {
     InternalFailureException(InternalFailureException),
     KMSAccessDeniedException(KMSAccessDeniedException),
     KMSDisabledException(KMSDisabledException),
@@ -987,40 +987,48 @@ pub enum SubscribeToShardEventStream {
     SubscribeToShardEvent(SubscribeToShardEvent),
 }
 
-impl DeserializeEvent for SubscribeToShardEventStream {
+impl DeserializeEvent for SubscribeToShardEventStreamItem {
     fn deserialize_event<'de, D: Deserializer<'de>>(
         event_type: &str,
         deserializer: D,
     ) -> Result<Self, D::Error> {
         let deserialized = match event_type {
-            "InternalFailureException" => SubscribeToShardEventStream::InternalFailureException(
-                InternalFailureException::deserialize(deserializer)?,
-            ),
-            "KMSAccessDeniedException" => SubscribeToShardEventStream::KMSAccessDeniedException(
-                KMSAccessDeniedException::deserialize(deserializer)?,
-            ),
-            "KMSDisabledException" => SubscribeToShardEventStream::KMSDisabledException(
+            "InternalFailureException" => {
+                SubscribeToShardEventStreamItem::InternalFailureException(
+                    InternalFailureException::deserialize(deserializer)?,
+                )
+            }
+            "KMSAccessDeniedException" => {
+                SubscribeToShardEventStreamItem::KMSAccessDeniedException(
+                    KMSAccessDeniedException::deserialize(deserializer)?,
+                )
+            }
+            "KMSDisabledException" => SubscribeToShardEventStreamItem::KMSDisabledException(
                 KMSDisabledException::deserialize(deserializer)?,
             ),
-            "KMSInvalidStateException" => SubscribeToShardEventStream::KMSInvalidStateException(
-                KMSInvalidStateException::deserialize(deserializer)?,
-            ),
-            "KMSNotFoundException" => SubscribeToShardEventStream::KMSNotFoundException(
+            "KMSInvalidStateException" => {
+                SubscribeToShardEventStreamItem::KMSInvalidStateException(
+                    KMSInvalidStateException::deserialize(deserializer)?,
+                )
+            }
+            "KMSNotFoundException" => SubscribeToShardEventStreamItem::KMSNotFoundException(
                 KMSNotFoundException::deserialize(deserializer)?,
             ),
-            "KMSOptInRequired" => SubscribeToShardEventStream::KMSOptInRequired(
+            "KMSOptInRequired" => SubscribeToShardEventStreamItem::KMSOptInRequired(
                 KMSOptInRequired::deserialize(deserializer)?,
             ),
-            "KMSThrottlingException" => SubscribeToShardEventStream::KMSThrottlingException(
+            "KMSThrottlingException" => SubscribeToShardEventStreamItem::KMSThrottlingException(
                 KMSThrottlingException::deserialize(deserializer)?,
             ),
-            "ResourceInUseException" => SubscribeToShardEventStream::ResourceInUseException(
+            "ResourceInUseException" => SubscribeToShardEventStreamItem::ResourceInUseException(
                 ResourceInUseException::deserialize(deserializer)?,
             ),
-            "ResourceNotFoundException" => SubscribeToShardEventStream::ResourceNotFoundException(
-                ResourceNotFoundException::deserialize(deserializer)?,
-            ),
-            "SubscribeToShardEvent" => SubscribeToShardEventStream::SubscribeToShardEvent(
+            "ResourceNotFoundException" => {
+                SubscribeToShardEventStreamItem::ResourceNotFoundException(
+                    ResourceNotFoundException::deserialize(deserializer)?,
+                )
+            }
+            "SubscribeToShardEvent" => SubscribeToShardEventStreamItem::SubscribeToShardEvent(
                 SubscribeToShardEvent::deserialize(deserializer)?,
             ),
             _ => Err(<D::Error as serde::de::Error>::custom(format!(
@@ -1048,7 +1056,7 @@ pub struct SubscribeToShardInput {
 #[derive(Debug)]
 pub struct SubscribeToShardOutput {
     /// <p>The event stream that your consumer can use to read records from the shard.</p>
-    pub event_stream: EventStream<SubscribeToShardEventStream>,
+    pub event_stream: EventStream<SubscribeToShardEventStreamItem>,
 }
 
 /// <p>Metadata assigned to the stream, consisting of a key-value pair.</p>

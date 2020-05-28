@@ -207,7 +207,7 @@ async fn should_listen_for_shard_events() {
                 println!("Got event from the event stream: {:?}", payload);
 
                 match payload {
-                    rusoto_kinesis::SubscribeToShardEventStream::SubscribeToShardEvent(e) => {
+                    rusoto_kinesis::SubscribeToShardEventStreamItem::SubscribeToShardEvent(e) => {
                         events.extend(e.records);
                     },
                     _ => {},

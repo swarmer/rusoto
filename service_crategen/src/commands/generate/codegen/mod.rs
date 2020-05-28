@@ -317,8 +317,18 @@ fn contains_eventstreams(service: &Service<'_>, shape: &Shape) -> bool {
 fn mutate_type_name(service: &Service<'_>, type_name: &str) -> String {
     let capitalized = util::capitalize_first(type_name.to_owned());
 
+    let mut tweaked = capitalized;
+    if let Some(shape) = service.get_shape(type_name) {
+        if shape.eventstream() {
+            // Event stream content structures are named "...EventStream" in the botocore manifests,
+            // but this makes little sense because they are not in any way streams - they contain
+            // a wrapper for a single event from a stream.
+            tweaked = format!("{}Item", tweaked);
+        }
+    }
+
     // some cloudfront types have underscoare that anger the lint checker
-    let without_underscores = capitalized.replace("_", "");
+    let without_underscores = tweaked.replace("_", "");
 
     match &without_underscores[..] {
         // Some services have an 'Error' shape that collides with Rust's Error trait

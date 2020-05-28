@@ -13901,7 +13901,7 @@ impl ScanRangeSerializer {
 
 /// <p>The container for selecting objects from a content event stream.</p>
 #[derive(Debug, Clone, PartialEq)]
-pub enum SelectObjectContentEventStream {
+pub enum SelectObjectContentEventStreamItem {
     /// <p>The Continuation Event.</p>
     Cont(ContinuationEvent),
     /// <p>The End Event.</p>
@@ -13914,24 +13914,24 @@ pub enum SelectObjectContentEventStream {
     Stats(StatsEvent),
 }
 
-impl DeserializeEvent for SelectObjectContentEventStream {
+impl DeserializeEvent for SelectObjectContentEventStreamItem {
     fn deserialize_event<'de, D: Deserializer<'de>>(
         event_type: &str,
         deserializer: D,
     ) -> Result<Self, D::Error> {
         let deserialized = match event_type {
-            "Cont" => {
-                SelectObjectContentEventStream::Cont(ContinuationEvent::deserialize(deserializer)?)
-            }
-            "End" => SelectObjectContentEventStream::End(EndEvent::deserialize(deserializer)?),
-            "Progress" => {
-                SelectObjectContentEventStream::Progress(ProgressEvent::deserialize(deserializer)?)
-            }
-            "Records" => {
-                SelectObjectContentEventStream::Records(RecordsEvent::deserialize(deserializer)?)
-            }
+            "Cont" => SelectObjectContentEventStreamItem::Cont(ContinuationEvent::deserialize(
+                deserializer,
+            )?),
+            "End" => SelectObjectContentEventStreamItem::End(EndEvent::deserialize(deserializer)?),
+            "Progress" => SelectObjectContentEventStreamItem::Progress(ProgressEvent::deserialize(
+                deserializer,
+            )?),
+            "Records" => SelectObjectContentEventStreamItem::Records(RecordsEvent::deserialize(
+                deserializer,
+            )?),
             "Stats" => {
-                SelectObjectContentEventStream::Stats(StatsEvent::deserialize(deserializer)?)
+                SelectObjectContentEventStreamItem::Stats(StatsEvent::deserialize(deserializer)?)
             }
             _ => Err(<D::Error as serde::de::Error>::custom(format!(
                 "Invalid event type: {}",
@@ -13943,14 +13943,14 @@ impl DeserializeEvent for SelectObjectContentEventStream {
 }
 
 #[allow(dead_code)]
-struct SelectObjectContentEventStreamDeserializer;
-impl SelectObjectContentEventStreamDeserializer {
+struct SelectObjectContentEventStreamItemDeserializer;
+impl SelectObjectContentEventStreamItemDeserializer {
     #[allow(dead_code, unused_variables)]
     fn deserialize<T: Peek + Next>(
         tag_name: &str,
         stack: &mut T,
-    ) -> Result<EventStream<SelectObjectContentEventStream>, XmlParseError> {
-        deserialize_elements::<_, SelectObjectContentEventStream, _>(
+    ) -> Result<EventStream<SelectObjectContentEventStreamItem>, XmlParseError> {
+        deserialize_elements::<_, SelectObjectContentEventStreamItem, _>(
             tag_name,
             stack,
             |name, stack, obj| {
@@ -13982,7 +13982,7 @@ impl SelectObjectContentEventStreamDeserializer {
 #[derive(Debug)]
 pub struct SelectObjectContentOutput {
     /// <p>The array of results.</p>
-    pub payload: Option<EventStream<SelectObjectContentEventStream>>,
+    pub payload: Option<EventStream<SelectObjectContentEventStreamItem>>,
 }
 
 /// <p>Request to filter the contents of an Amazon S3 object based on a simple Structured Query Language (SQL) statement. In the request, along with the SQL expression, you must specify a data serialization format (JSON or CSV) of the object. Amazon S3 uses this to parse object data into records. It returns only records that match the specified SQL expression. You must also specify the data serialization format for the response. For more information, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectSELECTContent.html">S3Select API Documentation</a>.</p>
