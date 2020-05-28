@@ -72,8 +72,22 @@ impl<T: DeserializeEvent> futures::stream::Stream for EventStream<T> {
                     }
 
                     let json_start = byte_chunk.iter().position(|&c| c == b'{').unwrap();
-                    let json_end = json_start + byte_chunk.slice(json_start..).iter().position(|&c| c == b'}').unwrap();
-                    let json_bytes = byte_chunk.slice(json_start..=json_end);
+                    let mut obj_depth = 0;
+                    let mut json_end = None;
+                    for (i, c) in (&byte_chunk[json_start..]).iter().enumerate() {
+                        match c {
+                            b'{' => { obj_depth += 1 },
+                            b'}' => { obj_depth -= 1 },
+                            _ => {},
+                        }
+
+                        if obj_depth == 0 {
+                            json_end = Some(json_start + i);
+                            break;
+                        }
+                    }
+                    // let json_end = json_start + byte_chunk.slice(json_start..).iter().position(|&c| c == b'}').unwrap();
+                    let json_bytes = byte_chunk.slice(json_start..=json_end.unwrap());
                     println!("Got json bytes: {:?}", json_bytes);
 
                     // TODO

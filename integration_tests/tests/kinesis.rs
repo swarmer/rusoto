@@ -122,6 +122,18 @@ async fn should_listen_for_shard_events() {
             }
         }
 
+        if let Ok(kms_id) = std::env::var("KMS_ID") {
+            client.start_stream_encryption(rusoto_kinesis::StartStreamEncryptionInput {
+                encryption_type: "KMS".to_string(),
+                key_id: kms_id,
+                stream_name: stream.name.clone(),
+            })
+            .await
+            .unwrap();
+        }
+
+        tokio::time::delay_for(Duration::from_secs(10)).await;
+
         let consumer_result = client
             .register_stream_consumer(rusoto_kinesis::RegisterStreamConsumerInput {
                 consumer_name: "test-consumer".to_string(),
@@ -157,27 +169,59 @@ async fn should_listen_for_shard_events() {
             .unwrap();
         let shard_id = shards_result.shards.unwrap()[0].shard_id.clone();
 
-        let mut stream = client
+        let mut event_stream = client
             .subscribe_to_shard(rusoto_kinesis::SubscribeToShardInput {
                 consumer_arn: consumer_result.consumer.consumer_arn,
-                shard_id,
+                shard_id: shard_id.clone(),
                 starting_position: rusoto_kinesis::StartingPosition {
                     sequence_number: None,
                     timestamp: None,
-                    type_: "LATEST".to_string()
+                    type_: "TRIM_HORIZON".to_string()
                 },
             })
             .await
             .unwrap()
             .event_stream;
 
-        let events_future = async {
-            while let Some(item) = stream.next().await {
+        let mut events: Vec<rusoto_kinesis::Record> = Vec::new();
+
+        for i in 0i32..5 {
+            let message = format!("Record {}", i);
+
+            let result = client.put_record(rusoto_kinesis::PutRecordInput {
+                data: bytes::Bytes::copy_from_slice(message.as_bytes()),
+                partition_key: "hello".to_string(),
+                stream_name: stream.name.clone(),
+
+                ..Default::default()
+            })
+            .await
+            .unwrap();
+
+            eprintln!("Put record result: {:?}", result);
+        }
+
+        let read_events_future = async {
+            while let Some(item) = event_stream.next().await {
                 let payload = item.unwrap();
                 println!("Got event from the event stream: {:?}", payload);
+
+                match payload {
+                    rusoto_kinesis::SubscribeToShardEventStream::SubscribeToShardEvent(e) => {
+                        events.extend(e.records);
+                    },
+                    _ => {},
+                }
             }
         };
-        let _events = timeout(Duration::from_secs(10), events_future).await.unwrap();
+
+        timeout(
+            Duration::from_secs(10),
+            read_events_future,
+        ).await.unwrap_err();
+
+        println!("Events: {:?}", events);
+        assert_eq!(events.len(), 5);
     }).await;
     println!("About to exit the upper test fn");
 }
