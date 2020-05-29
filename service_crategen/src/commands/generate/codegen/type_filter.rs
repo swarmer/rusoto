@@ -25,7 +25,11 @@ pub fn filter_types(service: &Service<'_>) -> (BTreeSet<String>, BTreeSet<String
     (serialized_types, deserialized_types)
 }
 
-fn recurse_find_serializable_shapes(service: &Service<'_>, types: &mut BTreeSet<String>, shape_name: &str) {
+fn recurse_find_serializable_shapes(
+    service: &Service<'_>,
+    types: &mut BTreeSet<String>,
+    shape_name: &str,
+) {
     let shape = service
         .get_shape(shape_name)
         .expect("Shape type missing from service definition");

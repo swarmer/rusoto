@@ -17,10 +17,7 @@ use crate::stream::ByteStream;
 /// TODO
 pub trait DeserializeEvent: Sized {
     /// TODO
-    fn deserialize_event(
-        event_type: &str,
-        data: &Bytes,
-    ) -> Result<Self, RusotoError<()>>;
+    fn deserialize_event(event_type: &str, data: &Bytes) -> Result<Self, RusotoError<()>>;
 }
 
 /// Event Stream.

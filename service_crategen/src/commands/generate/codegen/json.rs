@@ -2,8 +2,7 @@ use inflector::Inflector;
 use std::io::Write;
 
 use super::{
-    eventstream_field_name, error_type_name, FileWriter, GenerateProtocol,
-    get_rust_type, IoResult,
+    error_type_name, eventstream_field_name, get_rust_type, FileWriter, GenerateProtocol, IoResult,
 };
 use crate::botocore::{Operation, Shape};
 use crate::Service;
@@ -232,11 +231,7 @@ fn generate_documentation(operation: &Operation) -> Option<String> {
         .map(|docs| crate::doco::Item(docs).to_string())
 }
 
-fn generate_ok_response(
-    service: &Service<'_>,
-    operation: &Operation,
-    output_type: &str,
-) -> String {
+fn generate_ok_response(service: &Service<'_>, operation: &Operation, output_type: &str) -> String {
     if operation.output.is_some() {
         let output_shape = service.get_shape(output_type).unwrap();
 

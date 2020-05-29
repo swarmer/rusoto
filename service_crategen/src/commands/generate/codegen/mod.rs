@@ -291,7 +291,7 @@ pub fn get_rust_type(
                     type_name = format!("EventStream<{}>", type_name);
                 }
                 type_name
-            },
+            }
         }
     } else {
         mutate_type_name_for_streaming(shape_name)
@@ -321,8 +321,15 @@ fn eventstream_field_name(service: &Service<'_>, shape: &Shape) -> Option<String
         .iter()
         .map(|map| map.iter())
         .flatten()
-        .filter_map(|(name, member)| service.get_shape(&member.shape).map_or(None, |s|
-            if s.eventstream() { Some(generate_field_name(name)) } else { None }))
+        .filter_map(|(name, member)| {
+            service.get_shape(&member.shape).map_or(None, |s| {
+                if s.eventstream() {
+                    Some(generate_field_name(name))
+                } else {
+                    None
+                }
+            })
+        })
         .collect();
 
     assert!(field_names.len() <= 1);
@@ -472,12 +479,7 @@ where
             // generate a rust type for the shape
             if type_name != "String" {
                 let generated = if shape.eventstream() {
-                    generate_event_enum(
-                        service,
-                        &type_name,
-                        shape,
-                        protocol_generator,
-                    )
+                    generate_event_enum(service, &type_name, shape, protocol_generator)
                 } else {
                     generate_struct(
                         service,
@@ -547,9 +549,8 @@ where
         attributes = attributes,
         name = name,
         struct_fields = generate_event_enum_fields(service, shape, protocol_generator),
-        deserialize_impl = protocol_generator.generate_event_enum_deserialize_impl(
-            service, name, shape
-        ),
+        deserialize_impl =
+            protocol_generator.generate_event_enum_deserialize_impl(service, name, shape),
     )
 }
 
@@ -558,30 +559,37 @@ fn generate_event_enum_fields<P: GenerateProtocol>(
     shape: &Shape,
     protocol_generator: &P,
 ) -> String {
-    shape.members.as_ref().unwrap().iter().filter_map(|(member_name, member)| {
-        if member.deprecated == Some(true) {
-            return None;
-        }
+    shape
+        .members
+        .as_ref()
+        .unwrap()
+        .iter()
+        .filter_map(|(member_name, member)| {
+            if member.deprecated == Some(true) {
+                return None;
+            }
 
-        let mut lines: Vec<String> = Vec::new();
+            let mut lines: Vec<String> = Vec::new();
 
-        if let Some(ref docs) = member.documentation {
-            lines.push(crate::doco::Item(docs).to_string());
-        }
+            if let Some(ref docs) = member.documentation {
+                lines.push(crate::doco::Item(docs).to_string());
+            }
 
-        let member_shape = service.shape_for_member(member).unwrap();
-        let rs_type = get_rust_type(
-            service,
-            &member.shape,
-            member_shape,
-            member.streaming(),
-            protocol_generator.timestamp_type(),
-        );
+            let member_shape = service.shape_for_member(member).unwrap();
+            let rs_type = get_rust_type(
+                service,
+                &member.shape,
+                member_shape,
+                member.streaming(),
+                protocol_generator.timestamp_type(),
+            );
 
-        lines.push(format!("{}({}),", member_name, rs_type));
+            lines.push(format!("{}({}),", member_name, rs_type));
 
-        Some(lines.join("\n"))
-    }).collect::<Vec<String>>().join("\n")
+            Some(lines.join("\n"))
+        })
+        .collect::<Vec<String>>()
+        .join("\n")
 }
 
 fn generate_struct<P>(
@@ -598,8 +606,8 @@ where
 {
     let mut derived = vec!["Debug"];
 
-    let not_streaming = !streaming && streaming_members(shape).next().is_none();  // bytestreams
-    let contains_eventstreams = contains_eventstreams(service, shape);  // structured event streams
+    let not_streaming = !streaming && streaming_members(shape).next().is_none(); // bytestreams
+    let contains_eventstreams = contains_eventstreams(service, shape); // structured event streams
 
     // Streaming is implemented with Box<Stream<...>>, so we can't derive Clone nor PartialEq.
     // This affects both the streaming struct itself, and structs which contain it.
