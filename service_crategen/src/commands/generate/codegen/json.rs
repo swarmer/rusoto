@@ -154,7 +154,7 @@ impl GenerateProtocol for JsonGenerator {
             "impl DeserializeEvent for {name} {{
                 fn deserialize_event(
                     event_type: &str,
-                    data: &bytes::Bytes,
+                    data: &[u8],
                 ) -> Result<Self, RusotoError<()>> {{
                     let deserializer = &mut serde_json::Deserializer::from_slice(data);
 

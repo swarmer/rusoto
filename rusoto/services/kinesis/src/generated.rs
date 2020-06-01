@@ -988,7 +988,7 @@ pub enum SubscribeToShardEventStreamItem {
 }
 
 impl DeserializeEvent for SubscribeToShardEventStreamItem {
-    fn deserialize_event(event_type: &str, data: &bytes::Bytes) -> Result<Self, RusotoError<()>> {
+    fn deserialize_event(event_type: &str, data: &[u8]) -> Result<Self, RusotoError<()>> {
         let deserializer = &mut serde_json::Deserializer::from_slice(data);
 
         let deserialized = match event_type {

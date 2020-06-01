@@ -90,7 +90,7 @@ pub trait GenerateProtocol {
             "impl DeserializeEvent for {name} {{
                 fn deserialize_event(
                     _event_type: &str,
-                    _data: &bytes::Bytes,
+                    _data: &[u8],
                 ) -> Result<Self, RusotoError<()>> {{
                     unimplemented!()
                 }}

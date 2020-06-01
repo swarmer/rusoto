@@ -7,7 +7,6 @@ use std::io::Read;
 use std::marker::PhantomData;
 use std::pin::Pin;
 
-use bytes::Bytes;
 use futures::task::{Context, Poll};
 use futures::Stream;
 use pin_project::pin_project;
@@ -22,7 +21,7 @@ use std::convert::TryInto;
 /// TODO
 pub trait DeserializeEvent: Sized {
     /// TODO
-    fn deserialize_event(event_type: &str, data: &Bytes) -> Result<Self, RusotoError<()>>;
+    fn deserialize_event(event_type: &str, data: &[u8]) -> Result<Self, RusotoError<()>>;
 }
 
 fn read_repr<T, R: Read>(reader: &mut R, buf: &mut [u8]) -> std::io::Result<()> {
@@ -290,10 +289,7 @@ impl<T: DeserializeEvent> futures::stream::Stream for EventStream<T> {
                         return Poll::Pending;
                     }
 
-                    // TODO
-                    let payload = Bytes::copy_from_slice(event_msg.payload);
-
-                    let parsed_event = T::deserialize_event(event_type, &payload);
+                    let parsed_event = T::deserialize_event(event_type, event_msg.payload);
                     Poll::Ready(Some(parsed_event.map_err(RusotoError::from)))
                 }
                 Err(e) => Poll::Ready(Some(Err(RusotoError::from(e)))),

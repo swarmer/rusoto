@@ -13916,7 +13916,7 @@ pub enum SelectObjectContentEventStreamItem {
 }
 
 impl DeserializeEvent for SelectObjectContentEventStreamItem {
-    fn deserialize_event(_event_type: &str, _data: &bytes::Bytes) -> Result<Self, RusotoError<()>> {
+    fn deserialize_event(_event_type: &str, _data: &[u8]) -> Result<Self, RusotoError<()>> {
         unimplemented!()
     }
 }
