@@ -113,7 +113,7 @@ impl<T> Into<RusotoError<T>> for EventStreamParseError {
 }
 
 #[allow(missing_docs)]
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 enum EventStreamHeaderValue<'a> {
     Bool(bool),
     UInt8(u8),
@@ -218,6 +218,16 @@ impl <'a> EventStreamMessage<'a> {
 
         Ok(EventStreamMessage { headers, payload })
     }
+
+    pub fn get_header(&self, name: &str) -> Option<&EventStreamHeader<'a>> {
+        for header in &self.headers {
+            if header.name == name {
+                return Some(header);
+            }
+        }
+
+        None
+    }
 }
 
 /// Event Stream.
@@ -265,35 +275,25 @@ impl<T: DeserializeEvent> futures::stream::Stream for EventStream<T> {
         match chunk_option {
             Some(chunk_res) => match chunk_res {
                 Ok(byte_chunk) => {
-                    // TODO
                     log::trace!("Got event stream bytes: {:?}", byte_chunk);
-                    if byte_chunk
-                        .windows(16)
-                        .any(move |sub_slice| sub_slice == b"initial-response")
-                    {
+
+                    // TODO
+                    let event_msg = EventStreamMessage::parse(&mut &*byte_chunk).unwrap();
+                    println!("Parsed event stream event: {:?}", event_msg);
+
+                    let event_type_header = event_msg.get_header(":event-type").unwrap();
+                    let event_type = match event_type_header.value {
+                        EventStreamHeaderValue::String(s) => s,
+                        _ => panic!("Invalid event type value"),
+                    };
+                    if event_type == "initial-response" {
                         return Poll::Pending;
                     }
 
-                    let json_start = byte_chunk.iter().position(|&c| c == b'{').unwrap();
-                    let mut obj_depth = 0;
-                    let mut json_end = None;
-                    for (i, c) in (&byte_chunk[json_start..]).iter().enumerate() {
-                        match c {
-                            b'{' => obj_depth += 1,
-                            b'}' => obj_depth -= 1,
-                            _ => {}
-                        }
-
-                        if obj_depth == 0 {
-                            json_end = Some(json_start + i);
-                            break;
-                        }
-                    }
-                    // let json_end = json_start + byte_chunk.slice(json_start..).iter().position(|&c| c == b'}').unwrap();
-                    let json_bytes = byte_chunk.slice(json_start..=json_end.unwrap());
-
                     // TODO
-                    let parsed_event = T::deserialize_event("SubscribeToShardEvent", &json_bytes);
+                    let payload = Bytes::copy_from_slice(event_msg.payload);
+
+                    let parsed_event = T::deserialize_event(event_type, &payload);
                     Poll::Ready(Some(parsed_event.map_err(RusotoError::from)))
                 }
                 Err(e) => Poll::Ready(Some(Err(RusotoError::from(e)))),
