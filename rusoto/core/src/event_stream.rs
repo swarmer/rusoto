@@ -2,6 +2,8 @@
 //!
 //! TODO
 
+use std::fmt::Display;
+use std::io::{Cursor, Read};
 use std::marker::PhantomData;
 use std::pin::Pin;
 
@@ -13,11 +15,100 @@ use pin_project::pin_project;
 use crate::error::RusotoError;
 use crate::request::HttpResponse;
 use crate::stream::ByteStream;
+use serde::export::Formatter;
+use futures::io::Error;
 
 /// TODO
 pub trait DeserializeEvent: Sized {
     /// TODO
     fn deserialize_event(event_type: &str, data: &Bytes) -> Result<Self, RusotoError<()>>;
+}
+
+fn read_repr<T, R: Read>(read: &mut R, buf: &mut [u8]) -> std::io::Result<()> {
+    let type_size = std::mem::size_of::<T>();
+    let exact_buf = &mut buf[..type_size];
+    read.read_exact(exact_buf)
+}
+
+fn read_u8(read: &mut impl Read) -> std::io::Result<u8> {
+    let mut buf = [0; std::mem::size_of::<u8>()];
+    read_repr::<u8, _>(read, &mut buf)?;
+    Ok(u8::from_be_bytes(buf))
+}
+
+#[derive(Debug)]
+enum EventStreamError {
+    UnexpectedEof,
+    InvalidCrc,
+    InvalidData(&'static str),
+    IoError(std::io::Error),
+}
+
+impl std::error::Error for EventStreamError {}
+
+impl Display for EventStreamError {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            EventStreamError::UnexpectedEof => write!(f, "Expected additional data"),
+            EventStreamError::InvalidCrc => write!(f, "CRC check failed"),
+            EventStreamError::InvalidData(msg) => write!(f, "{}", msg),
+            EventStreamError::IoError(io_error) => io_error.fmt(f),
+        }
+    }
+}
+
+impl From<std::io::Error> for EventStreamError {
+    fn from(err: Error) -> Self {
+        match err.kind() {
+            std::io::ErrorKind::UnexpectedEof => EventStreamError::UnexpectedEof,
+            _ => EventStreamError::IoError(err),
+        }
+    }
+}
+
+impl<T> Into<RusotoError<T>> for EventStreamError {
+    fn into(self) -> RusotoError<T> {
+        RusotoError::ParseError(self.to_string())
+    }
+}
+
+/// A struct representing an eventstream header value.
+#[allow(missing_docs)]
+#[derive(Clone, Copy, Debug)]
+enum EventStreamHeaderValue<'a> {
+    True,
+    False,
+    Uint8(u8),
+    UInt16(u16),
+    UInt32(u32),
+    UInt64(u64),
+    ByteArray(&'a [u8]),
+    String(&'a str),
+    Timestamp(u64),
+    Uuid(&'a [u8; 16]), // don't want to pull the uuid dependency for this, so just u8
+}
+
+impl<'a> EventStreamHeaderValue<'a> {
+    pub fn parse(data: &mut [u8]) -> Result<Self, EventStreamError> {
+        let mut cursor = Cursor::new(data);
+        let _value_type: u8 = read_u8(&mut cursor)?;
+
+        unimplemented!()
+    }
+}
+
+#[derive(Clone, Copy, Debug)]
+struct EventStreamHeader<'a> {
+    // Header name
+    name: &'a str,
+    /// Header value
+    value: EventStreamHeaderValue<'a>,
+}
+
+#[derive(Clone, Debug)]
+struct EventStreamMessage<'a> {
+    headers: Vec<EventStreamHeader<'a>>,
+    payload: &'a [u8],
 }
 
 /// Event Stream.
