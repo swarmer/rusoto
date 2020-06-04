@@ -171,21 +171,26 @@ struct EventStreamMessage<'a> {
 }
 
 impl <'a> EventStreamMessage<'a> {
-    const HEADER_LENGTH: usize = 12;
+    const MIN_LENGTH: usize = 16;
 
     pub fn parse(reader: &mut &'a [u8]) -> Result<Self, EventStreamParseError> {
+        // Get a copy of the entire slice before it gets advanced
         let mut event_buf: &[u8] = *reader;
 
-        if reader.len() < Self::HEADER_LENGTH {
-            return Err(EventStreamParseError::UnexpectedEof);
-        }
         let total_length = read_u32(reader)? as usize;
-        if total_length < Self::HEADER_LENGTH {
+        // Ensure later subtractions don't underflow
+        if total_length < Self::MIN_LENGTH {
             return Err(EventStreamParseError::InvalidData("Invalid event total length value"));
         }
-        event_buf = &event_buf[..total_length];
-        let mut remainder_reader = read_slice(reader, total_length - 4)?;
+        let remaining_length = total_length - 4;
 
+        // Ensure we have the entire event data for event_buf
+        if event_buf.len() < total_length {
+            return Err(EventStreamParseError::UnexpectedEof);
+        }
+        event_buf = &event_buf[..total_length];
+
+        let mut remainder_reader = read_slice(reader, remaining_length)?;
         Self::parse_complete_event(event_buf, &mut remainder_reader)
             // The entire event is available, EOF is no longer possible with well-formed packets
             .map_err(EventStreamParseError::eof_as_invalid)
@@ -381,5 +386,42 @@ mod tests {
             event_msg,
             Err(EventStreamParseError::InvalidCrc),
         );
+    }
+
+    #[test]
+    fn incomplete_event() {
+        let data = b"\0\0\0r\0\0\0`\xab\x82\r\x9e\x0b:event-type\x07\0\x10initial-response\r\
+            :content-type\x07\0\x1aapplication/x-amz-json-1.1\
+            \r:message-type\x07\0\x05event{}\xac";
+
+        let event_msg = EventStreamMessage::parse(&mut &data[..]);
+        assert_eq!(
+            event_msg,
+            Err(EventStreamParseError::UnexpectedEof),
+        );
+    }
+
+    #[test]
+    fn empty_reader() {
+        let data = b"";
+
+        let event_msg = EventStreamMessage::parse(&mut &data[..]);
+        assert_eq!(
+            event_msg,
+            Err(EventStreamParseError::UnexpectedEof),
+        );
+    }
+
+    #[test]
+    fn invalid_header_size() {
+        let data = b"\0\0\0r\0\0\0c2\x8b\\$\x0b:event-type\x07\0\x10initial-response\r\
+            :content-type\x07\0\x1aapplication/x-amz-json-1.1\
+            \r:message-type\x07\0\x05event{}m\x858\x01";
+
+        let event_msg = EventStreamMessage::parse(&mut &data[..]);
+        assert!(matches!(
+            event_msg,
+            Err(EventStreamParseError::InvalidData(_))
+        ));
     }
 }
