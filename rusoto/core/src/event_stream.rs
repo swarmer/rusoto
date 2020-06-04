@@ -217,13 +217,7 @@ impl <'a> EventStreamMessage<'a> {
     }
 
     pub fn get_header(&self, name: &str) -> Option<&EventStreamHeader<'a>> {
-        for header in &self.headers {
-            if header.name == name {
-                return Some(header);
-            }
-        }
-
-        None
+        self.headers.iter().find(|h| h.name == name)
     }
 }
 
