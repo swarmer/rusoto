@@ -2,11 +2,12 @@
 //!
 //! TODO
 
-use std::fmt::Display;
-use std::io::Read;
+use std::convert::TryInto;
+use std::fmt::{Display, Formatter};
 use std::marker::PhantomData;
 use std::pin::Pin;
 
+use crc32fast::Hasher;
 use futures::task::{Context, Poll};
 use futures::Stream;
 use pin_project::pin_project;
@@ -14,9 +15,6 @@ use pin_project::pin_project;
 use crate::error::RusotoError;
 use crate::request::HttpResponse;
 use crate::stream::ByteStream;
-use serde::export::Formatter;
-use futures::io::Error;
-use std::convert::TryInto;
 
 /// TODO
 pub trait DeserializeEvent: Sized {
@@ -24,34 +22,22 @@ pub trait DeserializeEvent: Sized {
     fn deserialize_event(event_type: &str, data: &[u8]) -> Result<Self, RusotoError<()>>;
 }
 
-fn read_repr<T, R: Read>(reader: &mut R, buf: &mut [u8]) -> std::io::Result<()> {
-    let type_size = std::mem::size_of::<T>();
-    let exact_buf = &mut buf[..type_size];
-    reader.read_exact(exact_buf)
+#[derive(Debug, Eq, PartialEq)]
+enum EventStreamParseError {
+    UnexpectedEof,
+    InvalidCrc,
+    InvalidData(&'static str),
 }
 
-fn read_u8(reader: &mut impl Read) -> std::io::Result<u8> {
-    let mut buf = [0; std::mem::size_of::<u8>()];
-    read_repr::<u8, _>(reader, &mut buf)?;
-    Ok(u8::from_be_bytes(buf))
-}
+fn check_crc32(data: &[u8], ref_value: u32) -> Result<(), EventStreamParseError> {
+    let mut hasher = Hasher::new();
+    hasher.update(data);
 
-fn read_u16(reader: &mut impl Read) -> std::io::Result<u16> {
-    let mut buf = [0; std::mem::size_of::<u16>()];
-    read_repr::<u16, _>(reader, &mut buf)?;
-    Ok(u16::from_be_bytes(buf))
-}
-
-fn read_u32(reader: &mut impl Read) -> std::io::Result<u32> {
-    let mut buf = [0; std::mem::size_of::<u32>()];
-    read_repr::<u32, _>(reader, &mut buf)?;
-    Ok(u32::from_be_bytes(buf))
-}
-
-fn read_u64(reader: &mut impl Read) -> std::io::Result<u64> {
-    let mut buf = [0; std::mem::size_of::<u64>()];
-    read_repr::<u64, _>(reader, &mut buf)?;
-    Ok(u64::from_be_bytes(buf))
+    if hasher.finalize() != ref_value {
+        Err(EventStreamParseError::InvalidCrc)
+    } else {
+        Ok(())
+    }
 }
 
 fn read_slice<'a>(reader: &mut &'a [u8], size: usize) -> Result<&'a [u8], EventStreamParseError> {
@@ -64,12 +50,24 @@ fn read_slice<'a>(reader: &mut &'a [u8], size: usize) -> Result<&'a [u8], EventS
     Ok(slice)
 }
 
-#[derive(Debug)]
-enum EventStreamParseError {
-    UnexpectedEof,
-    InvalidCrc,
-    InvalidData(&'static str),
-    IoError(std::io::Error),
+fn read_u8(reader: &mut &[u8]) -> Result<u8, EventStreamParseError> {
+    let buf = read_slice(reader, std::mem::size_of::<u8>())?.try_into().unwrap();
+    Ok(u8::from_be_bytes(buf))
+}
+
+fn read_u16(reader: &mut &[u8]) -> Result<u16, EventStreamParseError> {
+    let buf = read_slice(reader, std::mem::size_of::<u16>())?.try_into().unwrap();
+    Ok(u16::from_be_bytes(buf))
+}
+
+fn read_u32(reader: &mut &[u8]) -> Result<u32, EventStreamParseError> {
+    let buf = read_slice(reader, std::mem::size_of::<u32>())?.try_into().unwrap();
+    Ok(u32::from_be_bytes(buf))
+}
+
+fn read_u64(reader: &mut &[u8]) -> Result<u64, EventStreamParseError> {
+    let buf = read_slice(reader, std::mem::size_of::<u64>())?.try_into().unwrap();
+    Ok(u64::from_be_bytes(buf))
 }
 
 impl EventStreamParseError {
@@ -91,16 +89,6 @@ impl Display for EventStreamParseError {
             EventStreamParseError::UnexpectedEof => write!(f, "Expected additional data"),
             EventStreamParseError::InvalidCrc => write!(f, "CRC check failed"),
             EventStreamParseError::InvalidData(msg) => write!(f, "{}", msg),
-            EventStreamParseError::IoError(io_error) => io_error.fmt(f),
-        }
-    }
-}
-
-impl From<std::io::Error> for EventStreamParseError {
-    fn from(err: Error) -> Self {
-        match err.kind() {
-            std::io::ErrorKind::UnexpectedEof => EventStreamParseError::UnexpectedEof,
-            _ => EventStreamParseError::IoError(err),
         }
     }
 }
@@ -157,7 +145,7 @@ impl<'a> EventStreamHeaderValue<'a> {
     }
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 struct EventStreamHeader<'a> {
     name: &'a str,
     value: EventStreamHeaderValue<'a>,
@@ -176,31 +164,40 @@ impl <'a> EventStreamHeader<'a> {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 struct EventStreamMessage<'a> {
     headers: Vec<EventStreamHeader<'a>>,
     payload: &'a [u8],
 }
 
 impl <'a> EventStreamMessage<'a> {
+    const HEADER_LENGTH: usize = 12;
+
     pub fn parse(reader: &mut &'a [u8]) -> Result<Self, EventStreamParseError> {
-        if reader.len() < 4 {
+        let mut event_buf: &[u8] = *reader;
+
+        if reader.len() < Self::HEADER_LENGTH {
             return Err(EventStreamParseError::UnexpectedEof);
         }
         let total_length = read_u32(reader)? as usize;
-        if total_length < 4 {
+        if total_length < Self::HEADER_LENGTH {
             return Err(EventStreamParseError::InvalidData("Invalid event total length value"));
         }
+        event_buf = &event_buf[..total_length];
         let mut remainder_reader = read_slice(reader, total_length - 4)?;
 
-        Self::parse_complete_event(&mut remainder_reader)
+        Self::parse_complete_event(event_buf, &mut remainder_reader)
             // The entire event is available, EOF is no longer possible with well-formed packets
             .map_err(EventStreamParseError::eof_as_invalid)
     }
 
-    fn parse_complete_event(remainder_reader: &mut &'a [u8]) -> Result<Self, EventStreamParseError> {
+    fn parse_complete_event(
+        event_buf: &'a [u8],
+        remainder_reader: &mut &'a [u8],
+    ) -> Result<Self, EventStreamParseError> {
         let headers_length = read_u32(remainder_reader)? as usize;
-        let _prelude_crc = read_u32(remainder_reader)?; // TODO: check
+        let prelude_crc = read_u32(remainder_reader)?;
+        check_crc32(&event_buf[..8], prelude_crc)?;
 
         let mut headers_reader = read_slice(remainder_reader, headers_length)?;
         let mut headers = Vec::with_capacity(3);
@@ -213,7 +210,8 @@ impl <'a> EventStreamMessage<'a> {
             return Err(EventStreamParseError::InvalidData("Malformed event: unexpected EOF"));
         }
         let payload = read_slice(remainder_reader, remainder_reader.len() - 4)?;
-        let _payload_crc = read_u32(remainder_reader)?; // TODO: check
+        let payload_crc = read_u32(remainder_reader)?;
+        check_crc32(&event_buf[..(event_buf.len() - 4)], payload_crc)?;
 
         Ok(EventStreamMessage { headers, payload })
     }
@@ -296,5 +294,98 @@ impl<T: DeserializeEvent> futures::stream::Stream for EventStream<T> {
             },
             None => Poll::Ready(None),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn parse_initial_response() {
+        let data = b"\0\0\0r\0\0\0`\xab\x82\r\x9e\x0b:event-type\x07\0\x10initial-response\r\
+            :content-type\x07\0\x1aapplication/x-amz-json-1.1\
+            \r:message-type\x07\0\x05event{}\xac\xaek}";
+
+        let event_msg = EventStreamMessage::parse(&mut &data[..]);
+        assert_eq!(
+            event_msg,
+            Ok(EventStreamMessage {
+                headers: vec![
+                    EventStreamHeader {
+                        name: ":event-type",
+                        value: EventStreamHeaderValue::String("initial-response"),
+                    },
+                    EventStreamHeader {
+                        name: ":content-type",
+                        value: EventStreamHeaderValue::String("application/x-amz-json-1.1"),
+                    },
+                    EventStreamHeader {
+                        name: ":message-type",
+                        value: EventStreamHeaderValue::String("event"),
+                    },
+                ],
+                payload: b"{}",
+            }),
+        );
+    }
+
+    #[test]
+    fn parse_error_event() {
+        let data = b"\0\0\x01\x06\0\0\0pq;\x88P\x0f:exception-type\x07\0\x18\
+            KMSAccessDeniedException\r:content-type\x07\0\x1aapplication/x-amz-json-1.1\r\
+            :message-type\x07\0\texception{\"message\":\"User AIDAAAAAAAAAAAAAAAAAA is not \
+            authorized to decrypt records in stream 666666666666:rusoto-test-tud2Vz6q1V\
+            :1590674508\"}\xfc\xd1\x99T";
+
+        let event_msg = EventStreamMessage::parse(&mut &data[..]);
+        assert_eq!(
+            event_msg,
+            Ok(EventStreamMessage {
+                headers: vec![
+                    EventStreamHeader {
+                        name: ":exception-type",
+                        value: EventStreamHeaderValue::String("KMSAccessDeniedException"),
+                    },
+                    EventStreamHeader {
+                        name: ":content-type",
+                        value: EventStreamHeaderValue::String("application/x-amz-json-1.1"),
+                    },
+                    EventStreamHeader {
+                        name: ":message-type",
+                        value: EventStreamHeaderValue::String("exception"),
+                    },
+                ],
+                payload: b"{\"message\":\"User AIDAAAAAAAAAAAAAAAAAA is not \
+                    authorized to decrypt records in stream 666666666666:rusoto-test-tud2Vz6q1V\
+                    :1590674508\"}",
+            }),
+        );
+    }
+
+    #[test]
+    fn invalid_prelude_crc() {
+        let data = b"\0\0\0r\0\0\0`\xab\x82\r\x9f\x0b:event-type\x07\0\x10initial-response\r\
+            :content-type\x07\0\x1aapplication/x-amz-json-1.1\
+            \r:message-type\x07\0\x05event{}\xac\xaek}";
+
+        let event_msg = EventStreamMessage::parse(&mut &data[..]);
+        assert_eq!(
+            event_msg,
+            Err(EventStreamParseError::InvalidCrc),
+        );
+    }
+
+    #[test]
+    fn invalid_message_crc() {
+        let data = b"\0\0\0r\0\0\0`\xab\x82\r\x9e\x0b:event-type\x07\0\x10initial-response\r\
+            :content-type\x07\0\x1aapplication/x-amz-json-1.1\
+            \r:message-type\x07\0\x05event{}\xad\xaek}";
+
+        let event_msg = EventStreamMessage::parse(&mut &data[..]);
+        assert_eq!(
+            event_msg,
+            Err(EventStreamParseError::InvalidCrc),
+        );
     }
 }
