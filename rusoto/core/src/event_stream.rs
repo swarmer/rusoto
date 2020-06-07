@@ -1,6 +1,4 @@
-//! Event Stream responses
-//!
-//! TODO
+//! Event Stream protocol support utilities
 
 use std::convert::TryInto;
 use std::fmt::{Display, Formatter};
@@ -15,9 +13,8 @@ use crate::error::RusotoError;
 use crate::request::HttpResponse;
 use crate::stream::ByteStream;
 
-/// TODO
+#[doc(hidden)]
 pub trait DeserializeEvent: Sized {
-    /// TODO
     fn deserialize_event(event_type: &str, data: &[u8]) -> Result<Self, RusotoError<()>>;
 }
 
@@ -239,15 +236,9 @@ impl<'a> EventStreamMessage<'a> {
     }
 }
 
-/// Event Stream.
+/// Event Stream decoder
 ///
-/// # Default
-///
-/// TODO
-///
-/// # Example
-///
-/// TODO
+/// This struct implements futures::Stream and decodes events of type T from a streaming HTTP body.
 #[derive(Debug)]
 pub struct EventStream<T: DeserializeEvent + Unpin> {
     response_body: Option<Pin<Box<ByteStream>>>,
@@ -256,15 +247,7 @@ pub struct EventStream<T: DeserializeEvent + Unpin> {
 }
 
 impl<T: DeserializeEvent + Unpin> EventStream<T> {
-    /// Create an Event Stream.
-    ///
-    /// # Default
-    ///
-    /// TODO
-    ///
-    /// # Example
-    ///
-    /// TODO
+    #[doc(hidden)]
     pub fn new(response: HttpResponse) -> EventStream<T> {
         EventStream {
             response_body: Some(Box::pin(response.body)),
@@ -319,7 +302,7 @@ impl<T: DeserializeEvent + Unpin> EventStream<T> {
     }
 }
 
-impl<T: DeserializeEvent + Unpin> futures::stream::Stream for EventStream<T> {
+impl<T: DeserializeEvent + Unpin> futures::Stream for EventStream<T> {
     type Item = Result<T, RusotoError<()>>;
 
     fn poll_next(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
