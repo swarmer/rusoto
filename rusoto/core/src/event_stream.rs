@@ -10,7 +10,6 @@ use std::pin::Pin;
 use crc32fast::Hasher;
 use futures::task::{Context, Poll};
 use futures::Stream;
-use pin_project::pin_project;
 
 use crate::error::RusotoError;
 use crate::request::HttpResponse;
@@ -51,31 +50,39 @@ fn read_slice<'a>(reader: &mut &'a [u8], size: usize) -> Result<&'a [u8], EventS
 }
 
 fn read_u8(reader: &mut &[u8]) -> Result<u8, EventStreamParseError> {
-    let buf = read_slice(reader, std::mem::size_of::<u8>())?.try_into().unwrap();
+    let buf = read_slice(reader, std::mem::size_of::<u8>())?
+        .try_into()
+        .unwrap();
     Ok(u8::from_be_bytes(buf))
 }
 
 fn read_u16(reader: &mut &[u8]) -> Result<u16, EventStreamParseError> {
-    let buf = read_slice(reader, std::mem::size_of::<u16>())?.try_into().unwrap();
+    let buf = read_slice(reader, std::mem::size_of::<u16>())?
+        .try_into()
+        .unwrap();
     Ok(u16::from_be_bytes(buf))
 }
 
 fn read_u32(reader: &mut &[u8]) -> Result<u32, EventStreamParseError> {
-    let buf = read_slice(reader, std::mem::size_of::<u32>())?.try_into().unwrap();
+    let buf = read_slice(reader, std::mem::size_of::<u32>())?
+        .try_into()
+        .unwrap();
     Ok(u32::from_be_bytes(buf))
 }
 
 fn read_u64(reader: &mut &[u8]) -> Result<u64, EventStreamParseError> {
-    let buf = read_slice(reader, std::mem::size_of::<u64>())?.try_into().unwrap();
+    let buf = read_slice(reader, std::mem::size_of::<u64>())?
+        .try_into()
+        .unwrap();
     Ok(u64::from_be_bytes(buf))
 }
 
 impl EventStreamParseError {
     fn eof_as_invalid(self) -> Self {
         match self {
-            EventStreamParseError::UnexpectedEof => EventStreamParseError::InvalidData(
-                "Malformed event: ended unexpectedly"
-            ),
+            EventStreamParseError::UnexpectedEof => {
+                EventStreamParseError::InvalidData("Malformed event: ended unexpectedly")
+            }
             other => other,
         }
     }
@@ -127,19 +134,20 @@ impl<'a> EventStreamHeaderValue<'a> {
                 let size = read_u16(reader)? as usize;
                 let byte_array = read_slice(reader, size)?;
                 EventStreamHeaderValue::ByteArray(byte_array)
-            },
+            }
             7 => {
                 let size = read_u16(reader)? as usize;
                 let string_bytes = read_slice(reader, size)?;
-                let string = std::str::from_utf8(string_bytes)
-                    .or(Err(EventStreamParseError::InvalidData("Header string data is not valid utf-8")))?;
+                let string = std::str::from_utf8(string_bytes).or(Err(
+                    EventStreamParseError::InvalidData("Header string data is not valid utf-8"),
+                ))?;
                 EventStreamHeaderValue::String(string)
-            },
+            }
             8 => EventStreamHeaderValue::Timestamp(read_u64(reader)?),
-            9 => EventStreamHeaderValue::Uuid(
-                read_slice(reader, 16)?.try_into().unwrap()
-            ),
-            _ => Err(EventStreamParseError::InvalidData("Invalid header value type"))?,
+            9 => EventStreamHeaderValue::Uuid(read_slice(reader, 16)?.try_into().unwrap()),
+            _ => Err(EventStreamParseError::InvalidData(
+                "Invalid header value type",
+            ))?,
         };
         Ok(value)
     }
@@ -155,8 +163,9 @@ impl<'a> EventStreamHeader<'a> {
     pub fn parse(reader: &mut &'a [u8]) -> Result<Self, EventStreamParseError> {
         let name_size = read_u8(reader)? as usize;
         let name_bytes = read_slice(reader, name_size)?;
-        let name = std::str::from_utf8(name_bytes)
-            .or(Err(EventStreamParseError::InvalidData("Header name is not valid utf-8")))?;
+        let name = std::str::from_utf8(name_bytes).or(Err(EventStreamParseError::InvalidData(
+            "Header name is not valid utf-8",
+        )))?;
 
         let value = EventStreamHeaderValue::parse(reader)?;
 
@@ -180,7 +189,9 @@ impl<'a> EventStreamMessage<'a> {
         let total_length = read_u32(reader)? as usize;
         // Ensure later subtractions don't underflow
         if total_length < Self::MIN_LENGTH {
-            return Err(EventStreamParseError::InvalidData("Invalid event total length value"));
+            return Err(EventStreamParseError::InvalidData(
+                "Invalid event total length value",
+            ));
         }
         let remaining_length = total_length - 4;
 
@@ -212,7 +223,9 @@ impl<'a> EventStreamMessage<'a> {
         }
 
         if remainder_reader.len() < 4 {
-            return Err(EventStreamParseError::InvalidData("Malformed event: unexpected EOF"));
+            return Err(EventStreamParseError::InvalidData(
+                "Malformed event: unexpected EOF",
+            ));
         }
         let payload = read_slice(remainder_reader, remainder_reader.len() - 4)?;
         let payload_crc = read_u32(remainder_reader)?;
@@ -235,16 +248,14 @@ impl<'a> EventStreamMessage<'a> {
 /// # Example
 ///
 /// TODO
-#[pin_project]
 #[derive(Debug)]
-pub struct EventStream<T: DeserializeEvent> {
-    #[pin]
-    response_body: Option<ByteStream>,
+pub struct EventStream<T: DeserializeEvent + Unpin> {
+    response_body: Option<Pin<Box<ByteStream>>>,
     buf: Vec<u8>,
     _phantom: std::marker::PhantomData<T>,
 }
 
-impl<T: DeserializeEvent> EventStream<T> {
+impl<T: DeserializeEvent + Unpin> EventStream<T> {
     /// Create an Event Stream.
     ///
     /// # Default
@@ -256,13 +267,13 @@ impl<T: DeserializeEvent> EventStream<T> {
     /// TODO
     pub fn new(response: HttpResponse) -> EventStream<T> {
         EventStream {
-            response_body: Some(response.body),
+            response_body: Some(Box::pin(response.body)),
             buf: Vec::with_capacity(512),
             _phantom: PhantomData {},
         }
     }
 
-    fn pop_event(buf: &mut Vec<u8>) -> Result<Option<T>, RusotoError<()>>  {
+    fn pop_event(buf: &mut Vec<u8>) -> Result<Option<T>, RusotoError<()>> {
         loop {
             let mut reader: &[u8] = &buf;
             let initial_size = reader.len();
@@ -273,14 +284,17 @@ impl<T: DeserializeEvent> EventStream<T> {
             };
             log::trace!("Parsed event stream event: {:?}", event_msg);
 
-            let event_type_header = event_msg.get_header(":event-type")
+            let event_type_header = event_msg
+                .get_header(":event-type")
                 .ok_or_else(|| RusotoError::ParseError("Expected event-type header".to_string()))?;
             let event_type: &str = match event_type_header.value {
                 EventStreamHeaderValue::String(s) => s,
-                _ => return Err(
-                    EventStreamParseError::InvalidData("Invalid event-type header type")
-                        .into()
-                ),
+                _ => {
+                    return Err(EventStreamParseError::InvalidData(
+                        "Invalid event-type header type",
+                    )
+                    .into())
+                }
             };
 
             let event = if event_type == "initial-response" {
@@ -299,25 +313,32 @@ impl<T: DeserializeEvent> EventStream<T> {
             break Ok(event);
         }
     }
+
+    fn drop_response_body(&mut self) {
+        self.response_body = None;
+    }
 }
 
-impl<T: DeserializeEvent> futures::stream::Stream for EventStream<T> {
+impl<T: DeserializeEvent + Unpin> futures::stream::Stream for EventStream<T> {
     type Item = Result<T, RusotoError<()>>;
 
     fn poll_next(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
-        let projection = self.project();
+        let projection = self.get_mut();
 
         // First try to use the buffer
-        match Self::pop_event(projection.buf) {
+        match Self::pop_event(&mut projection.buf) {
             Ok(Some(event)) => return Poll::Ready(Some(Ok(event))),
-            Ok(None) => {},
-            Err(err) => return Poll::Ready(Some(Err(err))),
+            Ok(None) => {}
+            Err(err) => {
+                projection.drop_response_body();
+                return Poll::Ready(Some(Err(err)));
+            }
         };
 
         // Otherwise, see if new data has arrived from the network
-        let chunk_option = match projection.response_body.as_pin_mut() {
+        let chunk_option = match &mut projection.response_body {
             // We still maintain the stream, poll it and return if nothing is available
-            Some(body) => futures::ready!(Stream::poll_next(body, cx)),
+            Some(body) => futures::ready!(Stream::poll_next(body.as_mut(), cx)),
 
             // We dropped the stream because we encountered an error.
             // This means that the stream is potentially broken and so we end it.
@@ -330,22 +351,35 @@ impl<T: DeserializeEvent> futures::stream::Stream for EventStream<T> {
 
                 projection.buf.extend(byte_chunk);
 
-                let parsed_event = match Self::pop_event(projection.buf) {
+                let parsed_event = match Self::pop_event(&mut projection.buf) {
                     Ok(None) => return Poll::Pending,
                     Ok(Some(item)) => Ok(item),
-                    Err(err) => Err(err),
+                    Err(err) => {
+                        projection.drop_response_body();
+                        Err(err)
+                    }
                 };
                 Poll::Ready(Some(parsed_event))
-            },
+            }
 
             // Something went wrong with the network connection
-            Some(Err(e)) => Poll::Ready(Some(Err(RusotoError::from(e)))),
+            Some(Err(e)) => {
+                projection.drop_response_body();
+                Poll::Ready(Some(Err(RusotoError::from(e))))
+            }
 
             // The underlying stream is closed
             None => {
-                // TODO: check if buf is empty
-                Poll::Ready(None)
-            },
+                projection.drop_response_body();
+
+                if !projection.buf.is_empty() {
+                    Poll::Ready(Some(Err(RusotoError::ParseError(
+                        "Event stream closed with imcomplete data remaining".to_string(),
+                    ))))
+                } else {
+                    Poll::Ready(None)
+                }
+            }
         }
     }
 }
@@ -423,10 +457,7 @@ mod tests {
             \r:message-type\x07\0\x05event{}\xac\xaek}";
 
         let event_msg = EventStreamMessage::parse(&mut &data[..]);
-        assert_eq!(
-            event_msg,
-            Err(EventStreamParseError::InvalidCrc),
-        );
+        assert_eq!(event_msg, Err(EventStreamParseError::InvalidCrc),);
     }
 
     #[test]
@@ -436,10 +467,7 @@ mod tests {
             \r:message-type\x07\0\x05event{}\xad\xaek}";
 
         let event_msg = EventStreamMessage::parse(&mut &data[..]);
-        assert_eq!(
-            event_msg,
-            Err(EventStreamParseError::InvalidCrc),
-        );
+        assert_eq!(event_msg, Err(EventStreamParseError::InvalidCrc),);
     }
 
     #[test]
@@ -449,10 +477,7 @@ mod tests {
             \r:message-type\x07\0\x05event{}\xac";
 
         let event_msg = EventStreamMessage::parse(&mut &data[..]);
-        assert_eq!(
-            event_msg,
-            Err(EventStreamParseError::UnexpectedEof),
-        );
+        assert_eq!(event_msg, Err(EventStreamParseError::UnexpectedEof),);
     }
 
     #[test]
@@ -460,10 +485,7 @@ mod tests {
         let data = b"";
 
         let event_msg = EventStreamMessage::parse(&mut &data[..]);
-        assert_eq!(
-            event_msg,
-            Err(EventStreamParseError::UnexpectedEof),
-        );
+        assert_eq!(event_msg, Err(EventStreamParseError::UnexpectedEof),);
     }
 
     #[test]
