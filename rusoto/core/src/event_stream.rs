@@ -151,7 +151,7 @@ struct EventStreamHeader<'a> {
     value: EventStreamHeaderValue<'a>,
 }
 
-impl <'a> EventStreamHeader<'a> {
+impl<'a> EventStreamHeader<'a> {
     pub fn parse(reader: &mut &'a [u8]) -> Result<Self, EventStreamParseError> {
         let name_size = read_u8(reader)? as usize;
         let name_bytes = read_slice(reader, name_size)?;
@@ -170,7 +170,7 @@ struct EventStreamMessage<'a> {
     payload: &'a [u8],
 }
 
-impl <'a> EventStreamMessage<'a> {
+impl<'a> EventStreamMessage<'a> {
     const MIN_LENGTH: usize = 16;
 
     pub fn parse(reader: &mut &'a [u8]) -> Result<Self, EventStreamParseError> {
@@ -239,7 +239,8 @@ impl <'a> EventStreamMessage<'a> {
 #[derive(Debug)]
 pub struct EventStream<T: DeserializeEvent> {
     #[pin]
-    response_body: ByteStream,
+    response_body: Option<ByteStream>,
+    buf: Vec<u8>,
     _phantom: std::marker::PhantomData<T>,
 }
 
@@ -255,8 +256,47 @@ impl<T: DeserializeEvent> EventStream<T> {
     /// TODO
     pub fn new(response: HttpResponse) -> EventStream<T> {
         EventStream {
-            response_body: response.body,
+            response_body: Some(response.body),
+            buf: Vec::with_capacity(512),
             _phantom: PhantomData {},
+        }
+    }
+
+    fn pop_event(buf: &mut Vec<u8>) -> Result<Option<T>, RusotoError<()>>  {
+        loop {
+            let mut reader: &[u8] = &buf;
+            let initial_size = reader.len();
+            let event_msg = match EventStreamMessage::parse(&mut reader) {
+                Ok(msg) => msg,
+                Err(EventStreamParseError::UnexpectedEof) => return Ok(None),
+                Err(err) => return Err(err.into()),
+            };
+            log::trace!("Parsed event stream event: {:?}", event_msg);
+
+            let event_type_header = event_msg.get_header(":event-type")
+                .ok_or_else(|| RusotoError::ParseError("Expected event-type header".to_string()))?;
+            let event_type: &str = match event_type_header.value {
+                EventStreamHeaderValue::String(s) => s,
+                _ => return Err(
+                    EventStreamParseError::InvalidData("Invalid event-type header type")
+                        .into()
+                ),
+            };
+
+            let event = if event_type == "initial-response" {
+                None
+            } else {
+                Some(T::deserialize_event(event_type, event_msg.payload)?)
+            };
+
+            let bytes_consumed = initial_size - reader.len();
+            buf.drain(..bytes_consumed);
+
+            if event.is_none() {
+                continue;
+            }
+
+            break Ok(event);
         }
     }
 }
@@ -265,33 +305,47 @@ impl<T: DeserializeEvent> futures::stream::Stream for EventStream<T> {
     type Item = Result<T, RusotoError<()>>;
 
     fn poll_next(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
-        // TODO
         let projection = self.project();
-        let chunk_option = futures::ready!(Stream::poll_next(projection.response_body, cx));
+
+        // First try to use the buffer
+        match Self::pop_event(projection.buf) {
+            Ok(Some(event)) => return Poll::Ready(Some(Ok(event))),
+            Ok(None) => {},
+            Err(err) => return Poll::Ready(Some(Err(err))),
+        };
+
+        // Otherwise, see if new data has arrived from the network
+        let chunk_option = match projection.response_body.as_pin_mut() {
+            // We still maintain the stream, poll it and return if nothing is available
+            Some(body) => futures::ready!(Stream::poll_next(body, cx)),
+
+            // We dropped the stream because we encountered an error.
+            // This means that the stream is potentially broken and so we end it.
+            None => return Poll::Ready(None),
+        };
         match chunk_option {
-            Some(chunk_res) => match chunk_res {
-                Ok(byte_chunk) => {
-                    log::trace!("Got event stream bytes: {:?}", byte_chunk);
+            // We received an http body chunk
+            Some(Ok(byte_chunk)) => {
+                log::trace!("Got event stream bytes: {:?}", byte_chunk);
 
-                    // TODO
-                    let event_msg = EventStreamMessage::parse(&mut &*byte_chunk).unwrap();
-                    println!("Parsed event stream event: {:?}", event_msg);
+                projection.buf.extend(byte_chunk);
 
-                    let event_type_header = event_msg.get_header(":event-type").unwrap();
-                    let event_type = match event_type_header.value {
-                        EventStreamHeaderValue::String(s) => s,
-                        _ => panic!("Invalid event type value"),
-                    };
-                    if event_type == "initial-response" {
-                        return Poll::Pending;
-                    }
-
-                    let parsed_event = T::deserialize_event(event_type, event_msg.payload);
-                    Poll::Ready(Some(parsed_event.map_err(RusotoError::from)))
-                }
-                Err(e) => Poll::Ready(Some(Err(RusotoError::from(e)))),
+                let parsed_event = match Self::pop_event(projection.buf) {
+                    Ok(None) => return Poll::Pending,
+                    Ok(Some(item)) => Ok(item),
+                    Err(err) => Err(err),
+                };
+                Poll::Ready(Some(parsed_event))
             },
-            None => Poll::Ready(None),
+
+            // Something went wrong with the network connection
+            Some(Err(e)) => Poll::Ready(Some(Err(RusotoError::from(e)))),
+
+            // The underlying stream is closed
+            None => {
+                // TODO: check if buf is empty
+                Poll::Ready(None)
+            },
         }
     }
 }
