@@ -238,9 +238,9 @@ impl<'a> EventStreamMessage<'a> {
 
 /// Event Stream decoder
 ///
-/// This struct implements futures::Stream and decodes events of type T from a streaming HTTP body.
+/// This struct implements `futures::Stream` and decodes events of type `T` from a streaming HTTP body.
 #[derive(Debug)]
-pub struct EventStream<T: DeserializeEvent + Unpin> {
+pub struct EventStream<T> {
     response_body: Option<Pin<Box<ByteStream>>>,
     buf: Vec<u8>,
     _phantom: std::marker::PhantomData<T>,
